@@ -38,7 +38,12 @@ abstract class Base_model extends CI_Model {
 	 * @param string $joinType - the type of join (left outer, right outer, inner)
 	 * @param array/string $moreProperties - the additional properties getting from the query
 	 */
-	public function getAll($limit = 0, $offset = 0, $orders = NULL, $joins = NULL, $moreProperties = '') {
+	public function getAll($limit = 0, $offset = 0, $orders = NULL, $joins = NULL, $moreProperties = '', $hasState = TRUE) {
+		if ($hasState == TRUE) {
+			$stateKey = $this->getStateKey();
+			$this->db->where(array($stateKey => 1));
+		}
+		
 		$this->db->from($this->getTableName());
 		
 		$arrProperties = get_object_vars ($this);

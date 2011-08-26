@@ -6,12 +6,18 @@
 
 #admin th {
 	text-align: left;
+	background-color: #DDDDDD;
+	padding : 5px;
 }
 
-#admin tr.odd {
+#admin tr:nth-child(even) {
 	background: #F1F1F1;
 }
 
 #admin td {
 	padding : 5px;
-} 
+}
+
+#admin .message {
+	margin:5px 0px;
+}
