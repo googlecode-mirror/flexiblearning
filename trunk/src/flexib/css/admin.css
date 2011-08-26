@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+
+#admin table {
+	width : 100%;
+}
+
+#admin th {
+	text-align: left;
+}
+
+#admin tr.odd {
+	background: #F1F1F1;
+}
+
+#admin td {
+	padding : 5px;
+} 
