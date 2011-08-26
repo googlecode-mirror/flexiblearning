@@ -51,7 +51,6 @@ abstract class Abstract_Controller extends Base_Controller {
 	
 	public function admin($page = '') {
 		$this->prepareDataForAdminListView($page);
-		
 		$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
 	}
 	

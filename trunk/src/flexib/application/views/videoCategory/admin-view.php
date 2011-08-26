@@ -31,13 +31,5 @@
 </div>
 
 <script type="text/javascript">
-	$('#tblVideoCategory tr:odd').addClass('odd');
-	$('.btnDelete').click(function() {
-		var node = $(this).parent().parent();
-		var name = $(node).find('td:nth-child(2)').text();
-		if(confirm('Bạn có chắc chắn muốn phân loại "' + name + '" không ?')) {
-			var id = $(this).attr('id').substring(5);
-			$('#videoCategory').load('<?php echo site_url("videoCategory/delete_admin")?>/' + id + "/" + <?=$page?>);
-		}
-	});
+	$('table tr:odd').addClass('odd');
 </script>

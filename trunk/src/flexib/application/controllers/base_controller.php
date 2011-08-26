@@ -1,11 +1,15 @@
 <?php
 class Base_Controller extends CI_Controller {
-	protected $VIEWS = array('');
+	protected $VIEWS = array();
 	
 	private $_viewData;
 	
 	protected function initializeForLib() {
 		$this->form_validation->set_error_delimiters('<div>', '</div>');
+	}
+	
+	protected function getAdminTab() {
+		return NULL;
 	}
 	
 	public function __construct() {
@@ -25,6 +29,9 @@ class Base_Controller extends CI_Controller {
 			}
 			$this->template->addAdditionalAreaView($view, $value, $data);
 		}
+		
+		// add tab index
+		$this->addDataForView('tab', $this->getAdminTab());
 	}
 	
 	protected function addDataForView($name, $data) {
