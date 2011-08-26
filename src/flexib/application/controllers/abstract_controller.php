@@ -5,6 +5,7 @@ abstract class Abstract_Controller extends Base_Controller {
 	protected $template_view = 'template';
 	protected $template_admin = 'template_admin';
 	
+	// declare object's name or view name for the common controller
 	protected function getListName() {
 		return lcfirst(get_class($this)) . 's';
 	}
@@ -33,10 +34,36 @@ abstract class Abstract_Controller extends Base_Controller {
 		return lcfirst(get_class($this)) . '_model';
 	}
 
+	protected function prepareDataForListView($page = '') {
+		$className = $this->getModelName();
+		
+		$nTotalObject = $this->countObjectsForList();
+		$nObjectPerPage = $this->config->item('number_of_object_list_page');
+		$nTotalPage = (int)(($nTotalObject - 1)/$nObjectPerPage) + 1;
+		
+		if ($page == '') {
+			$page = 1;
+		}
+		
+		$objects = $this->getObjectsForList($page, $nObjectPerPage);
+		
+		$this->addDataForView($this->getListName(), $objects);
+		$this->addDataForView('page', $page);
+		$this->addDataForView('nTotalObject', $nTotalObject);
+		$this->addDataForView('nObjectPerPage', $nObjectPerPage);
+		$this->addDataForView('nTotalPage', $nTotalPage);	
+			
+		$this->addReferenceDataForListView();
+	}
+	
 	protected function getObjectsForList($page = '', $nObjPerPage = '') {
 		$className = $this->getModelName();
 		if ($page == '') {
-			$objects = $this->$className->getAll();
+			if (!property_exists($className, $this->getStateKey())) {
+				$objects = $this->$className->getAll();
+			} else {
+				
+			}
 		} else {
 			$from = ($page - 1) * $nObjPerPage;
 			$objects = $this->$className->getAll($from, $nObjPerPage, NULL, NULL);
@@ -47,11 +74,6 @@ abstract class Abstract_Controller extends Base_Controller {
 	public function index($page = '') {
 		$this->prepareDataForListView($page);
 		$this->load->view($this->getViewListName(), $this->getDataForView());
-	}
-	
-	public function admin($page = '') {
-		$this->prepareDataForAdminListView($page);
-		$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
 	}
 	
 	protected function addMoreDataForObjectInViewView($object, $page) {
@@ -100,7 +122,7 @@ abstract class Abstract_Controller extends Base_Controller {
 		$className = $this->getModelName();
 		$object = $this->$className->getById($id);
 		if ($object) {
-			if ($this->$className->delete($id)) {
+			if ($this->$className->delete_temp($id)) {
 				$notifyMessage = ucfirst(sprintf($this->config->item('delete_successfully'), 
 					$this->$className->getText(), 
 					$object->getDisplayName()));
@@ -119,26 +141,9 @@ abstract class Abstract_Controller extends Base_Controller {
 		$this->load->view($this->getViewAdminName(), $this->getDataForView());
 	}
 	
-	protected function prepareDataForListView($page = '') {
-		$className = $this->getModelName();
-		
-		$nTotalObject = $this->countObjectsForList();
-		$nObjectPerPage = $this->config->item('number_of_object_list_page');
-		$nTotalPage = (int)(($nTotalObject - 1)/$nObjectPerPage) + 1;
-		
-		if ($page == '') {
-			$page = 1;
-		}
-		
-		$objects = $this->getObjectsForList($page, $nObjectPerPage);
-		
-		$this->addDataForView($this->getListName(), $objects);
-		$this->addDataForView('page', $page);
-		$this->addDataForView('nTotalObject', $nTotalObject);
-		$this->addDataForView('nObjectPerPage', $nObjectPerPage);
-		$this->addDataForView('nTotalPage', $nTotalPage);	
-			
-		$this->addReferenceDataForListView();
+	public function admin($page = '') {
+		$this->prepareDataForAdminListView($page);
+		$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
 	}
 	
 	protected function prepareDataForAdminListView($page = '') {

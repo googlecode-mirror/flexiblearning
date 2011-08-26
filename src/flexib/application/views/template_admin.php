@@ -7,9 +7,9 @@
 <link rel="stylesheet" href="<?=base_url()?>css/base/jquery.ui.all.css">
 <link rel="stylesheet" href="<?=base_url()?>css/admin.css">
 
-<script src="<?=base_url()?>js/jquery-1.5.1.js"></script>
+<script type="text/javascript" src="<?=base_url()?>js/jquery-1.5.1.js"></script>
 
-<script src="<?=base_url()?>js/ui/jquery-ui-1.8.14.custom.js"></script>
+<script type="text/javascript" src="<?=base_url()?>js/ui/jquery-ui-1.8.14.custom.js"></script>
 <script>
 	$(document).ready(function(){
 		var urls = [

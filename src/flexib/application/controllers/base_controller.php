@@ -9,7 +9,7 @@ class Base_Controller extends CI_Controller {
 	}
 	
 	protected function getAdminTab() {
-		return NULL;
+		return 0;
 	}
 	
 	public function __construct() {

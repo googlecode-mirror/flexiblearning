@@ -10,6 +10,10 @@ abstract class Abstract_model extends Base_model {
 	
 	abstract public function getText();
 	
+	public function getStateKey() {
+		return 'State';	
+	}
+	
 	public function getDisplayField() {
 		return 'Name';
 	}
@@ -22,6 +26,19 @@ abstract class Abstract_model extends Base_model {
 	public function delete($id = NULL) {
 		if (isset($id) && $id != NULL) {
 			return $this->db->delete($this->getTableName(), array('id' => $id));
+		} else {
+			return parent::delete();
+		}
+	}
+	
+	public function delete_temp($id = NULL) {
+		$className = get_class($this);
+		if (isset($id) && $id != NULL) {
+			if (property_exists($className, $this->getStateKey())) {
+				return $this->db->update($this->getTableName(), array($this->getStateKey() => 0), array('id' => $id));
+			} else {
+				return $this->db->delete($this->getTableName(), array('id' => $id));				
+			}
 		} else {
 			return parent::delete();
 		}
