@@ -1,10 +1,13 @@
 <div id="videoCategory">
+	<div>
+		<a href="<?=site_url('videoCategory/admin')?>">« Quay lại danh mục video</a>
+	</div>
 	<h3>TẠO MỚI DANH MỤC VIDEO</h3>
 	<?php
 		$strErr = validation_errors();
 		if ($strErr != '') {
 	?>
-		<div class="messages error">
+		<div class="ui-state-error">
 			<?=$strErr?>
 		</div>
 	<?php
@@ -20,21 +23,20 @@
 	<?php
 		} 
 	?>	
-	
-	<?php echo form_open('videoCategory/edit'); ?>
+	<?php echo form_open(sprintf('videoCategory/edit&%s=%s', SITE, $this->input->get('site')), 
+		array('name' => 'videoCategory')); ?>
 		<div class="form-item">
-			<label> 
-				Tên phân loại 
+			<label>
+				Tên phân loại
 				<span class="form-required"	title="This field is required.">*</span> 
 			</label> 
-			<input maxlength="60" name="name" size="60" class="form-text required" type="text" value="<?php echo set_value('name') ?>">
+			<input maxlength="256" name="Name" size="65" type="text" value="<?=set_value('Name') ?>">
 		</div>
 		<div class="form-item">
-			<label> 
-				Mô tả
-			</label> 
-			<input maxlength="60" name="description" size="60" class="form-text required" type="text" value="<?php echo set_value('description') ?>">
+			<label>	Mô tả</label> 
+			<textarea name="Description" cols="65"><?=set_value('Description')?></textarea>
 		</div>
 		<input type="submit" value="Hoàn tất" />
+		<input type="reset" value="Làm lại" />
 	<?php echo form_close(); ?> 
 </div>

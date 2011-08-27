@@ -23,29 +23,29 @@ abstract class Abstract_model extends Base_model {
 		return $this->$displayField;
 	}
 
-	public function delete($id = NULL) {
-		if (isset($id) && $id != NULL) {
-			return $this->db->delete($this->getTableName(), array('id' => $id));
+	public function delete($Id = NULL) {
+		if (isset($Id) && $Id != NULL) {
+			return $this->db->delete($this->getTableName(), array('Id' => $Id));
 		} else {
 			return parent::delete();
 		}
 	}
 	
-	public function delete_temp($id = NULL) {
+	public function delete_temp($Id = NULL) {
 		$className = get_class($this);
-		if (isset($id) && $id != NULL) {
+		if (isset($Id) && $Id != NULL) {
 			if (property_exists($className, $this->getStateKey())) {
-				return $this->db->update($this->getTableName(), array($this->getStateKey() => 0), array('id' => $id));
+				return $this->db->update($this->getTableName(), array($this->getStateKey() => 0), array('Id' => $Id));
 			} else {
-				return $this->db->delete($this->getTableName(), array('id' => $id));				
+				return $this->db->delete($this->getTableName(), array('Id' => $Id));				
 			}
 		} else {
 			return parent::delete();
 		}
 	}
 		
-	public function getById($id) {
-		$query = $this->db->get_where($this->getTableName(), array('id' => $id), 1, 0);
+	public function getById($Id) {
+		$query = $this->db->get_where($this->getTableName(), array('Id' => $Id), 1, 0);
 		$objects = $query->result(get_class($this));
 		if (count($objects) > 0) {
 			return $objects[0];		
@@ -60,20 +60,20 @@ abstract class Abstract_model extends Base_model {
 	 * the object's id will be returned (if the operation is successful, otherwise, -1 will be returned)
 	 */
 	public function save() {
-		$this->updatedDate = now();
-		if (!isset($this->id)) {
-			$this->createdDate = now();
+		$this->UpdatedDate = now();
+		if (!isset($this->Id)) {
+			$this->CreatedDate = now();
 			$vars = $this->generateArrayFromObj(); 
 			if ($this->db->insert($this->getTableName(), $vars)) {
-				$this->id = $this->db->insert_id();
-				return $this->id;
+				$this->Id = $this->db->insert_id();
+				return $this->Id;
 			}
 			return -1;
 		} else {
-			$this->db->where('id', $this->id);
+			$this->db->where('Id', $this->Id);
 			$vars = $this->generateArrayFromObj();
 			if ($this->db->update($this->getTableName(), $vars)) {
-				return $this->id;
+				return $this->Id;
 			} 
 			return -1;
 		} 

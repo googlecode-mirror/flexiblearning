@@ -1,6 +1,7 @@
 <div id="videoCategory">
 	<h3>QUẢN LÝ DANH MỤC VIDEO</h3>
-	<a href="#videoCategory" id="lnkNew">Tạo mới danh mục</a>
+	<?=$page_links?>
+	<a href="<?=site_url(sprintf('videoCategory/edit&%s=%s', SITE, ADMIN))?>">Tạo danh mục video mới</a>
 	<div class="message">
 		<?php
 			if (isset($notifyMessage)) {
@@ -29,12 +30,18 @@
 			foreach ($videoCategories as $videoCategory) {
 				$i++;
 				?>
-			<tr id="cat-<?=$videoCategory->Id?>">
+			<tr>
 				<td><?=$i?></td>
 				<td><?=$videoCategory->Name?></td>
 				<td><?=date($this->config->item('date_format'), $videoCategory->CreatedDate)?></td>
 				<td><?=date($this->config->item('date_format'), $videoCategory->UpdatedDate)?></td>
-				<td><input type="button" class="btnDelete" value="Xóa" id="delCat-<?=$videoCategory->Id?>" /></td>
+				<td>
+					<form action="<?=site_url(sprintf('videoCategory/delete?%s=%s', SITE, ADMIN))?>" method="post">
+						<input type="hidden" name="Id" value="<?=$videoCategory->Id?>" />
+						<input type="hidden" name="Name" value="<?=$videoCategory->Name?>" />
+						<input type="submit" value="Xóa" />
+					</form>
+				</td>
 			</tr>
 			<?php
 			}
@@ -45,16 +52,7 @@
 </div>
 
 <script type="text/javascript">
-	$('.btnDelete').click(function() {
-		var node = $(this).parent().parent();
-		var name = $(node).find('td:nth-child(2)').text();
-		if(confirm('Bạn có chắc chắn muốn xóa phân loại video "' + name + '" không ?')) {
-			var id = $(this).attr('id').substring(7);
-			$('#videoCategory').load("<?=site_url('videoCategory/delete_admin')?>/" + id + "/" + <?=$page?>);
-		}
-	});
-
-	$('#lnkNew').click(function() {
-		$('#videoCategory').load("<?=site_url('videoCategory/edit')?>");
+	$('form').submit(function(event) {
+		return confirm('Bạn có chắc chắn muốn xóa phân loại video "' + $(this).find('input[name=Name]').val() + '" không ?');
 	});
 </script>
