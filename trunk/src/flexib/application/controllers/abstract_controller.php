@@ -4,6 +4,14 @@ require_once 'base_controller.php';
 abstract class Abstract_Controller extends Base_Controller {
 	protected $template_view = 'template';
 	protected $template_admin = 'template_admin';
+	protected $pagingConfig;
+	
+	protected function initializeForLib() {
+		parent::initializeForLib();
+		
+		$this->pagingConfig['per_page'] = $this->config->item('number_of_object_list_page');
+		$this->pagingConfig['page_query_string'] = FALSE;
+	}
 	
 	// declare object's name or view name for the common controller
 	protected function getListName() {
@@ -34,40 +42,19 @@ abstract class Abstract_Controller extends Base_Controller {
 		return lcfirst(get_class($this)) . '_model';
 	}
 
-	protected function prepareDataForListView($page = '') {
+	protected function prepareDataForListView($from = 0) {
 		$className = $this->getModelName();
 		
-		$nTotalObject = $this->countObjectsForList();
-		$nObjectPerPage = $this->config->item('number_of_object_list_page');
-		$nTotalPage = (int)(($nTotalObject - 1)/$nObjectPerPage) + 1;
-		
-		if ($page == '') {
-			$page = 1;
-		}
-		
-		$objects = $this->getObjectsForList($page, $nObjectPerPage);
+		$this->pagingConfig['total_rows'] = $this->countObjectsForList(); 
+		$objects = $this->getObjectsForList($from, $this->pagingConfig['per_page']);
 		
 		$this->addDataForView($this->getListName(), $objects);
-		$this->addDataForView('page', $page);
-		$this->addDataForView('nTotalObject', $nTotalObject);
-		$this->addDataForView('nObjectPerPage', $nObjectPerPage);
-		$this->addDataForView('nTotalPage', $nTotalPage);	
-			
 		$this->addReferenceDataForListView();
 	}
 	
-	protected function getObjectsForList($page = '', $nObjPerPage = '') {
+	protected function getObjectsForList($from = 0, $nObjPerPage = '') {
 		$className = $this->getModelName();
-		if ($page == '') {
-			if (!property_exists($className, $this->getStateKey())) {
-				$objects = $this->$className->getAll();
-			} else {
-				
-			}
-		} else {
-			$from = ($page - 1) * $nObjPerPage;
-			$objects = $this->$className->getAll($from, $nObjPerPage, NULL, NULL);
-		}
+		$objects = $this->$className->getAll($from, $nObjPerPage, NULL, NULL);
 		return $objects;
 	}
 	
@@ -95,8 +82,9 @@ abstract class Abstract_Controller extends Base_Controller {
 		}
 	}
 	
-	public function delete($page = '') {
+	public function delete() {
 		$Id = $this->input->post('Id');
+		$from = $this->uri->segment(3);
 		if (isset($Id)) {
 			$className = $this->getModelName();
 			$object = $this->$className->getById($Id);
@@ -106,11 +94,11 @@ abstract class Abstract_Controller extends Base_Controller {
 						$this->$className->getText(), 
 						$object->getDisplayName()));
 					$this->addDataForView('notifyMessage', $notifyMessage);	 
-					$this->prepareDataForListView($page);
+					$this->prepareDataForListView($from);
 				} else {
 					$errorMessage = ucfirst(sprintf($this->config->item('delete_fail'), $this->$className->getText(), 
 						$this->$className->getDisplayName()));
-					$this->prepareDataForListView($page);
+					$this->prepareDataForListView($from);
 					$this->addDataForView('errorMessage', $errorMessage);
 				}
 			} else {
@@ -119,22 +107,32 @@ abstract class Abstract_Controller extends Base_Controller {
 			}
 			$site = $this->input->get(SITE);
 			if ($site == ADMIN) {
+				$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)). '/admin');
+				$this->pagination->initialize($this->pagingConfig);
+				$this->addDataForView('page_links', $this->pagination->create_links());
 				$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
 			} else {
+				$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)));
+				$this->pagination->initialize($this->pagingConfig);
+				$this->addDataForView('page_links', $this->pagination->create_links());
 				$this->template->load($this->template_view, $this->getViewListName(), $this->getDataForView());	
 			}
 		}
 	}
 	
-	public function admin($page = '') {
+	public function admin() {
+		$from = $this->uri->segment(3);
+		$this->prepareDataForAdminListView($from);
+		
+		$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)). '/admin');
+		$this->pagination->initialize($this->pagingConfig);
 		$this->addDataForView('page_links', $this->pagination->create_links());
 		
-		$this->prepareDataForAdminListView($page);
 		$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
 	}
 	
-	protected function prepareDataForAdminListView($page = '') {
-		$this->prepareDataForListView($page);
+	protected function prepareDataForAdminListView($from = '') {
+		$this->prepareDataForListView($from);
 	}
 	
 	protected function countObjectsForList() {
@@ -161,6 +159,11 @@ abstract class Abstract_Controller extends Base_Controller {
 				$notifyMessage = ucfirst(sprintf($this->config->item('save_successfully'), 
 					$object->getText(),	$object->getDisplayName()));
 				$this->addDataForView('notifyMessage', $notifyMessage);
+				
+				$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)). '/admin');
+				$this->pagination->initialize($this->pagingConfig);
+				$this->addDataForView('page_links', $this->pagination->create_links());
+		
 				$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
 			}
 		}
@@ -187,7 +190,6 @@ abstract class Abstract_Controller extends Base_Controller {
 			} else {
 				$this->template->load($this->template_view, $this->getEditViewName(), $this->getDataForView());
 			}
-			
 		} else {
 			$this->handleEditValidationSuccess($object, $site);
 		}

@@ -1,7 +1,7 @@
 <div id="videoCategory">
 	<h3>QUẢN LÝ DANH MỤC VIDEO</h3>
-	<?=$page_links?>
-	<a href="<?=site_url(sprintf('videoCategory/edit&%s=%s', SITE, ADMIN))?>">Tạo danh mục video mới</a>
+	<a href="<?=site_url(sprintf('videoCategory/edit?%s=%s', SITE, ADMIN))?>">Tạo danh mục video mới</a>
+	
 	<div class="message">
 		<?php
 			if (isset($notifyMessage)) {
@@ -15,6 +15,14 @@
 			} 
 		?>
 	</div>
+	<?php
+		$from = $this->uri->segment(3); 
+		if (!isset($from) || $from == '') {
+			$from = 0;
+		}
+	?>
+	<div>Tổng số danh mục : <?=$this->pagination->total_rows?></div>
+	
 	<table id="tblVideoCategory">
 		<thead>
 			<th>STT</th>
@@ -26,7 +34,7 @@
 		<tbody>
 		<?php
 		if (isset($videoCategories)) {
-			$i = 0;
+			$i = $from;
 			foreach ($videoCategories as $videoCategory) {
 				$i++;
 				?>
@@ -36,7 +44,7 @@
 				<td><?=date($this->config->item('date_format'), $videoCategory->CreatedDate)?></td>
 				<td><?=date($this->config->item('date_format'), $videoCategory->UpdatedDate)?></td>
 				<td>
-					<form action="<?=site_url(sprintf('videoCategory/delete?%s=%s', SITE, ADMIN))?>" method="post">
+					<form action="<?=site_url(sprintf('videoCategory/delete/%d?%s=%s', $from, SITE, ADMIN))?>" method="post">
 						<input type="hidden" name="Id" value="<?=$videoCategory->Id?>" />
 						<input type="hidden" name="Name" value="<?=$videoCategory->Name?>" />
 						<input type="submit" value="Xóa" />
@@ -49,6 +57,9 @@
 		?>
 		</tbody>
 	</table>
+	<div>
+		<?=$page_links?>
+	</div>
 </div>
 
 <script type="text/javascript">

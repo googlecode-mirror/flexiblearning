@@ -17,4 +17,4 @@ $config['delete_successfully'] = '%s %s được xóa thành công';
 $config['delete_fail'] = '%s %s xóa không thành công';
 $config['item_not_exist'] = 'Đồi tượng không tồn tại';
 
-$config['number_of_object_list_page'] = 20;
+$config['number_of_object_list_page'] = 5;
