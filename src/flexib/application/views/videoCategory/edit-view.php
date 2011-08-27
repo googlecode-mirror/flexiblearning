@@ -23,7 +23,7 @@
 	<?php
 		} 
 	?>	
-	<?php echo form_open(sprintf('videoCategory/edit&%s=%s', SITE, $this->input->get('site')), 
+	<?php echo form_open(sprintf('videoCategory/edit?%s=%s', SITE, $this->input->get('site')), 
 		array('name' => 'videoCategory')); ?>
 		<div class="form-item">
 			<label>

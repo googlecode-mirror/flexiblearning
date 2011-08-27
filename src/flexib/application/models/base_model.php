@@ -15,7 +15,7 @@ abstract class Base_model extends CI_Model {
 	 * @param array/string $moreProperties
 	 */
 	public function getAllWhere($criterias, $limit = 0, $offset = 0, $orders = NULL, 
-		$joins = NULL, $moreProperties = '', $inCriterias = NULL) {
+		$joins = NULL, $moreProperties = '', $inCriterias = NULL, $hasState = TRUE) {
 		if ($criterias != NULL) {
 			$this->db->where($criterias);
 		} 
@@ -25,7 +25,7 @@ abstract class Base_model extends CI_Model {
 			}
 		}
 		
-		return $this->getAll($limit, $offset, $orders, $joins, $moreProperties);
+		return $this->getAll($limit, $offset, $orders, $joins, $moreProperties, $hasState);
 	}
 	
 	/**
@@ -110,13 +110,11 @@ abstract class Base_model extends CI_Model {
 	}
 	
 	public function getCount($criterias = NULL) {
+		$this->db->from($this->getTableName());
 		if ($criterias) {
 			$this->db->where($criterias);
-			$this->db->from($this->getTableName());
-			return $this->db->count_all_results();
-		} else {
-			return $this->db->count_all($this->getTableName());
 		}
+		return $this->db->count_all_results();
 	}
 	
 	public function save() {
