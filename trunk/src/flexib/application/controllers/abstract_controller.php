@@ -80,9 +80,9 @@ abstract class Abstract_Controller extends Base_Controller {
 		return $object;
 	}
 	
-	public function view($id, $page = '') {
+	public function view($Id, $page = '') {
 		$className = $this->getModelName();
-		$object = $this->$className->getById($id);
+		$object = $this->$className->getById($Id);
 		if ($object) {
 			$object = $this->addMoreDataForObjectInViewView($object, $page);
 			$this->addDataForView($this->getModelVariableName(), $object);
@@ -95,53 +95,40 @@ abstract class Abstract_Controller extends Base_Controller {
 		}
 	}
 	
-	public function delete($id, $page = '') {
-		$className = $this->getModelName();
-		$object = $this->$className->getById($id);
-		if ($object) {
-			if ($this->$className->delete($id)) {
-				$notifyMessage = ucfirst(sprintf($this->config->item('delete_successfully'), 
-					$this->$className->getText(), 
-					$object->getDisplayName()));
-				$this->addDataForView('notifyMessage', $notifyMessage);	 
-				$this->prepareDataForListView($page);
+	public function delete($page = '') {
+		$Id = $this->input->post('Id');
+		if (isset($Id)) {
+			$className = $this->getModelName();
+			$object = $this->$className->getById($Id);
+			if ($object) {
+				if ($this->$className->delete($Id)) {
+					$notifyMessage = ucfirst(sprintf($this->config->item('delete_successfully'), 
+						$this->$className->getText(), 
+						$object->getDisplayName()));
+					$this->addDataForView('notifyMessage', $notifyMessage);	 
+					$this->prepareDataForListView($page);
+				} else {
+					$errorMessage = ucfirst(sprintf($this->config->item('delete_fail'), $this->$className->getText(), 
+						$this->$className->getDisplayName()));
+					$this->prepareDataForListView($page);
+					$this->addDataForView('errorMessage', $errorMessage);
+				}
 			} else {
-				$errorMessage = ucfirst(sprintf($this->config->item('delete_fail'), $this->$className->getText(), 
-					$this->$className->getDisplayName()));
-				$this->prepareDataForListView($page);
-				$this->addDataForView('errorMessage', $errorMessage);
+				$errorMessage = ucfirst(sprintf($this->config->item('item_not_exist')));
+				$this->addDataForView('errorMessage', $errorMessage);	 
 			}
-		} else {
-			$errorMessage = ucfirst(sprintf($this->config->item('item_not_exist')));
-			$this->addDataForView('errorMessage', $errorMessage);	 
-		}
-		$this->load->view($this->getViewListName(), $this->getDataForView());
-	}
-	
-	public function delete_admin($id, $page = '') {
-		$className = $this->getModelName();
-		$object = $this->$className->getById($id);
-		if ($object) {
-			if ($this->$className->delete_temp($id)) {
-				$notifyMessage = ucfirst(sprintf($this->config->item('delete_successfully'), 
-					$this->$className->getText(), 
-					$object->getDisplayName()));
-				$this->addDataForView('notifyMessage', $notifyMessage);	 
-				$this->prepareDataForAdminListView($page);
+			$site = $this->input->get(SITE);
+			if ($site == ADMIN) {
+				$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
 			} else {
-				$errorMessage = ucfirst(sprintf($this->config->item('delete_fail'), $this->$className->getText(), 
-					$this->$className->getDisplayName()));
-				$this->prepareDataForAdminListView($page);
-				$this->addDataForView('errorMessage', $errorMessage);
+				$this->template->load($this->template_view, $this->getViewListName(), $this->getDataForView());	
 			}
-		} else {
-			$errorMessage = ucfirst(sprintf($this->config->item('item_not_exist')));
-			$this->addDataForView('errorMessage', $errorMessage);	 
 		}
-		$this->load->view($this->getViewAdminName(), $this->getDataForView());
 	}
 	
 	public function admin($page = '') {
+		$this->addDataForView('page_links', $this->pagination->create_links());
+		
 		$this->prepareDataForAdminListView($page);
 		$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
 	}
@@ -164,17 +151,25 @@ abstract class Abstract_Controller extends Base_Controller {
 	protected function setFormValidationForEditView() {
 	}
 	
-	protected function handleEditValidationSuccess($object) {
+	protected function handleEditValidationSuccess($object, $site = '') {
 		$objectId = $object->save();
 		if ($objectId != -1) {
-			redirect('/' . lcfirst(get_class($this)) . '/view/' . $objectId);
+			if ($site != ADMIN) {
+				redirect('/' . lcfirst(get_class($this)) . '/view/' . $objectId);
+			} else {
+				$this->prepareDataForAdminListView();
+				$notifyMessage = ucfirst(sprintf($this->config->item('save_successfully'), 
+					$object->getText(),	$object->getDisplayName()));
+				$this->addDataForView('notifyMessage', $notifyMessage);
+				$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
+			}
 		}
 	}
 	
-	public function edit($id = '') {
+	public function edit($Id = '') {
 		$className = $this->getModelName();
-		if ($id != '') {
-			$object = $this->$className->getById($id);	
+		if ($Id != '') {
+			$object = $this->$className->getById($Id);	
 		} else {
 			$object = new $className();
 		}
@@ -185,10 +180,16 @@ abstract class Abstract_Controller extends Base_Controller {
 		
 		$this->setFormValidationForEditView();
 		
+		$site = $this->input->get(SITE);
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view($this->getEditViewName(), $this->getDataForView());
+			if ($site == ADMIN) {
+				$this->template->load($this->template_admin, $this->getEditViewName(), $this->getDataForView());
+			} else {
+				$this->template->load($this->template_view, $this->getEditViewName(), $this->getDataForView());
+			}
+			
 		} else {
-			$this->handleEditValidationSuccess($object);
+			$this->handleEditValidationSuccess($object, $site);
 		}
 	}
 }

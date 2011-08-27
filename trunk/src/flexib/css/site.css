@@ -1,0 +1,12 @@
+.form-item {
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+.form-item label {
+	display: block;
+}
+
+.form-item .form-required {
+	color: #FF0000;
+}

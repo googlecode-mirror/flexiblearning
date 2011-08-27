@@ -5,7 +5,7 @@ class VideoCategory_model extends Abstract_model {
 	public $Name;
 	public $Description;
 	public $IdLanguage = 1;
-	public $State;
+	public $State = 1;
 	
 	protected function getTableName() {
 		return 'videocategory';

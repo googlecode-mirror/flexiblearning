@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" href="<?=base_url()?>css/base/jquery.ui.all.css">
 <link rel="stylesheet" href="<?=base_url()?>css/admin.css">
+<link rel="stylesheet" href="<?=base_url()?>css/site.css">
 
 <script type="text/javascript" src="<?=base_url()?>js/jquery-1.5.1.js"></script>
 
