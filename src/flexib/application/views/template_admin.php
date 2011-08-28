@@ -24,7 +24,7 @@
 		    		'<?=site_url('videoNotification/admin')?>',
 		    		'<?=site_url('videoDocument/admin')?>',
 		    		'<?=site_url('videoSurvey/admin')?>'
-		    		]
+		    		];
 		$("#tabs").tabs({
 			select: function(event, ui) {
 				url = urls[ui.index];
@@ -36,7 +36,15 @@
 	</script>
 </head>
 <body>
-	<h2>ADMIN FLEXIBLEARNING</h2>
+	<div class="left">
+		<h2>ADMIN FLEXIBLEARNING</h2>
+	</div>
+	<div class="right">
+		Chào bạn&nbsp;<a href="#"><?=$this->session->userdata(USERNAME_LOGIN)?></a>
+		&nbsp;<a href="<?=site_url('account/logout')?>">Đăng xuất</a>
+	</div>
+	<div class="clear"></div>
+	
 	<div id="admin">
 		<div id="tabs">
 			<ul>

@@ -13,6 +13,10 @@ abstract class Abstract_Controller extends Base_Controller {
 		$this->pagingConfig['page_query_string'] = FALSE;
 	}
 	
+	protected function hasAdminPermission() {
+		return FALSE;
+	}
+	
 	// declare object's name or view name for the common controller
 	protected function getListName() {
 		return lcfirst(get_class($this)) . 's';
@@ -120,15 +124,20 @@ abstract class Abstract_Controller extends Base_Controller {
 		}
 	}
 	
+	
 	public function admin() {
-		$from = $this->uri->segment(3);
-		$this->prepareDataForAdminListView($from);
-		
-		$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)). '/admin');
-		$this->pagination->initialize($this->pagingConfig);
-		$this->addDataForView('page_links', $this->pagination->create_links());
-		
-		$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
+		if ($this->hasAdminPermission()) {
+			$from = $this->uri->segment(3);
+			$this->prepareDataForAdminListView($from);
+			
+			$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)). '/admin');
+			$this->pagination->initialize($this->pagingConfig);
+			$this->addDataForView('page_links', $this->pagination->create_links());
+			
+			$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
+		} else {
+			echo 'You are not allowed to access this page !!!';
+		}
 	}
 	
 	protected function prepareDataForAdminListView($from = '') {
@@ -176,6 +185,7 @@ abstract class Abstract_Controller extends Base_Controller {
 		} else {
 			$object = new $className();
 		}
+		
 		$object->setDataFromInput($this->input->post());
 		$this->addDataForView($this->getModelVariableName(), $object);
 		

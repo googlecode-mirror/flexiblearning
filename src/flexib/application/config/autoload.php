@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('VideoCategory_model');
+$autoload['model'] = array('VideoCategory_model', 'Account_model', 'Role_model');
 
 
 /* End of file autoload.php */
