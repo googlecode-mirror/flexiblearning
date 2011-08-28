@@ -49,7 +49,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = 'lighthouse';
+$db['default']['password'] = '';
 $db['default']['database'] = 'flexib_learning';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
