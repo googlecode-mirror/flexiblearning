@@ -50,5 +50,6 @@ define("USER_AUTHENTIC_UNSUCCESS_FLAG", 'authorize_fail');
 define("PERMISSION_CREATE_POST", "1");
 
 define("VIDEO_CATEGORY_FULL", 1);
+define("PARTNER_FULL", 2);
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

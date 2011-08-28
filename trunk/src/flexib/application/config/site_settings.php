@@ -11,6 +11,7 @@ $config['text_videoCategory'] = 'Phân loại video';
 $config['text_accountPermission'] = 'Permission';
 $config['text_account'] = 'Người dùng';
 $config['text_role'] = 'Vai trò';
+$config['text_partner'] = 'Đối Tác';
 
 $config['add_successfully'] = '%s %s được tạo thành công';
 $config['add_fail'] = '%s %s được tạo không thành công';

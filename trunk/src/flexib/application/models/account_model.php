@@ -12,7 +12,7 @@ class Account_model extends Abstract_model {
 	public $Password;
 	public $IdProfession;
 	public $Favorite;
-	public $AvatarURL;
+	public $AvatarId;
 	public $IdRole;
 	public $EnabledFullName;
 	public $EnabledDateOfBirth;
