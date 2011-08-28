@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 28, 2011 at 02:20 PM
+-- Generation Time: Aug 28, 2011 at 03:31 PM
 -- Server version: 5.1.50
 -- PHP Version: 5.3.5
 
@@ -22,19 +22,28 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `video_videosurvey`
+-- Table structure for table `partner`
 --
 
-CREATE TABLE IF NOT EXISTS `video_videosurvey` (
-  `IdVideo` int(11) NOT NULL,
-  `IdSurvey` int(11) NOT NULL,
-  PRIMARY KEY (`IdVideo`,`IdSurvey`),
-  KEY `IdVideo` (`IdVideo`),
-  KEY `IdSurvey` (`IdSurvey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE IF NOT EXISTS `partner` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` text COLLATE utf8_unicode_ci NOT NULL,
+  `Address` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `Email` text COLLATE utf8_unicode_ci NOT NULL,
+  `Tel` text COLLATE utf8_unicode_ci NOT NULL,
+  `LogoId` int(11) NOT NULL,
+  `Link` text COLLATE utf8_unicode_ci NOT NULL,
+  `State` int(11) NOT NULL DEFAULT '1',
+  `CreatedDate` int(11) NOT NULL,
+  `CreatedBy` int(11) NOT NULL,
+  `UpdatedDate` int(11) NOT NULL,
+  `UpdatedBy` int(11) NOT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `LogoId` (`LogoId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `video_videosurvey`
+-- Dumping data for table `partner`
 --
 
 
@@ -43,8 +52,7 @@ CREATE TABLE IF NOT EXISTS `video_videosurvey` (
 --
 
 --
--- Constraints for table `video_videosurvey`
+-- Constraints for table `partner`
 --
-ALTER TABLE `video_videosurvey`
-  ADD CONSTRAINT `video_videosurvey_ibfk_1` FOREIGN KEY (`IdVideo`) REFERENCES `video` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `video_videosurvey_ibfk_2` FOREIGN KEY (`IdSurvey`) REFERENCES `videosurvey` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `partner`
+  ADD CONSTRAINT `partner_ibfk_1` FOREIGN KEY (`LogoId`) REFERENCES `resource` (`Id`);
