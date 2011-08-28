@@ -30,7 +30,7 @@
 				Tên phân loại
 				<span class="form-required"	title="This field is required.">*</span> 
 			</label> 
-			<input maxlength="256" name="Name" size="65" type="text" value="<?=set_value('Name') ?>">
+			<input maxlength="256" name="Name" size="65" type="text" value="<?=set_value('Name') ?>"/>
 		</div>
 		<div class="form-item">
 			<label>	Mô tả</label> 

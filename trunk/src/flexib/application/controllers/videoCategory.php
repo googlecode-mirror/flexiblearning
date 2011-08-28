@@ -14,4 +14,11 @@ class VideoCategory extends Abstract_Controller {
 		$this->form_validation->set_rules('Name', 'Tên phân loại', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('Description', 'Mô tả', 'trim|xss_clean');
 	}
+	
+	protected function hasAdminPermission() {
+		$accountPermissions = $this->Account_model->getLoggedInUserPermissions();
+		if (is_array($accountPermissions)) {
+			return in_array(VIDEO_CATEGORY_FULL, $accountPermissions);
+		}
+	}
 }

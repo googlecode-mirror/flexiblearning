@@ -5,8 +5,8 @@ abstract class Abstract_model extends Base_model {
 	public $Id;
 	public $CreatedDate;
 	public $UpdatedDate;
-	public $CreatedBy = 1;
-	public $UpdatedBy = 1;
+	public $CreatedBy;
+	public $UpdatedBy;
 	
 	abstract public function getText();
 	
@@ -61,8 +61,10 @@ abstract class Abstract_model extends Base_model {
 	 */
 	public function save() {
 		$this->UpdatedDate = now();
+		$this->UpdatedBy = $this->Account_model->getLoggedInUserId();
 		if (!isset($this->Id)) {
-			$this->CreatedDate = now();
+			$this->CreatedDate = $this->UpdatedBy;
+			$this->CreatedBy = $this->UpdatedBy;
 			$vars = $this->generateArrayFromObj(); 
 			if ($this->db->insert($this->getTableName(), $vars)) {
 				$this->Id = $this->db->insert_id();

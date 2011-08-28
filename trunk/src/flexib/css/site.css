@@ -10,3 +10,21 @@
 .form-item .form-required {
 	color: #FF0000;
 }
+
+.login-form {
+	width : 500px;
+	text-align: center;
+	margin : auto;
+}
+
+.left {
+	float : left;
+}
+
+.right {
+	float : right;
+}
+
+.clear {
+	clear : both;
+}

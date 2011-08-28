@@ -8,6 +8,9 @@ $config['lang_vi'] = array('vi' => 'English', 'vi' => 'Tiếng Việt');
 $config['lang'] = array('vi' => 'Tiếng Việt', 'en' => 'Tiếng Anh');
 
 $config['text_videoCategory'] = 'Phân loại video';
+$config['text_accountPermission'] = 'Permission';
+$config['text_account'] = 'Người dùng';
+$config['text_role'] = 'Vai trò';
 
 $config['add_successfully'] = '%s %s được tạo thành công';
 $config['add_fail'] = '%s %s được tạo không thành công';
@@ -18,3 +21,6 @@ $config['delete_fail'] = '%s %s xóa không thành công';
 $config['item_not_exist'] = 'Đồi tượng không tồn tại';
 
 $config['number_of_object_list_page'] = 5;
+
+$config['username_cookie'] = 'username_cookie';
+$config['password_cookie'] = 'password_cookie';

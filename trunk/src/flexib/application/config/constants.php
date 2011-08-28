@@ -39,5 +39,16 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('SITE', 'site');
 define('ADMIN', 'admin');
 
+define("USER_AUTHENTIC_COOKIE", "logged_in");
+define("USERNAME_LOGIN", "username_login");
+define("USERID_LOGIN", "userid_login");
+define("USERPERMISSION_LOGIN", 'userpermission_login');
+define("USER_AUTHENTIC_SUCCESS_FLAG", 'authorize_success');
+define("USER_AUTHENTIC_UNSUCCESS_FLAG", 'authorize_fail');
+
+
+define("PERMISSION_CREATE_POST", "1");
+
+define("VIDEO_CATEGORY_FULL", 1);
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
