@@ -3,7 +3,7 @@ require_once 'abstract_Controller.php';
 
 class Account extends Abstract_Controller {
 	protected function getAdminTab() {
-		return 0;
+		return 1;
 	}
 	
 	public function login() {
@@ -25,5 +25,21 @@ class Account extends Abstract_Controller {
 			$this->Account_model->unAuthenticate();
 			redirect(site_url());	
 		}
+	}
+	
+	protected function hasAdminPermission() {
+		$accountPermissions = $this->Account_model->getLoggedInUserPermissions();
+		if (is_array($accountPermissions)) {
+			return in_array(ACCOUNT_FULL, $accountPermissions);
+		}
+	}
+	
+	protected function getObjectsForList($from = 0, $nObjPerPage = '') {
+		$joinRole = array('table'=> 'role', 'criteria'=> 'account.IdRole = role.Id', 'type' => 'join');
+		$objects = $this->Account_model->getAll($from, $nObjPerPage, 
+			array('UpdatedDate' => 'desc'), array($joinRole), 
+			array('role.Role as RoleName'), TRUE);
+			
+		return $objects;
 	}
 }

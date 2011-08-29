@@ -16,7 +16,9 @@
 		?>
 	</div>
 	<?php
-		$from = ($this->pagination->cur_page - 1) * $this->pagination->per_page; 
+		if ($this->pagination->cur_page > 0) {
+			$from = ($this->pagination->cur_page - 1) * $this->pagination->per_page;
+		} 
 		if (!isset($from) || $from == '') {
 			$from = 0;
 		}
