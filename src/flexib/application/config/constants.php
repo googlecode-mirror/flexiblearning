@@ -46,10 +46,11 @@ define("USERPERMISSION_LOGIN", 'userpermission_login');
 define("USER_AUTHENTIC_SUCCESS_FLAG", 'authorize_success');
 define("USER_AUTHENTIC_UNSUCCESS_FLAG", 'authorize_fail');
 
-
-define("PERMISSION_CREATE_POST", "1");
-
+/*
+ * permissions in the system
+ */
 define("VIDEO_CATEGORY_FULL", 1);
 define("PARTNER_FULL", 2);
+define("ACCOUNT_FULL", 3);
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
