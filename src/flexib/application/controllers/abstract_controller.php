@@ -58,7 +58,7 @@ abstract class Abstract_Controller extends Base_Controller {
 
 	protected function getObjectsForList($from = 0, $nObjPerPage = '') {
 		$className = $this->getModelName();
-		$objects = $this->$className->getAll($from, $nObjPerPage, NULL, NULL);
+		$objects = $this->$className->getAll($from, $nObjPerPage, array('UpdatedDate' => 'desc'), NULL);
 		return $objects;
 	}
 
@@ -175,6 +175,7 @@ abstract class Abstract_Controller extends Base_Controller {
 		$object->getText(),	$object->getDisplayName()));
 		$this->addDataForView('notifyMessage', $notifyMessage);
 
+		$this->pagingConfig['uri_segment'] = 4;
 		$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)). '/admin');
 		$this->pagination->initialize($this->pagingConfig);
 		$this->addDataForView('page_links', $this->pagination->create_links());
@@ -190,22 +191,22 @@ abstract class Abstract_Controller extends Base_Controller {
 			$object = new $className();
 		}
 		
-		$object->setDataFromInput($this->input->post());
-		$this->addDataForView($this->getModelVariableName(), $object);
-
-		$this->addMoreDataForEditView();
-
-		$this->setFormValidationForEditView();
-
-		$site = $this->input->get(SITE);
-		if ($this->form_validation->run() == FALSE) {
-			if ($site == ADMIN) {
-				$this->template->load($this->template_admin, $this->getEditViewName(), $this->getDataForView());
+		if ($object != NULL) { 
+			$object->setDataFromInput($this->input->post());
+			$this->setFormValidationForEditView();
+			$this->addDataForView($this->getModelVariableName(), $object);
+			$this->addMoreDataForEditView();
+	
+			$site = $this->input->get(SITE);
+			if ($this->form_validation->run() == FALSE) {
+				if ($site == ADMIN) {
+					$this->template->load($this->template_admin, $this->getEditViewName(), $this->getDataForView());
+				} else {
+					$this->template->load($this->template_view, $this->getEditViewName(), $this->getDataForView());
+				}
 			} else {
-				$this->template->load($this->template_view, $this->getEditViewName(), $this->getDataForView());
+				$this->handleEditValidationSuccess($object, $site);
 			}
-		} else {
-			$this->handleEditValidationSuccess($object, $site);
 		}
 	}
 }
