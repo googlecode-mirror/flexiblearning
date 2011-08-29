@@ -14,7 +14,7 @@ abstract class Abstract_model extends Base_model {
 		return 'State';	
 	}
 	
-	public function getDisplayField() {
+	public static function getDisplayField() {
 		return 'Name';
 	}
 	
@@ -63,7 +63,7 @@ abstract class Abstract_model extends Base_model {
 		$this->UpdatedDate = now();
 		$this->UpdatedBy = $this->Account_model->getLoggedInUserId();
 		if (!isset($this->Id)) {
-			$this->CreatedDate = $this->UpdatedBy;
+			$this->CreatedDate = $this->UpdatedDate;
 			$this->CreatedBy = $this->UpdatedBy;
 			$vars = $this->generateArrayFromObj(); 
 			if ($this->db->insert($this->getTableName(), $vars)) {

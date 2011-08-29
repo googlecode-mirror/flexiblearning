@@ -16,7 +16,7 @@
 		?>
 	</div>
 	<?php
-		$from = $this->uri->segment(3); 
+		$from = ($this->pagination->cur_page - 1) * $this->pagination->per_page; 
 		if (!isset($from) || $from == '') {
 			$from = 0;
 		}
@@ -43,11 +43,14 @@
 				<td><?=$videoCategory->Name?></td>
 				<td><?=date($this->config->item('date_format'), $videoCategory->CreatedDate)?></td>
 				<td><?=date($this->config->item('date_format'), $videoCategory->UpdatedDate)?></td>
-				<td>
-					<form action="<?=site_url(sprintf('videoCategory/delete/%d?%s=%s', $from, SITE, ADMIN))?>" method="post">
+				<td class="action_col">
+					<form class="category" action="<?=site_url(sprintf('videoCategory/delete/%d?%s=%s', $from, SITE, ADMIN))?>" method="post">
 						<input type="hidden" name="Id" value="<?=$videoCategory->Id?>" />
 						<input type="hidden" name="Name" value="<?=$videoCategory->Name?>" />
 						<input type="submit" value="Xóa" />
+					</form>
+					<form action="<?=site_url(sprintf('videoCategory/edit/%d?%s=%s', $videoCategory->Id, SITE, ADMIN))?>" method="post">
+						<input type="submit" value="Sửa" />
 					</form>
 				</td>
 			</tr>
@@ -63,7 +66,7 @@
 </div>
 
 <script type="text/javascript">
-	$('form').submit(function(event) {
+	$('form.category').submit(function(event) {
 		return confirm('Bạn có chắc chắn muốn xóa phân loại video "' + $(this).find('input[name=Name]').val() + '" không ?');
 	});
 </script>

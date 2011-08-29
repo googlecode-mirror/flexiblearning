@@ -21,3 +21,7 @@
 #admin .message {
 	margin:5px 0px;
 }
+
+#admin td.action_col form {
+	display: inline;
+}
