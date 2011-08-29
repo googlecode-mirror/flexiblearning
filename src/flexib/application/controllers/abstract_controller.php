@@ -165,17 +165,21 @@ abstract class Abstract_Controller extends Base_Controller {
 				redirect('/' . lcfirst(get_class($this)) . '/view/' . $objectId);
 			} else {
 				$this->prepareDataForAdminListView();
-				$notifyMessage = ucfirst(sprintf($this->config->item('save_successfully'),
-				$object->getText(),	$object->getDisplayName()));
-				$this->addDataForView('notifyMessage', $notifyMessage);
-
-				$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)). '/admin');
-				$this->pagination->initialize($this->pagingConfig);
-				$this->addDataForView('page_links', $this->pagination->create_links());
-
-				$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
+				$this->loadViewForAdminEditSuccessfully($object);
 			}
 		}
+	}
+	
+	protected function loadViewForAdminEditSuccessfully($object) {
+		$notifyMessage = ucfirst(sprintf($this->config->item('save_successfully'),
+		$object->getText(),	$object->getDisplayName()));
+		$this->addDataForView('notifyMessage', $notifyMessage);
+
+		$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)). '/admin');
+		$this->pagination->initialize($this->pagingConfig);
+		$this->addDataForView('page_links', $this->pagination->create_links());
+
+		$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
 	}
 
 	public function edit($Id = '') {

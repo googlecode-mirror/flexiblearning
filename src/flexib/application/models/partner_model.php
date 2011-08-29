@@ -9,6 +9,7 @@ class Partner_model extends Abstract_model{
 	public $LogoId;
 	public $Link;
 	public $State = 1;
+	
     protected function getTableName() {
 		return 'partner';
 	}

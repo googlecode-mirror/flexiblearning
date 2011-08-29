@@ -15,7 +15,7 @@ class Partner extends Abstract_Controller{
 		
 	}
 	protected function handleEditValidationSuccess($object, $site = ''){
-		$uplPath = $this->config->item('resource_folder') . '/logo/' . $this->input->post('imgLink');
+		$uplPath = $this->config->item('resource_folder') . '/logo';
 
 		$uplConfig['upload_path'] = $uplPath;
 		$uplConfig['allowed_types'] = '*';
@@ -28,9 +28,6 @@ class Partner extends Abstract_Controller{
 			$resource = new Resource_model();
 			$resource->Path = $uplPath . '/' . $data['file_name'];
 			$resourceId = $resource->save();
-			
-			
-			
 		} else {
 			$this->addDataForView('err', $this->upload->display_errors('<div>', '</div>'));
 			$this->template->load($this->template_admin, $this->getEditViewName(), $this->getDataForView());
@@ -42,28 +39,17 @@ class Partner extends Abstract_Controller{
 	    	
 	 	    $object->Id = $resourceId;
 	    }
-//$objectId = $object->save();
 	    
 	    if ($objectId != -1) {
 	    	if ($site != ADMIN) {
 	    		redirect('/' . lcfirst(get_class($this)) . '/view/' . $objectId);
 	    	} else {
 	    		$this->prepareDataForAdminListView();
-	    		$notifyMessage = ucfirst(sprintf($this->config->item('save_successfully'),
-	    		$object->getText(),	$object->getDisplayName()));
-	    		$this->addDataForView('notifyMessage', $notifyMessage);
-
-	    		$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)). '/admin');
-	    		$this->pagination->initialize($this->pagingConfig);
-	    		$this->addDataForView('page_links', $this->pagination->create_links());
-
-	    		$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
+	    		$this->loadViewForAdminEditSuccessfully($object);
 	    	}
-	    	
-	    	
 	    }
-	    
 	}
+	
     protected function getObjectsForList($from = 0, $nObjPerPage = '') {
 		$className = $this->getModelName();
 		$joins = array('table'=> 'resource', 'criteria'=> 'resource.id = partner.LogoId', 'type' => 'join');
