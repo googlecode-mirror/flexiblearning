@@ -35,24 +35,20 @@ class Partner extends Abstract_Controller{
 		}
 	    if (isset($resourceId)) {
 	    	$object->LogoId = $resourceId;
-	    	$objectId = $object->save();
-	    	
-	 	    $object->Id = $resourceId;
-	    }
-	    
-	    if ($objectId != -1) {
-	    	if ($site != ADMIN) {
-	    		redirect('/' . lcfirst(get_class($this)) . '/view/' . $objectId);
-	    	} else {
-	    		$this->prepareDataForAdminListView();
-	    		$this->loadViewForAdminEditSuccessfully($object);
-	    	}
+		    if ($object->save() != -1) {
+		    	if ($site != ADMIN) {
+		    		redirect('/' . lcfirst(get_class($this)) . '/view/' . $objectId);
+		    	} else {
+		    		$this->prepareDataForAdminListView();
+		    		$this->loadViewForAdminEditSuccessfully($object);
+		    	}
+		    }
 	    }
 	}
 	
     protected function getObjectsForList($from = 0, $nObjPerPage = '') {
 		$className = $this->getModelName();
-		$joins = array('table'=> 'resource', 'criteria'=> 'resource.id = partner.LogoId', 'type' => 'join');
+		$joins = array('table'=> 'resource', 'criteria'=> 'resource.Id = partner.LogoId', 'type' => 'join');
 		$moreProperties = array('resource.Path');
 		$objects = $this->$className->getAll($from, $nObjPerPage, $orders = NULL, array($joins) , $moreProperties, $hasState = TRUE) ;
 	
