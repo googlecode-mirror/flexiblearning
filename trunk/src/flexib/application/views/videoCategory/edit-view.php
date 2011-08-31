@@ -17,7 +17,7 @@
 	<?php
 		if (isset($err) && $err != '') {  
 	?>
-		<div class="messages error">
+		<div class="ui-state-error">
 			<?=$err?>
 		</div>
 	<?php

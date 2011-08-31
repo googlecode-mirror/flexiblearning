@@ -191,7 +191,7 @@ abstract class Abstract_Controller extends Base_Controller {
 			$object = new $className();
 		}
 		
-		if ($object != NULL) { 
+		if ($object != NULL) {
 			$object->setDataFromInput($this->input->post());
 			$this->setFormValidationForEditView();
 			$this->addDataForView($this->getModelVariableName(), $object);
