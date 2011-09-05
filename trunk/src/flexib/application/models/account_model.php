@@ -14,15 +14,16 @@ class Account_model extends Abstract_model {
 	public $Favorite;
 	public $AvatarId;
 	public $IdRole;
-	public $EnabledFullName;
-	public $EnabledDateOfBirth;
-	public $EnabledAddress;
-	public $EnabledNationality;
-	public $EnabledTel;
-	public $EnabledEmail;
-	public $EnabledProfession;
-	public $EnabledFavorite;
+	public $EnabledFullName = 1;
+	public $EnabledDateOfBirth = 1;
+	public $EnabledAddress = 1;
+	public $EnabledNationality = 1;
+	public $EnabledTel = 1;
+	public $EnabledEmail = 1;
+	public $EnabledProfession = 1;
+	public $EnabledFavorite = 1;
 	public $LastLoginDate;
+	public $State = 1;
 	
 	protected function getTableName() {
 		return 'account';
@@ -96,5 +97,40 @@ class Account_model extends Abstract_model {
 	
 	public function getLoggedInUserId() {
 		return $this->session->userdata(USERID_LOGIN);
+	}
+	
+	public function setDataFromInput($data) {
+		if ($data) {
+			parent::setDataFromInput($data);
+			$this->DateOfBirth = date_timestamp_get(DateTime::createFromFormat($this->config->item('date_format'), $data['DateOfBirth']));
+			if (array_key_exists('EnabledFullName', $data)) {
+				$this->EnabledFullName = 0;				
+			}
+			if (array_key_exists('EnabledDateOfBirth', $data)) {
+				$this->EnabledDateOfBirth = 0;				
+			}
+			if (array_key_exists('EnabledAddress', $data)) {
+				$this->EnabledAddress = 0;				
+			}
+			if (array_key_exists('EnabledNationality', $data)) {
+				$this->EnabledNationality = 0;				
+			}
+			if (array_key_exists('EnabledTel', $data)) {
+				$this->EnabledTel = 0;				
+			}
+			if (array_key_exists('EnabledEmail', $data)) {
+				$this->EnabledEmail = 0;				
+			}
+			if (array_key_exists('EnabledProfession', $data)) {
+				$this->EnabledProfession = 0;				
+			}
+			if (array_key_exists('EnabledFavorite', $data)) {
+				$this->EnabledFavorite = 0;				
+			}
+		}
+	}
+	
+	public static function getDisplayField() {
+		return 'UserName';
 	}
 }

@@ -110,7 +110,7 @@ $autoload['language'] = array();
 */
 
 $autoload['model'] = array('VideoCategory_model', 'Account_model', 'Role_model', 'Partner_model','Resource_model',
-							'Video_model');
+							'Video_model', 'Nationality_model', 'Profession_model');
 
 
 /* End of file autoload.php */
