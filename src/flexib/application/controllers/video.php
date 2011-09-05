@@ -58,14 +58,6 @@ class Video extends Abstract_Controller {
 		    	$video->OwnerBy = $this->Account_model->getLoggedInUserId();
 		    }
 		}
-	    
-	    if ($video->save() != -1) {
-	    	if ($site != ADMIN) {
-	    		redirect('/' . lcfirst(get_class($this)) . '/view/' . $video->Id);
-	    	} else {
-	    		$this->prepareDataForAdminListView();
-	    		$this->loadViewForAdminEditSuccessfully($video);
-	    	}
-	    }
+	    parent::handleEditValidationSuccess($video, $site);
 	}
 }

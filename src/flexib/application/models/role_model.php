@@ -2,7 +2,7 @@
 require_once 'abstract_model.php';
 
 class Role_model extends Abstract_model {
-	public $Role;
+	public $Name;
 	public $Description;
 	public $IdLanguage;
 	public $State;

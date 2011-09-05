@@ -159,8 +159,7 @@ abstract class Abstract_Controller extends Base_Controller {
 	}
 
 	protected function handleEditValidationSuccess($object, $site = '') {
-		$objectId = $object->save();
-		if ($objectId != -1) {
+		if ($object->save() != -1) {
 			if ($site != ADMIN) {
 				redirect('/' . lcfirst(get_class($this)) . '/view/' . $objectId);
 			} else {
@@ -190,23 +189,23 @@ abstract class Abstract_Controller extends Base_Controller {
 		} else {
 			$object = new $className();
 		}
-		
+		$site = $this->input->get(SITE);
 		if ($object != NULL) {
-			$object->setDataFromInput($this->input->post());
 			$this->setFormValidationForEditView();
-			$this->addDataForView($this->getModelVariableName(), $object);
 			$this->addMoreDataForEditView();
-	
-			$site = $this->input->get(SITE);
+			
 			if ($this->form_validation->run() == FALSE) {
+				$this->addDataForView($this->getModelVariableName(), $object);
 				if ($site == ADMIN) {
 					$this->template->load($this->template_admin, $this->getEditViewName(), $this->getDataForView());
 				} else {
 					$this->template->load($this->template_view, $this->getEditViewName(), $this->getDataForView());
 				}
 			} else {
+				$object->setDataFromInput($this->input->post());
+				$this->addDataForView($this->getModelVariableName(), $object);
 				$this->handleEditValidationSuccess($object, $site);
 			}
-		}
+		} 
 	}
 }

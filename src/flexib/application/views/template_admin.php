@@ -9,8 +9,10 @@
 <link rel="stylesheet" href="<?=base_url()?>css/site.css">
 
 <script type="text/javascript" src="<?=base_url()?>js/jquery-1.5.1.js"></script>
-
 <script type="text/javascript" src="<?=base_url()?>js/ui/jquery-ui-1.8.14.custom.js"></script>
+<script type="text/javascript" src="<?=base_url()?>js/ui/i18n/jquery.ui.datepicker-vi.js"></script>
+<script type="text/javascript" src="<?=base_url()?>js/utility.js"></script>
+
 <script>
 	$(document).ready(function(){
 		var urls = [
