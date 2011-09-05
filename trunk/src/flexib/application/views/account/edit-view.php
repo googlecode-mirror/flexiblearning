@@ -123,12 +123,18 @@
 			<input name="Favorite" type="text" size="65" maxlength="256" value="<?=set_value('Favorite', $account_model->Favorite)?>" />
 		</div>
 		
+		<?php
+			if ($account_model->Id == NULL) { 
+		?>
 		<div class="form-item">
 			<label>
 				Avatar
 			</label> 
 			<input name="imgAvatar" type="file" />
 		</div>
+		<?php
+			} 
+		?>
 		
 		<div class="form-item">
 			<label>
