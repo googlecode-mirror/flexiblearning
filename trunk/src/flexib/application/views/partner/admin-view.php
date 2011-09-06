@@ -20,12 +20,12 @@
 			$from = 0;
 		}
 	?>
-	<div>Tổng số danh mục : <?=$this->pagination->total_rows?></div>
+	<div>Tổng số đối tác : <?=$this->pagination->total_rows?></div>
 	
 	<table id="tblpartner">
 		<tbody>
 		<thead>
-			<th>STT</th>
+			<th></th>
 			<th>Tên</th>
 			<th>Email</th>
 			<th>Tel</th>
@@ -36,24 +36,35 @@
 		</thead>
 		<?php
 		if (isset($partners)) {
-			$i = 0;
+			$i = $from;
 			
 			foreach ($partners as $partner) {
 				$i++;
 				
 		?>
 			<tr id="cat-<?=$partner->Id?>">
-				<td><?=$i ?></td>
+				<td><input type="checkbox" name="checkbox1" value ="<?=$partner->Id ?>" /></td>
 				
-				<td><?=$partner->Name?></td>
+				<td><img src=<?=base_url() . $partner->Path?> width = '64' height = '64'><br><?=$partner->Name?></br></td>
+				
 			    <td><?=$partner->Email?></td>
 			    <td><?=$partner->Tel?></td>
 			    <td><?=$partner->Link?></td>
-			    <td><img src=<?=base_url() . $partner->Path?>></td>
+			    
 			    <td><?=date($this->config->item('date_format'), $partner->CreatedDate)?></td>
 			    <td><?=date($this->config->item('date_format'), $partner->UpdatedDate)?></td>
+				<td class="action_col">
+					<form class="Partner" action="<?=site_url(sprintf('partner/delete/%d?%s=%s', $from, SITE, ADMIN))?>" method="post")>
+						<input type="hidden" name="Id" value="<?=$partner->Id?>" />
+						<input type="hidden" name="Name" value="<?=$partner->Name?>" />
+						<input type="submit" value="Xóa" />
+						
+					</form>
+					<form action="<?=site_url(sprintf('partner/edit/%d?%s=%s', $partner->Id, SITE, ADMIN))?>" method="post">
+						<input type="submit" value="Sửa" />
+					</form>
+				</td>
 				
-				<td><input type="button" class="btnDelete" value="xóa" /></td>
 			</tr>
 			
 			<?php
@@ -62,4 +73,15 @@
 		?>
 		</tbody>
 	</table>
+	<div>
+		<?=$page_links?>
+	</div>
+
+<script type="text/javascript">
+	$('form.Partner').submit(function(event) {
+		
+			return confirm('Bạn có chắc chắn muốn xóa đối tác "' + $(this).find('input[name=Name]').val() + '" không ?');
+
+	});
+</script>
 </div>
