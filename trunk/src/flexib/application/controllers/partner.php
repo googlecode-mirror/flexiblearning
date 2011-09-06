@@ -2,7 +2,7 @@
 require_once 'abstract_Controller.php';
 
 class Partner extends Abstract_Controller{
-	protected $template_admin = 'template_admin';
+	
     protected function getAdminTab() {
 		return 3;
 	}
@@ -12,8 +12,14 @@ class Partner extends Abstract_Controller{
 	}
     protected function setFormValidationForEditView() {
 		$this->form_validation->set_rules('Name', 'Tên Đối Tác', 'trim|required|xss_clean');
-		
+		$this->form_validation->set_rules('Tel', 'Điện thoại','trim|required|xss_clean');	
 	}
+	protected function addMoreDataForEditView() {
+		$resources = $this->Resource_model->getAll(0, 0, NULL, NULL, '', '');
+		$this->addDataForView('resources', $resources);
+	}
+	
+   
 	protected function handleEditValidationSuccess($object, $site = ''){
 		$uplPath = $this->config->item('resource_folder') . '/logo';
 
@@ -29,9 +35,13 @@ class Partner extends Abstract_Controller{
 			$resource->Path = $uplPath . '/' . $data['file_name'];
 			$resourceId = $resource->save();
 		} else {
-			$this->addDataForView('err', $this->upload->display_errors('<div>', '</div>'));
-			$this->template->load($this->template_admin, $this->getEditViewName(), $this->getDataForView());
-			return;
+			if(isset($object->LogoId)){
+				$resourceId = $object->LogoId; // in Updating situation
+			}else{
+				$this->addDataForView('err', $this->upload->display_errors('<div>', '</div>'));
+				$this->template->load($this->template_admin, $this->getEditViewName(), $this->getDataForView());
+				return;
+			}
 		}
 	    if (isset($resourceId)) {
 	    	$object->LogoId = $resourceId;
