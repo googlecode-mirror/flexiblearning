@@ -4,7 +4,9 @@ class banner_model extends Abstract_model{
 	public $Name;
 	public $Position;
 	public $IdResource;
+	public $IdPartner;
 	public $State = 1;
+	
     protected function getTableName() {
 		return 'banner';
 	}

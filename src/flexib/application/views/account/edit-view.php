@@ -15,7 +15,7 @@
 	?>
 	
 	<?php
-		if (isset($err) && $err != '') {  
+		if (isset($errorMessage) && $errorMessage != '') {  
 	?>
 		<div class="ui-state-error">
 			<?=$err?>
@@ -109,7 +109,10 @@
 			<?php
 				foreach ($professions as $profession) {
 			?>
-					<option value="<?=$profession->Id?>"><?=$profession->Name?></option>
+					<option value="<?=$profession->Id?>" 
+						<?=set_select('IdProfession', $profession->Id, $account_model->IdProfession == $profession->Id)?>>
+						<?=$profession->Name?>
+					</option>
 			<?php 		
 				} 
 			?>

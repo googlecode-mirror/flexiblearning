@@ -28,3 +28,7 @@
 .clear {
 	clear : both;
 }
+
+.box_center {
+	text-align: center;
+}

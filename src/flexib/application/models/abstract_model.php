@@ -27,7 +27,9 @@ abstract class Abstract_model extends Base_model {
 		if (isset($Id) && $Id != NULL) {
 			return $this->db->delete($this->getTableName(), array('Id' => $Id));
 		} else {
-			return parent::delete();
+			if (!isset($Id)) {
+				return parent::delete();
+			}
 		}
 	}
 	
@@ -95,5 +97,5 @@ abstract class Abstract_model extends Base_model {
 			$this->db->where(array($stateKey => 1));	
 		}
 		return parent::getCount($criterias);
-	}	
+	}		
 }

@@ -21,6 +21,8 @@ class Base_Controller extends CI_Controller {
 	}
 	
 	protected function addAdditionalAreaView() {
+		// add tab index
+		$this->addDataForView('tab', $this->getAdminTab());
 		foreach ($this->VIEWS as $view => $value) {
 			$funcNameForRenderView = $this->__getFuncNameForRenderView($value);
 			$data = NULL;
@@ -29,9 +31,6 @@ class Base_Controller extends CI_Controller {
 			}
 			$this->template->addAdditionalAreaView($view, $value, $data);
 		}
-		
-		// add tab index
-		$this->addDataForView('tab', $this->getAdminTab());
 	}
 	
 	protected function addDataForView($name, $data) {

@@ -4,6 +4,11 @@ $config['date_format_client'] = 'dd/mm/yy';
 $config['number_of_object_list_page'] = 30;
 $config['resource_folder'] = 'resources';
 $config['site_name'] = 'FLEXIB_LEARNING';
+$config['banner_position'] = array(1 => 'pos1', 2 => 'pos2', 3 => 'pos3', 4 => 'pos4', 5 => 'pos5');
+$config['default_banner'] = 'resources/banner/default_banner.jpg';
+$config['video_width'] = 600;
+$config['video_height'] = 400;
+$config['video_auto_start'] = true;
 
 $config['lang_en'] = array('en' => 'English', 'vi' => 'Tiếng Việt');
 $config['lang_vi'] = array('vi' => 'English', 'vi' => 'Tiếng Việt');

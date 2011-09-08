@@ -17,9 +17,12 @@ class Video extends Abstract_Controller {
 		return TRUE;
 	}
 	
-	protected function addMoreDataForEditView() {
+	protected function addMoreDataForEditView($object) {
 		$videoCategories = $this->VideoCategory_model->getAll(0, 0, array('Name' => 'asc'), NULL, '', TRUE);
 		$this->addDataForView('videoCategories', $videoCategories);
+		
+		$resource = $this->Resource_model->getById($object->IdResource);
+		$object->Path = $resource->Path;
 	}
 	
 	protected function getObjectsForList($from = 0, $nObjPerPage = '') {

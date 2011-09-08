@@ -5,15 +5,12 @@
 <title>::FLEXIB_LEARNING::</title>
 
 <link rel="stylesheet" href="<?=base_url()?>css/base/jquery.ui.all.css">
-<link rel="stylesheet" href="<?=base_url()?>css/admin.css">
 <link rel="stylesheet" href="<?=base_url()?>css/site.css">
 
 <script type="text/javascript" src="<?=base_url()?>js/jquery-1.5.1.js"></script>
 <script type="text/javascript" src="<?=base_url()?>js/ui/jquery-ui-1.8.14.custom.js"></script>
 <script type="text/javascript" src="<?=base_url()?>js/ui/i18n/jquery.ui.datepicker-vi.js"></script>
 <script type="text/javascript" src="<?=base_url()?>js/utility.js"></script>
-<script type="text/javascript" src="<?=base_url()?>js/ajaxupload.3.5.js"></script>
-<script type="text/javascript" src="<?=base_url()?>Scripts/swfobject_modified.js"></script>
 
 <script>
 	$(document).ready(function(){

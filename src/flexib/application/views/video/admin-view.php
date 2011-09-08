@@ -82,3 +82,9 @@
 		<?=$page_links?>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$('form.video').submit(function(event) {
+		return confirm('Bạn có chắc chắn muốn xóa video "' + $(this).find('input[name=Name]').val() + '" không ?');
+	});
+</script>

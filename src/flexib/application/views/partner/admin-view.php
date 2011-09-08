@@ -23,7 +23,6 @@
 	<div>Tổng số đối tác : <?=$this->pagination->total_rows?></div>
 	
 	<table id="tblpartner">
-		<tbody>
 		<thead>
 			<th></th>
 			<th>Tên</th>
@@ -34,6 +33,7 @@
 			<th>Ngày cập nhật</th>
 			<th></th>
 		</thead>
+		<tbody>
 		<?php
 		if (isset($partners)) {
 			$i = $from;
