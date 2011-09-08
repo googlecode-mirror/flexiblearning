@@ -152,7 +152,7 @@ abstract class Abstract_Controller extends Base_Controller {
 	protected function addReferenceDataForListView() {
 	}
 
-	protected function addMoreDataForEditView() {
+	protected function addMoreDataForEditView($object) {
 	}
 
 	protected function setFormValidationForEditView() {
@@ -192,18 +192,18 @@ abstract class Abstract_Controller extends Base_Controller {
 		$site = $this->input->get(SITE);
 		if ($object != NULL) {
 			$this->setFormValidationForEditView();
-			$this->addMoreDataForEditView();
+			$this->addMoreDataForEditView($object);
+
+			$object->setDataFromInput($this->input->post());
+			$this->addDataForView($this->getModelVariableName(), $object);
 			
 			if ($this->form_validation->run() == FALSE) {
-				$this->addDataForView($this->getModelVariableName(), $object);
 				if ($site == ADMIN) {
 					$this->template->load($this->template_admin, $this->getEditViewName(), $this->getDataForView());
 				} else {
 					$this->template->load($this->template_view, $this->getEditViewName(), $this->getDataForView());
 				}
 			} else {
-				$object->setDataFromInput($this->input->post());
-				$this->addDataForView($this->getModelVariableName(), $object);
 				$this->handleEditValidationSuccess($object, $site);
 			}
 		} 

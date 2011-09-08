@@ -25,3 +25,26 @@
 #admin td.action_col form {
 	display: inline;
 }
+
+#admin td.image {
+	text-align: center;
+}
+
+#admin td.image img {
+	max-width: 200px;
+}
+
+#admin .avatar img {
+	width : 300px;
+}
+
+#admin .video {
+	width : 620px;
+}
+
+#admin .avatar {
+	text-align: center;
+	padding : 5px;
+	margin-right : 10px;
+	border: 1px solid black;
+}
