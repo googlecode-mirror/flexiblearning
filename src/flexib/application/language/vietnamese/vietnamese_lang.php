@@ -1,0 +1,19 @@
+<?php
+$lang['address'] = "địa chỉ";
+$lang['banner name'] = 'tên banner';
+$lang['category'] = "giá";
+$lang['category name'] = 'tên phân loại';
+$lang['date of birth'] = "ngày sinh";
+$lang['description'] = "mô tả";
+$lang['email'] = "email";
+$lang['fullname'] = "họ và tên";
+$lang['name'] = "tên";
+$lang['partner'] = 'đối tác';
+$lang['partner name'] = 'tên đối tác';
+$lang['password'] = "mật khẩu";
+$lang['positioin'] = 'vị trí';
+$lang['price'] = "giá";
+$lang['tel'] = 'điện thoại';
+$lang['username'] = "tên đăng nhập";
+$lang['video category name'] = 'tên danh mục video';
+$lang['video name'] = "tên video";

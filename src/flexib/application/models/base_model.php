@@ -41,7 +41,9 @@ abstract class Base_model extends CI_Model {
 	public function getAll($limit = 0, $offset = 0, $orders = NULL, $joins = NULL, $moreProperties = '', $hasState = TRUE) {
 		if ($hasState == TRUE) {
 			$stateKey = $this->getStateKey();
-			$this->db->where(array($this->getTableName(). '.' . $stateKey => 1));
+			if (isset($stateKey)) {
+				$this->db->where(array($this->getTableName(). '.' . $stateKey => 1));
+			}
 		}
 		
 		$this->db->from($this->getTableName());
@@ -109,7 +111,14 @@ abstract class Base_model extends CI_Model {
 		}
 	}
 	
-	public function getCount($criterias = NULL) {
+	public function getCount($criterias = NULL, $hasState = TRUE) {
+		if ($hasState == TRUE) {
+			$stateKey = $this->getStateKey();
+			if (isset($stateKey)) {
+				$this->db->where(array($stateKey => 1));	
+			}
+		}
+		
 		$this->db->from($this->getTableName());
 		if ($criterias) {
 			$this->db->where($criterias);

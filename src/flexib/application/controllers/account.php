@@ -59,12 +59,20 @@ class Account extends Abstract_Controller {
 	 * @see application/controllers/Abstract_Controller::setFormValidationForEditView()
 	 */
 	protected function setFormValidationForEditView() {
-		$this->form_validation->set_rules('UserName', 'Tên đăng nhập', 'required|xss_clean');
-		$this->form_validation->set_rules('Password', 'Mật khẩu', 'trim|required|md5|xss_clean');
-		$this->form_validation->set_rules('FullName', 'Họ và tên', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('DateOfBirth', 'Họ và tên', 'required');
-		$this->form_validation->set_rules('Address', 'Địa chỉ', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('Email', 'Email', 'required|email');
+		$this->form_validation->set_rules('UserName', 'lang:username', 'required|xss_clean');
+		$this->form_validation->set_rules('Password', 'lang:password', 'trim|required|md5|xss_clean');
+		$this->form_validation->set_rules('FullName', 'lang:fullname', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('DateOfBirth', 'lang:date of birth', 'required');
+		$this->form_validation->set_rules('Address', 'lang:address', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('Email', 'lang:email', 'required|email');
+		$this->form_validation->set_rules('EnabledFullName', 'EnabledFullName', '');
+		$this->form_validation->set_rules('EnabledDateOfBirth', 'EnabledDateOfBirth', '');
+		$this->form_validation->set_rules('EnabledAddress', 'EnabledAddress', '');
+		$this->form_validation->set_rules('EnabledNationality', 'EnabledNationality', '');
+		$this->form_validation->set_rules('EnabledTel', 'EnabledTel', '');
+		$this->form_validation->set_rules('EnabledEmail', 'EnabledEmail', '');
+		$this->form_validation->set_rules('EnabledProfession', 'EnabledProfession', '');
+		$this->form_validation->set_rules('EnabledFavorite', 'EnabledFavorite', '');
 	}
 	
 	protected function handleEditValidationSuccess($account, $site = '') {

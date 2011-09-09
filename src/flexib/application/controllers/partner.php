@@ -11,8 +11,8 @@ class Partner extends Abstract_Controller{
 		return 'partners';
 	}
     protected function setFormValidationForEditView() {
-		$this->form_validation->set_rules('Name', 'Tên Đối Tác', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('Tel', 'Điện thoại','trim|required|xss_clean');	
+		$this->form_validation->set_rules('Name', 'lang:partner name', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('Tel', 'lang:tel','trim|required|xss_clean');	
 	}
 	protected function addMoreDataForEditView() {
 		$resources = $this->Resource_model->getAll(0, 0, NULL, NULL, '', '');

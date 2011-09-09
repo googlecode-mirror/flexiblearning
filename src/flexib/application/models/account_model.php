@@ -102,6 +102,7 @@ class Account_model extends Abstract_model {
 	public function setDataFromInput($data) {
 		if ($data) {
 			parent::setDataFromInput($data);
+			
 			$this->DateOfBirth = date_timestamp_get(DateTime::createFromFormat($this->config->item('date_format'), $data['DateOfBirth']));
 			if (array_key_exists('EnabledFullName', $data)) {
 				$this->EnabledFullName = 0;				

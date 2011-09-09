@@ -23,7 +23,21 @@
 			$from = 0;
 		}
 	?>
-	<div>Tổng số video : <?=$this->pagination->total_rows?></div>
+	<div class="left" style="width:50%">
+		<div class="box_notify">
+			<div>Tổng số video : <span class="bold_text"><?=$this->pagination->total_rows?></span></div>
+			<div>Số video đã duyệt : <span class="bold_text"><?=$nApprovedVideos?></span></div>
+		</div>
+	</div>
+	
+	<div class="left" style="width:50%">
+		<div class="box_notify">
+			<div>Số video được tạo hôm nay : <span class="bold_text"><?=$nCreatedTodayVideos?></span></div>
+			<div>Số video đã duyệt hôm nay : <span class="bold_text"><?=$nApprovedTodayVideos?></span></div>
+		</div>
+	</div>
+	
+	<div class="clear"></div>
 	
 	<table id="tblVideo">
 		<thead>
@@ -33,8 +47,10 @@
 			<th>Số lượt đánh giá</th>
 			<th>Số điểm</th>
 			<th>Giá</th>
-			<th>Video của</th>
-			<th>Ngày cập nhật</th>
+			<th class="box_center">Video của</th>
+			<th class="box_center">Phân loại video</th>
+			<th class="box_center">Duyệt</th>
+			<th class="box_center">Ngày cập nhật</th>
 			<th></th>
 		</thead>
 		<tbody>
@@ -47,9 +63,9 @@
 			<tr>
 				<td><?=$i?></td>
 				<td><?=$video->Name?></td>
-				<td><?=$video->NumView?></td>
-				<td><?=$video->NumRanking?></td>
-				<td>
+				<td class="box_right"><?=$video->NumView?></td>
+				<td class="box_right"><?=$video->NumRanking?></td>
+				<td class="box_right">
 					<?php 
 					 	$score = 0;
 					 	if ($video->NumRanking != 0) {
@@ -58,9 +74,19 @@
 					 	echo $score;
 					?>
 				</td>
-				<td><?=$video->Price?></td>
-				<td><?=$video->OwnerUserName?></td>
-				<td><?=date($this->config->item('date_format'), $video->UpdatedDate)?></td>
+				<td class="box_right"><?=$video->Price?></td>
+				<td class="box_center"><?=$video->OwnerUserName?></td>
+				<td class="box_center"><?=$video->VideoCategoryName?></td>
+				<td>
+				<?php
+					if ($video->Approved) {
+				?>
+						<div class="ui-icon ui-icon-check" style="margin:auto"></div>
+				<?php 
+					} 
+				?>
+				</td>
+				<td class="box_center"><?=date($this->config->item('date_format'), $video->UpdatedDate)?></td>
 				<td class="action_col">
 					<form class="video" action="<?=site_url(sprintf('video/delete/%d?%s=%s', $from, SITE, ADMIN))?>" method="post">
 						<input type="hidden" name="Id" value="<?=$video->Id?>" />
