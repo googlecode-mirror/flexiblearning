@@ -91,11 +91,11 @@ abstract class Abstract_model extends Base_model {
 		return $vars;
 	}
 	
-	public function getCount($criterias = NULL) {
+	/*public function getCount($criterias = NULL) {
 		$stateKey = $this->getStateKey();
 		if (isset($stateKey)) {
 			$this->db->where(array($stateKey => 1));	
 		}
 		return parent::getCount($criterias);
-	}		
+	}*/		
 }

@@ -8,7 +8,10 @@ $config['banner_position'] = array(1 => 'pos1', 2 => 'pos2', 3 => 'pos3', 4 => '
 $config['default_banner'] = 'resources/banner/default_banner.jpg';
 $config['video_width'] = 600;
 $config['video_height'] = 400;
-$config['video_auto_start'] = true;
+$config['video_auto_start'] = "false";
+
+$config['video_allowed_type'] = 'avi|flv|wmv|swf|mpeg|mpeg4';
+$config['video_allowed_type_text'] = "AVI, FLV, WMV, SWF, MPEG và MPEG4";
 
 $config['lang_en'] = array('en' => 'English', 'vi' => 'Tiếng Việt');
 $config['lang_vi'] = array('vi' => 'English', 'vi' => 'Tiếng Việt');

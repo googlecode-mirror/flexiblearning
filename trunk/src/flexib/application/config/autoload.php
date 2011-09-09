@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'template', 'session', 'form_validati
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('date', 'url', 'array', 'cookie');
+$autoload['helper'] = array('date', 'url', 'array', 'cookie', 'language');
 
 
 /*
@@ -96,7 +96,7 @@ $autoload['config'] = array('site_settings');
 |
 */
 
-$autoload['language'] = array();
+$autoload['language'] = array('vietnamese');
 
 
 /*

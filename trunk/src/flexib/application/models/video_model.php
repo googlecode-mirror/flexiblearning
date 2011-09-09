@@ -12,6 +12,7 @@ class Video_model extends Abstract_model{
 	public $IdResource;
 	public $State = 1;
 	public $OwnerBy;
+	public $Approved = 0;
 	
 	protected function getTableName() {
 		return 'video';
@@ -19,5 +20,31 @@ class Video_model extends Abstract_model{
 	
 	public function getText() {
 		return $this->config->item('text_video');
+	}
+	
+	public function setDataFromInput($data) {
+		if ($data) {
+			parent::setDataFromInput($data);
+			
+			if (array_key_exists('Approved', $data)) {
+				$this->Approved = 1;				
+			} else {
+				$this->Approved = 0;
+			}
+		}
+	}
+	
+	public function countTodayVideos() {
+		$this->db->from($this->getTableName());
+		$this->db->where('DATEDIFF(NOW(), FROM_UNIXTIME(CreatedDate)) <= 1');
+		
+		return $this->db->count_all_results();
+	}
+	
+	public function countTodayApprovedVideos() {
+		$this->db->from($this->getTableName());
+		$this->db->where('DATEDIFF(NOW(), FROM_UNIXTIME(UpdatedDate)) <= 1 AND Approved = 1');
+		
+		return $this->db->count_all_results();
 	}
 }

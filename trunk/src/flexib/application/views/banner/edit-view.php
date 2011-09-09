@@ -106,8 +106,6 @@
 				</select>	
 			</div>
 			
-			
-			
 			<input type="submit" value="Hoàn tất" />
 			<input type="reset" value="Làm lại" />
 		<?php echo form_close(); ?>

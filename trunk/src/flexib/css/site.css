@@ -32,3 +32,21 @@
 .box_center {
 	text-align: center;
 }
+
+.box_right {
+	text-align: right;
+}
+
+.box_notify {
+	border: 1px dashed;
+	margin : 10px;
+	padding : 10px;
+}
+
+.bold_text {
+	font-weight: bold;
+}
+
+.margin_bottom {
+	margin-bottom: 10px;
+}

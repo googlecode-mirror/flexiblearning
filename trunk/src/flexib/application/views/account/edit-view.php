@@ -156,7 +156,7 @@
 		
 		<div class="form-item">
 			<input type="checkbox" name="EnabledFullName" value="1" 
-			<?php echo set_checkbox('EnabledFullName', 1, $account_model->EnabledFullName == 1); ?>>
+			<?=set_checkbox('EnabledFullName', 1, $account_model->EnabledFullName == 1); ?>>
 				Hiển thị họ và tên
 			</input>
 		</div>
@@ -176,7 +176,7 @@
 		</div>
 		
 		<div class="form-item">
-			<input type="checkbox" name="EnabledNatioality" value="1" 
+			<input type="checkbox" name="EnabledNationality" value="1" 
 			<?php echo set_checkbox('EnabledNationality', 1, $account_model->EnabledNationality == 1); ?>>
 				Hiển thị quốc tịch
 			</input>

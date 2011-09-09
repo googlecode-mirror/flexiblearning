@@ -26,9 +26,9 @@ class Banner extends Abstract_Controller {
 	}
 	
 	protected function setFormValidationForEditView() {
-		$this->form_validation->set_rules('Name', 'Tên Banner', 'required|xss_clean');
-		$this->form_validation->set_rules('Position', 'Vị trí', '');
-		$this->form_validation->set_rules('IdPartner', 'Đối tác', '');
+		$this->form_validation->set_rules('Name', 'lang:banner name', 'required|xss_clean');
+		$this->form_validation->set_rules('Position', 'lang:position', '');
+		$this->form_validation->set_rules('IdPartner', 'lang:partner', '');
 	}
 	
 	protected function handleEditValidationSuccess($banner, $site = '') {
