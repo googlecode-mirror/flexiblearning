@@ -6,12 +6,13 @@
 
 #admin th {
 	text-align: left;
-	background-color: #DDDDDD;
+	background-color: #609ecd;
 	padding : 5px;
+	color: white;
 }
 
 #admin tr:nth-child(even) {
-	background: #F1F1F1;
+	background: #eaf4fd;
 }
 
 #admin td {

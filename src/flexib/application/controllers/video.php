@@ -156,4 +156,8 @@ class Video extends Abstract_Controller {
 			}
 		}
 	}
+	
+	public function test() {
+		$this->load->view('test');
+	}
 }

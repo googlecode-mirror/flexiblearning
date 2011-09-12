@@ -45,7 +45,19 @@
 		</div>
 		<div class="form-item">
 			<label>	Mô tả</label> 
-			<textarea name="Description" cols="65"><?=set_value('Description', $videoCategory_model->Description)?></textarea>
+			<?php
+				include_once "lib/ckeditor/ckeditor.php";
+	
+				// Create a class instance.
+				$CKEditor = new CKEditor();
+	
+				// Path to the CKEditor directory.
+				$CKEditor->basePath = '/ckeditor/';
+					
+				// Create a textarea element and attach CKEditor to it.
+				$CKEditor->editor("Description", set_value('Description', $videoCategory_model->Description),
+					$this->config->item('config_admin_ck_editor'));
+			?>
 		</div>
 		<input type="submit" value="Hoàn tất" />
 		<input type="reset" value="Làm lại" />

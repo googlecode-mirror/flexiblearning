@@ -441,7 +441,7 @@ DROP TABLE IF EXISTS `video`;
 CREATE TABLE IF NOT EXISTS `video` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(256) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Description` longtext,
+  `Description` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `NumView` int(11) NOT NULL,
   `Ranking` int(11) NOT NULL,
   `NumRanking` int(11) NOT NULL,

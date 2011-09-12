@@ -28,13 +28,15 @@
 	
 	<table id="tblAccount">
 		<thead>
-			<th>STT</th>
-			<th>Tên đăng nhập</th>
-			<th>Họ tên</th>
-			<th>Vai trò</th>
-			<th>Ngày tạo</th>
-			<th>Ngày cập nhật</th>
-			<th></th>
+			<tr>
+				<th>STT</th>
+				<th>Tên đăng nhập</th>
+				<th>Họ tên</th>
+				<th>Vai trò</th>
+				<th>Ngày tạo</th>
+				<th>Ngày cập nhật</th>
+				<th></th>
+			</tr>
 		</thead>
 		<tbody>
 		<?php

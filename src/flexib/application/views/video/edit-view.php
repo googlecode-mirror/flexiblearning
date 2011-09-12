@@ -39,7 +39,7 @@
 	?>
 		<div class="left">
 			<div class="box_center">
-				<div id="video_view">
+				<div id="video_view" class="video_margin">
 					<?php
 						require_once 'video_view.php'; 
 					?>
@@ -72,7 +72,20 @@
 			
 			<div class="form-item">
 				<label>Mô tả</label> 
-				<textarea name="Description" cols="30"><?=set_value('Description', $video_model->Description)?></textarea>
+				<!-- <textarea name="Description" cols="30"><?=set_value('Description', $video_model->Description)?></textarea>-->
+				<?php
+					include_once "lib/ckeditor/ckeditor.php";
+	
+					// Create a class instance.
+					$CKEditor = new CKEditor();
+	
+					// Path to the CKEditor directory.
+					$CKEditor->basePath = '/ckeditor/';
+					
+					// Create a textarea element and attach CKEditor to it.
+					$CKEditor->editor("Description", set_value('Description', $video_model->Description), 
+						$this->config->item('config_admin_ck_editor'));
+				?>
 			</div>
 			
 			<div class="form-item">

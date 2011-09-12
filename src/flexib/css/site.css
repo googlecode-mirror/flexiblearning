@@ -1,3 +1,7 @@
+h1, h2, h3 {
+	color : #2E6E9E;
+}
+
 .form-item {
 	margin-top:5px;
 	margin-bottom:5px;
@@ -43,6 +47,9 @@
 	padding : 10px;
 }
 
+.video_margin {
+	margin-right:10px;
+}
 .bold_text {
 	font-weight: bold;
 }
