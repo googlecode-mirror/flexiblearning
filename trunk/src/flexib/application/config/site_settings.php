@@ -12,6 +12,9 @@ $config['video_auto_start'] = "false";
 $config['video_thumbnail'] = "resources/video/video_thumbnail.jpg";
 $config['n_object_for_quick_view_list_video'] = 3;
 $config['template_banner'] = 'images/template_banner.png';
+$config['flash_object_folder'] = 'flash_object';
+
+$config['config_admin_ck_editor'] = array('uiColor' => '#89b7da');
 
 $config['video_allowed_type'] = 'avi|flv|wmv|swf|mpeg|mpeg4';
 $config['video_allowed_type_text'] = "AVI, FLV, WMV, SWF, MPEG và MPEG4";
