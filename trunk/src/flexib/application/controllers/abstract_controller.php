@@ -194,16 +194,19 @@ abstract class Abstract_Controller extends Base_Controller {
 			$this->setFormValidationForEditView();
 			$this->addMoreDataForEditView($object);
 
-			$object->setDataFromInput($this->input->post());
-			$this->addDataForView($this->getModelVariableName(), $object);
-			
 			if ($this->form_validation->run() == FALSE) {
+				$object->setDataFromInput($this->input->post());
+				$this->addDataForView($this->getModelVariableName(), $object);
+			
 				if ($site == ADMIN) {
 					$this->template->load($this->template_admin, $this->getEditViewName(), $this->getDataForView());
 				} else {
 					$this->template->load($this->template_view, $this->getEditViewName(), $this->getDataForView());
 				}
 			} else {
+				$object->setDataFromInput($this->input->post());
+				$this->addDataForView($this->getModelVariableName(), $object);
+				
 				$this->handleEditValidationSuccess($object, $site);
 			}
 		} 

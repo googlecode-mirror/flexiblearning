@@ -104,28 +104,29 @@ class Account_model extends Abstract_model {
 			parent::setDataFromInput($data);
 			
 			$this->DateOfBirth = date_timestamp_get(DateTime::createFromFormat($this->config->item('date_format'), $data['DateOfBirth']));
-			if (array_key_exists('EnabledFullName', $data)) {
+			
+			if (!array_key_exists('EnabledFullName', $data)) {
 				$this->EnabledFullName = 0;				
 			}
-			if (array_key_exists('EnabledDateOfBirth', $data)) {
+			if (!array_key_exists('EnabledDateOfBirth', $data)) {
 				$this->EnabledDateOfBirth = 0;				
 			}
-			if (array_key_exists('EnabledAddress', $data)) {
+			if (!array_key_exists('EnabledAddress', $data)) {
 				$this->EnabledAddress = 0;				
 			}
-			if (array_key_exists('EnabledNationality', $data)) {
+			if (!array_key_exists('EnabledNationality', $data)) {
 				$this->EnabledNationality = 0;				
 			}
-			if (array_key_exists('EnabledTel', $data)) {
+			if (!array_key_exists('EnabledTel', $data)) {
 				$this->EnabledTel = 0;				
 			}
-			if (array_key_exists('EnabledEmail', $data)) {
+			if (!array_key_exists('EnabledEmail', $data)) {
 				$this->EnabledEmail = 0;				
 			}
-			if (array_key_exists('EnabledProfession', $data)) {
+			if (!array_key_exists('EnabledProfession', $data)) {
 				$this->EnabledProfession = 0;				
 			}
-			if (array_key_exists('EnabledFavorite', $data)) {
+			if (!array_key_exists('EnabledFavorite', $data)) {
 				$this->EnabledFavorite = 0;				
 			}
 		}

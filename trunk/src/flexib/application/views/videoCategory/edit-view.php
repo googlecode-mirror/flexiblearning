@@ -2,7 +2,18 @@
 	<div>
 		<a href="<?=site_url('videoCategory/admin')?>">« Quay lại danh mục video</a>
 	</div>
-	<h3>TẠO MỚI DANH MỤC VIDEO</h3>
+	
+	<?php
+		if ($videoCategory_model->Id == NULL) {	 
+	?>
+		<h3>TẠO MỚI DANH MỤC VIDEO</h3>
+	<?php
+		} else {
+	?>
+		<h3>CẬP NHẬT DANH MỤC VIDEO</h3>
+	<?php 		
+		} 
+	?>
 	<?php
 		$strErr = validation_errors();
 		if ($strErr != '') {

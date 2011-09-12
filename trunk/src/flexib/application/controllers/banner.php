@@ -29,6 +29,7 @@ class Banner extends Abstract_Controller {
 		$this->form_validation->set_rules('Name', 'lang:banner name', 'required|xss_clean');
 		$this->form_validation->set_rules('Position', 'lang:position', '');
 		$this->form_validation->set_rules('IdPartner', 'lang:partner', '');
+		$this->form_validation->set_rules('Link', 'lang:link', 'trim|required|xss_clean');
 	}
 	
 	protected function handleEditValidationSuccess($banner, $site = '') {

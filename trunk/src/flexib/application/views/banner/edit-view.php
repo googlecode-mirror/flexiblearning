@@ -75,6 +75,9 @@
 					} 
 				?>	
 				</select>
+				<a href="<?=base_url() . $this->config->item('template_banner')?>" class="thickbox">
+					Xem các vị trí banner 
+				</a>
 			</div>
 			
 			<?php
@@ -104,6 +107,11 @@
 					} 
 				?>
 				</select>	
+			</div>
+			
+			<div class="form-item">
+				<label>Liên kết</label> 
+				<input maxlength="256" name="Link" size="65" type="text" value="<?=set_value('Link', $banner_model->Link) ?>">
 			</div>
 			
 			<input type="submit" value="Hoàn tất" />

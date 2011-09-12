@@ -29,7 +29,9 @@ class Base_Controller extends CI_Controller {
 			if (method_exists($this, $funcNameForRenderView)) {
 				$data = $this->$funcNameForRenderView();
 			}
-			$this->template->addAdditionalAreaView($view, $value, $data);
+			if ($data != NULL) {
+				$this->template->addAdditionalAreaView($view, $value, $data);
+			}
 		}
 	}
 	

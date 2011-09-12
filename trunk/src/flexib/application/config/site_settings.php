@@ -9,6 +9,9 @@ $config['default_banner'] = 'resources/banner/default_banner.jpg';
 $config['video_width'] = 600;
 $config['video_height'] = 400;
 $config['video_auto_start'] = "false";
+$config['video_thumbnail'] = "resources/video/video_thumbnail.jpg";
+$config['n_object_for_quick_view_list_video'] = 3;
+$config['template_banner'] = 'images/template_banner.png';
 
 $config['video_allowed_type'] = 'avi|flv|wmv|swf|mpeg|mpeg4';
 $config['video_allowed_type_text'] = "AVI, FLV, WMV, SWF, MPEG và MPEG4";

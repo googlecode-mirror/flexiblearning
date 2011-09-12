@@ -68,6 +68,7 @@ class Video extends Abstract_Controller {
 			}
 		    if (isset($resourceId)) {
 		    	$video->IdResource = $resourceId;
+		    	print_r($this->Account_model->getLoggedInUserId());
 		    	$video->OwnerBy = $this->Account_model->getLoggedInUserId();
 		    }
 		}
@@ -81,6 +82,28 @@ class Video extends Abstract_Controller {
 		
 		$this->addDataForView('nCreatedTodayVideos', $this->Video_model->countTodayVideos());
 		$this->addDataForView('nApprovedTodayVideos', $this->Video_model->countTodayApprovedVideos());
+	}
+	
+	public function listNotApprovedVideo() {
+		$from = $this->uri->segment(3);
+		
+		$criterias = array('Approved' => 0);
+		$orders = array('CreatedDate' => 'desc');
+		$joinResource = array('table'=> 'resource', 'criteria'=> 'resource.Id = video.IdResource', 'type' => 'join');
+		
+		$pagingConfig['base_url'] = site_url('video/listNotApprovedVideo');
+		$pagingConfig['total_rows'] = $this->Video_model->getCount(array('Approved' => 0), TRUE);
+		$pagingConfig['per_page'] = $this->config->item('n_object_for_quick_view_list_video');
+		 
+		$this->pagination->initialize($pagingConfig);
+		$this->addDataForView('page_links', $this->pagination->create_links());
+		
+		$notApprovedVideos = $this->Video_model->getAllWhere($criterias, $from, $pagingConfig['per_page'], $orders, array($joinResource), 'Path', NULL, TRUE);
+		foreach ($notApprovedVideos as $notApprovedVideo) {
+			$notApprovedVideo->ThumbnailPath = $this->config->item('video_thumbnail');
+		}
+		$this->addDataForView('notApprovedVideos', $notApprovedVideos);
+		$this->load->view('video/not-approved-video-view', $this->getDataForView());		
 	}
 	
 	public function uploadVideo($Id = NULL) {
@@ -109,7 +132,26 @@ class Video extends Abstract_Controller {
 						
 					$oldResource->delete();
 						
-					echo 1;
+					echo $resourceId;
+				}
+			}
+		}
+	}
+	
+	public function loadVideo($Id) {
+		$video_model = $this->Video_model->getById($Id);
+		$resource = $this->Resource_model->getById($video_model->IdResource);
+		$video_model->Path = $resource->Path;
+		$this->load->view('video/video_view', array('video_model' => $video_model));
+	}
+	
+	public function approve($Id = NULL) {
+		if ($Id != NULL) {
+			$video_model = $this->Video_model->getById($Id);
+			if ($video_model != NULL) {
+				$video_model->Approved = 1;
+				if ($video_model->save() != -1) {
+					redirect($this->input->post('currentUrl'));
 				}
 			}
 		}

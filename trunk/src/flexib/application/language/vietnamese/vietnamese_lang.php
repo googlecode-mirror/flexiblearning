@@ -7,6 +7,7 @@ $lang['date of birth'] = "ngày sinh";
 $lang['description'] = "mô tả";
 $lang['email'] = "email";
 $lang['fullname'] = "họ và tên";
+$lang['link'] = "liên kết";
 $lang['name'] = "tên";
 $lang['partner'] = 'đối tác';
 $lang['partner name'] = 'tên đối tác';
