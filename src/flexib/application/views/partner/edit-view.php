@@ -3,7 +3,17 @@
 	<div>
 		<a href="<?=site_url('partner/admin')?>">« Quay lại danh sách đối tác</a>
 	</div>
-	<h3>THÊM ĐỐI TÁC</h3>
+	<?php
+		if ($partner_model->Id == NULL) { 
+	?>
+		<h3>THÊM ĐỐI TÁC</h3>
+	<?php
+		} else {
+	?>
+		<h3>CẬP NHẬT ĐỐI TÁC</h3>
+	<?php 			
+		} 
+	?>
 	<?php
 		$strErr = validation_errors();
 		if ($strErr != '') {
@@ -49,24 +59,26 @@
 				Tên Công Ty Đối Tác
 				<span class="form-required"	title="This field is required.">*</span> 
 			</label> 
-			<input maxlength="256" name="Name" size="65" type="text" value="<?=set_value('Name', $partner_model->Name) ?>">
+			<input maxlength="256" name="Name" size="65" type="text" value="<?=set_value('Name', $partner_model->Name)?>" />
 		</div>
 		<div class="form-item">
-			<label>	Địa chỉ</label> 
-			<textarea name="Address" cols="65"><?=set_value('Address', $partner_model->Address)?></textarea>
+			<label>Địa chỉ</label> 
+			<input maxlength="256" name="Address" size="65" type="text" value="<?=set_value('Address', $partner_model->Address)?>" />
 		</div>
 		<div class="form-item">
-			<label>	Điện Thoại <span class="form-required"	title="This field is required.">*</span> </label> 
-			
-			<input maxlength="256" name="Tel" cols="65" value="<?=set_value('Tel', $partner_model->Tel)?>">
+			<label>
+				Điện Thoại
+				<span class="form-required" title="This field is required.">*</span> 
+			</label> 
+			<input maxlength="256" name="Tel" value="<?=set_value('Tel', $partner_model->Tel)?>">
 		</div>
 		<div class="form-item">
-			<label>	Email</label> 
-			<textarea name="Email" cols="65"><?=set_value('Email', $partner_model->Email)?></textarea>
+			<label>Email</label> 
+			<input maxlength="256" name="Email" size="65" value="<?=set_value('Email', $partner_model->Email)?>">
 		</div>
 		<div class="form-item">
-			<label>	Link</label> 
-			<textarea name="Link" cols="65"><?=set_value('Link', $partner_model->Link)?></textarea>
+			<label>Liên kết</label> 
+			<input maxlength="256" name="Link" size="65" value="<?=set_value('Link', $partner_model->Link)?>">
 		</div>
        	<div class ="form-item">
        	<?php 

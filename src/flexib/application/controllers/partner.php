@@ -2,6 +2,9 @@
 require_once 'abstract_Controller.php';
 
 class Partner extends Abstract_Controller{
+	protected function hasAdminPermission() {
+		return TRUE;
+	}
 	
     protected function getAdminTab() {
 		return 3;
@@ -12,7 +15,10 @@ class Partner extends Abstract_Controller{
 	}
     protected function setFormValidationForEditView() {
 		$this->form_validation->set_rules('Name', 'lang:partner name', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('Tel', 'lang:tel','trim|required|xss_clean');	
+		$this->form_validation->set_rules('Address', '', '');
+		$this->form_validation->set_rules('Tel', 'lang:tel','trim|required|xss_clean|alpha_numeric');	
+		$this->form_validation->set_rules('Email', 'lang:email','valid_email');
+		$this->form_validation->set_rules('Link', 'lang:link', '');
 	}
 	protected function addMoreDataForEditView() {
 		$resources = $this->Resource_model->getAll(0, 0, NULL, NULL, '', '');
@@ -63,12 +69,5 @@ class Partner extends Abstract_Controller{
 		$objects = $this->$className->getAll($from, $nObjPerPage, $orders = NULL, array($joins) , $moreProperties, $hasState = TRUE) ;
 	
 		return $objects;
-	}
-	
-	protected function hasAdminPermission() {
-		$accountPermissions = $this->Account_model->getLoggedInUserPermissions();
-		if (is_array($accountPermissions)) {
-			return in_array(PARTNER_FULL, $accountPermissions);
-		}
 	}
 }

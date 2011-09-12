@@ -38,6 +38,7 @@
 			<th>Đối tác</th>
 			<th>Vị trí</th>
 			<th>Banner</th>
+			<th>Link</th>
 			<th>Ngày tạo</th>
 			<th>Ngày cập nhật</th>
 			<th></th>
@@ -57,6 +58,7 @@
 			<td><?=$banner->PartnerName?></td>
 			<td><?=$banner->PositionName?></td>
 			<td class="image"><img src=<?=base_url() . $banner->Path?> /></td>
+			<td><?=$banner->Link?></td>
 			<td><?=date($this->config->item('date_format'), $banner->CreatedDate)?></td>
 			<td><?=date($this->config->item('date_format'), $banner->UpdatedDate)?></td>
 			<td class="action_col">

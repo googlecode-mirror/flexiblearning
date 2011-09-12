@@ -38,8 +38,14 @@
 	width : 300px;
 }
 
+#admin .video-list .page {
+	border-top:solid 1px;
+	margin-top:10px;
+}
+
 #admin .video {
-	width : 620px;
+	width : 650px;
+	margin-bottom : 20px;
 }
 
 #admin .avatar {
@@ -51,4 +57,17 @@
 
 #admin th.box_center {
 	text-align: center;
+}
+
+#admin .video-list {
+	width : 930px;
+	margin : 0 auto;
+}
+
+#admin .video_box {
+	float : left;
+	width : 300px;
+	text-align : center;
+	margin-left : 5px;
+	margin-right : 5px;
 }

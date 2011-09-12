@@ -2,7 +2,17 @@
 	<div>
 		<a href="<?=site_url('account/admin')?>">« Quay lại quản lý account</a>
 	</div>
-	<h3>TẠO ACCOUNT</h3>
+	<?php
+		if ($account_model->Id == NULL) { 
+	?>
+		<h3>TẠO ACCOUNT</h3>
+	<?php
+		} else {
+	?>
+		<h3>CẬP NHẬT ACCOUNT</h3>
+	<?php 		
+		}  
+	?>
 	<?php
 		$strErr = validation_errors();
 		if ($strErr != '') {
@@ -33,6 +43,9 @@
 			<input name="UserName" type="text" value="<?=set_value('UserName', $account_model->UserName) ?>" />
 		</div>
 		
+		<?php
+			if ($account_model->Id == NULL) { 
+		?>
 		<div class="form-item">
 			<label>
 				Mật khẩu
@@ -43,6 +56,9 @@
 			<input type="button" value="Hiển thị mật khẩu" id="showPwdBtn" />
 			<span id="showPwd"></span>
 		</div>
+		<?php
+			} 
+		?>
 		
 		<div class="form-item">
 			<label>

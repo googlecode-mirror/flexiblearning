@@ -2,6 +2,10 @@
 require_once 'abstract_Controller.php';
 
 class VideoCategory extends Abstract_Controller {
+	protected function hasAdminPermission() {
+		return TRUE;
+	}
+	
 	protected function getAdminTab() {
 		return 4;
 	}
@@ -15,10 +19,10 @@ class VideoCategory extends Abstract_Controller {
 		$this->form_validation->set_rules('Description', 'Mô tả', 'trim|xss_clean');
 	}
 	
-	protected function hasAdminPermission() {
+	/*protected function hasAdminPermission() {
 		$accountPermissions = $this->Account_model->getLoggedInUserPermissions();
 		if (is_array($accountPermissions)) {
 			return in_array(VIDEO_CATEGORY_FULL, $accountPermissions);
 		}
-	}
+	}*/
 }

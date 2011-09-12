@@ -1,67 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta charset="utf-8">
-<title>::FLEXIB_LEARNING::</title>
-
-<link rel="stylesheet" href="<?=base_url()?>css/base/jquery.ui.all.css">
-<link rel="stylesheet" href="<?=base_url()?>css/site.css">
-
-<script type="text/javascript" src="<?=base_url()?>js/jquery-1.5.1.js"></script>
-<script type="text/javascript" src="<?=base_url()?>js/ui/jquery-ui-1.8.14.custom.js"></script>
-<script type="text/javascript" src="<?=base_url()?>js/ui/i18n/jquery.ui.datepicker-vi.js"></script>
-<script type="text/javascript" src="<?=base_url()?>js/utility.js"></script>
-
-<script>
-	$(document).ready(function(){
-		var urls = [
-		    		'<?=site_url('admin')?>',
-		    		'<?=site_url('account/admin')?>',
-		    		'<?=site_url('banner/admin')?>',
-		    		'<?=site_url('partner/admin')?>',
-		    		'<?=site_url('videoCategory/admin')?>',
-		    		'<?=site_url('video/admin')?>',
-		    		'<?=site_url('question/admin')?>',
-		    		'<?=site_url('videoNotification/admin')?>',
-		    		'<?=site_url('videoDocument/admin')?>',
-		    		'<?=site_url('videoSurvey/admin')?>'
-		    		];
-		$("#tabs").tabs({
-			select: function(event, ui) {
-				url = urls[ui.index];
-				location.href = url;
-			},
-			selected : <?=$tab?>
-		});
-	});
-	</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>::FLEXIB LEARNING::</title>
 </head>
+
 <body>
-	<div class="left">
-		<h2>ADMIN FLEXIBLEARNING</h2>
-	</div>
-	<div class="right">
-		Chào bạn&nbsp;<a href="#"><?=$this->session->userdata(USERNAME_LOGIN)?></a>
-		&nbsp;<a href="<?=site_url('account/logout')?>">Đăng xuất</a>
-	</div>
-	<div class="clear"></div>
-	
-	<div id="admin">
-		<div id="tabs">
-			<ul>
-				<li><a href="#dashboard">Dashboard</a></li>
-				<li><a href="#account">Account</a></li>
-				<li><a href="#banner">Banner</a></li>
-				<li><a href="#partner">Ðối tác</a></li>
-				<li><a href="#videoCategory">Danh mục video</a></li>
-				<li><a href="#video">Video</a></li>
-				<li><a href="#question">Hỏi dáp video</a></li>
-				<li><a href="#videoNotification">Thông báo video</a></li>
-				<li><a href="#videoDocument">Tài liệu video</a></li>
-				<li><a href="#videoSurvey">Bảng điều tra câu hỏi</a></li>
-			</ul>
-			<?=$contents?>
-		</div>
-	</div>
+	<div id="container" style="width:1024px;margin:0 auto">
+    	<div id="top" style="height:40px;background-color:#FC0;">
+    		HEADER
+        </div>
+        <div id="content" style="height:600px">
+        	<div id="subcontent" style="float:left;width:800px;background-color:#FF0;height:600px;">
+        		<?=$contents?>
+        	</div>
+            <div id="right_banner" style="float:left">
+				<div id="pos1" style="background-color:#FC0;margin:5px;width:210px;">
+					<?=$pos1?>
+				</div>
+				<div id="pos2" style="background-color:#FC0;margin:5px;width:210px;">
+					<?=$pos2?>
+				</div>                
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div id="footer_banner">
+        	<div id="pos3" style="float:left;width:330px;background-color:#FC0;height:200px;margin:5px;">
+        		<?=$pos3?>
+        	</div>
+            <div id="pos4" style="float:left;width:330px;background-color:#FC0;height:200px;margin:5px;">POS4</div>
+            <div id="pos5" style="float:left;width:330px;background-color:#FC0;height:200px;margin:5px;">POS5</div>            
+        </div>
+        <div style="clear:both"></div>
+        <div id="footer" style="height:40px;background-color:#FC0;">
+			FOOTER        	
+        </div>
+    </div>
 </body>
+
 </html>

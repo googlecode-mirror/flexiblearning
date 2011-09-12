@@ -38,7 +38,10 @@
 	</div>
 	
 	<div class="clear"></div>
+		
+	<div id="not-approved-video"></div>
 	
+	<h3>DANH SÁCH VIDEO</h3>
 	<table id="tblVideo">
 		<thead>
 			<th>STT</th>
@@ -113,4 +116,6 @@
 	$('form.video').submit(function(event) {
 		return confirm('Bạn có chắc chắn muốn xóa video "' + $(this).find('input[name=Name]').val() + '" không ?');
 	});
+
+	$('#not-approved-video').load('<?=site_url('video/listNotApprovedVideo')?>');
 </script>

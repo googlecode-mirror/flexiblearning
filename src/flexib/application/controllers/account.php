@@ -1,5 +1,5 @@
 <?php
-require_once 'abstract_Controller.php';
+require_once 'abstract_controller.php';
 
 class Account extends Abstract_Controller {
 	protected function getAdminTab() {
@@ -60,11 +60,15 @@ class Account extends Abstract_Controller {
 	 */
 	protected function setFormValidationForEditView() {
 		$this->form_validation->set_rules('UserName', 'lang:username', 'required|xss_clean');
-		$this->form_validation->set_rules('Password', 'lang:password', 'trim|required|md5|xss_clean');
+		
+		if ($this->uri->segment(3) == '') {
+			$this->form_validation->set_rules('Password', 'lang:password', 'trim|required|md5|xss_clean');
+		}
+		
 		$this->form_validation->set_rules('FullName', 'lang:fullname', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('DateOfBirth', 'lang:date of birth', 'required');
 		$this->form_validation->set_rules('Address', 'lang:address', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('Email', 'lang:email', 'required|email');
+		$this->form_validation->set_rules('Email', 'lang:email', 'required|valid_email');
 		$this->form_validation->set_rules('EnabledFullName', 'EnabledFullName', '');
 		$this->form_validation->set_rules('EnabledDateOfBirth', 'EnabledDateOfBirth', '');
 		$this->form_validation->set_rules('EnabledAddress', 'EnabledAddress', '');

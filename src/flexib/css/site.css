@@ -50,3 +50,23 @@
 .margin_bottom {
 	margin-bottom: 10px;
 }
+
+.ui-icon-approved {
+	background: url("../images/icons/approved_icon.png") no-repeat;
+	width : 24px;
+	height : 24px;
+}
+
+.ui-icon-approved:hover {
+	background-color: #F1F1F1;
+}
+
+button.ui-icon-approved {
+	width : 24px;
+	height : 24px;	
+	border : none;
+}
+
+.thumbnail_video {
+	margin-top : 10px;
+}
