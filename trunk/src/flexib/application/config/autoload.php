@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'template', 'session', 'form_validation', 'pagination', 'uri');
+$autoload['libraries'] = array('database', 'template', 'session', 'form_validation', 'pagination', 'uri','email');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'template', 'session', 'form_validati
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('date', 'url', 'array', 'cookie', 'language');
+$autoload['helper'] = array('date', 'url', 'array', 'cookie', 'language','ckeditor');
 
 
 /*
@@ -80,7 +80,7 @@ $autoload['helper'] = array('date', 'url', 'array', 'cookie', 'language');
 |
 */
 
-$autoload['config'] = array('site_settings');
+$autoload['config'] = array('site_settings','email');
 
 
 /*
@@ -109,8 +109,8 @@ $autoload['language'] = array('vietnamese');
 |
 */
 
-$autoload['model'] = array('VideoCategory_model', 'Account_model', 'Role_model', 'Partner_model','Resource_model',
-							'Video_model', 'Nationality_model', 'Profession_model', 'Banner_model');
+$autoload['model'] = array('Log_model' ,'VideoCategory_model', 'Account_model', 'Role_model', 'Partner_model','Resource_model',
+							'Video_model', 'Nationality_model', 'Profession_model', 'Banner_model', 'VideoSurvey_model','VideoDocument_model', 'Video_VideoDocument_model','VideoNotification_model');
 
 
 /* End of file autoload.php */
