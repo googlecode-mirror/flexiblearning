@@ -1,5 +1,6 @@
 <?php
 $config['date_format'] = 'd/m/Y';
+$config['date_hour_format']= 'd-m-y h:m:s';
 $config['date_format_client'] = 'dd/mm/yy';
 $config['number_of_object_list_page'] = 30;
 $config['resource_folder'] = 'resources';
@@ -31,6 +32,9 @@ $config['img_max_size'] = 1024;
 $config['img_max_width'] = 1280;
 $config['img_max_height'] = 960;
 
+$config['survey_allowed_type']='doc|docx|pdf';
+$config['survey_allowed_type_text'] = ".doc | .docx | .pdf";
+
 $config['add_successfully'] = '%s %s được tạo thành công';
 $config['add_fail'] = '%s %s được tạo không thành công';
 $config['delete_successfully'] = '%s %s được xóa thành công';
@@ -38,6 +42,9 @@ $config['delete_fail'] = '%s %s xóa không thành công';
 $config['item_not_exist'] = 'Đồi tượng không tồn tại';
 $config['save_successfully'] = '%s %s được lưu thành công';
 $config['save_fail'] = '%s %s được lưu không thành công';
+$config['approved_successfully'] = '%s %s đã được duyệt';
+$config['approved_fail']= "%s %s chưa được duyệt";
+
 
 $config['text_accountPermission'] = 'Permission';
 $config['text_account'] = 'Người dùng';
