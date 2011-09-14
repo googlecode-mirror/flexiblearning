@@ -72,3 +72,21 @@
 	margin-left : 5px;
 	margin-right : 5px;
 }
+
+#dashboard .dashboard_box {
+	width : 970px;
+	margin : 0 auto;	
+}
+
+#dashboard .one_box {
+	width : 300px;
+	float : left;
+	margin-right : 10px;
+	margin-bottom : 10px;
+	padding : 5px;
+}
+
+.one_box h4 {
+	margin-top : 5px;
+	margin-bottom : 5px;
+}

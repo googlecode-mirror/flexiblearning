@@ -34,12 +34,12 @@ class Video_model extends Abstract_model{
 		}
 	}
 	
-	public function countTodayVideos() {
+	/*public function countTodayVideos() {
 		$this->db->from($this->getTableName());
 		$this->db->where('DATEDIFF(NOW(), FROM_UNIXTIME(CreatedDate)) <= 1');
 		
 		return $this->db->count_all_results();
-	}
+	}*/
 	
 	public function countTodayApprovedVideos() {
 		$this->db->from($this->getTableName());

@@ -80,7 +80,7 @@ class Video extends Abstract_Controller {
 		$nApprovedVideos = $this->Video_model->getCount($criteria);
 		$this->addDataForView('nApprovedVideos', $nApprovedVideos);
 		
-		$this->addDataForView('nCreatedTodayVideos', $this->Video_model->countTodayVideos());
+		$this->addDataForView('nCreatedTodayVideos', $this->Video_model->getCountByToday());
 		$this->addDataForView('nApprovedTodayVideos', $this->Video_model->countTodayApprovedVideos());
 	}
 	
