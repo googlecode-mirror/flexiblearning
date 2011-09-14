@@ -3,10 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<title>::FLEXIB_LEARNING::</title>
-	<link rel="stylesheet" href="<?=base_url()?>css/base/jquery.ui.all.css">
+	
+	<link rel="stylesheet" href="<?=base_url()?>css/redmond/jquery-ui-1.8.16.custom.css">
 	<link rel="stylesheet" href="<?=base_url()?>css/site.css">
-	<script type="text/javascript" src="<?=base_url()?>js/jquery-1.5.1.js"></script>
-	<script type="text/javascript" src="<?=base_url()?>js/ui/jquery-ui-1.8.14.custom.js"></script>
+	<script type="text/javascript" src="<?=base_url()?>js/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="<?=base_url()?>js/jquery-ui-1.8.16.custom.min.js"></script>
 </head>
 
 <body>

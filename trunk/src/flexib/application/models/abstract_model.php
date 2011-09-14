@@ -98,4 +98,10 @@ abstract class Abstract_model extends Base_model {
 		}
 		return parent::getCount($criterias);
 	}*/		
+	
+	public function getCountByToday() {
+		$this->db->from($this->getTableName());
+		$this->db->where('DATEDIFF(NOW(), FROM_UNIXTIME(CreatedDate)) <= 1');
+		return $this->db->count_all_results();
+	}
 }
