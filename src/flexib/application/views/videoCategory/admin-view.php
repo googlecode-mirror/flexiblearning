@@ -52,7 +52,7 @@
 						<input type="submit" value="Xóa" />
 					</form>
 					<form action="<?=site_url(sprintf('videoCategory/edit/%d?%s=%s', $videoCategory->Id, SITE, ADMIN))?>" method="post">
-						<input type="submit" value="Sửa" />
+						<button></button>
 					</form>
 				</td>
 			</tr>
@@ -62,6 +62,8 @@
 		?>
 		</tbody>
 	</table>
+	
+		
 	<div>
 		<?=$page_links?>
 	</div>
@@ -70,5 +72,11 @@
 <script type="text/javascript">
 	$('form.category').submit(function(event) {
 		return confirm('Bạn có chắc chắn muốn xóa phân loại video "' + $(this).find('input[name=Name]').val() + '" không ?');
+	});
+	$('button').button({
+		icons : {
+			primary : 'ui-icon-close'
+		},
+		text : false
 	});
 </script>
