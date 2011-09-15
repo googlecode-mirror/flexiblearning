@@ -59,7 +59,7 @@ abstract class Abstract_Controller extends Base_Controller {
 	protected function getObjectsForList($from = 0, $nObjPerPage = '') {
 		$className = $this->getModelName();
 		$objects = $this->$className->getAll($from, $nObjPerPage, array('UpdatedDate' => 'desc'), NULL);
-		return $objects;
+		return $objects; 
 	}
 
 	public function index($page = '') {
@@ -125,6 +125,42 @@ abstract class Abstract_Controller extends Base_Controller {
 	}
 
 	
+	public function Approve() {
+		$Id = $this->input->post('Id');
+		$from = $this->uri->segment(3);
+		if (isset($Id)) {
+			$className = $this->getModelName();
+			$object = $this->$className->getById($Id);
+			
+			if ($object) {
+				$object->Approved = 1;
+				$object->save();
+					$notifyMessage = ucfirst(sprintf($this->config->item('approvedSuccessfully'),
+					$this->$className->getText(),
+					$object->getDisplayName()));
+					$this->addDataForView('notifyMessage', $notifyMessage);
+					$this->prepareDataForListView($from);
+				
+			} else {
+				$errorMessage = ucfirst(sprintf($this->config->item('approvedSuccessfully')));
+				$this->addDataForView('errorMessage', $errorMessage);
+			}
+			$site = $this->input->get(SITE);
+			if ($site == ADMIN) {
+				$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)). '/admin');
+				$this->pagination->initialize($this->pagingConfig);
+				$this->addDataForView('page_links', $this->pagination->create_links());
+				$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
+			} else {
+				$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)));
+				$this->pagination->initialize($this->pagingConfig);
+				$this->addDataForView('page_links', $this->pagination->create_links());
+				$this->template->load($this->template_view, $this->getViewListName(), $this->getDataForView());
+			}
+		}
+	}
+	
+
 	public function admin() {
 		if ($this->hasAdminPermission()) {
 			$from = $this->uri->segment(3);
@@ -150,6 +186,7 @@ abstract class Abstract_Controller extends Base_Controller {
 	}
 
 	protected function addReferenceDataForListView() {
+		
 	}
 
 	protected function addMoreDataForEditView($object) {
