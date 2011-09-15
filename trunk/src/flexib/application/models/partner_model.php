@@ -6,7 +6,7 @@ class Partner_model extends Abstract_model{
 	public $Address;
 	public $Email;
 	public $Tel;
-	public $LogoId;
+	public $IdLogo;
 	public $Link;
 	public $State = 1;
 	
