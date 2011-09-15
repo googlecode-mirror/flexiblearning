@@ -15,6 +15,7 @@ class Account extends Abstract_Controller {
 			if ($this->form_validation->run() == TRUE) {
 				$this->Account_model->authenticate($this->input->post('Remember'), 
 					$this->input->post('UserName'), $this->input->post('Password'));
+				
 			} 
 		} 
 		redirect($url);	
@@ -23,6 +24,7 @@ class Account extends Abstract_Controller {
 	public function logout() {
 		if ($this->Account_model->authorize() == USER_AUTHENTIC_SUCCESS_FLAG) {
 			$this->Account_model->unAuthenticate();
+			
 			redirect(site_url());	
 		}
 	}
