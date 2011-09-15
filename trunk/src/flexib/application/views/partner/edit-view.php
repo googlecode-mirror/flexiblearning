@@ -42,10 +42,17 @@
         		if(isset($partner_model->Id)){
         			if(isset($resources)){
         		   		foreach ($resources as $resource){
-        					if($resource->Id == $partner_model->LogoId){
+        		   			
+        					if($resource->Id == $partner_model->IdLogo){
+        						
         	?>
-        	 <img src="<?=base_url() .$resource->Path ?>" width = '200' height = '200'>
-        	
+        	 <img id="imgLogo" src="<?=base_url() .$resource->Path ?>" width = '200' height = '200'>
+        	<div>
+        		
+        		<a href="#" id='imgUploadLogo'>Thay đổi logo</a>
+        	</div>
+        	<div id="status"></div>
+        	<br></br>
         	<?php
         		
         					}
@@ -87,14 +94,47 @@
        	
        	?><label>Logo</label>
        	<input type ="file" name="imgLink" size="20">
-       	
-       	
+       
        	</div>
    
-       	<?php }?>
+       	<?php }
+       		else{
+       	
+       	?>
+       		
+       	<?php 
+       		}
+       	?>
 		<input type="submit" value="Hoàn tất" />
 		<input type="reset" value="Làm lại" />
 		
        	<?php echo form_close(); ?> 
 
 </div>
+<script type="text/javascript">
+	var btnUpload=$('#imgUploadLogo');
+
+	new AjaxUpload(btnUpload, {
+		action: '<?=site_url('partner/uploadLogo/' . $partner_model->Id)?>',
+		name: 'Logo',
+		onSubmit: function(file, ext){
+			 if (! (ext && /^(<?=$this->config->item('img_allowed_type')?>)$/.test(ext))){ 
+	            // extension is not allowed 
+				$('#status').text('Chỉ tập tin <?=$this->config->item('img_allowed_type')?> được phép upload');
+					return false;
+			}
+			$('#status').text('Đang upload...');
+		},
+		onComplete: function(file, response){
+			//On completion clear the status
+			$('#status').text('');
+			//Add uploaded file to list
+			
+			if(response != ''){
+				location.reload(true);
+			} else{
+				alert('Có lỗi xảy ra. Bạn hãy thử lại', 'Upload Logo');
+			}
+		}
+	});
+</script>

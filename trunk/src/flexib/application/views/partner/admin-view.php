@@ -63,6 +63,7 @@
 					<form action="<?=site_url(sprintf('partner/edit/%d?%s=%s', $partner->Id, SITE, ADMIN))?>" method="post">
 						<input type="submit" value="Sửa" />
 					</form>
+					
 				</td>
 				
 			</tr>
