@@ -59,25 +59,19 @@
 				</td>
 				<td><?=date($this->config->item('date_format'), $videoSurvey->UpdatedDate)?></td>
 				<td class="action_col">
-					<form class="videoSurvey" action="<?=site_url(sprintf('videoSurvey/delete/%d?%s=%s', $from, SITE, ADMIN))?>" method="post">
+					<?=form_open(sprintf('videoSurvey/delete/%d?%s=%s', $from, SITE, ADMIN), array('class' => 'videoSurvey'))?>
 						<input type="hidden" name="Id" value="<?=$videoSurvey->Id?>" />
 						<input type="hidden" name="Name" value="<?=$videoSurvey->Name?>" />
 						<input type="submit" value="Xóa" style="width: 100px" />
-					</form>
+					<?=form_close()?>
 					
-					<form action="<?=site_url(sprintf('videoSurvey/edit/%d?%s=%s', $videoSurvey->Id, SITE, ADMIN))?>" method="post">
+					<?=form_open(sprintf('videoSurvey/edit/%d?%s=%s', $videoSurvey->Id, SITE, ADMIN))?>
 						<input type="submit" value="Sửa" style="width: 100px"/>
-					</form>
+					<?=form_close()?>
 				
-					
-					
-					<form class="videoSurveyDownload" action="<?=site_url(sprintf('videoSurvey/Download/%s?%s=%s', $videoSurvey->FileName, SITE, ADMIN))?>" method="post">
-						
+					<?=form_open(sprintf('videoSurvey/Download/%s?%s=%s', $videoSurvey->FileName, SITE, ADMIN), array('class' => 'videoSurveyDownload'))?>	
 							<input type="submit" value="Download" style="width: 100px" />
-					</form>		
-					
-					
-					
+					<?=form_close()?>	
 				</td>
 			</tr>
 			<?php
@@ -91,9 +85,7 @@
 	</div>
 	<script type="text/javascript">
 	$('form.videoSurvey').submit(function(event) {
-		
-			return confirm('Bạn có chắc chắn muốn xóa tài liệu khảo sát "' + $(this).find('input[name=Name]').val() + '" không ?');
-
+		return confirm('Bạn có chắc chắn muốn xóa tài liệu khảo sát "' + $(this).find('input[name=Name]').val() + '" không ?');
 	});
 	
 	</script>

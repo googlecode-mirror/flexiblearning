@@ -30,18 +30,16 @@ class Video extends Abstract_Controller {
 	protected function getObjectsForList($from = 0, $nObjPerPage = '') {
 		$className = $this->getModelName();
 		
-		$joinResource = array('table'=> 'resource', 'criteria'=> 'resource.Id = video.IdResource', 'type' => 'join');
 		$joinAccount = array('table'=> 'account', 'criteria'=> 'account.Id = video.OwnerBy', 'type' => 'join');
 		$joinVideoCategory = array('table'=> 'videocategory', 'criteria'=> 'videocategory.Id = video.IdCategory', 'type' => 'join');
 		
 		$moreProperties = array(
-			'resource.Path', 
 			'account.UserName as OwnerUserName',
 			'videocategory.Name as VideoCategoryName');
 		
 		$objects = $this->$className->getAll(
 			$from, $nObjPerPage, array('CreatedDate' => 'asc'), 
-			array($joinResource, $joinAccount, $joinVideoCategory) , $moreProperties, TRUE);
+			array($joinAccount, $joinVideoCategory) , $moreProperties, TRUE);
 	
 		return $objects;
 	}
@@ -58,17 +56,30 @@ class Video extends Abstract_Controller {
 			if ($this->upload->do_upload('uplVideo')) {
 				$data = $this->upload->data();
 	
-				$resource = new Resource_model();
-				$resource->Path = $uplPath . '/' . $data['file_name'];
-				$resourceId = $resource->save();
+				$outputFile = $this->convertVideo($uplPath . '/' . $data['file_name']);
+				$thumbnailPath = $this->config->item('resource_folder') . '/video_thumbnail';
+				$thumbnailFile = create_thumbnail($outputFile, 
+					$this->config->item('thumbnail_video_width'),
+					$this->config->item('thumbnail_video_height'),
+					$thumbnailPath);
+									
+				if ($outputFile && $thumbnailFile) {
+					$resourceVideo = new Resource_model();
+					$resourceVideo->Path = $outputFile;
+					$resourceVideoId = $resourceVideo->save();
+					
+					$resourceThumbnail = new Resource_model();
+					$resourceThumbnail->Path = $thumbnailFile;
+					$resourceThumbnailId = $resourceThumbnail->save();
+				}
 			} else {
 				$this->addDataForView('err', $this->upload->display_errors('<div>', '</div>'));
 				$this->template->load($this->template_admin, $this->getEditViewName(), $this->getDataForView());
 				return;
 			}
-		    if (isset($resourceId)) {
-		    	$video->IdResource = $resourceId;
-		    	print_r($this->Account_model->getLoggedInUserId());
+		    if (isset($resourceVideoId)) {
+		    	$video->IdResource = $resourceVideoId;
+		    	$video->IdThumbnail = $resourceThumbnailId;
 		    	$video->OwnerBy = $this->Account_model->getLoggedInUserId();
 		    }
 		}
@@ -89,7 +100,7 @@ class Video extends Abstract_Controller {
 		
 		$criterias = array('Approved' => 0);
 		$orders = array('CreatedDate' => 'desc');
-		$joinResource = array('table'=> 'resource', 'criteria'=> 'resource.Id = video.IdResource', 'type' => 'join');
+		$joinResource = array('table'=> 'resource', 'criteria'=> 'resource.Id = video.IdThumbnail', 'type' => 'left');
 		
 		$pagingConfig['base_url'] = site_url('video/listNotApprovedVideo');
 		$pagingConfig['total_rows'] = $this->Video_model->getCount(array('Approved' => 0), TRUE);
@@ -98,9 +109,12 @@ class Video extends Abstract_Controller {
 		$this->pagination->initialize($pagingConfig);
 		$this->addDataForView('page_links', $this->pagination->create_links());
 		
-		$notApprovedVideos = $this->Video_model->getAllWhere($criterias, $from, $pagingConfig['per_page'], $orders, array($joinResource), 'Path', NULL, TRUE);
+		$notApprovedVideos = $this->Video_model->getAllWhere($criterias, $from, $pagingConfig['per_page'], $orders, 
+			array($joinResource), 'Path as ThumbnailPath', NULL, TRUE);
 		foreach ($notApprovedVideos as $notApprovedVideo) {
-			$notApprovedVideo->ThumbnailPath = $this->config->item('video_thumbnail');
+			if (!isset($notApprovedVideo->ThumbnailPath)) {
+				$notApprovedVideo->ThumbnailPath = $this->config->item('video_thumbnail');
+			}
 		}
 		$this->addDataForView('notApprovedVideos', $notApprovedVideos);
 		$this->load->view('video/not-approved-video-view', $this->getDataForView());		
@@ -121,18 +135,21 @@ class Video extends Abstract_Controller {
 
 				if ($this->upload->do_upload('fileVideo')) {
 					$data = $this->upload->data();
-
-					$resource = new Resource_model();
-					$resource->Path = $uplPath . '/' . $data['file_name'];
-					$resourceId = $resource->save();
-
-					$oldResource = $this->Resource_model->getById($video_model->IdResource);
-					$video_model->IdResource = $resourceId;
-					$tempId = $video_model->save();
-						
-					$oldResource->delete();
-						
-					echo $resourceId;
+					$outputFile = $this->convertVideo($uplPath . '/' . $data['file_name']);
+					
+					if ($outputFile) {
+						$resource = new Resource_model();
+						$resource->Path = $outputFile;
+						$resourceId = $resource->save();
+	
+						$oldResource = $this->Resource_model->getById($video_model->IdResource);
+						$video_model->IdResource = $resourceId;
+						$tempId = $video_model->save();
+							
+						$oldResource->delete();
+							
+						echo $resourceId;
+					}
 				}
 			}
 		}
@@ -142,7 +159,7 @@ class Video extends Abstract_Controller {
 		$video_model = $this->Video_model->getById($Id);
 		$resource = $this->Resource_model->getById($video_model->IdResource);
 		$video_model->Path = $resource->Path;
-		$this->load->view('video/video_view', array('video_model' => $video_model));
+		$this->load->view('video/video-view', array('video_model' => $video_model));
 	}
 	
 	public function approve($Id = NULL) {
@@ -157,7 +174,12 @@ class Video extends Abstract_Controller {
 		}
 	}
 	
-	public function test() {
-		$this->load->view('test');
+	private function convertVideo($fileName) {
+		$this->load->helper('video');
+		$outputFile = convert_to_flv($fileName);
+		if ($fileName != $outputFile) {
+			unlink($fileName);
+		}
+		return $outputFile;
 	}
 }

@@ -1,7 +1,6 @@
 <?php
 require_once 'abstract_Controller.php';
 require_once 'lib/PHPMailer_v5.1/class.phpmailer.php';
-/*require_once 'lib/PHPMailer_v5.1/class.smtp.php';*/
 
 class VideoNotification extends Abstract_Controller {
     protected function getAdminTab() {

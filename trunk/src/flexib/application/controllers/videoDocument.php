@@ -138,7 +138,7 @@ class VideoDocument extends Abstract_Controller {
 			}
 		}
 	}
-	public function Download($FileNamePost = NULL) {
+	public function download($FileNamePost = NULL) {
 		if ($FileNamePost != NULL) {
 			//$videoSurvey = 
 			$filename = $FileNamePost;//$this->input->get('FileName');

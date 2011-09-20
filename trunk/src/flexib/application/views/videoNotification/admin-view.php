@@ -54,20 +54,15 @@
 				
 				
 				<td class="action_col">
-					<form class="videoNotification" action="<?=site_url(sprintf('videoNotification/delete/%d?%s=%s', $from, SITE, ADMIN))?>" method="post">
+					<?=form_open(sprintf('videoNotification/delete/%d?%s=%s', $from, SITE, ADMIN), array('class' => 'videoNotification'))?>
 						<input type="hidden" name="Id" value="<?=$videoNotification->Id?>" />
 						<input type="hidden" name="Name" value="<?=$videoNotification->Title?>" />
 						<input type="submit" value="Xóa" style="width: 90px" />
-					</form>
+					<?=form_close()?>
 					
-					<form action="<?=site_url(sprintf('videoNotification/edit/%d?%s=%s', $videoNotification->Id, SITE, ADMIN))?>" method="post">
+					<?=form_open(sprintf('videoNotification/edit/%d?%s=%s', $videoNotification->Id, SITE, ADMIN))?>
 						<input type="submit" value="Sửa" style="width: 90px"/>
-					</form>
-				
-					
-					
-					
-					
+					<?=form_close()?>
 				</td>
 			</tr>
 			<?php
@@ -81,9 +76,7 @@
 	</div>
 	<script type="text/javascript">
 	$('form.videoNotification').submit(function(event) {
-		
-			return confirm('Bạn có chắc chắn muốn xóa thông báo "' + $(this).find('input[name=Name]').val() + '" không ?');
-
+		return confirm('Bạn có chắc chắn muốn xóa thông báo "' + $(this).find('input[name=Name]').val() + '" không ?');
 	});
 	
 	</script>

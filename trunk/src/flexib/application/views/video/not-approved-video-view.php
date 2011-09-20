@@ -12,9 +12,10 @@
 		<a href="#"><?=$video->Name?></a>
 		<img class="thumbnail_video" src="<?=base_url() . $video->ThumbnailPath?>" />
 		<form action="<?=site_url(sprintf('video/approve/%d?%s=%s', $video->Id, SITE, ADMIN))?>" method="post">
+		<?=form_open(sprintf('video/approve/%d?%s=%s', $video->Id, SITE, ADMIN))?>
 			<button type="submit" class="ui-icon-approved" title="Duyệt video"></button>
 			<input type="hidden" name="currentUrl" />
-		</form>
+		<?=form_close()?>
 	</div>
 <?php 		
 		if (($i + 1) % 3 == 0) {

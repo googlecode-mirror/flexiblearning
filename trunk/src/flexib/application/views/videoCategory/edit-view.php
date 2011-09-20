@@ -34,8 +34,11 @@
 	<?php
 		} 
 	?>	
-	<?php echo form_open(sprintf('videoCategory/edit/%s?%s=%s', $videoCategory_model->Id, SITE, $this->input->get('site')), 
+	<?=form_open(sprintf('videoCategory/edit/%s?%s=%s', $videoCategory_model->Id, SITE, $this->input->get('site')), 
 		array('name' => 'videoCategory')); ?>
+		<?php 
+			echo form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash());
+		?>	  
 		<div class="form-item">
 			<label>
 				Tên phân loại

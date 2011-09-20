@@ -91,14 +91,6 @@ abstract class Abstract_model extends Base_model {
 		return $vars;
 	}
 	
-	/*public function getCount($criterias = NULL) {
-		$stateKey = $this->getStateKey();
-		if (isset($stateKey)) {
-			$this->db->where(array($stateKey => 1));	
-		}
-		return parent::getCount($criterias);
-	}*/		
-	
 	public function getCountByToday() {
 		$this->db->from($this->getTableName());
 		$this->db->where('DATEDIFF(NOW(), FROM_UNIXTIME(CreatedDate)) <= 1');

@@ -39,7 +39,7 @@
 	<?php
 		} 
 	?>	
-	<?php echo form_open(sprintf('videoNotification/edit/%s?%s=%s', $videoNotification_model->Id, SITE, $this->input->get('site')), 
+	<?=form_open(sprintf('videoNotification/edit/%s?%s=%s', $videoNotification_model->Id, SITE, $this->input->get('site')), 
 		array('method' => 'post', 'enctype' => 'multipart/form-data'))?>
 	
 	<div >

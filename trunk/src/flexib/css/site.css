@@ -77,3 +77,9 @@ button.ui-icon-approved {
 .thumbnail_video {
 	margin-top : 10px;
 }
+
+.ui-widget-content2 {
+    background: url("../images/ui-bg_inset-hard_100_fcfdfd_1x100_2.png") repeat-x scroll 50% bottom #FCFDFD;
+    border: 1px solid #E17009;
+    color: #222222;
+}

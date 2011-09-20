@@ -4,13 +4,13 @@
 	
 	<div class="message">
 		<?php
-			if (isset($notifyMessage)) {
+			if ($notifyMess = $this->session->flashdata('notifyMessage')) {
 		?>
-			    <div class="ui-state-highlight"><?=$notifyMessage?></div>
+			    <div class="ui-state-highlight"><?=$notifyMess?></div>
 		<?php 			
-			} else if (isset($errorMessage)) {
+			} else if ($errorMess = $this->session->flashdata('errorMessage')) {
 		?>
-				<div class="ui-state-error"><?=$errorMessage?></div>
+				<div class="ui-state-error"><?=$errorMess?></div>
 		<?php 		
 			} 
 		?>
@@ -53,14 +53,17 @@
 				<td><?=date($this->config->item('date_format'), $account->CreatedDate)?></td>
 				<td><?=date($this->config->item('date_format'), $account->UpdatedDate)?></td>
 				<td class="action_col">
-					<form class="category" action="<?=site_url(sprintf('account/delete/%d?%s=%s', $from, SITE, ADMIN))?>" method="post">
+					<?=form_open(sprintf('account/delete/%d?%s=%s', $from, SITE, ADMIN), array('class' => 'account'))?>
 						<input type="hidden" name="Id" value="<?=$account->Id?>" />
 						<input type="hidden" name="Name" value="<?=$account->UserName?>" />
 						<input type="submit" value="Xóa" />
-					</form>
-					<form action="<?=site_url(sprintf('account/edit/%d?%s=%s', $account->Id, SITE, ADMIN))?>" method="post">
+					<?=form_close()?>
+					<?=form_open(sprintf('account/edit/%d?%s=%s', $account->Id, SITE, ADMIN))?>
 						<input type="submit" value="Sửa" />
-					</form>
+					<?=form_close()?>
+					<?=form_open(sprintf('account/resetPass/%d?%s=%s', $account->Id, SITE, ADMIN))?>
+						<input type="submit" value="Reset mật khẩu" />
+					<?=form_close()?>
 				</td>
 			</tr>
 			<?php 				
@@ -70,3 +73,9 @@
 		</tbody>
 	</table>		
 </div>
+
+<script type="text/javascript">
+	$('form.account').submit(function(event) {
+		return confirm('Bạn có chắc chắn muốn xóa account "' + $(this).find('input[name=Name]').val() + '" không ?');
+	});
+</script>

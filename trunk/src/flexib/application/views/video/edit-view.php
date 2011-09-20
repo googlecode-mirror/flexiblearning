@@ -41,7 +41,7 @@
 			<div class="box_center">
 				<div id="video_view" class="video_margin">
 					<?php
-						require_once 'video_view.php'; 
+						require_once 'video-view.php'; 
 					?>
 				</div>
 				<a href="#" id="lnkUploadVideo">Cập nhật video</a>
@@ -60,7 +60,7 @@
 		<?php 		
 			} 
 		?>
-		<?php echo form_open(sprintf('video/edit/%s?%s=%s', $video_model->Id, SITE, $this->input->get('site')), 
+		<?=form_open(sprintf('video/edit/%s?%s=%s', $video_model->Id, SITE, $this->input->get('site')), 
 			array('method' => 'post', 'enctype' => 'multipart/form-data'))?>
 			<div class="form-item">
 				<label>

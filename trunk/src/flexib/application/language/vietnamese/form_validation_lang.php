@@ -2,6 +2,7 @@
 
 $lang['required']			= "Bạn chưa nhập dữ liệu %s.";
 $lang['isset']				= "Dữ liệu %s phải được nhập.";
+$lang['existed_email']		= "Địa chỉ email %s đã được sử dụng.";
 $lang['valid_email']		= "Dữ liệu %s phải là một email hợp lệ.";
 $lang['valid_emails']		= "Tất cả dữ liệu %s phải là email hợp lệ.";
 $lang['valid_url']			= "Dữ liệu %s phải là một URL hợp lệ.";

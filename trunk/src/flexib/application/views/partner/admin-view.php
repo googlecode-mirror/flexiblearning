@@ -54,15 +54,14 @@
 			    <td><?=date($this->config->item('date_format'), $partner->CreatedDate)?></td>
 			    <td><?=date($this->config->item('date_format'), $partner->UpdatedDate)?></td>
 				<td class="action_col">
-					<form class="Partner" action="<?=site_url(sprintf('partner/delete/%d?%s=%s', $from, SITE, ADMIN))?>" method="post")>
+					<?=form_open(sprintf('partner/delete/%d?%s=%s', $from, SITE, ADMIN), array('class' => 'partner'))?>
 						<input type="hidden" name="Id" value="<?=$partner->Id?>" />
 						<input type="hidden" name="Name" value="<?=$partner->Name?>" />
 						<input type="submit" value="Xóa" />
-						
-					</form>
-					<form action="<?=site_url(sprintf('partner/edit/%d?%s=%s', $partner->Id, SITE, ADMIN))?>" method="post">
+					<?=from_close()?>
+					<?=form_open(sprintf('partner/edit/%d?%s=%s', $partner->Id, SITE, ADMIN))?>
 						<input type="submit" value="Sửa" />
-					</form>
+					<?=form_close()?>
 					
 				</td>
 				
@@ -79,7 +78,7 @@
 	</div>
 
 <script type="text/javascript">
-	$('form.Partner').submit(function(event) {
+	$('form.partner').submit(function(event) {
 		
 			return confirm('Bạn có chắc chắn muốn xóa đối tác "' + $(this).find('input[name=Name]').val() + '" không ?');
 

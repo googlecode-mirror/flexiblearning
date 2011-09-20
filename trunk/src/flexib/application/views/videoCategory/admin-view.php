@@ -46,14 +46,14 @@
 				<td><?=date($this->config->item('date_format'), $videoCategory->CreatedDate)?></td>
 				<td><?=date($this->config->item('date_format'), $videoCategory->UpdatedDate)?></td>
 				<td class="action_col">
-					<form class="category" action="<?=site_url(sprintf('videoCategory/delete/%d?%s=%s', $from, SITE, ADMIN))?>" method="post">
+					<?=form_open(sprintf('videoCategory/delete/%d?%s=%s', $from, SITE, ADMIN), array('class' => 'category'))?>
 						<input type="hidden" name="Id" value="<?=$videoCategory->Id?>" />
 						<input type="hidden" name="Name" value="<?=$videoCategory->Name?>" />
 						<input type="submit" value="Xóa" />
-					</form>
-					<form action="<?=site_url(sprintf('videoCategory/edit/%d?%s=%s', $videoCategory->Id, SITE, ADMIN))?>" method="post">
+					<?=form_close()?>
+					<?=form_open(sprintf('videoCategory/edit/%d?%s=%s', $videoCategory->Id, SITE, ADMIN))?>
 						<button></button>
-					</form>
+					<?=form_close()?>
 				</td>
 			</tr>
 			<?php

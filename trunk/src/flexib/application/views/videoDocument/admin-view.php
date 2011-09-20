@@ -64,28 +64,28 @@
 				?>
 				</td>
 				<td class="action_col">
-					<form class="videoDocument" action="<?=site_url(sprintf('videoDocument/delete/%d?%s=%s', $from, SITE, ADMIN))?>" method="post">
+					<?=form_open(sprintf('videoDocument/delete/%d?%s=%s', $from, SITE, ADMIN), array('class' => 'videoDocument'))?>
 						<input type="hidden" name="Id" value="<?=$videoDocument->Id?>" />
 						<input type="hidden" name="Name" value="<?=$videoDocument->Subject?>" />
-						
 						<input type="submit" value="Xóa" style="width: 90px" />
-					</form>
-					<form action="<?=site_url(sprintf('videoDocument/edit/%d?%s=%s', $videoDocument->Id, SITE, ADMIN))?>" method="post">
+					<?=form_close()?>
+					
+					<?=form_open(sprintf('videoDocument/edit/%d?%s=%s', $videoDocument->Id, SITE, ADMIN))?>
 						<input type="submit" value="Sửa" style="width: 90px"/>
 						<input type="hidden" name="IdVideo" value="<?=$videoDocument->IdVideo ?>"/>
-					</form>
-					<form class="videoDocumentDownload" action="<?=site_url(sprintf('videoDocument/Download/%s?%s=%s', $videoDocument->FileName, SITE, ADMIN))?>" method="post">
-						
+					<?=from_close()?>
+					
+					<?=form_open(sprintf('videoDocument/Download/%s?%s=%s', $videoDocument->FileName, SITE, ADMIN), array('class' => 'videoDocumentDownload'))?>
 						<input type="submit" value="Download" style="width: 100px" />
 					</form>	
+					
 					<?php
 						if($videoDocument->Approved == 0){
 					?>
-					<form class="videoDocumentApprove" action="<?=site_url(sprintf('videoDocument/Approve/%d?%s=%s', $from, SITE, ADMIN))?>" method="post">
+					<?=form_open(sprintf('videoDocument/download/%s?%s=%s', $videoDocument->FileName, SITE, ADMIN), array('class' => 'videoDocumentApprove'))?>
 						<input type="submit" value="Duyệt" style="width: 90px" />
 						<input type="hidden" name="Id" value="<?=$videoDocument->Id?>" />
-						
-					</form>		
+					<?=form_close()?>	
 					<?php 
 						}
 						
