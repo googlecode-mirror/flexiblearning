@@ -36,7 +36,7 @@
 	<?php
 		} 
 	?>	
-	<?php echo form_open(sprintf('videoDocument/edit/%s?%s=%s', $videoDocument_model->Id, SITE, $this->input->get('site')), 
+	<?=form_open(sprintf('videoDocument/edit/%s?%s=%s', $videoDocument_model->Id, SITE, $this->input->get('site')), 
 		array('method' => 'post', 'enctype' => 'multipart/form-data'))?>
 		<div class="form-item">
 			<label>

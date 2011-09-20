@@ -61,7 +61,7 @@ class Account extends Abstract_Controller {
 	 * @see application/controllers/Abstract_Controller::setFormValidationForEditView()
 	 */
 	protected function setFormValidationForEditView() {
-		$this->form_validation->set_rules('UserName', 'lang:username', 'required|xss_clean');
+		$this->form_validation->set_rules('UserName', 'lang:username', 'required|alpha_dash|min_length[5]|max_length[12]');
 		
 		if ($this->uri->segment(3) == '') {
 			$this->form_validation->set_rules('Password', 'lang:password', 'trim|required|md5|xss_clean');
@@ -79,6 +79,18 @@ class Account extends Abstract_Controller {
 		$this->form_validation->set_rules('EnabledEmail', 'EnabledEmail', '');
 		$this->form_validation->set_rules('EnabledProfession', 'EnabledProfession', '');
 		$this->form_validation->set_rules('EnabledFavorite', 'EnabledFavorite', '');
+		
+		$this->form_validation->set_rules('Email', 'lang:email', 'callback_email_check');
+	}
+	
+	function email_check($email) {
+		$id = $this->uri->segment(3);
+		if ($this->Account_model->isEmailExisted($email, $id)) {		
+			//$this->form_validation->set_message('email_check', $this->lang->line('existed_email'));
+			$this->form_validation->set_message('email_check', sprintf($this->lang->line('existed_email'), $email));
+			return FALSE;
+		}
+		return TRUE;
 	}
 	
 	protected function handleEditValidationSuccess($account, $site = '') {
@@ -100,6 +112,7 @@ class Account extends Abstract_Controller {
 				$resource->Path = $uplPath . '/' . $data['file_name'];
 				$resourceId = $resource->save();
 			} else {
+				$this->addDataForView($this->getModelVariableName(), $account);
 				$this->addDataForView('err', $this->upload->display_errors('<div>', '</div>'));
 				$this->template->load($this->template_admin, $this->getEditViewName(), $this->getDataForView());
 				return;
@@ -109,5 +122,34 @@ class Account extends Abstract_Controller {
 		    }
 		}
 	    parent::handleEditValidationSuccess($account, $site);
+	}
+	
+	public function resetPass($Id) {
+		$account = $this->Account_model->getById($Id);
+		if ($account != null) {
+			$this->load->helper('string');
+			$pass = random_string(alnum, $this->config->item('generate_password_length'));
+			$account->Password = md5($pass);
+			if ($account->save()) {
+				$emailContent = $this->parser->parse('email_template/change_pass', 
+					array('username' => $account->UserName, 'password' => $pass), TRUE);
+				send_email_from_admin($account->Email, $account->FullName, "Cập nhật mật khẩu", $emailContent);
+				$notifyMessage = sprintf($this->config->item('reset_password_successfully'), $account->UserName);
+			} else {
+				$errorMessage = sprintf($this->config->item('reset_password_fail'), $account->UserName);
+			}
+			$site = $this->input->get(SITE);
+			if ($site == ADMIN) {
+				if (isset($errorMessage)) {
+					$this->session->set_flashdata('errorMessage', $errorMessage);
+				} else {
+					$this->session->set_flashdata('notifyMessage', $notifyMessage);
+				}
+				redirect('account/admin');
+			} else {
+				// TODO [hdang.sea]
+			}	
+		}
+			
 	}
 }

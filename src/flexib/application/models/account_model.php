@@ -23,6 +23,7 @@ class Account_model extends Abstract_model {
 	public $EnabledProfession = 1;
 	public $EnabledFavorite = 1;
 	public $LastLoginDate;
+	public $IpAddress;
 	public $State = 1;
 	
 	protected function getTableName() {
@@ -58,6 +59,8 @@ class Account_model extends Abstract_model {
 			$accounts = $query->result(get_class($this));
 			$account = $accounts[0];
 			$account->LastLoginDate = now();
+			$account->IpAddress = $this->input->ip_address();
+			
 			$account->save();
 			
 			$this->session->set_userdata(USER_AUTHENTIC_COOKIE, USER_AUTHENTIC_SUCCESS_FLAG);
@@ -134,5 +137,36 @@ class Account_model extends Abstract_model {
 	
 	public static function getDisplayField() {
 		return 'UserName';
+	}
+	
+	public function getNumberOfOnline() {
+		$this->db->from($this->config->item('sess_table_name'));
+		$expireTime = $this->config->item('sess_expiration');
+		$this->db->where(sprintf('DATE_ADD(FROM_UNIXTIME(last_activity), INTERVAL %d SECOND) > NOW()', $expireTime));
+		return $this->db->count_all_results();		
+	}
+	
+	public function getNumberOfAccessToday() {
+		$this->db->from($this->config->item('sess_table_name'));
+		$this->db->where('DATEDIFF(NOW(), FROM_UNIXTIME(last_activity)) <= 1');
+		return $this->db->count_all_results();		
+	}
+	
+	public function getNumberOfAccountOnline() {
+		$this->db->from($this->config->item('sess_table_name'));
+		$expireTime = $this->config->item('sess_expiration');
+		$this->db->where(sprintf('LENGTH(user_data) > 0 AND DATE_ADD(FROM_UNIXTIME(last_activity), INTERVAL %d SECOND) > NOW()', 
+			$expireTime));
+		return $this->db->count_all_results();
+	}
+	
+	public function isEmailExisted($email, $id) {
+		$this->db->from($this->getTableName());
+		$this->db->where('Email', $email);
+		if (isset($id)) {
+			$this->db->where('Id !=', $id);	
+		}
+		
+		return ($this->db->count_all_results() > 0); 		
 	}
 }

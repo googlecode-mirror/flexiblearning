@@ -29,7 +29,15 @@ class Admin extends Base_Controller {
 			$nCreatedTodayVideo = $this->Video_model->getCountByToday();
 			$this->addDataForView('nTotalVideo', $nTotalVideo);
 			$this->addDataForView('nCreatedTodayVideo', $nCreatedTodayVideo);
-			
+
+			$nOnline = $this->Account_model->getNumberOfOnline();
+			$nAccountAccessToday = $this->Account_model->getNumberOfAccessToday();
+			$nAccountOnline = $this->Account_model->getNumberOfAccountOnline();
+			$nGuestOnline = $nOnline - $nAccountOnline;
+			$this->addDataForView('nOnline', $nOnline);
+			$this->addDataForView('nAccountAccessToday', $nAccountAccessToday);
+			$this->addDataForView('nAccountOnline', $nAccountOnline);
+			$this->addDataForView('nGuestOnline', $nGuestOnline);
 			
 			$this->template->load('template_admin', 'dashboard', $this->getDataForView());
 		} else {

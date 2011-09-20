@@ -62,15 +62,14 @@
 			<td><?=date($this->config->item('date_format'), $banner->CreatedDate)?></td>
 			<td><?=date($this->config->item('date_format'), $banner->UpdatedDate)?></td>
 			<td class="action_col">
-				<form class="banner" method="post"
-						action="<?=site_url(sprintf('banner/delete/%d?%s=%s', $from, SITE, ADMIN))?>">
+				<?=form_open(sprintf('banner/delete/%d?%s=%s', $from, SITE, ADMIN), array('class' => 'banner'))?>
 					<input type="hidden" name="Id" value="<?=$banner->Id?>" /> 
 					<input type="hidden" name="Name" value="<?=$banner->Name?>" /> 
 					<input type="submit" value="Xóa" />
-				</form>
-				<form action="<?=site_url(sprintf('banner/edit/%d?%s=%s', $banner->Id, SITE, ADMIN))?>" method="post">
+				<?=form_close()?>
+				<?=form_open(site_url(sprintf('banner/edit/%d?%s=%s', $banner->Id, SITE, ADMIN)))?>
 					<input type="submit" value="Sửa" />
-				</form>
+				<?=form_close()?>
 			</td>
 		</tr>
 

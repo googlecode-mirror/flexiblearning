@@ -95,37 +95,34 @@ abstract class Abstract_Controller extends Base_Controller {
 			if ($object) {
 				if ($this->$className->delete($Id)) {
 					$notifyMessage = ucfirst(sprintf($this->config->item('delete_successfully'),
-					$this->$className->getText(),
-					$object->getDisplayName()));
-					$this->addDataForView('notifyMessage', $notifyMessage);
-					$this->prepareDataForListView($from);
+						$this->$className->getText(), $object->getDisplayName()));
 				} else {
-					$errorMessage = ucfirst(sprintf($this->config->item('delete_fail'), $this->$className->getText(),
-					$this->$className->getDisplayName()));
-					$this->prepareDataForListView($from);
-					$this->addDataForView('errorMessage', $errorMessage);
+					$errorMessage = ucfirst(sprintf($this->config->item('delete_fail'), 
+						$this->$className->getText(), $this->$className->getDisplayName()));
 				}
 			} else {
 				$errorMessage = ucfirst(sprintf($this->config->item('item_not_exist')));
-				$this->addDataForView('errorMessage', $errorMessage);
 			}
+			
+			if (isset($errorMessage)) {
+				$this->session->set_flashdata('errorMessage', $errorMessage);
+			}
+			if (isset($notifyMessage)) {
+				$this->session->set_flashdata('notifyMessage', $notifyMessage);
+			}
+			
 			$site = $this->input->get(SITE);
 			if ($site == ADMIN) {
-				$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)). '/admin');
-				$this->pagination->initialize($this->pagingConfig);
-				$this->addDataForView('page_links', $this->pagination->create_links());
-				$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
+				redirect(lcfirst(get_class($this)). '/admin');
 			} else {
-				$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)));
-				$this->pagination->initialize($this->pagingConfig);
-				$this->addDataForView('page_links', $this->pagination->create_links());
-				$this->template->load($this->template_view, $this->getViewListName(), $this->getDataForView());
+				// TODO [hdang.sea]
+				// wait for the more specific clarification
 			}
 		}
 	}
 
 	
-	public function Approve() {
+	public function approve() {
 		$Id = $this->input->post('Id');
 		$from = $this->uri->segment(3);
 		if (isset($Id)) {
@@ -159,7 +156,6 @@ abstract class Abstract_Controller extends Base_Controller {
 			}
 		}
 	}
-	
 
 	public function admin() {
 		if ($this->hasAdminPermission()) {
@@ -200,23 +196,12 @@ abstract class Abstract_Controller extends Base_Controller {
 			if ($site != ADMIN) {
 				redirect('/' . lcfirst(get_class($this)) . '/view/' . $objectId);
 			} else {
-				$this->prepareDataForAdminListView();
-				$this->loadViewForAdminEditSuccessfully($object);
+				$notifyMessage = ucfirst(sprintf($this->config->item('save_successfully'),
+					$object->getText(),	$object->getDisplayName()));
+				$this->session->set_flashdata('notifyMessage', $notifyMessage);
+				redirect(lcfirst(get_class($this)). '/admin');
 			}
 		}
-	}
-	
-	protected function loadViewForAdminEditSuccessfully($object) {
-		$notifyMessage = ucfirst(sprintf($this->config->item('save_successfully'),
-		$object->getText(),	$object->getDisplayName()));
-		$this->addDataForView('notifyMessage', $notifyMessage);
-
-		$this->pagingConfig['uri_segment'] = 4;
-		$this->pagingConfig['base_url'] = site_url(lcfirst(get_class($this)). '/admin');
-		$this->pagination->initialize($this->pagingConfig);
-		$this->addDataForView('page_links', $this->pagination->create_links());
-
-		$this->template->load($this->template_admin, $this->getViewAdminName(), $this->getDataForView());
 	}
 
 	public function edit($Id = '') {
@@ -242,8 +227,6 @@ abstract class Abstract_Controller extends Base_Controller {
 				}
 			} else {
 				$object->setDataFromInput($this->input->post());
-				$this->addDataForView($this->getModelVariableName(), $object);
-				
 				$this->handleEditValidationSuccess($object, $site);
 			}
 		} 

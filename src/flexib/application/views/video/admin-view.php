@@ -91,14 +91,14 @@
 				</td>
 				<td class="box_center"><?=date($this->config->item('date_format'), $video->UpdatedDate)?></td>
 				<td class="action_col">
-					<form class="video" action="<?=site_url(sprintf('video/delete/%d?%s=%s', $from, SITE, ADMIN))?>" method="post">
+					<?=form_open(sprintf('video/delete/%d?%s=%s', $from, SITE, ADMIN), array('class' => 'video'))?>
 						<input type="hidden" name="Id" value="<?=$video->Id?>" />
 						<input type="hidden" name="Name" value="<?=$video->Name?>" />
 						<input type="submit" value="Xóa" />
-					</form>
-					<form action="<?=site_url(sprintf('video/edit/%d?%s=%s', $video->Id, SITE, ADMIN))?>" method="post">
+					<?=form_close()?>
+					<?=form_open(sprintf('video/edit/%d?%s=%s', $video->Id, SITE, ADMIN))?>
 						<input type="submit" value="Sửa" />
-					</form>
+					<?=form_close()?>
 				</td>
 			</tr>
 			<?php

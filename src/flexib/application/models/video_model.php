@@ -13,6 +13,7 @@ class Video_model extends Abstract_model{
 	public $State = 1;
 	public $OwnerBy;
 	public $Approved = 0;
+	public $IdThumbnail;
 	
 	protected function getTableName() {
 		return 'video';
