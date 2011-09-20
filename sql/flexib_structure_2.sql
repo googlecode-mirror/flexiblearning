@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 12, 2011 at 08:03 AM
+-- Generation Time: Sep 21, 2011 at 05:42 AM
 -- Server version: 5.1.50
 -- PHP Version: 5.3.5
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `flexiblearning_2`
+-- Database: `flexiblearning`
 --
 
 -- --------------------------------------------------------
@@ -32,9 +32,9 @@ CREATE TABLE IF NOT EXISTS `account` (
   `DateOfBirth` int(11) NOT NULL,
   `Address` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `IdNationality` int(11) NOT NULL,
-  `Tel` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Email` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `UserName` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `Tel` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Email` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `UserName` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `Password` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `IdProfession` int(11) NOT NULL,
   `Favorite` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
@@ -54,12 +54,15 @@ CREATE TABLE IF NOT EXISTS `account` (
   `UpdatedDate` int(11) NOT NULL,
   `UpdatedBy` int(11) NOT NULL,
   `LastLoginDate` int(11) DEFAULT NULL,
+  `IpAddress` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`Id`),
+  UNIQUE KEY `UserName` (`UserName`),
+  UNIQUE KEY `Email` (`Email`),
   KEY `IdProfession` (`IdProfession`),
   KEY `IdNationality` (`IdNationality`),
   KEY `IdRole` (`IdRole`),
   KEY `AvatarId` (`AvatarId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='this is the content of User info' AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='this is the content of User info';
 
 -- --------------------------------------------------------
 
@@ -73,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `accountpermisson` (
   `Permission` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -151,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
   `UpdatedDate` int(11) NOT NULL,
   `UpdatedBy` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -173,9 +176,25 @@ CREATE TABLE IF NOT EXISTS `banner` (
   `UpdatedDate` int(11) NOT NULL,
   `UpdatedBy` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
-  KEY `IdResource` (`IdResource`),
-  KEY `IdPartner` (`IdPartner`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+  KEY `IdResource` (`IdResource`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ci_sessions`
+--
+
+DROP TABLE IF EXISTS `ci_sessions`;
+CREATE TABLE IF NOT EXISTS `ci_sessions` (
+  `session_id` varchar(40) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `ip_address` varchar(16) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `user_agent` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `last_activity` int(10) unsigned NOT NULL DEFAULT '0',
+  `user_data` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`session_id`),
+  KEY `last_activity_idx` (`last_activity`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -194,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `entry` (
   `UpdatedDate` int(11) NOT NULL,
   `UpdatedBy` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -212,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `UpdatedDate` int(11) NOT NULL,
   `UpdatedBy` varchar(256) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -248,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `nationality` (
   `UpdatedDate` int(11) NOT NULL,
   `UpdatedBy` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -272,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `partner` (
   `UpdatedBy` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `LogoId` (`LogoId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -291,7 +310,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `UpdatedDate` int(11) NOT NULL,
   `UpdatedBy` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -304,12 +323,12 @@ CREATE TABLE IF NOT EXISTS `profession` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `State` int(11) NOT NULL,
-  `CreatedDate` int(11) NOT NULL,
-  `CreatedBy` int(11) NOT NULL,
-  `UpdatedDate` int(11) NOT NULL,
-  `UpdatedBy` int(11) NOT NULL,
+  `CreatedDate` int(1) NOT NULL,
+  `CreatedBy` int(1) NOT NULL,
+  `UpdatedDate` int(1) NOT NULL,
+  `UpdatedBy` int(1) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -328,7 +347,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `UpdatedDate` int(11) NOT NULL,
   `UpdatedBy` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -360,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `resource` (
   `UpdatedDate` int(11) NOT NULL,
   `UpdatedBy` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=55 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -381,7 +400,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   `UpdatedBy` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `IdLanguage` (`IdLanguage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -414,7 +433,7 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   `UpdatedDate` int(11) NOT NULL,
   `UpdatedBy` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -441,7 +460,7 @@ DROP TABLE IF EXISTS `video`;
 CREATE TABLE IF NOT EXISTS `video` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(256) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Description` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Description` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `NumView` int(11) NOT NULL,
   `Ranking` int(11) NOT NULL,
   `NumRanking` int(11) NOT NULL,
@@ -451,7 +470,8 @@ CREATE TABLE IF NOT EXISTS `video` (
   `IdResource` int(11) NOT NULL,
   `State` int(11) NOT NULL,
   `OwnerBy` int(11) NOT NULL,
-  `Approved` tinyint(1) NOT NULL,
+  `Approved` tinyint(1) NOT NULL DEFAULT '0',
+  `IdThumbnail` int(11) DEFAULT NULL,
   `CreatedDate` int(11) NOT NULL,
   `CreatedBy` int(11) NOT NULL,
   `UpdatedDate` int(11) NOT NULL,
@@ -461,7 +481,7 @@ CREATE TABLE IF NOT EXISTS `video` (
   KEY `IdCategory` (`IdCategory`),
   KEY `IdResource` (`IdResource`),
   KEY `OwnerBy` (`OwnerBy`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -482,7 +502,7 @@ CREATE TABLE IF NOT EXISTS `videocategory` (
   `UpdatedBy` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `IdLanguage` (`IdLanguage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -506,7 +526,7 @@ CREATE TABLE IF NOT EXISTS `videodocument` (
   PRIMARY KEY (`Id`),
   KEY `IdLanguage` (`IdLanguage`),
   KEY `IdResource` (`IdResource`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -527,7 +547,7 @@ CREATE TABLE IF NOT EXISTS `videonotification` (
   `UpdatedBy` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `IdLanguage` (`IdLanguage`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -551,7 +571,7 @@ CREATE TABLE IF NOT EXISTS `videosurvey` (
   KEY `IdLanguage` (`IdLanguage`),
   KEY `IdResource` (`IdResource`),
   KEY `IdVideo` (`IdVideo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -587,7 +607,7 @@ CREATE TABLE IF NOT EXISTS `video_ranking` (
   PRIMARY KEY (`Id`),
   KEY `IdVideo` (`IdVideo`),
   KEY `IdAccount` (`IdAccount`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -664,8 +684,7 @@ ALTER TABLE `account_video`
 -- Constraints for table `banner`
 --
 ALTER TABLE `banner`
-  ADD CONSTRAINT `banner_fk1` FOREIGN KEY (`IdPartner`) REFERENCES `partner` (`Id`),
-  ADD CONSTRAINT `banner_ibfk_1` FOREIGN KEY (`IdResource`) REFERENCES `resource` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `banner_ibfk_1` FOREIGN KEY (`IdResource`) REFERENCES `resource` (`Id`);
 
 --
 -- Constraints for table `partner`
@@ -732,9 +751,9 @@ ALTER TABLE `videonotification`
 -- Constraints for table `videosurvey`
 --
 ALTER TABLE `videosurvey`
+  ADD CONSTRAINT `videosurvey_fk1` FOREIGN KEY (`IdVideo`) REFERENCES `video` (`Id`),
   ADD CONSTRAINT `videosurvey_ibfk_1` FOREIGN KEY (`IdLanguage`) REFERENCES `language` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `videosurvey_ibfk_2` FOREIGN KEY (`IdResource`) REFERENCES `resource` (`Id`),
-  ADD CONSTRAINT `videosurvey_ibfk_3` FOREIGN KEY (`IdVideo`) REFERENCES `video` (`Id`);
+  ADD CONSTRAINT `videosurvey_ibfk_2` FOREIGN KEY (`IdResource`) REFERENCES `resource` (`Id`);
 
 --
 -- Constraints for table `video_question`
