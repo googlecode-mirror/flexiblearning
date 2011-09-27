@@ -58,7 +58,7 @@
 						<input type="hidden" name="Id" value="<?=$partner->Id?>" />
 						<input type="hidden" name="Name" value="<?=$partner->Name?>" />
 						<input type="submit" value="Xóa" />
-					<?=from_close()?>
+					<?=form_close()?>
 					<?=form_open(sprintf('partner/edit/%d?%s=%s', $partner->Id, SITE, ADMIN))?>
 						<input type="submit" value="Sửa" />
 					<?=form_close()?>

@@ -64,7 +64,7 @@
 					foreach ($videos as $video) {
 			?>
 						<option  value="<?=$video->Id?>" 
-							<?=set_select('IdVideoOption', $video->Id, $videoDocument_model->Id !=NULL  )?>>
+							<?=set_select('IdVideoOption', $video->Id, $videoDocument_model->Id != NULL && $video->Id == $videoDocument_model->IdVideo)?>>
 							<?=$video->Name?>
 							
 						</option>
@@ -107,31 +107,7 @@
 		<input type="submit" value="Hoàn tất" />
 		<input type="reset" value="Làm lại" />
 	<?php echo form_close(); ?>
+
 </div>
 
-
-<script type="text/javascript">
-	var btnUpload=$('#docDocument');
-
-	new AjaxUpload(btnUpload, {
-		action: '<?=site_url('videoDocument/uploadDocument/' . $videoDocument_model->Id)?>',
-		name: 'fileDocument',
-		onSubmit: function(file, ext){
-			 
-			$('#status').text('Đang upload...');
-		},
-		onComplete: function(file, response){
-			//On completion clear the status
-			
-			//Add uploaded file to list
-			if(response != ''){
-				location.reload(true);
-				$('#status').text('upload thành công');
-				
-			} else{
-				alert('Có lỗi xảy ra. Bạn hãy thử lại', 'Upload Document');
-			}
-		}
-	});
-</script>
 

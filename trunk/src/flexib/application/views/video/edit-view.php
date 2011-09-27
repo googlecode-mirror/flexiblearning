@@ -36,6 +36,7 @@
 	
 	<?php
 		if ($video_model->Id != NULL) { 
+			echo($video_model->Id);
 	?>
 		<div class="left">
 			<div class="box_center">

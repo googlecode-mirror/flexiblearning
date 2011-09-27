@@ -1,6 +1,6 @@
 <div id="videoNotification">
 	<h3>QUẢN LÝ THÔNG BÁO VIDEO</h3>
-	<a href="<?=site_url(sprintf('videoNotification/edit?%s=%s', SITE, ADMIN))?>", SITE, ADMIN> Tạo Thông báo mới</a>
+	<a href="<?=site_url(sprintf('videoNotification/edit?%s=%s', SITE, ADMIN))?>"> Tạo Thông báo mới</a>
 	<div class="message">
 		<?php
 			if (isset($notifyMessage)) {
