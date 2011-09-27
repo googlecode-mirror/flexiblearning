@@ -12,7 +12,7 @@ class Account_model extends Abstract_model {
 	public $Password;
 	public $IdProfession;
 	public $Favorite;
-	public $AvatarId;
+	public $IdAvatar;
 	public $IdRole;
 	public $EnabledFullName = 1;
 	public $EnabledDateOfBirth = 1;
@@ -169,4 +169,16 @@ class Account_model extends Abstract_model {
 		
 		return ($this->db->count_all_results() > 0); 		
 	}
+	public function getByEmail($email){
+		$query = $this->db->get_where($this->getTableName(), array('Email' => $email), 1, 0);
+		
+		$objects = $query->result(get_class($this));
+		if (count($objects) > 0) {
+			return $objects[0];		
+		} else {
+			return FALSE;
+		}
+	}
+		
 }
+
