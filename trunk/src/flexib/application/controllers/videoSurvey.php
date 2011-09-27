@@ -71,12 +71,9 @@ class VideoSurvey extends Abstract_Controller {
 	    if ($videoSurvey->Id != -1) {
 	    	if ($site != ADMIN) {
 	    		redirect('/' . lcfirst(get_class($this)) . '/view/' . $videoSurvey->Id);
-	    	} else {
-	    		
-	    		$this->prepareDataForAdminListView();
-	    		$this->loadViewForAdminEditSuccessfully($videoSurvey);
-	    	}
+	    	} 
 	    }
+	    parent::handleEditValidationSuccess($videoSurvey, $site);
 	}
 	public function uploadSurvey($Id = NULL) {
 		if ($Id != NULL) {

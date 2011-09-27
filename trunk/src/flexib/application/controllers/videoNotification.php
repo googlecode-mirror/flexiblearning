@@ -49,8 +49,8 @@ class VideoNotification extends Abstract_Controller {
 	    		} else {
 	    		
 	    			
-	    			$this->prepareDataForAdminListView();
-	    			$this->loadViewForAdminEditSuccessfully($videoNotification);
+	    			//$this->prepareDataForAdminListView();
+	    			//$this->loadViewForAdminEditSuccessfully($videoNotification);
 	    			if($sendMail){
 	    				$this->SendMail($videoNotification->IdVideo, $videoNotification->IdAccount);
 	    			}
@@ -58,7 +58,7 @@ class VideoNotification extends Abstract_Controller {
 	    	}
 	    	
 		//}
-		//parent::handleEditValidationSuccess($videoNotification, $site);
+		parent::handleEditValidationSuccess($videoNotification, $site);
 	    
 	}
 	protected  function SendMail($IdVideo, $userID){

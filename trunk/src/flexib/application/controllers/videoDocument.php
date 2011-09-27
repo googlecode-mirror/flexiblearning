@@ -15,11 +15,10 @@ class VideoDocument extends Abstract_Controller {
     protected function getObjectsForList($from = 0, $nObjPerPage = '') {
 		$className = $this->getModelName();
 		$joinResource = array('table'=> 'resource', 'criteria'=> 'resource.Id = videoDocument.IdResource', 'type' => 'join');
-		$joinVideo_videoDocument = array('table'=> 'video_videoDocument', 'criteria'=> 'video_videoDocument.IdDocument = videoDocument.Id', 'type' => 'join');
-		$joinVideo = array('table' => 'video', 'criteria' => 'video_videoDocument.IdVideo = video.Id', 'type' =>'join');
-		$moreProperties = array('resource.Path as Path', 'video_videoDocument.IdVideo as IdVideo','video.Name as VideoName');
+		$joinVideo = array('table' => 'video', 'criteria' => 'videoDocument.IdVideo = video.Id', 'type' =>'join');
+		$moreProperties = array('resource.Path as Path', 'videoDocument.IdVideo as IdVideo','video.Name as VideoName');
 		$objects = $this->$className->getAll($from, $nObjPerPage, array('State' => 'asc'), 
-		array($joinResource, $joinVideo_videoDocument,$joinVideo), $moreProperties, TRUE);
+		array($joinResource,$joinVideo), $moreProperties, TRUE);
 	    
 		return $objects;
 	}
@@ -42,7 +41,7 @@ class VideoDocument extends Abstract_Controller {
 	
   	protected function setFormValidationForEditView() {
 		//$this->form_validation->set_rules('Subject', 'Tiêu đề tài liệu', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('Subject', 'lang:subject', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('Subject', 'lang:subject', 'required');
   		
   	}
 	
@@ -74,29 +73,24 @@ class VideoDocument extends Abstract_Controller {
 		    	$videoDocument->IdResource = $resourceId;
 		    	
 		    }
+		   
 		}
-		$videoDocument->Approved = $this->input->post('check1');
-		$videoDocument->IdVideo = $this->input->post('IdVideoOption');
+		
+	    $videoDocument->Approved = $this->input->post('check1');
+	    
+	    $videoDocument->IdVideo = $this->input->post('IdVideoOption');
 		    	
 	    $videoDocument->Id = $videoDocument->save();
-	   
 		 
 	    if ($videoDocument->Id != -1) {
 	    	if ($site != ADMIN) {
 	    		redirect('/' . lcfirst(get_class($this)) . '/view/' . $videoDocument->Id);
 	    	} else {
 	    		
-	    		$video_videoDocument = new Video_VideoDocument_model();
 	    		
-				$video_videoDocument->IdDocument = $videoDocument->Id;
-				$video_videoDocument->IdVideo = $videoDocument->IdVideo;
-				$query = "SELECT * FROM video_videoDocument where IdVideo=? AND IdDocument=?";
-				$video_videoDocument_temp = $this->db->query($query, array($video_videoDocument->IdVideo, $video_videoDocument->IdDocument));
-				if($video_videoDocument_temp->row_data == NULL){	
-					$video_videoDocument->save();
-				}
-	    		$this->prepareDataForAdminListView();
-	    		$this->loadViewForAdminEditSuccessfully($videoDocument);
+				 parent::handleEditValidationSuccess($videoDocument, $site);
+				//$this->prepareDataForAdminListView();
+	    		//$this->loadViewForAdminEditSuccessfully($videoDocument);
 	    	}
 	    }
 	}
@@ -128,8 +122,11 @@ class VideoDocument extends Abstract_Controller {
 
 					$query = "SELECT * FROM video_videoDocument where IdVideo=? AND IdDocument=?";
 					$video_videoDocument = $this->db->query($query, array($oldResource, $videoDocument_model->Id));
-					$video_videoDocument->IdDocument = $resourceId;
-					$video_videoDocument->save();
+					if(!isset($video_videoDocument)){
+						$video_videoDocument->IdDocument = $resourceId;
+					
+						$video_videoDocument->save();
+					}
 					
 					$oldResource->delete();
 						
