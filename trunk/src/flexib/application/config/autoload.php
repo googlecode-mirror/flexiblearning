@@ -112,7 +112,7 @@ $autoload['language'] = array('vietnamese');
 
 $autoload['model'] = array(/*'Log_model' ,*/'VideoCategory_model', 'Account_model', 'Role_model', 'Partner_model','Resource_model',
 							'Video_model', 'Nationality_model', 'Profession_model', 'Banner_model', 'VideoSurvey_model',
-							'VideoDocument_model', /*'Video_VideoDocument_model',*/'VideoNotification_model');
+							'VideoDocument_model', 'Video_VideoDocument_model','VideoNotification_model','Message_model','Account_message_model');
 
 
 /* End of file autoload.php */
