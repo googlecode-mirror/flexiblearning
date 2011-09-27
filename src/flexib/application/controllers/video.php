@@ -25,6 +25,7 @@ class Video extends Abstract_Controller {
 			$resource = $this->Resource_model->getById($object->IdResource);
 			$object->Path = $resource->Path;
 		}
+		
 	}
 	
 	protected function getObjectsForList($from = 0, $nObjPerPage = '') {
@@ -81,6 +82,7 @@ class Video extends Abstract_Controller {
 		    	$video->IdResource = $resourceVideoId;
 		    	$video->IdThumbnail = $resourceThumbnailId;
 		    	$video->OwnerBy = $this->Account_model->getLoggedInUserId();
+		    	
 		    }
 		}
 	    parent::handleEditValidationSuccess($video, $site);

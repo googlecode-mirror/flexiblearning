@@ -30,6 +30,28 @@ class Admin extends Base_Controller {
 			$this->addDataForView('nTotalVideo', $nTotalVideo);
 			$this->addDataForView('nCreatedTodayVideo', $nCreatedTodayVideo);
 
+			$nTotalNotification = $this->VideoNotification_model->getCount();
+			$nCreatedTodayNotification = $this->VideoNotification_model->getCountByToday();
+			$this->addDataForView('nTotalNotification', $nTotalNotification);
+			$this->addDataForView('nCreatedTodayNotification', $nCreatedTodayNotification);
+			
+			$nTotalDocument = $this->VideoDocument_model->getCount();
+			$nCreatedTodayDocument = $this->VideoDocument_model->getCountByToday();
+			$this->addDataForView('nTotalDocument', $nTotalDocument);
+			$this->addDataForView('nCreatedTodayDocument', $nCreatedTodayDocument);
+			
+			$nTotalSurvey = $this->VideoSurvey_model->getCount();
+			$nCreatedTodaySurvey = $this->VideoSurvey_model->getCountByToday();
+			$this->addDataForView('nTotalSurvey', $nTotalSurvey);
+			$this->addDataForView('nCreatedTodaySurvey', $nCreatedTodaySurvey);
+			
+			$nTotalMessage = $this->Message_model->getCount();
+			$nCreatedTodayMessage = $this->Message_model->getCountByToday();
+			$this->addDataForView('nTotalMessage', $nTotalMessage);
+			$this->addDataForView('nCreatedTodayMessage', $nCreatedTodayMessage);
+			
+			
+			
 			$nOnline = $this->Account_model->getNumberOfOnline();
 			$nAccountAccessToday = $this->Account_model->getNumberOfAccessToday();
 			$nAccountOnline = $this->Account_model->getNumberOfAccountOnline();
