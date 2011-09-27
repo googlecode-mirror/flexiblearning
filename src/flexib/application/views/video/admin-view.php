@@ -99,6 +99,7 @@
 					<?=form_open(sprintf('video/edit/%d?%s=%s', $video->Id, SITE, ADMIN))?>
 						<input type="submit" value="Sửa" />
 					<?=form_close()?>
+					
 				</td>
 			</tr>
 			<?php

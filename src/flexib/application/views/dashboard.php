@@ -47,8 +47,8 @@
 			<div class="portlet">
 				<div class="portlet-header">Thông báo video</div>
 				<div class="portlet-content">
-					<div>Tổng số thông báo video : <span class="bold_text"></span></div>
-					<div>Tổng số video được tạo hôm nay : <span class="bold_text"></span></div>
+					<div>Tổng số thông báo video : <span class="bold_text"><?=$nTotalNotification ?></span></div>
+					<div>Tổng số video được tạo hôm nay : <span class="bold_text"><?=$nCreatedTodayNotification ?></span></div>
 				</div>
 			</div>
 		</div>
@@ -57,24 +57,24 @@
 			<div class="portlet">
 				<div class="portlet-header">Tài liệu video</div>
 				<div class="portlet-content">
-					<div>Tổng số tài liệu video : <span class="bold_text"></span></div>
-					<div>Tổng số tài liệu video được tạo hôm nay : <span class="bold_text"></span></div>
+					<div>Tổng số tài liệu video : <span class="bold_text"><?=$nTotalDocument?></span></div>
+					<div>Tổng số tài liệu video được tạo hôm nay : <span class="bold_text"><?=$nCreatedTodayDocument ?></span></div>
 				</div>
 			</div>
 			
 			<div class="portlet">
 				<div class="portlet-header">Thông báo bảng điều tra</div>
 				<div class="portlet-content">
-					<div>Tổng số bảng điều tra : <span class="bold_text"></span></div>
-					<div>Tổng số bảng điều tra được tạo hôm nay : <span class="bold_text"></span></div>			
+					<div>Tổng số bảng điều tra : <span class="bold_text"><?=$nTotalSurvey ?></span></div>
+					<div>Tổng số bảng điều tra được tạo hôm nay : <span class="bold_text"><?=$nCreatedTodaySurvey ?></span></div>			
 				</div>
 			</div>
 			
 			<div class="portlet">
 				<div class="portlet-header">Hộp Tin Nhắn</div>
 				<div class="portlet-content">
-					<div>Tổng số tin nhắn : <span class="bold_text"></span></div>
-					<div>Tổng số tin nhắn nhận được hôm nay : <span class="bold_text"></span></div>
+					<div>Tổng số tin nhắn : <span class="bold_text"><?=$nTotalMessage ?></span></div>
+					<div>Tổng số tin nhắn nhận được hôm nay : <span class="bold_text"><?=$nCreatedTodayMessage ?></span></div>
 				</div>
 			</div>
 		</div>

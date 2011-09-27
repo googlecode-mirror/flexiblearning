@@ -72,24 +72,14 @@
 					
 					<?=form_open(sprintf('videoDocument/edit/%d?%s=%s', $videoDocument->Id, SITE, ADMIN))?>
 						<input type="submit" value="Sửa" style="width: 90px"/>
-						<input type="hidden" name="IdVideo" value="<?=$videoDocument->IdVideo ?>"/>
-					<?=from_close()?>
+						
+					<?=form_close()?>
 					
 					<?=form_open(sprintf('videoDocument/Download/%s?%s=%s', $videoDocument->FileName, SITE, ADMIN), array('class' => 'videoDocumentDownload'))?>
 						<input type="submit" value="Download" style="width: 100px" />
-					</form>	
-					
-					<?php
-						if($videoDocument->Approved == 0){
-					?>
-					<?=form_open(sprintf('videoDocument/download/%s?%s=%s', $videoDocument->FileName, SITE, ADMIN), array('class' => 'videoDocumentApprove'))?>
-						<input type="submit" value="Duyệt" style="width: 90px" />
-						<input type="hidden" name="Id" value="<?=$videoDocument->Id?>" />
 					<?=form_close()?>	
-					<?php 
-						}
-						
-					?>
+					
+					
 					
 					
 				</td>
@@ -106,7 +96,7 @@
 	<script type="text/javascript">
 	$('form.videoDocument').submit(function(event) {
 		
-			return confirm('Bạn có chắc chắn muốn xóa tài liệu "' + $(this).find('input[name=Name]').val() + '" không ?');
+			return confirm('Bạn có chắc chắn muốn xóa tài liệu "' + $(this).find('input[name=Name]').val() + $(this).find('input[name=IdVideo]').val() + '" không ?');
 
 	});
 	

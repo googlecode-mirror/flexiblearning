@@ -48,7 +48,7 @@
 						if($video->Approved == 1){
 			?>
 						<option value="<?=$video->Id?>" 
-							<?=set_select('Id', $video->Id,$videoSurvey_model->Id !=NULL && $video->Id == $videoSurvey_model->IdVideo)?>>
+							<?=set_select('IdVideo', $video->Id)?>>
 							<?=$video->Name?>
 							
 						</option>

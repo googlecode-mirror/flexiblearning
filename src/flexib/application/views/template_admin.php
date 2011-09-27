@@ -14,7 +14,7 @@
 <script type="text/javascript" src="<?=base_url()?>js/utility.js"></script>
 <script type="text/javascript" src="<?=base_url()?>js/ajaxupload.3.5.js"></script>
 <script type="text/javascript" src="<?=base_url() . $this->config->item('flash_object_folder')?>/Scripts/swfobject_modified.js"></script>
-
+<script type="text/javascript" src="<?=base_url()?>js/ckeditor/ckeditor.js"></script>
 <script>
 	$(document).ready(function(){
 		var urls = [
@@ -24,7 +24,7 @@
 		    		'<?=site_url('partner/admin')?>',
 		    		'<?=site_url('videoCategory/admin')?>',
 		    		'<?=site_url('video/admin')?>',
-		    		'<?=site_url('question/admin')?>',
+		    		'<?=site_url('message/admin')?>',
 		    		'<?=site_url('videoNotification/admin')?>',
 		    		'<?=site_url('videoDocument/admin')?>',
 		    		'<?=site_url('videoSurvey/admin')?>'
@@ -58,7 +58,7 @@
 				<li><a href="#partner">Ðối tác</a></li>
 				<li><a href="#videoCategory">Danh mục video</a></li>
 				<li><a href="#video">Video</a></li>
-				<li><a href="#question">Hỏi dáp video</a></li>
+				<li><a href="#message">Hộp tin nhắn</a></li>
 				<li><a href="#videoNotification">Thông báo video</a></li>
 				<li><a href="#videoDocument">Tài liệu video</a></li>
 				<li><a href="#videoSurvey">Bảng điều tra câu hỏi</a></li>
