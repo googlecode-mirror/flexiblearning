@@ -1,0 +1,107 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+ol, ul, li {
+    list-style: none outside none;
+}
+
+#container {
+	width : 1024px;
+	margin: 0 auto;
+}
+
+.menu {
+	margin-left:0px;
+	padding-left:20px;
+}
+
+.menu .menu-item { 
+    float: left;
+    margin: 3px;
+    padding: 5px;
+	font-weight:bold;
+	background : #00bcf2;
+}
+
+.menu-item a {
+	outline: medium none;
+    text-decoration: none;
+	padding-left:5px;
+	padding-right:5px;
+	/*color:#1b82a7;*/
+	color:#ffffff;
+}
+
+#menu {
+	margin-top: 10px;
+}
+
+#logo {
+	text-align:center;
+}
+
+#logo p {
+	padding-top:0px;
+	margin-top:0px;
+	color:#01b8f1;
+}
+
+.text-red {
+	color : #ee2b29;
+}
+
+.language-bar {
+	padding:5px;
+	height: 35px;
+}
+
+.english-icon {
+	background:url(../images/United%20Kingdom%20flag.ico) no-repeat;
+	padding-left:20px;
+}
+
+.national-con {
+	padding-left:20px;	
+	padding-right:10px;
+}
+
+.korean-icon {
+	background:url(../images/Korea%20Flag.ico) no-repeat;
+}
+
+.french-icon {
+	background:url(../images/fr.ico) no-repeat;
+}
+
+.search-bar {
+	 background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #AAAAAA;
+    border-radius: 10px 10px 10px 10px;
+    color: #333333;
+    font-size: 1.5em;
+    height: 19px;
+    line-height: 1;
+    padding: 2px 5px;
+    width: 286px;
+}
+
+.search-btn {
+ 	background: url(../images/icon_searchglass.png) no-repeat scroll 0 0 transparent;
+    border: 0 none;
+    cursor: pointer;
+    font-size: 1.1em;
+    height: 35px;
+    position: relative;
+    right: 25px;
+    top: -5px;
+    width: 35px;
+}
+
+.national-bar {
+	margin:auto;
+	height:inherit;
+}

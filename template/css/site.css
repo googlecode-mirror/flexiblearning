@@ -1,0 +1,85 @@
+h1, h2, h3 {
+	color : #2E6E9E;
+}
+
+.form-item {
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+.form-item label {
+	display: block;
+}
+
+.form-item .form-required {
+	color: #FF0000;
+}
+
+.login-form {
+	width : 500px;
+	text-align: center;
+	margin : auto;
+}
+
+.left {
+	float : left;
+}
+
+.right {
+	float : right;
+}
+
+.clear {
+	clear : both;
+}
+
+.box_center {
+	text-align: center;
+}
+
+.box_right {
+	text-align: right;
+}
+
+.box_notify {
+	border: 1px dashed;
+	margin : 10px;
+	padding : 10px;
+}
+
+.video_margin {
+	margin-right:10px;
+}
+.bold_text {
+	font-weight: bold;
+}
+
+.margin_bottom {
+	margin-bottom: 10px;
+}
+
+.ui-icon-approved {
+	background: url("../images/icons/approved_icon.png") no-repeat;
+	width : 24px;
+	height : 24px;
+}
+
+.ui-icon-approved:hover {
+	background-color: #F1F1F1;
+}
+
+button.ui-icon-approved {
+	width : 24px;
+	height : 24px;	
+	border : none;
+}
+
+.thumbnail_video {
+	margin-top : 10px;
+}
+
+.ui-widget-content2 {
+    background: url("../images/ui-bg_inset-hard_100_fcfdfd_1x100_2.png") repeat-x scroll 50% bottom #FCFDFD;
+    border: 1px solid #E17009;
+    color: #222222;
+}
