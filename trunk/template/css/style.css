@@ -11,6 +11,11 @@ ol, ul, li {
     list-style: none outside none;
 }
 
+a, .ui-widget a {
+    color: #0000FF;
+    text-decoration: none;
+}
+
 body {
     background: url(../images/bg-site.png) repeat scroll left top #E7E7E0;
     color: #000000;
