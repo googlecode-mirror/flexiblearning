@@ -135,7 +135,7 @@ body {
 }
 
 .search-bar {
-	 background: none repeat scroll 0 0 #FFFFFF;
+	background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #AAAAAA;
     border-radius: 10px 10px 10px 10px;
     color: #333333;
@@ -144,6 +144,8 @@ body {
     line-height: 1;
     padding: 2px 5px;
     width: 286px;
+	position:absolute;
+	left:-310px;
 }
 
 .search-btn {
