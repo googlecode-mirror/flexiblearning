@@ -1,16 +1,95 @@
-<?php $this->pageTitle=Yii::app()->name; ?>
+<div id="home-wrap">
+    <table width="910" border="0" id="home-td" >
+        <tr>
+            <td colspan="4" id="home-box">
+                <div id="title"><a href="#">Tiếng Anh Sơ Cấp</a></div>
+                <div id="line-box"> <a href="#">>View all</a> </div>	
+            </td>
+        </tr>
+        <tr>
+            <td><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/home-img1.jpg" /> <br />
+                <a href="#">Tiếng anh sơ cấp 1</a><br />
+                Teach: <span id="colo">Sara Corner</span> 	  
+            </td>
+            <td><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/home-img2.jpg" /> <br />
+                <a href="#">Tiếng anh sơ cấp 2</a><br />
+                Teach: <span id="colo">Sara Corner</span> 
+            </td>
+            <td><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/home-img3.jpg" /><br />
+                <a href="#"> Tiếng anh sơ cấp 3</a><br />
+                Teach: <span id="colo">Sara Corner</span> 
+            </td>
+            <td><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/home-img4.jpg" /> <br />
+                <a href="#">Tiếng anh sơ cấp 4</a><br />
+                Teach: <span id="colo">Sara Corner</span> 
+            </td>
+        </tr>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+        <tr>
+            <td colspan="4" id="home-box">
+                <div id="title"><a href="#">tiếng anh trung cấp</a></div>
+                <div id="line-box"> <a href="#">>View all</a> </div>	
+            </td>
+        </tr>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+        <tr>
+            <td><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/home-img1.jpg" /> <br />
+                <a href="#">Tiếng anh trung cấp 1</a><br />
+                Teach: <span id="colo">Jenifer White</span>  	  
+            </td>
+            <td><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/home-img2.jpg" /> <br />
+                <a href="#"> Tiếng anh trung cấp 2</a><br />
+                Teach:<span id="colo">Jenifer White</span> 
+            </td>
+            <td><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/home-img3.jpg" /><br />
+                <a href="#">Tiếng anh trung cấp </a>3<br />
+                Teach: <span id="colo">Jenifer White</span>  
+            </td>
+            <td><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/home-img4.jpg" /> <br />
+                <a href="#">Tiếng anh trung cấp 4</a><br />
+                Teach: <span id="colo">Jenifer White</span> 
+            </td>
+        </tr>
 
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <tt><?php echo __FILE__; ?></tt></li>
-	<li>Layout file: <tt><?php echo $this->getLayoutFile('main'); ?></tt></li>
-</ul>
+        <tr>
+            <td colspan="4"id="home-box">
+                <div id="title"><a href="#">tiếng anh cao cấp</a></div>
+                <div id="line-box"> <a href="#">>View all</a> </div>	
+            </td>
+        </tr>
 
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+        <tr>
+            <td><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/home-img1.jpg" /> <br />
+                <a href="#">Tiếng anh sơ cấp 1</a><br />
+                Teach: <span id="colo">Sara Corner</span> 	  
+            </td>
+            <td><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/home-img2.jpg" /> <br />
+                <a href="#">Tiếng anh sơ cấp 2</a><br />
+                Teach: <span id="colo">Sara Corner</span> 
+            </td>
+            <td><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/home-img3.jpg" /><br />
+                <a href="#">Tiếng anh sơ cấp 3</a><br />
+                Teach: <span id="colo">Sara Corner</span> 
+            </td>
+            <td><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/home-img4.jpg" /> <br />
+                <a href="#">Tiếng anh sơ cấp 4</a><br />
+                Teach: <span id="colo">Sara Corner</span> 
+            </td>
+
+        <tr>
+            <td colspan="4" id="home-box">
+
+                <div id="line-all"> <a href="#">View all</a> </div>	
+            </td>
+        </tr>  
+        </tr>
+        <tr>
+            <td colspan="4" align="center"><A href="TrangChu.html">1</a> - <a href="#">2</a> - <a href="#">3</a> - <a href="#">4</a> </td>
+        </tr> 
+        <tr>
+            <td>&nbsp;</td>
+        </tr> 
+    </table>
+</div>
+<!-- InstanceEndEditable -->
+<div id="stroke" ></div>

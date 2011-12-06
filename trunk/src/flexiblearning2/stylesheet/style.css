@@ -1,0 +1,451 @@
+/* CSS Document */
+*{margin:0px; padding:0px}
+body{
+    font-family:Tahoma, "Times New Roman", Arial;
+    font-size:10pt;
+    background-image:url(../img/pattern.jpg);
+    background-repeat:repeat;
+    color:#484545;
+}
+#page{
+    width:940px;
+    height:auto;
+    text-align:left;
+}
+#head{
+    width:940px;
+    height:105px;
+}
+#logo{
+    width:207px;
+    height:105px;
+    float:left;
+    background-image:url(../img/home-logo.png);
+    background-repeat:no-repeat;
+}
+#head-mid{
+    width:480px; 
+    height:105px; 
+    float:left;
+    position:relative;
+}
+#head-mid-top{
+    width:480px; 
+    padding-bottom:65px;
+}
+#head-mid ul#icon{
+    width:88%;
+    position:absolute; 
+    line-height:20px;
+    padding-left:50px;
+    padding-top:40px;
+}
+
+#wrap-nav{
+    width:480px;
+}
+
+ul#icon li{
+    display:inline;
+}
+ul#icon li a{
+    padding-right:65px;
+}
+#head-mid ul#nav{
+    width:100%;
+    position:absolute;
+    line-height:15px;
+}
+ul#nav li{
+    display:inline;
+}
+ul#nav li a{
+    padding-right:10px;
+    text-decoration:none;
+    color:#484545;
+    margin-left:30px;
+}
+ul#nav li a:hover{
+    color:#00bcf2;
+}
+#head-right{
+    width:252px; 
+    float:left; 
+    height:97px;
+}
+#login{
+    width:247px; 
+    height:18px; 
+    background-image:url(../img/login.png);
+    background-repeat:no-repeat;
+    background-position:right; 
+    font-size:8.5pt; 
+    color:#484545; 
+    text-align:right;
+    padding-top:5px; 
+    padding-right:5px;
+}
+.bt-search{
+    background-image:url(../img/bt-search.jpg);
+    width:19px;
+    height:20px;
+    border-style:none;
+}
+#search{ 
+    width:243px; 
+    height:27px; 
+    margin-top:20px;
+    background-color:#ffffff; 
+    border:solid thin #cccccc;
+    font-size:9pt; 
+    color:#9c9c9c; 
+    padding-top:5px;
+    padding-right:5px;
+    text-align:right;
+    line-height:22px;
+}
+
+#menu{
+    background-image:url(../img/menu-background.jpg);
+    background-repeat:no-repeat;
+    width:930px;
+    height:31px;
+    color:#FFFFFF;
+    padding-top:8px;
+    padding-left:10px;
+    text-transform:capitalize;
+    clear:both;
+}
+
+a{ 
+    color:#484545;
+    text-decoration:none;
+}
+a:hover{
+    color:#00bcf2;
+}
+.icon{ 
+    text-decoration:none; 
+    color:#FFFFFF
+}
+#content{
+    width:940px;
+    height:auto;
+}
+#stroke{
+    height:4px; 
+    background-color:#666666;
+}
+#wrap-menu-bottom{
+    width:940px; 
+    height:22px; 
+    padding-top:15px; 
+    border-bottom: 
+        solid #9a9a9a thin; 
+    padding-bottom:5px;
+}
+
+#bottom{
+    width:760px; 
+    float:left; 
+    height:22px; 
+    color:#666666;
+}
+#bottom-l{
+    float:left; 
+    width:180px; 
+    height:22px; 
+    text-align:right;
+}
+#bottom-l2{
+    width:760px; 
+    float:left;
+    padding-top:10px; 
+    font-size:9pt; 
+    color:#666666
+}
+#bottom-r{
+    width:180px;
+    float:left; 
+    text-align:right;
+    color:#484545; 
+    padding-top:10px;
+    color:#666666; 
+    padding-bottom:20px;
+}
+.top{
+    padding-top:20px;
+}
+
+#colo{
+    color:#0f6987}
+/*------------------TrangChu----------------------*/
+#home-wrap{
+    background-color:white;
+}
+#home-td{
+    margin-left:15px;
+}
+#title{
+    float:left; 
+    width:200px; 
+    height:20px; 
+    font:Dekar; 
+    font-size:15pt; 
+    padding-top:30px;
+    text-transform:capitalize;
+}
+#home-box{
+    widows:910px; 
+    height:50px;
+}
+#line-box{
+    float:left; 
+    width:695px; 
+    height:20px; 
+    border-bottom:thin #9a9a9a solid; 
+    text-align:right; 
+    padding-top:30px;  
+    margin-bottom:20px;
+}
+#line-all{
+    width:900px; 
+    height:20px; 
+    border-bottom:thin #9a9a9a solid; 
+    text-align:right; 
+    padding-top:20px;  
+    margin-bottom:20px;
+}
+
+.bt-muangay{
+    background-image:url(../img/bt-muangay.png);
+    background-repeat:no-repeat;
+    width:100px;
+    height:33px;
+    color:white;
+    font-weight:bold;
+    font-size:11pt;
+    border-style:none;
+}
+.bt-price{
+    background-image:url(../img/icon-price.png);
+    background-repeat:no-repeat;
+    width:35px;
+    height:18px;
+    color:white;
+    border-style:none;
+}
+#skype{
+    background-image:url(../img/giaotrinh-skype.jpg);
+    background-repeat:no-repeat;
+    width:231px;
+    height:48px;
+    margin-top:10px;
+    padding-left:50px;
+    vertical-align:middle;
+}
+
+
+/*------------------Gioi Thieu----------------------*/
+#gioithieu-wrap{
+    background-color:white; 
+    padding-left:20px; 
+    padding-right:20px; 
+    height:800px;
+}
+#gt-left{
+    width:450px; 
+    float:left
+}
+#gt-right{
+    width:430px; 
+    float:left; 
+    padding-left:20px;
+}
+#gt-line{
+    border-bottom: solid #ccc 1px; 
+    height:20px; 
+    width:100%; 
+    clear:both
+}
+#slide{
+    width:940px;
+    height:196px;
+    float:left;
+    position:relative;
+    background-color:white;
+    margin-top:20px;
+}
+.clear {
+    clear:both
+}
+#slide a {
+    float:left;
+    position:absolute;
+}
+
+#slide a img {
+    border:none;
+}
+
+#slide a.show {
+    z-index:500
+}
+/*------------------Giao trinh----------------------*/
+#link{
+    width:100%; 
+    height:40px; 
+    border-bottom: solid #32614f 2pt;
+}
+#title-text{
+    font:Dekar; 
+    font-size:15pt;
+    text-transform:capitalize; 
+    color:#32614f;
+}
+#caption{
+    width:630px; 
+    height:auto; 
+    background-color:white; 
+    padding-left:10px; 
+    padding-right:10px; 
+    vertical-align:top
+}
+#box-tab{
+    background-image:url(../img/giaotrinh-box-menu.jpg); 
+    background-repeat:no-repeat; 
+    width:630px; height:38px;
+}
+#box-tab-content{
+    width:630; 
+    height:300px; 
+    border:1px solid #ccc; 
+    border-top:none; 
+    border-bottom:none;
+}
+.bt-cauhoi{
+    background-image:url(../img/bt-dangcauhoi.png);
+    background-repeat:no-repeat;
+    width:105px;
+    height:25px;
+    color:white;
+    border-style:none;
+}
+
+#box-qa{
+    border:1px solid #ccc; 
+    border-top:none; 
+    width:281px;
+    -moz-border-radius:0 0 5px 5px;
+    -webkit-border-radius:0 0 5px 5px ;
+}
+#question{
+    color:#FF0000; 
+    font-weight:bold; 
+    vertical-align:top; 
+    padding-left:10px;
+}
+#answer{
+    color:#3366cc; 
+    font-weight:bold; 
+    vertical-align:top; 
+    padding-left:10px; 
+    padding-right:5px;
+}
+#line{
+    border-bottom:solid #cccccc thin ; 
+    margin-top:10px; margin-bottom:10px;
+    width:260px;
+}
+
+/*------------------Lien-He----------------------*/
+#lienhe-left{
+    width:345px;
+    margin-left:20px;
+}
+#lienhe-right{
+    width:550px;
+    margin-left:20px;
+}
+#bg-td{
+    vertical-align:top;
+    background-color:white;
+}
+.bt{
+    background-image:url(../img/bt.png);
+    background-repeat:no-repeat;
+    width:93px;
+    height:28px;
+    text-align:center;
+    color:white;
+    border-style:none;
+    margin-top:10px;
+}
+#area{width:640px; height:150px; margin-left:120px; color:#666666};
+
+/*------------------Hop-Thu----------------------*/
+
+#pad{
+    padding-bottom:20px; 
+    padding-top:10px;
+}
+#hopthu-bg-title{
+    background-color:#666666;
+    color:white;
+}
+.pad-top-bot{
+    padding-bottom:50px; padding-top:10px;
+}
+
+/*------------------Dang-Nhap----------------------*/
+#style-text{
+    font-size:9pt;
+}
+#style-for{
+    font-size:9pt;
+    text-decoration:underline;
+}
+
+/*------------------DangKy----------------------*/
+#regis-wrap{
+    margin-left:80px;
+}
+.text-field{
+    width:200px;
+    color:#336250;
+}
+/*------------------template-second----------------------*/
+.bg{
+    background-color:white;
+}
+
+.bt-no-img{
+    -moz-border-radius:3px;
+    background-color:#666666; 
+    border-style:none; 
+    width:70px; 
+    height:25px; 
+    color:white
+}
+.bor{
+    border:thin solid #c1c1c1
+}
+#box-blog{
+    width:750px;
+    height:180px;
+    padding-top:10px;
+    border-bottom:solid thin #c1c1c1;
+}
+#box-blog-1{
+    width:180px;
+    height:180px;
+    float:left;
+}
+#box-blog-2{
+    width:550px;
+    height:180px;
+    float:left;
+}
+#blog-title{
+    color:#336250; font-weight:bold
+}

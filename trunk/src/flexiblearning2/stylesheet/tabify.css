@@ -1,0 +1,118 @@
+/* CSS Document */
+*{margin:0px;
+padding:0px;}
+.tab { 
+padding:10px;
+clear: both; 
+}
+.tab li { 
+display: inline; 
+font-weight: normal;
+}
+.tab li a { 
+padding-top: 15px; 
+float:left;text-decoration: none; 
+color: #ffffff;  
+position:relative; 
+top:-10px; 
+line-height:11px; 
+padding-right:
+15px;padding-left:15px; 
+padding-bottom:7px; }
+.tab li.active a { 
+background-color:#FFFFFF; 
+color:#000000;
+border:1px solid #ccc;
+border-bottom:none;
+border-radius:5px 5px 0 0;
+-moz-border-radius:5px 5px 0 0;
+-webkit-border-radius:5px 5px 0 0;}
+
+.inner { 
+float: left; 
+clear: both;
+padding-left:10px; 
+padding-right:10px; 
+text-align:justify}
+.tab-bottom{
+	width:628px; height:10px;border:1px solid #ccc;
+									border-top:none;
+									border-radius:0 0 5px 5px;
+									-moz-border-radius:0 0 5px 5px;
+									-webkit-border-radius:0 0 5px 5px; 
+									}
+
+/*----tab2----*/
+.tab2 { 
+padding:10px;
+clear: both; 
+}
+.tab2 li { 
+display: inline; 
+font-weight: normal;
+}
+.tab2 li a { 
+padding-top: 15px; 
+float:left;text-decoration: none; 
+color: #000;  
+position:relative; 
+top:-13px; 
+line-height:11px; 
+padding-right:15px;
+padding-left:15px; 
+padding-bottom:7px; }
+.tab2 li.active a { 
+background-color:#eee; 
+color:#000000;
+border:1px solid #ccc;
+border-bottom:none;
+border-radius:5px 5px 0 0;
+-moz-border-radius:5px 5px 0 0;
+-webkit-border-radius:5px 5px 0 0;}
+#tab2-box{
+ width:271px; height:200px;border:1px solid #ccc; border-bottom:none;
+-moz-border-radius:5px 5px 0 0;-webkit-border-radius:5px 5px 0 0; background-color:#eee; padding-right:10px;}
+#tab2-content{
+width:260px; height:147px; background-color:white; border: 1px solid #ccc; margin:10px;}
+
+/*----menu-doc----*/
+
+
+.menu-doc { 
+list-style:none;
+text-align:right ;
+margin-top:30px;
+clear: both; 
+}
+.menu-doc li { 
+font-weight: normal;
+margin-left:11px;
+width:130px;
+}
+.menu-doc li a { 
+display: block;
+text-decoration:none;
+padding:6px; 
+}
+
+.menu-doc li.active a { 
+color:#00bcf2; border:1px solid #c1c1c1; border-right:1px solid #fff;}
+
+#template2-wrap{
+	background-color:white; 
+	vertical-align:top; 
+	padding-top:30px;
+	}
+#template2-menu{
+	float:left;
+	width:140px; 
+	height:400px; 
+	border-right:1px solid #c1c1c1;
+	margin-right:0px;
+	}
+#template2-content{
+	float:left; 
+	width:780px; 
+	height:auto;
+	margin-left:15px;
+	}
