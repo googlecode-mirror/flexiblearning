@@ -48,12 +48,12 @@ class Category extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, idLanguage', 'required'),
+            array('name, idLanguage, state', 'required'),
             array('name', 'length', 'max' => 256),
             array('description', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('name, idLanguage', 'safe', 'on' => 'search'),
+            array('name, idLanguage, state', 'safe', 'on' => 'search'),
         );
     }
 
@@ -95,7 +95,6 @@ class Category extends Base {
         $criteria = new CDbCriteria;
 
         $criteria->compare('name', $this->name, true);
-        $criteria->compare('description', $this->description, true);
         $criteria->compare('idLanguage', $this->idLanguage);
         $criteria->compare('state', $this->state);
 

@@ -12,19 +12,17 @@
         <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 256)); ?>
     </div>
 
-    <div class="row">
-        <?php echo $form->label($model, 'description'); ?>
-        <?php echo $form->textArea($model, 'description', array('rows' => 6, 'cols' => 50)); ?>
-    </div>
-
-    <div class="row">
+   <div class="row">
         <?php echo $form->label($model, 'idLanguage'); ?>        
-        <?php echo $form->dropDownList($model,'idLanguage', CHtml::listData(Language::model()->findAll(), 'id', 'name') ); ?>
+        <?php echo $form->dropDownList($model,'idLanguage', 
+                CHtml::listData(Language::model()->findAll(), 'id', 'name'), 
+                array('empty' => '(Select a language)') ); ?>
     </div>
 
     <div class="row">
         <?php echo $form->label($model, 'state'); ?>
-        <?php echo $form->textField($model, 'state'); ?>
+        <?php echo $form->dropDownList($model, 'state', Yii::app()->params['state'], 
+                array('empty' => '(Select a state)')); ?>
     </div> 
 
     <div class="row buttons">

@@ -1,7 +1,6 @@
 <?php
 
 class SiteController extends Controller {
-
     public $layout = '//layouts/site';
 
     /**
@@ -91,5 +90,4 @@ class SiteController extends Controller {
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
     }
-
 }

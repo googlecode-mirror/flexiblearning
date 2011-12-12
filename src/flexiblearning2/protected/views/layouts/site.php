@@ -2,8 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/main.dwt" codeOutsideHTMLIsLocked="false" -->
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        
-        <title>FlexiLearning</title>        
+        <title><?php echo Yii::app()->name?></title>        
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/stylesheet/style.css" media="screen" />            
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/stylesheet/form.css" media="screen" />            
     </head>
 
     <body>
@@ -28,7 +29,7 @@
                                     'items' => array(
                                         array('label' => 'Home', 'url' => array('/site/index')),
                                         array('label' => 'About', 'url' => array('/site/page', 'view' => 'about')),
-                                        array('label' => 'Contact', 'url' => array('/site/contact')),                                        
+                                        array('label' => 'Contact', 'url' => array('/site/contact')),
                                     ),
                                 ));
                                 ?>
@@ -37,13 +38,30 @@
                     </div>
                     <!--end-head-mid-->
 
-                    <div id="head-right">
-                        <div id="login">
-                            <a href="#">Register</a> &nbsp;&nbsp;&nbsp;
-                            <a href="DangNhap.html">Login</a>
-                        </div>
+                    <div id="head-right">                        
+                        <?php if (Yii::app()->user->isGuest) : ?>
+                            <div id="login">
+                                <div class="link">
+                                    <a href="<?php echo $this->createUrl('account/register') ?>">Register</a>
+                                </div>
+                                <div class="link"> 
+                                    <a href="<?php echo $this->createUrl('site/login') ?>">Login</a>
+                                </div>
+                            </div>
+                        <?php else : ?>
+                            <div id="logout">
+                                <div class="hi-username">    
+                                    Hi <?php echo Yii::app()->user->name?>                                
+                                </div>
+                                <span class="link"> 
+                                    <a href="<?php echo $this->createUrl('site/logout') ?>">Logout</a>
+                                </span>
+                            </div>
+                        <?php endif; ?>
+                        
                         <div id="search"> Search |
-                            <input name="" type="text" style="border: none; width:170px;"  /><input name="" type="button" value="" class="bt-search"  />
+                            <input name="" type="text" style="border: none; width:170px;"  />
+                            <input name="" type="button" value="" class="bt-search"  />
                         </div>
                     </div><!--end-head-right-->
                 </div><!--end-head-->
@@ -58,7 +76,7 @@
                 </div><!--end-menu-->
 
                 <div id="content"><!-- InstanceBeginEditable name="content" -->
-                    <?php echo $content;?>
+                    <?php echo $content; ?>
                 </div><!--end-content-->
 
                 <div id="wrap-menu-bottom" >
@@ -100,8 +118,6 @@
                     </div>
                 </div>
             </div><!--page-->
-
         </center>
     </body>
-
-    <!-- InstanceEnd --></html>
+</html>

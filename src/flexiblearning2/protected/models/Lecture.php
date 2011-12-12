@@ -21,8 +21,11 @@
 class Lecture extends Base {
     public function init() {
         if (empty($this->state)) {
-            $this->state = 1;
+            $this->state = 1;            
         }
+//        if (empty($this->price)) {
+            $this->price = 0;
+//        }
     }
 
     /**
@@ -50,7 +53,7 @@ class Lecture extends Base {
             array('name, price, idCategory', 'required'),
             array('price, idCategory', 'numerical', 'integerOnly' => true),
             array('name', 'length', 'max' => 256),
-            array('description', 'safe'),
+            array('description, thumbnail', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('name, price, idCategory', 'safe', 'on' => 'search'),
@@ -108,5 +111,4 @@ class Lecture extends Base {
                     'criteria' => $criteria,
                 ));
     }
-
 }

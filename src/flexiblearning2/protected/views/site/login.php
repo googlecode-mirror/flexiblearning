@@ -15,7 +15,6 @@
         </tr>
         <tr>
             <td id="bg-td">
-
                 <table width="800" border="0" class="top" id="regis-wrap">
                     <tr>
                         <td width="398">&nbsp;</td>
@@ -40,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <td>&nbsp;</td>
-                                    <td>
+                                    <td class="cell-inline">
                                         <?php echo $form->checkBox($model, 'rememberMe'); ?>
                                         <?php echo $form->label($model, 'rememberMe'); ?>
                                         <?php echo $form->error($model, 'rememberMe'); ?>
