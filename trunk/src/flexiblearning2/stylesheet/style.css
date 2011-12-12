@@ -73,7 +73,7 @@ ul#nav li a:hover{
     float:left; 
     height:97px;
 }
-#login{
+#login, #logout {
     width:247px; 
     height:18px; 
     background-image:url(../img/login.png);
@@ -84,6 +84,13 @@ ul#nav li a:hover{
     text-align:right;
     padding-top:5px; 
     padding-right:5px;
+}
+#logout {        
+    background-image:url(../img/logout.png);    
+}
+#logout .hi-username {
+    margin-right: 10px;
+    display:inline-block;
 }
 .bt-search{
     background-image:url(../img/bt-search.jpg);
@@ -131,6 +138,7 @@ a:hover{
 #content{
     width:940px;
     height:auto;
+    background-color: #FFFFFF;
 }
 #stroke{
     height:4px; 
@@ -381,7 +389,11 @@ a:hover{
     border-style:none;
     margin-top:10px;
 }
-#area{width:640px; height:150px; margin-left:120px; color:#666666};
+#area{
+    width:100%; 
+    height:150px; 
+    color:#666666;
+}
 
 /*------------------Hop-Thu----------------------*/
 
@@ -436,16 +448,68 @@ a:hover{
     padding-top:10px;
     border-bottom:solid thin #c1c1c1;
 }
+
 #box-blog-1{
     width:180px;
     height:180px;
     float:left;
 }
+
 #box-blog-2{
     width:550px;
     height:180px;
     float:left;
 }
+
 #blog-title{
     color:#336250; font-weight:bold
+}
+
+.note {
+    font-style: italic;
+    font-size: .9em;
+    margin-bottom: 10px;
+}
+
+span.required {
+    color: red;
+}
+
+#login .link, #logout .link {
+    display: inline-block;
+    width: 55px;
+    text-align: center;
+}
+
+.errorSummary > p {
+    font-style: italic;
+}
+
+.errorMessage {
+    font-size: 0.8em;
+    color: red;
+    font-style: italic;
+}
+
+.errorSummary ul li {
+    color: red;
+}
+
+/*FORM*/
+div.form td.cell-inline label {
+    display: inline;
+    font-weight: normal;
+}
+
+/*HREF*/
+a.search-button {
+    color: #00bcf2;
+}
+
+.block {
+    margin: 10px 5px;
+}
+
+ul.operations li {
+    list-style-type: none;
 }

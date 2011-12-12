@@ -3,6 +3,11 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'lecture-form',
 	'enableAjaxValidation'=>false,
+        'enableClientValidation' => true,
+        'clientOptions' => array(
+            'validateOnSubmit' => true,
+        ), 
+        'htmlOptions' => array('enctype' => 'multipart/form-data'),
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -28,13 +33,20 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'idCategory'); ?>
-		<?php echo $form->dropDownList($model,'idCategory', CHtml::listData(Category::model()->findAllByAttributes(array('state' => 1)), 'id', 'name') ); ?>
-		<?php echo $form->error($model,'idCategory'); ?>
+            <?php echo $form->labelEx($model,'idCategory'); ?>
+            <?php echo $form->dropDownList($model,'idCategory', CHtml::listData(Category::model()->findAllByAttributes(array('state' => 1)), 'id', 'name') ); ?>
+            <?php echo $form->error($model,'idCategory'); ?>
 	</div>
+        
+        <div class="row">
+            <?php echo $form->labelEx($model,'fileThumbnail'); ?>
+            <?php echo CHtml::activeFileField($model, 'fileThumbnail')?>
+            <?php echo $form->error($model,'fileThumbnail'); ?>
+        </div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+             <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', 
+                     array('class' => 'bt')); ?>    
 	</div>
 
 <?php $this->endWidget(); ?>

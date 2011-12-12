@@ -25,53 +25,67 @@ $('.search-form form').submit(function(){
 
 <h1>Manage Categories</h1>
 
-<p>
+<p class="block">
     You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
     or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
 </p>
 
-<?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
-<div class="search-form" style="display:none">
+<div class="block">
+    <?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
+    <div class="search-form" style="display:none">
+        <?php
+        $this->renderPartial('_search', array(
+            'model' => $model,
+        ));
+        ?>
+    </div><!-- search-form -->
+</div>
+
+<div class="block">    
     <?php
-    $this->renderPartial('_search', array(
-        'model' => $model,
+    $this->widget('zii.widgets.grid.CGridView', array(
+        'id' => 'category-grid',
+        'dataProvider' => $model->search(),
+        'filter' => $model,
+        'columns' => array(
+            'name',
+            array(
+                'name' => 'description',
+                'filter' => false,
+            ),
+            array(
+                'header' => 'Language',
+                'name' => 'idLanguage',
+                'value' => '$data->language->name',
+                'filter' => CHtml::listData(Language::model()->findAll(), 'id', 'name'),
+            ),
+            array(
+                'name' => 'state',
+                'filter' => Yii::app()->params["state"],
+                'value' => 'Yii::app()->params["state"][$data->state]',
+            ),
+            array(
+                'name' => 'createdDate',
+                'value' => 'Yii::app()->dateFormatter->format(Yii::app()->params["dateFormat"],$data->createdDate)',
+                'filter' => false,
+            ),
+            array(
+                'name' => 'createdBy',
+                'value' => '$data->updatedByUser->username'
+            ),
+            array(
+                'name' => 'updatedDate',
+                'value' => 'Yii::app()->dateFormatter->format(Yii::app()->params["dateFormat"],$data->updatedDate)',
+                'filter' => false,
+            ),
+            array(
+                'name' => 'updatedBy',
+                'value' => '$data->updatedByUser->username'
+            ),
+            array(
+                'class' => 'CButtonColumn',
+            ),
+        ),
     ));
     ?>
-</div><!-- search-form -->
-
-<?php
-$this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'category-grid',
-    'dataProvider' => $model->search(),
-    'filter' => $model,
-    'columns' => array(
-        'name',
-        'description',
-        array(
-            'header' => 'Language',
-            'name' => 'idLanguage',
-            'value' => '$data->language->name',
-        ),
-        'state',
-        array(
-            'name' => 'createdDate',
-            'value' => 'date(Yii::app()->params["dateFormat"], $data->createdDate)'
-        ),        
-        array(
-            'name' => 'createdByUser.username',
-            'header' => 'Created by',
-        ),
-        array(
-            'name' => 'updatedDate',
-            'value' => 'date(Yii::app()->params["dateFormat"], $data->updatedDate)'
-        ),
-        array(
-            'name' => 'updatedByUser.username',
-            'header' => 'Updated By',
-        ),
-        array(
-            'class' => 'CButtonColumn',
-        ),
-    ),
-));
-?>
+</div>

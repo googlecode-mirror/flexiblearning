@@ -12,4 +12,6 @@ $this->menu=array(
 
 <h1>Create Lecture</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<div class="block">
+    <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+</div>

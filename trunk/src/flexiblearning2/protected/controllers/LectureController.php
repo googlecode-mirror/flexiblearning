@@ -6,7 +6,7 @@ class LectureController extends Controller {
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column2';
+    public $layout = '//layouts/site-column1';
 
     /**
      * @return array action filters
@@ -57,15 +57,24 @@ class LectureController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Lecture;
+        $model = new LectureForm();
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Lecture'])) {
-            $model->attributes = $_POST['Lecture'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+        if (isset($_POST['LectureForm'])) {
+            $model->attributes = $_POST['LectureForm'];
+            $file = CUploadedFile::getInstance($model, 'fileThumbnail');
+            if ($model->validate()) {
+                $fileName = Yii::app()->params['lectureThumbnails'] . '/' . $file->getName();
+                $file->saveAs($fileName);
+                $lecture = new Lecture();
+                $lecture->attributes = $_POST['LectureForm'];
+                $lecture->thumbnail = $fileName;
+                if ($lecture->save(false)) {
+                    $this->redirect(array('view', 'id' => $lecture->id));
+                }
+            }
         }
 
         $this->render('create', array(

@@ -46,15 +46,21 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'filter' => $model,
     'columns' => array(
         'name',
-        'description',
+        array (
+            'name' => 'description',
+            'filter' => false,
+        ),
         'price',
         array(
-            'name' => 'category.name',
+            'name' => 'idCategory',
             'header' => 'Category',
+            'value' => '$data->category->name',
+            'filter' => CHtml::listData(Category::model()->findAll(), 'id', 'name'),
         ),
         array(
             'name' => 'createdDate',
-            'value' => 'date(Yii::app()->params["dateFormat"], $data->createdDate)',
+            'value' => 'Yii::app()->dateFormatter->format(Yii::app()->params["dateFormat"],$data->createdDate)',
+            'filter' => false
         ),
         array(
             'name' => 'createdByUser.username',
@@ -62,9 +68,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'name' => 'updatedDate',
-            'value' => 'date(Yii::app()->params["dateFormat"], $data->updatedDate)',
+            'value' => 'Yii::app()->dateFormatter->format(Yii::app()->params["dateFormat"],$data->updatedDate)',
+            'filter' => false
         ),
-         array(
+        array(
             'name' => 'updatedByUser.username',
             'header' => 'Updated by',
         ),
