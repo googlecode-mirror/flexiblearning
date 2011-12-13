@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 04, 2011 at 09:39 AM
+-- Generation Time: Dec 13, 2011 at 01:25 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `account` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fullname` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `dateOfBirth` int(11) NOT NULL,
+  `dateOfBirth` date NOT NULL,
   `address` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `idNationality` int(11) NOT NULL,
   `tel` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -37,23 +37,14 @@ CREATE TABLE IF NOT EXISTS `account` (
   `username` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `idProfession` int(11) NOT NULL,
-  `favorite` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `avatar` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `idRole` int(11) NOT NULL,
   `state` int(11) NOT NULL,
-  `enabledFullName` tinyint(4) NOT NULL DEFAULT '1',
-  `enabledDateOfBirth` tinyint(4) NOT NULL DEFAULT '1',
-  `enabledAddress` tinyint(4) NOT NULL DEFAULT '1',
-  `enabledNationality` tinyint(4) NOT NULL DEFAULT '1',
-  `enabledTel` tinyint(4) NOT NULL DEFAULT '1',
-  `enabledEmail` tinyint(4) NOT NULL DEFAULT '1',
-  `enabledProfession` tinyint(4) NOT NULL DEFAULT '1',
-  `enabledFavorite` tinyint(4) NOT NULL DEFAULT '1',
-  `createdDate` int(11) NOT NULL,
+  `createdDate` datetime NOT NULL,
   `createdBy` int(11) NOT NULL,
-  `updatedDate` int(11) NOT NULL,
+  `updatedDate` datetime NOT NULL,
   `updatedBy` int(11) NOT NULL,
-  `lastLoginDate` int(11) DEFAULT NULL,
+  `lastLoginDate` datetime DEFAULT NULL,
   `ipAddress` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
@@ -62,15 +53,17 @@ CREATE TABLE IF NOT EXISTS `account` (
   KEY `idNationality` (`idNationality`),
   KEY `idRole` (`idRole`),
   KEY `idAvatar` (`avatar`(255))
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='this is the content of User info' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='this is the content of User info' AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `fullname`, `dateOfBirth`, `address`, `idNationality`, `tel`, `email`, `username`, `password`, `idProfession`, `favorite`, `avatar`, `idRole`, `state`, `enabledFullName`, `enabledDateOfBirth`, `enabledAddress`, `enabledNationality`, `enabledTel`, `enabledEmail`, `enabledProfession`, `enabledFavorite`, `createdDate`, `createdBy`, `updatedDate`, `updatedBy`, `lastLoginDate`, `ipAddress`) VALUES
-(1, 'ten', 1312709302, 'gfhg', 1, '0980989', 'totran0@gmail.com', 'tenten', '3d1c591c170b83e19ed213d8be785d10', 1, 'hghgjh', NULL, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1312717887, 1, 1317539643, 0, 1317539643, '127.0.0.1'),
-(2, 'Trần Hải Đăng', 1312717887, '429/12A Lê Văn Sỹ P12 Q3 TPHCM', 1, '01227305086', 'hdang.sea@gmail.com', 'sea2709', 'fad0ce221c826eede253cb0956ca0700', 1, '', NULL, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1310141510, 1, 1315785644, 0, 1315785644, NULL);
+INSERT INTO `account` (`id`, `fullname`, `dateOfBirth`, `address`, `idNationality`, `tel`, `email`, `username`, `password`, `idProfession`, `avatar`, `idRole`, `state`, `createdDate`, `createdBy`, `updatedDate`, `updatedBy`, `lastLoginDate`, `ipAddress`) VALUES
+(1, 'ten', '0000-00-00', 'gfhg', 1, '0980989', 'totran0@gmail.com', 'tenten', '3d1c591c170b83e19ed213d8be785d10', 1, NULL, 1, 1, '0000-00-00 00:00:00', 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', '127.0.0.1'),
+(2, 'Trần Hải Đăng', '0000-00-00', '429/12A Lê Văn Sỹ P12 Q3 TPHCM', 1, '01227305086', 'hdang.sea@gmail.com', 'sea2709', 'fad0ce221c826eede253cb0956ca0700', 1, NULL, 1, 1, '2013-10-14 15:10:00', 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', NULL),
+(14, 'Trần Hải Đăng', '1988-09-27', '429/12A Lê Văn Sỹ P12 Q3 TPHCM', 1, '841227305086', 'aaa@aaa.aaa', 'sea', 'fad0ce221c826eede253cb0956ca0700', 1, NULL, 3, 0, '1970-01-01 01:00:00', 0, '1970-01-01 01:00:00', 0, NULL, NULL),
+(15, 'Trần Hải Đăng', '1988-09-27', '429/12A Lê Văn Sỹ P12 Q3 TPHCM', 1, '841227305086', 'www@wwww.ww', 'sea00', 'fad0ce221c826eede253cb0956ca0700', 1, NULL, 3, 0, '1970-01-01 01:00:00', 0, '1970-01-01 01:00:00', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -84,9 +77,9 @@ CREATE TABLE IF NOT EXISTS `category` (
   `description` text COLLATE utf8_unicode_ci,
   `idLanguage` int(11) NOT NULL,
   `state` int(11) NOT NULL,
-  `createdDate` int(11) NOT NULL,
+  `createdDate` datetime NOT NULL,
   `createdBy` int(11) NOT NULL,
-  `updatedDate` int(11) NOT NULL,
+  `updatedDate` datetime NOT NULL,
   `updatedBy` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IdLanguage` (`idLanguage`)
@@ -97,10 +90,10 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `description`, `idLanguage`, `state`, `createdDate`, `createdBy`, `updatedDate`, `updatedBy`) VALUES
-(2, 'Tiếng Anh sơ cấp', NULL, 1, 1, 1322963767, 2, 1322963767, 2),
-(3, 'Tiếng Anh trung cấp', NULL, 2, 1, 1322963809, 2, 1322963809, 2),
-(4, 'Tiếng Anh cao cấp', 'Tiếng Anh cao cấp', 2, 1, 1322964021, 2, 1322964021, 2),
-(5, 'Tiếng Hàn sơ cấp', 'Tiếng Hàn sơ cấp', 3, 1, 1322964444, 2, 1322964444, 2);
+(2, 'Tiếng Anh sơ cấp', NULL, 1, 1, '0000-00-00 00:00:00', 2, '0000-00-00 00:00:00', 2),
+(3, 'Tiếng Anh trung cấp', NULL, 2, 1, '0000-00-00 00:00:00', 2, '0000-00-00 00:00:00', 2),
+(4, 'Tiếng Anh cao cấp', 'Tiếng Anh cao cấp', 2, 1, '0000-00-00 00:00:00', 2, '0000-00-00 00:00:00', 2),
+(5, 'Tiếng Hàn sơ cấp', 'Tiếng Hàn sơ cấp', 3, 1, '0000-00-00 00:00:00', 2, '0000-00-00 00:00:00', 2);
 
 -- --------------------------------------------------------
 
@@ -119,9 +112,9 @@ CREATE TABLE IF NOT EXISTS `language` (
 --
 
 INSERT INTO `language` (`id`, `name`) VALUES
-(1, 'Tiếng Việt'),
-(2, 'Tiếng Anh'),
-(3, 'Tiếng Hàn');
+(1, 'French'),
+(2, 'English'),
+(3, 'Korean');
 
 -- --------------------------------------------------------
 
@@ -133,24 +126,28 @@ CREATE TABLE IF NOT EXISTS `lecture` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
   `description` text,
-  `price` int(11) NOT NULL,
+  `price` int(11) DEFAULT NULL,
   `idCategory` int(11) NOT NULL,
+  `thumbnail` varchar(256) DEFAULT NULL,
   `state` int(11) NOT NULL DEFAULT '1',
-  `createdDate` int(11) NOT NULL,
+  `createdDate` datetime NOT NULL,
   `createdBy` int(11) NOT NULL,
-  `updatedDate` int(11) NOT NULL,
+  `updatedDate` datetime NOT NULL,
   `updatedBy` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idCategory` (`idCategory`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `lecture`
 --
 
-INSERT INTO `lecture` (`id`, `name`, `description`, `price`, `idCategory`, `state`, `createdDate`, `createdBy`, `updatedDate`, `updatedBy`) VALUES
-(1, 'English for everyone', 'English for everyone ^^', 20, 2, 1, 1322969347, 2, 1322969347, 2),
-(2, 'English for everyone', 'English for everyone', 234, 2, 1, 1322969417, 2, 1322969417, 2);
+INSERT INTO `lecture` (`id`, `name`, `description`, `price`, `idCategory`, `thumbnail`, `state`, `createdDate`, `createdBy`, `updatedDate`, `updatedBy`) VALUES
+(1, 'English for everyone', 'English for everyone ^^', 20, 2, NULL, 1, '0000-00-00 00:00:00', 2, '0000-00-00 00:00:00', 2),
+(2, 'English for everyone', 'English for everyone', 234, 2, NULL, 1, '0000-00-00 00:00:00', 2, '0000-00-00 00:00:00', 2),
+(6, 'sdfsdf', 'sdfsdf', NULL, 2, 'resources/lectures/hqdefault (1).jpg', 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
+(7, 'dfgdfg', 'dfgdfg', 3, 2, 'resources/lectures/hqdefault (1).jpg', 1, '1970-01-01 01:00:00', 2, '1970-01-01 01:00:00', 2),
+(8, 'tyt tyt ty', 'yty ty', 5, 2, 'resources/lectures/hqdefault (1).jpg', 1, '1970-01-01 01:00:00', 2, '1970-01-01 01:00:00', 2);
 
 -- --------------------------------------------------------
 
@@ -243,14 +240,16 @@ CREATE TABLE IF NOT EXISTS `role` (
   `updatedDate` int(11) NOT NULL,
   `updatedBy` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id`, `name`, `description`, `createdDate`, `createdBy`, `updatedDate`, `updatedBy`) VALUES
-(1, 'Admin', 'Admin', 1312717887, 1, 1312717887, 1);
+(1, 'Admin', 'Admin', 1312717887, 1, 1312717887, 1),
+(2, 'Registered User', '', 2011, 1, 2011, 1),
+(3, 'Registered User', '', 1323388007, 1, 1323388007, 1);
 
 -- --------------------------------------------------------
 
