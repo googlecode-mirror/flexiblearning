@@ -36,7 +36,7 @@ $this->menu = array(
             ),
             array(
                 'name' => 'createdDate',
-                'value' => Yii::app()->dateFormatter->format(Yii::app()->params['dateFormat'],$model->createdDate),
+                'value' => Yii::app()->dateFormatter->format(Yii::app()->params['dateFormat'], $model->createdDate),
             ),
             array(
                 'name' => 'createdBy',
@@ -44,7 +44,7 @@ $this->menu = array(
             ),
             array(
                 'name' => 'updatedDate',
-                'value' => Yii::app()->dateFormatter->format(Yii::app()->params['dateFormat'],$model->updatedDate),
+                'value' => Yii::app()->dateFormatter->format(Yii::app()->params['dateFormat'], $model->updatedDate),
             ),
             array(
                 'name' => 'updatedBy',
@@ -55,7 +55,26 @@ $this->menu = array(
     ?>
 </div>
 
-<?php foreach ($model->lectures as $lecture) : ?>
-    <div><?php echo $lecture->name ?></div>
-<?php endforeach; ?>
+<h3>Lectures</h3>
+<table>
+    <?php
+    foreach ($model->lectures as $index => $lecture) {
+        if ($index % 4 == 0) {
+            echo '<tr>';
+        }
+        ?>
+        <td>
+            <?php
+                $this->renderPartial('/lecture/_thumbnail', array(
+                    'lecture' => $lecture,
+                ));
+            ?>
+        </td>
+        <?php
+        if (($index + 1) % 4 == 0) {
+            echo '</tr>';
+        }
+    }
+    ?>
+</table>
 

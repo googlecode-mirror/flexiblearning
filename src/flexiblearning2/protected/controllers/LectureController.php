@@ -71,7 +71,7 @@ class LectureController extends Controller {
                 $lecture = new Lecture();
                 $lecture->attributes = $_POST['LectureForm'];
                 $lecture->thumbnail = $fileName;
-                if ($lecture->save(false)) {
+                if ($lecture->save()) {
                     $this->redirect(array('view', 'id' => $lecture->id));
                 }
             }

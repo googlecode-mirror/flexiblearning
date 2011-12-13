@@ -120,6 +120,7 @@ class CategoryController extends Controller {
      */
     public function actionIndex() {
         $dataProvider = new CActiveDataProvider('Category');
+        
         $this->render('index', array(
             'dataProvider' => $dataProvider
         ));

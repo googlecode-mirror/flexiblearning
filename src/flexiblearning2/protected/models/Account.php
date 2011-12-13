@@ -38,7 +38,9 @@
  * @property Profession $idProfession0
  */
 class Account extends Base {
+
     public $password_repeat;
+
     /**
      * Returns the static model of the specified AR class.
      * @return Account the static model class
@@ -64,9 +66,9 @@ class Account extends Base {
             array('fullname, dateOfBirth, address, idNationality, email, username, password, idProfession, idRole', 'required'),
             array('idNationality, idProfession, idRole, lastLoginDate', 'numerical', 'integerOnly' => true),
             array('fullname, address, tel, password, avatar', 'length', 'max' => 256),
-            array('email, username', 'length', 'max' => 128),                        
+            array('email, username', 'length', 'max' => 128),
             array('email, username', 'unique'),
-            array('dateOfBirth', 'date', 'format'=>Yii::app()->params['dateFormat']),
+            array('dateOfBirth', 'date', 'format' => Yii::app()->params['dateFormat']),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, fullname, dateOfBirth, address, idNationality, tel, email, username, password, idProfession, avatar, idRole, state, enabledFullName, enabledDateOfBirth, enabledAddress, enabledNationality, enabledTel, enabledEmail, enabledProfession, enabledFavorite', 'safe', 'on' => 'search'),
@@ -104,13 +106,6 @@ class Account extends Base {
             'avatar' => 'Avatar',
             'idRole' => 'Id Role',
             'state' => 'State',
-            'enabledFullName' => 'Enabled Full Name',
-            'enabledDateOfBirth' => 'Enabled Date Of Birth',
-            'enabledAddress' => 'Enabled Address',
-            'enabledNationality' => 'Enabled Nationality',
-            'enabledTel' => 'Enabled Tel',
-            'enabledEmail' => 'Enabled Email',
-            'enabledProfession' => 'Enabled Profession',
             'createdDate' => 'Created Date',
             'createdBy' => 'Created By',
             'updatedDate' => 'Updated Date',
@@ -129,7 +124,7 @@ class Account extends Base {
         // should not be searched.
 
         $criteria = new CDbCriteria;
-        
+
         $criteria->compare('fullname', $this->fullname, true);
         $criteria->compare('dateOfBirth', $this->dateOfBirth);
         $criteria->compare('address', $this->address, true);
@@ -141,7 +136,7 @@ class Account extends Base {
         $criteria->compare('idProfession', $this->idProfession);
         $criteria->compare('avatar', $this->avatar, true);
         $criteria->compare('idRole', $this->idRole);
-        $criteria->compare('state', $this->state);        
+        $criteria->compare('state', $this->state);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -154,14 +149,11 @@ class Account extends Base {
 
     public function hashPassword($password) {
         return md5($password);
-    }      
-    
-    protected function afterValidate() {
-        parent::afterValidate();
-        $this->password = $this->encrypt($this->password);
     }
 
-    public function encrypt($value) {
-        return md5($value);
+    protected function afterValidate() {
+        parent::afterValidate();
+        $this->password = $this->hashPassword($this->password);
     }
+
 }
