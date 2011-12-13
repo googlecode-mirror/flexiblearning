@@ -19,14 +19,11 @@
  * @property Lesson[] $lessons
  */
 class Lecture extends Base {
-    public function init() {
-        if (empty($this->state)) {
-            $this->state = 1;            
-        }
-//        if (empty($this->price)) {
-            $this->price = 0;
+//    public function init() {
+//        if (empty($this->state)) {
+//            $this->state = 1;            
 //        }
-    }
+//    }
 
     /**
      * Returns the static model of the specified AR class.
@@ -102,7 +99,6 @@ class Lecture extends Base {
         $criteria = new CDbCriteria;
 
         $criteria->compare('name', $this->name, true);
-        $criteria->compare('description', $this->description, true);
         $criteria->compare('price', $this->price);
         $criteria->compare('idCategory', $this->idCategory);
         $criteria->compare('state', $this->state);
@@ -110,5 +106,9 @@ class Lecture extends Base {
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                 ));
+    }
+
+    public function getThumbnail() {
+        return Yii::app()->request->baseUrl . '/' . $this->thumbnail;
     }
 }

@@ -19,6 +19,12 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(		
 		'name',
+                array (
+                    'name' => 'thumbnail',
+                    'value' => CHtml::image(Yii::app()->request->baseUrl . '/' . $model->thumbnail),
+                    'visible' => $model->thumbnail == null ? false : true,
+                    'type' => 'raw',
+                ),
 		array(
                     'name' => 'description',
                     'value' => $model->description,
@@ -31,7 +37,7 @@ $this->menu=array(
                 ),
 		array(
                     'name' => 'createdDate',
-                    'value' => date(Yii::app()->params['dateFormat'], $model->createdDate),
+                    'value' => Yii::app()->dateFormatter->format(Yii::app()->params['dateFormat'],$model->createdDate),
                 ),
 		array(
                     'name' => 'createdBy',
@@ -39,7 +45,7 @@ $this->menu=array(
                 ),
 		array(
                     'name' => 'updatedDate',
-                    'value' => date(Yii::app()->params['dateFormat'], $model->updatedDate),
+                    'value' => Yii::app()->dateFormatter->format(Yii::app()->params['dateFormat'],$model->updatedDate),
                 ),
 		array(
                     'name' => 'updatedBy',

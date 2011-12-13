@@ -37,10 +37,4 @@ class LectureForm extends CFormModel {
             'idCategory' => 'Category',
         );
     }
-    
-//    public function init() {
-//        parent::init();
-//        
-//        $this->setAttributes(array('enctype' => 'multipart/form-data'));
-//    }
 }
