@@ -1,0 +1,19 @@
+
+# $Id: .htaccess 7539 2010-10-04 04:41:38Z john $
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  RewriteEngine On
+  RewriteBase /flexiblearning2
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L]
+
+</IfModule>
+
+# sends requests /index.php/path/to/module/ to "index.php"
+# AcceptPathInfo On
+
+# @todo This may not be effective in some cases
+FileETag Size

@@ -67,7 +67,10 @@ class LectureController extends Controller {
             $file = CUploadedFile::getInstance($model, 'fileThumbnail');
             if ($model->validate()) {
                 $fileName = Yii::app()->params['lectureThumbnails'] . '/' . $file->getName();
-                $file->saveAs($fileName);
+                if (file_exists($fileName)) {
+                    $fileName = Yii::app()->params['lectureThumbnails'] . '/' . time() . '_' . $file->getName();
+                }
+                $file->saveAs($fileName, true);
                 $lecture = new Lecture();
                 $lecture->attributes = $_POST['LectureForm'];
                 $lecture->thumbnail = $fileName;

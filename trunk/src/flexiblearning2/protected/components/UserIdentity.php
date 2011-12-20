@@ -28,8 +28,15 @@ class UserIdentity extends CUserIdentity {
             $this->_id = $user->id;
             $this->username = $user->username;
             $this->errorCode = self::ERROR_NONE;
+            if ($user->last_login == null) {
+                $lastLogin = time();
+            } else {
+                $lastLogin = strtotime($user->last_login);
+            }
+            $this->setState('last_login', $lastLogin); 
+            $this->errorCode=self::ERROR_NONE;
         }
-        return $this->errorCode == self::ERROR_NONE;
+        return !$this->errorCode;
     }
 
     public function getId() {
