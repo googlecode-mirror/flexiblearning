@@ -28,6 +28,15 @@ class Base extends CActiveRecord {
         return array('datetimeI18NBehavior' => array('class' => 'ext.DateTimeI18NBehavior')); // 'ext' is in Yii 1.0.8 version. For early versions, use 'application.extensions' instead.
     }
 
+    public function __get($name) {
+        $lang = Yii::app()->getLanguage();
+        $att = $name . '_' . $lang;
+        if ($this->hasAttribute($att)) {
+            return parent::__get($att);    
+        }
+        
+        return parent::__get($name);
+    }
 //    protected function beforeSave(){
 //        if (!parent::beforeSave()) {
 //            return false;

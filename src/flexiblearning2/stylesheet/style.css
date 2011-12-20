@@ -124,6 +124,10 @@ ul#nav li a:hover{
     clear:both;
 }
 
+#menu a {
+    color: #F3F3F3;
+}
+
 a{ 
     color:#484545;
     text-decoration:none;
@@ -512,4 +516,12 @@ a.search-button {
 
 ul.operations li {
     list-style-type: none;
+}
+
+.link_manage {
+    float: right;
+}
+
+#menu .link_manage a {
+    margin: 0px 10px;
 }

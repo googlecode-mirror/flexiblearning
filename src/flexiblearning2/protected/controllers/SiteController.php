@@ -90,4 +90,30 @@ class SiteController extends Controller {
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
     }
+    
+    public function actionSetupRole() {
+        $authMgr = Yii::app()->authManager;
+        if ($authMgr != null) {
+            $authMgr->clearAll();
+            
+            $authMgr->createOperation('adminUser', 'Manage users');
+            $authMgr->createOperation('adminLecture', 'Manage lectures');
+            
+            $bizRule = 'return Yii::app()->user->id==$params["lecture"]->authID;';
+            $authMgr->createOperation('adminOwnLecture', "Manager the own users' lectures");
+            
+            $roleGuest = $authMgr->createRole('guest');
+            $roleAuthenticated = $authMgr->createRole('authenticate');
+            $roleStudent = $authMgr->createRole('student');
+            $roleTeacher = $authMgr->createRole('teacher');
+            $roleAdmin = $authMgr->createRole('admin');
+            
+            $roleTeacher->addChild('adminOwnLecture');
+            $roleAdmin->addChild('adminUser');
+            $roleAdmin->addChild('adminLecture');
+            
+            $authMgr->assign('admin', 1);
+            $authMgr->assign('teacher', 2);
+        }
+    }
 }

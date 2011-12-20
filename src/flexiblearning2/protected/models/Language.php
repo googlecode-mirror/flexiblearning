@@ -10,7 +10,7 @@
  * The followings are the available model relations:
  * @property Category[] $categories
  */
-class Language extends CActiveRecord
+class Language extends Base
 {
 	/**
 	 * Returns the static model of the specified AR class.

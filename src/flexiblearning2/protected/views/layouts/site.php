@@ -68,11 +68,24 @@
 
                 <div id="menu">
                     <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/menu-icon-anh.png" />
-                    <a href="" style="color:#FFFFFF">  English</a> &nbsp; &nbsp; &nbsp; &nbsp; 
+                    <a href="<?php ?>" style="color:#FFFFFF">  
+                        English
+                    </a> 
+                    &nbsp; &nbsp; &nbsp; &nbsp; 
                     <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/menu-icon-han.png" />
                     <a href="" style="color:#FFFFFF">  Korean</a> &nbsp; &nbsp; &nbsp; &nbsp; 
                     <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/menu-icon-phap.png" />
                     <a href="" style="color:#FFFFFF">  French</a> 
+                    
+                    <div class="link_manage">
+                        <?php if (Yii::app()->user->checkAccess('adminUser')) : ?>
+                            <a href="<?php echo $this->createUrl('account/admin')?>">Manage users</a>
+                        <?php endif; ?>
+                        <?php if (Yii::app()->user->checkAccess('adminOwnLecture') || 
+                                (Yii::app()->user->checkAccess('adminLecture'))) : ?>
+                            <a href="<?php echo $this->createUrl('lecture/admin')?>">Manage lectures</a>
+                        <?php endif; ?>
+                    </div>
                 </div><!--end-menu-->
 
                 <div id="content"><!-- InstanceBeginEditable name="content" -->

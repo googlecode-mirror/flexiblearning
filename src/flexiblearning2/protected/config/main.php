@@ -7,8 +7,10 @@
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Flexiblearning',
+    'defaultController'=>'intro',
+    'language' => 'en',
     // preloading 'log' component
-    'preload' => array('log'),
+    'preload' => array('log', 'ELangHandler'),
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
@@ -27,24 +29,30 @@ return array(
     'components' => array(
         'user' => array(
             // enable cookie-based authentication
+//            'class' => 'RWebUser',
             'allowAutoLogin' => true,
+        ),
+        'authManager' => array(
+//            'class' => 'RDbAuthManager',
+            'class' => 'CDbAuthManager',
+            'connectionID' => 'db',
         ),
         // uncomment the following to enable URLs in path-format
 
         'urlManager' => array(
+            'class' => 'application.extensions.langhandler.ELangCUrlManager',
             'urlFormat' => 'path',
+            'showScriptName'=>false,
             'rules' => array(
+                '<lang:(en|vi|ko)>/<_c>/<_a>/' => '<_c>/<_a>',  
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
         ),
-//		'db'=>array(
-//			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-//		),
         // uncomment the following to use a MySQL database		
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=flexiblearning2',
+            'connectionString' => 'mysql:host=localhost;dbname=db_flexiblearning',
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => 'lighthouse',
@@ -61,13 +69,11 @@ return array(
                     'class' => 'CFileLogRoute',
                     'levels' => 'error, warning',
                 ),
-            // uncomment the following to show log messages on web pages
-            /*
-              array(
-              'class'=>'CWebLogRoute',
-              ),
-             */
             ),
+        ),
+        'ELangHandler' => array(
+            'class' => 'application.extensions.langhandler.ELangHandler',
+            'languages' => array('en', 'ko', 'vi'),
         ),
     ),
     // application-level parameters that can be accessed
@@ -77,7 +83,7 @@ return array(
         'adminEmail' => 'webmaster@example.com',
         'dateFormat' => 'dd/MM/yyyy',
         'dateFormatForTimestamp' => 'd/m/yy',
-        'defaultRoleId' => 3,        
+        'defaultRoleId' => 3,
         'lectureThumbnails' => 'resources/lectures',
         'state' => array(0 => 'Inactive', 1 => 'Active'),
     ),
