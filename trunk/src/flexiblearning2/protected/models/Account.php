@@ -15,7 +15,7 @@
  * @property string $password
  * @property integer $id_profession
  * @property string $avatar
- * @property integer $idRole
+ 
  * @property integer $state
  * @property integer $enabledFullName
  * @property integer $enabledDateOfBirth
@@ -63,15 +63,19 @@ class Account extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
+
             array('fullname, dateOfBirth, address, id_nationality, email, username, password, id_profession', 'required'),
             array('id_nationality, id_profession, last_login', 'numerical', 'integerOnly' => true),
+
             array('fullname, address, tel, password, avatar', 'length', 'max' => 256),
             array('email, username', 'length', 'max' => 128),
             array('email, username', 'unique'),
             array('dateOfBirth', 'date', 'format' => Yii::app()->params['dateFormat']),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, fullname, dateOfBirth, address, id_nationality, tel, email, username, password, id_profession, avatar, idRole, state, enabledFullName, enabledDateOfBirth, enabledAddress, enabledNationality, enabledTel, enabledEmail, enabledProfession, enabledFavorite', 'safe', 'on' => 'search'),
+
+            array('id, fullname, dateOfBirth, address, id_nationality, tel, email, username, password, id_profession, avatar, flag_del, enabledFullName, enabledDateOfBirth, enabledAddress, enabledNationality, enabledTel, enabledEmail, enabledProfession, enabledFavorite', 'safe', 'on' => 'search'),
+
         );
     }
 
@@ -82,7 +86,7 @@ class Account extends Base {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'role' => array(self::BELONGS_TO, 'Role', 'idRole'),
+            
             'nationality' => array(self::BELONGS_TO, 'Nationality', 'id_nationality'),
             'profession' => array(self::BELONGS_TO, 'Profession', 'id_profession'),
         );
@@ -104,8 +108,8 @@ class Account extends Base {
             'password' => 'Password',
             'id_profession' => 'Id Profession',
             'avatar' => 'Avatar',
-            'idRole' => 'Id Role',
-            'state' => 'State',
+            
+            'flag_del' => 'Flag_del',
             'createdDate' => 'Created Date',
             'createdBy' => 'Created By',
             'updatedDate' => 'Updated Date',
@@ -135,8 +139,8 @@ class Account extends Base {
         $criteria->compare('password', $this->password, true);
         $criteria->compare('id_profession', $this->id_profession);
         $criteria->compare('avatar', $this->avatar, true);
-        $criteria->compare('idRole', $this->idRole);
-        $criteria->compare('state', $this->state);
+       
+        $criteria->compare('flag_del', $this->flag_del);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,

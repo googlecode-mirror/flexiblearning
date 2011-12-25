@@ -50,12 +50,12 @@ class Lesson extends Base {
         return array(
             array('price, id_category, title_en', 'required'),
             array('flag_del, flag_approve, id_category', 'numerical', 'integerOnly' => true),
-            array('title_vn, title_en, title_ko', 'length', 'max' => 50),
+            array('title_vi, title_en, title_ko', 'length', 'max' => 50),
             array('price', 'length', 'max' => 10),
-            array('description_vn, description_en, description_ko, fileThumbnail', 'safe'),
+            array('description_vi, description_en, description_ko, fileThumbnail', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('title_vn, title_en, title_ko, price, flag_del, flag_approve, id_category', 'safe', 'on' => 'search'),
+            array('title_vi, title_en, title_ko, price, flag_del, flag_approve, id_category', 'safe', 'on' => 'search'),
         );
     }
 
@@ -77,10 +77,10 @@ class Lesson extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'title_vn' => 'Title Vn',
+            'title_vi' => 'Title Vi',
             'title_en' => 'Title En',
             'title_ko' => 'Title Ko',
-            'description_vn' => 'Description Vn',
+            'description_vi' => 'Description Vi',
             'description_en' => 'Description En',
             'description_ko' => 'Description Ko',
             'price' => 'Price',
@@ -105,7 +105,7 @@ class Lesson extends Base {
 
         $criteria = new CDbCriteria;
 
-        $criteria->compare('title_vn', $this->title_vn, true);
+        $criteria->compare('title_vi', $this->title_vi, true);
         $criteria->compare('title_en', $this->title_en, true);
         $criteria->compare('title_ko', $this->title_ko, true);
         $criteria->compare('price', $this->price, true);

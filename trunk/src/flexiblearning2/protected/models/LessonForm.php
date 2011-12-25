@@ -13,10 +13,10 @@
 class LessonForm extends CFormModel {
     //put your code here
     public $id;
-    public $title_vn;
+    public $title_vi;
     public $title_en;
     public $title_ko;
-    public $description_vn;
+    public $description_vi;
     public $description_en;
     public $description_ko;
     public $price;
@@ -27,9 +27,9 @@ class LessonForm extends CFormModel {
          return array(
             array('fileThumbnail', 'file'),
             array('price, title_en', 'required'),
-            array('title_vn, title_en, title_ko', 'length', 'max' => 50),
+            array('title_vi, title_en, title_ko', 'length', 'max' => 50),
             array('price', 'length', 'max' => 10),
-            array('description_vn, description_en, description_ko, title_vn, title_en, title_ko', 'safe'),
+            array('description_vi, description_en, description_ko, title_vi, title_en, title_ko', 'safe'),
         );
     }
 }

@@ -11,8 +11,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'title_vn'); ?>
-		<?php echo $form->textField($model,'title_vn',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->label($model,'title_vi'); ?>
+		<?php echo $form->textField($model,'title_vi',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
 
 	<div class="row">
@@ -26,8 +26,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'description_vn'); ?>
-		<?php echo $form->textArea($model,'description_vn',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->label($model,'description_vi'); ?>
+		<?php echo $form->textArea($model,'description_vi',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 25, 2011 at 04:55 PM
+-- Generation Time: Dec 25, 2011 at 05:03 PM
 -- Server version: 5.1.50
 -- PHP Version: 5.3.5
 
@@ -623,6 +623,7 @@ CREATE TABLE IF NOT EXISTS `video` (
   `ranking` int(11) NOT NULL,
   `flag_approve` int(11) NOT NULL,
   `flag_del` int(11) NOT NULL,
+  `path` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `created_by` int(11) NOT NULL,
   `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,

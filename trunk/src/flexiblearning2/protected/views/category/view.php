@@ -23,10 +23,10 @@ $this->menu = array(
     $this->widget('zii.widgets.CDetailView', array(
         'data' => $model,
         'attributes' => array(
-            'name_vn',
+            'name_vi',
             'name_en',
             'name_ko',
-            'description_vn',
+            'description_vi',
             'description_en',
             'description_ko',
             'id_language',

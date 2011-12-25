@@ -20,7 +20,7 @@ return array(
         // uncomment the following to enable the Gii tool		
         'gii' => array(
             'class' => 'system.gii.GiiModule',
-            'password' => 'lighthouse',
+            'password' => '',
             // If removed, Gii defaults to localhost only. Edit carefully to taste.
             'ipFilters' => array('127.0.0.1', '::1'),
         ),
@@ -42,7 +42,9 @@ return array(
         'urlManager' => array(
             'class' => 'application.extensions.langhandler.ELangCUrlManager',
             'urlFormat' => 'path',
-            'showScriptName' => false,
+
+            'showScriptName'=>TRUE,
+
             'rules' => array(
                 '<lang:(en|vi|ko)>/<_c>/<_a>/' => '<_c>/<_a>',  
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
@@ -52,10 +54,12 @@ return array(
         ),
         // uncomment the following to use a MySQL database		
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=db_flexiblearning',
+
+            'connectionString' => 'mysql:host=localhost;dbname=flexiblearning',
+
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => 'lighthouse',
+            'password' => '',
             'charset' => 'utf8',
         ),
         'errorHandler' => array(
