@@ -50,7 +50,9 @@ class SiteController extends Controller {
      * when an action is not explicitly requested by users.
      */
     public function actionIndex() {
-        $idLanguage = $_GET['idLanguage'];
+        if (isset ($_GET['idLanguage'])) {
+            $idLanguage = $_GET['idLanguage'];
+        } 
         if (!isset($idLanguage)) {
             $defaultLanguage = Language::model()->findByAttributes(array('code' => Yii::app()->params['defaultLanguageCategory']));
             $idLanguage = $defaultLanguage->getPrimaryKey();
