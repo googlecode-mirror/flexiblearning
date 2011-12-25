@@ -88,7 +88,8 @@
                     </div>
                 </div><!--end-menu-->
 
-                <div id="content"><!-- InstanceBeginEditable name="content" -->
+                <div id="content">
+                    <!-- InstanceBeginEditable name="content" -->
                     <div class="home-wrap">
                         <?php echo $content; ?>
                     </div>

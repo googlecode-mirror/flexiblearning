@@ -15,7 +15,7 @@
  * The followings are the available model relations:
  * @property Account[] $accounts
  */
-class Profession extends CActiveRecord
+class Profession extends Base
 {
 	/**
 	 * Returns the static model of the specified AR class.

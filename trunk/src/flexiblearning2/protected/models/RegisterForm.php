@@ -14,7 +14,7 @@ class RegisterForm extends CFormModel {
 
     //put your code here
     public $fullname;
-    public $idNationality;
+    public $id_nationality;
     public $dateOfBirth;
     public $address;
     public $tel;
@@ -23,12 +23,12 @@ class RegisterForm extends CFormModel {
     public $username;
     public $password;
     public $password_repeat;
-    public $idProfession;
+    public $id_profession;
     
     function rules() {
         return array(
-            array('fullname, dateOfBirth, address, idNationality, email, username, password, idProfession', 'required'),
-            array('idNationality, idProfession', 'numerical', 'integerOnly' => true),
+            array('fullname, dateOfBirth, address, id_nationality, email, username, password, id_profession', 'required'),
+            array('id_nationality, id_profession', 'numerical', 'integerOnly' => true),
             array('fullname, address, tel, password', 'length', 'max' => 256),
             array('email, username', 'length', 'max' => 128),                        
             array('password', 'compare'),            
@@ -47,14 +47,13 @@ class RegisterForm extends CFormModel {
             'fullname' => 'Fullname',
             'dateOfBirth' => 'Date Of Birth',
             'address' => 'Address',
-            'idNationality' => 'Nationality',
+            'id_nationality' => 'Nationality',
             'tel' => 'Tel',
             'email' => 'Email',
             'username' => 'Username',
             'password' => 'Password',
-            'idProfession' => 'Id Profession',
             'favorite' => 'Favorite',            
-            'idProfession' => 'Profession',
+            'id_profession' => 'Profession',
         );
     }
 }
