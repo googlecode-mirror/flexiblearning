@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.3
+-- version 3.4.5
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 15, 2011 at 07:23 AM
--- Server version: 5.1.50
--- PHP Version: 5.3.5
+-- Host: localhost
+-- Generation Time: Dec 25, 2011 at 03:47 AM
+-- Server version: 5.5.16
+-- PHP Version: 5.3.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,7 +17,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `flexiblearning`
+-- Database: `db_flexiblearning`
 --
 
 -- --------------------------------------------------------
@@ -26,39 +27,38 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `account` (
-  `id_account` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `full_name` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `fullname` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `birthday` date DEFAULT NULL,
-  `address` text COLLATE utf8_unicode_ci NOT NULL,
-  `nationality` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `id_nationality` int(11) DEFAULT NULL,
   `tel` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `profession` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `favorite` text COLLATE utf8_unicode_ci,
-  `avatar_path` text COLLATE utf8_unicode_ci,
-  `id_role` int(11) NOT NULL,
-  `asset` int(11) NOT NULL DEFAULT '0' COMMENT 'so tien co trong tai khoan',
+  `favorite` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `avatar_path` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `asset` decimal(11,2) NOT NULL DEFAULT '0.00' COMMENT 'so tien co trong tai khoan',
   `flag_active` int(11) NOT NULL DEFAULT '1' COMMENT '1:active 0:not yet',
   `flag_del` int(11) NOT NULL DEFAULT '0' COMMENT '1:del',
   `active_key` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `enabled_fullname` int(11) NOT NULL DEFAULT '1' COMMENT '1: enable 0: disable',
-  `enabled_birthday` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1: enable 0: disable',
-  `enabled_address` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1: enable 0: disable',
-  `enabled_nationality` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1: enable 0: disable',
-  `enabled_tel` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1: enable 0: disable',
-  `enabled_email` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1: enable 0: disable',
-  `enabled_profession` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1: enable 0: disable',
-  `enabled_favorite` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1: enable 0: disable',
-  `last_login` date NOT NULL,
-  `ip_add` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `ip_add` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
+  `created_date` datetime NOT NULL,
   `update_by` int(11) NOT NULL,
-  `updated_by` date NOT NULL,
-  PRIMARY KEY (`id_account`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_nationality` (`id_nationality`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`id`, `username`, `password`, `fullname`, `birthday`, `address`, `id_nationality`, `tel`, `email`, `profession`, `favorite`, `avatar_path`, `asset`, `flag_active`, `flag_del`, `active_key`, `last_login`, `ip_add`, `created_by`, `created_date`, `update_by`, `updated_date`) VALUES
+(1, 'sea2709', 'fad0ce221c826eede253cb0956ca0700', 'Trần Hải Đăng', '1988-09-27', '429/12A Lê Văn Sỹ P12 Q3 TPHCM', NULL, NULL, 'hdang.sea@gmail.com', NULL, NULL, NULL, 0.00, 1, 0, NULL, '2011-12-25 09:34:58', '127.0.0.1', 1, '2011-12-17 00:00:00', 1, '2011-12-17 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -67,15 +67,91 @@ CREATE TABLE IF NOT EXISTS `account` (
 --
 
 CREATE TABLE IF NOT EXISTS `answer` (
-  `id_answer` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
   `flag_del` int(11) NOT NULL DEFAULT '0' COMMENT '1:del',
   `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
+  `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
-  PRIMARY KEY (`id_answer`)
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `authassignment`
+--
+
+CREATE TABLE IF NOT EXISTS `authassignment` (
+  `itemname` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `userid` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `bizrule` text COLLATE utf8_unicode_ci,
+  `data` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`itemname`,`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `authassignment`
+--
+
+INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
+('admin', '1', NULL, 'N;'),
+('teacher', '2', NULL, 'N;');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `authitem`
+--
+
+CREATE TABLE IF NOT EXISTS `authitem` (
+  `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `type` int(11) NOT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `bizrule` text COLLATE utf8_unicode_ci,
+  `data` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `authitem`
+--
+
+INSERT INTO `authitem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
+('admin', 2, '', NULL, 'N;'),
+('adminLecture', 0, 'Manage lectures', NULL, 'N;'),
+('adminOwnLecture', 0, 'Manager the own users'' lectures', NULL, 'N;'),
+('adminUser', 0, 'Manage users', NULL, 'N;'),
+('authenticate', 2, '', NULL, 'N;'),
+('createLecture', 0, 'Create lectures', NULL, 'N;'),
+('guest', 2, '', NULL, 'N;'),
+('student', 2, '', NULL, 'N;'),
+('teacher', 2, '', NULL, 'N;');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `authitemchild`
+--
+
+CREATE TABLE IF NOT EXISTS `authitemchild` (
+  `parent` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `child` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`parent`,`child`),
+  KEY `child` (`child`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `authitemchild`
+--
+
+INSERT INTO `authitemchild` (`parent`, `child`) VALUES
+('admin', 'adminLecture'),
+('teacher', 'adminOwnLecture'),
+('admin', 'adminUser'),
+('admin', 'createLecture'),
+('teacher', 'createLecture');
 
 -- --------------------------------------------------------
 
@@ -84,16 +160,16 @@ CREATE TABLE IF NOT EXISTS `answer` (
 --
 
 CREATE TABLE IF NOT EXISTS `banner` (
-  `id_banner` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `banner_link` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `id_partner` int(11) NOT NULL,
   `ad_link` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `flag_del` int(11) NOT NULL DEFAULT '0',
   `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
+  `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
-  PRIMARY KEY (`id_banner`),
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `id_partner` (`id_partner`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -104,17 +180,17 @@ CREATE TABLE IF NOT EXISTS `banner` (
 --
 
 CREATE TABLE IF NOT EXISTS `bill` (
-  `id_bill` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `owner_by` int(11) NOT NULL,
   `id_transaction` int(11) NOT NULL,
   `description` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
   `flag_payment` int(11) NOT NULL,
   `flag_del` int(11) NOT NULL DEFAULT '0' COMMENT '1:del',
   `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
+  `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
-  PRIMARY KEY (`id_bill`),
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `owner_by` (`owner_by`),
   KEY `id_transaction` (`id_transaction`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
@@ -126,22 +202,29 @@ CREATE TABLE IF NOT EXISTS `bill` (
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `id_category` int(11) NOT NULL AUTO_INCREMENT,
-  `name_vn` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name_vn` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `name_en` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `name_korean` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `description_vn` text COLLATE utf8_unicode_ci NOT NULL,
+  `name_ko` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description_vn` text COLLATE utf8_unicode_ci,
   `description_en` text COLLATE utf8_unicode_ci,
-  `description_korean` text COLLATE utf8_unicode_ci,
+  `description_ko` text COLLATE utf8_unicode_ci,
   `id_language` int(11) NOT NULL,
   `flag_del` int(11) NOT NULL DEFAULT '0',
   `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
+  `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
-  PRIMARY KEY (`id_category`),
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `id_language` (`id_language`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `name_vn`, `name_en`, `name_ko`, `description_vn`, `description_en`, `description_ko`, `id_language`, `flag_del`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
+(5, 'Tiếng Anh sơ cấp', 'Basic English', '', 'Miêu tả tiếng Anh sơ cấp', 'Basic English description', '', 2, 0, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -150,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 CREATE TABLE IF NOT EXISTS `document` (
-  `id_document` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `subject_vn` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `subject_en` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `subject_korean` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
@@ -163,10 +246,10 @@ CREATE TABLE IF NOT EXISTS `document` (
   `flag_approve` int(11) NOT NULL DEFAULT '0' COMMENT '1: approved',
   `id_video` int(11) NOT NULL,
   `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
+  `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
-  PRIMARY KEY (`id_document`),
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `id_video` (`id_video`),
   KEY `id_video_2` (`id_video`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -178,16 +261,16 @@ CREATE TABLE IF NOT EXISTS `document` (
 --
 
 CREATE TABLE IF NOT EXISTS `entry` (
-  `id_entry` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
   `flag_del` int(11) NOT NULL DEFAULT '0',
   `owner_by` int(11) NOT NULL,
   `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
+  `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
-  PRIMARY KEY (`id_entry`),
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `owner_by` (`owner_by`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -198,16 +281,21 @@ CREATE TABLE IF NOT EXISTS `entry` (
 --
 
 CREATE TABLE IF NOT EXISTS `language` (
-  `id_language` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name_vn` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `name_korean` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
-  `updated_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
-  PRIMARY KEY (`id_language`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `name_ko` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `code` char(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `language`
+--
+
+INSERT INTO `language` (`id`, `name_vn`, `name_en`, `name_ko`, `code`) VALUES
+(2, 'Tiếng Anh', 'English', '', 'en'),
+(3, 'Tiếng Pháp', 'French', '', 'fr');
 
 -- --------------------------------------------------------
 
@@ -216,25 +304,33 @@ CREATE TABLE IF NOT EXISTS `language` (
 --
 
 CREATE TABLE IF NOT EXISTS `lesson` (
-  `id_lesson` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title_vn` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_en` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `title_korean` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title_ko` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description_vn` text COLLATE utf8_unicode_ci,
   `description_en` text COLLATE utf8_unicode_ci,
-  `description_korean` text COLLATE utf8_unicode_ci,
-  `price` float NOT NULL,
+  `description_ko` text COLLATE utf8_unicode_ci,
+  `price` decimal(10,0) NOT NULL,
   `flag_del` int(11) NOT NULL DEFAULT '0' COMMENT '1:del',
   `flag_approve` int(11) NOT NULL DEFAULT '0' COMMENT '1: approved',
   `id_category` int(11) NOT NULL,
   `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
+  `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
-  PRIMARY KEY (`id_lesson`),
+  `updated_date` datetime NOT NULL,
+  `thumbnail` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `IdCategory` (`id_category`),
   KEY `id_category` (`id_category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `lesson`
+--
+
+INSERT INTO `lesson` (`id`, `title_vn`, `title_en`, `title_ko`, `description_vn`, `description_en`, `description_ko`, `price`, `flag_del`, `flag_approve`, `id_category`, `created_by`, `created_date`, `updated_by`, `updated_date`, `thumbnail`) VALUES
+(1, 'asdf', 'sdf', 'sdf', 'sf sdfsdf', 'sdf sf sdfdsfwe wer', 'sdfswfwer wrrwer we rwe sdf', 23, 0, 0, 5, 1, '1970-01-01 01:00:00', 1, '1970-01-01 01:00:00', 'resources/lessons/1324778757_hqdefault (2).jpg');
 
 -- --------------------------------------------------------
 
@@ -256,7 +352,7 @@ CREATE TABLE IF NOT EXISTS `lesson_account` (
 --
 
 CREATE TABLE IF NOT EXISTS `mail` (
-  `id_mail` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `subject` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
   `owner_by` int(11) NOT NULL,
@@ -266,7 +362,7 @@ CREATE TABLE IF NOT EXISTS `mail` (
   `created_date` date DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_date` date DEFAULT NULL,
-  PRIMARY KEY (`id_mail`),
+  PRIMARY KEY (`id`),
   KEY `owner_by` (`owner_by`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -277,9 +373,11 @@ CREATE TABLE IF NOT EXISTS `mail` (
 --
 
 CREATE TABLE IF NOT EXISTS `nationality` (
-  `id_nationality` int(11) NOT NULL AUTO_INCREMENT,
-  `country_name` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id_nationality`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name_en` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `name_vi` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `name_korean` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -289,7 +387,7 @@ CREATE TABLE IF NOT EXISTS `nationality` (
 --
 
 CREATE TABLE IF NOT EXISTS `notification` (
-  `id_notification` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title_vn` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `title_en` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `title_korean` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
@@ -299,10 +397,10 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `id_video` int(11) NOT NULL,
   `flag_del` int(11) NOT NULL DEFAULT '0' COMMENT '1: del',
   `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
+  `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
-  PRIMARY KEY (`id_notification`),
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `id_video` (`id_video`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -313,7 +411,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
 --
 
 CREATE TABLE IF NOT EXISTS `partner` (
-  `id_partner` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `address` text COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
@@ -322,37 +420,11 @@ CREATE TABLE IF NOT EXISTS `partner` (
   `contact_link` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `flag_del` int(11) NOT NULL DEFAULT '0' COMMENT '1 del',
   `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
+  `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
-  PRIMARY KEY (`id_partner`)
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `permission`
---
-
-CREATE TABLE IF NOT EXISTS `permission` (
-  `id_permission` int(11) NOT NULL AUTO_INCREMENT,
-  `permission_kind` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id_permission`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `permission_role`
---
-
-CREATE TABLE IF NOT EXISTS `permission_role` (
-  `id_permission` int(11) NOT NULL,
-  `id_role` int(11) NOT NULL,
-  PRIMARY KEY (`id_permission`,`id_role`),
-  KEY `id_role` (`id_role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -361,11 +433,11 @@ CREATE TABLE IF NOT EXISTS `permission_role` (
 --
 
 CREATE TABLE IF NOT EXISTS `profession` (
-  `id_profession` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name_vn` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `name_korean` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id_profession`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -375,16 +447,16 @@ CREATE TABLE IF NOT EXISTS `profession` (
 --
 
 CREATE TABLE IF NOT EXISTS `question` (
-  `id_question` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `subject` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
   `flag_del` int(11) NOT NULL DEFAULT '0',
   `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
+  `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
+  `updated_date` datetime NOT NULL,
   `id_answer` int(11) NOT NULL,
-  PRIMARY KEY (`id_question`),
+  PRIMARY KEY (`id`),
   KEY `id_answer` (`id_answer`),
   KEY `id_answer_2` (`id_answer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
@@ -396,17 +468,13 @@ CREATE TABLE IF NOT EXISTS `question` (
 --
 
 CREATE TABLE IF NOT EXISTS `role` (
-  `id_role` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `description_vn` text COLLATE utf8_unicode_ci NOT NULL,
   `description_en` text COLLATE utf8_unicode_ci NOT NULL,
   `description_korean` text COLLATE utf8_unicode_ci NOT NULL,
   `flag_del` int(11) NOT NULL DEFAULT '0',
-  `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
-  `update_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
-  PRIMARY KEY (`id_role`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -416,7 +484,7 @@ CREATE TABLE IF NOT EXISTS `role` (
 --
 
 CREATE TABLE IF NOT EXISTS `survey` (
-  `id_survey` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title_vn` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_en` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_korean` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -426,10 +494,10 @@ CREATE TABLE IF NOT EXISTS `survey` (
   `flag_approve` int(11) NOT NULL,
   `survey_path` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
+  `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
-  PRIMARY KEY (`id_survey`),
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `id_video` (`id_video`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -440,14 +508,14 @@ CREATE TABLE IF NOT EXISTS `survey` (
 --
 
 CREATE TABLE IF NOT EXISTS `transaction` (
-  `id_transaction` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `transactiontype_vn` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `transactiontype_en` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `transaction_korean` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `description_vn` text COLLATE utf8_unicode_ci NOT NULL,
   `description_en` text COLLATE utf8_unicode_ci NOT NULL,
   `description_korean` text COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id_transaction`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -457,21 +525,21 @@ CREATE TABLE IF NOT EXISTS `transaction` (
 --
 
 CREATE TABLE IF NOT EXISTS `video` (
-  `id_video` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `description_vn` text COLLATE utf8_unicode_ci NOT NULL,
-  `description_en` text COLLATE utf8_unicode_ci NOT NULL,
-  `description_korean` text COLLATE utf8_unicode_ci NOT NULL,
+  `description_vn` text COLLATE utf8_unicode_ci,
+  `description_en` text COLLATE utf8_unicode_ci,
+  `description_ko` text COLLATE utf8_unicode_ci,
   `id_lesson` int(11) NOT NULL,
   `num_view` int(11) NOT NULL,
   `ranking` int(11) NOT NULL,
   `flag_approve` int(11) NOT NULL,
   `flag_del` int(11) NOT NULL,
   `created_by` int(11) NOT NULL,
-  `created_date` date NOT NULL,
+  `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
-  `updated_date` date NOT NULL,
-  PRIMARY KEY (`id_video`)
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -481,10 +549,10 @@ CREATE TABLE IF NOT EXISTS `video` (
 --
 
 CREATE TABLE IF NOT EXISTS `videoranking` (
-  `id_ranking` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_video` int(11) NOT NULL,
   `ranked_by` int(11) NOT NULL,
-  PRIMARY KEY (`id_ranking`),
+  PRIMARY KEY (`id`),
   KEY `id_video` (`id_video`),
   KEY `ranked_by` (`ranked_by`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
@@ -494,77 +562,93 @@ CREATE TABLE IF NOT EXISTS `videoranking` (
 --
 
 --
+-- Constraints for table `account`
+--
+ALTER TABLE `account`
+  ADD CONSTRAINT `account_fk1` FOREIGN KEY (`id_nationality`) REFERENCES `nationality` (`id`);
+
+--
+-- Constraints for table `authassignment`
+--
+ALTER TABLE `authassignment`
+  ADD CONSTRAINT `authassignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `authitemchild`
+--
+ALTER TABLE `authitemchild`
+  ADD CONSTRAINT `authitemchild_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `authitemchild_ibfk_2` FOREIGN KEY (`child`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `banner`
 --
 ALTER TABLE `banner`
-  ADD CONSTRAINT `banner_ibfk_1` FOREIGN KEY (`id_partner`) REFERENCES `partner` (`id_partner`);
+  ADD CONSTRAINT `banner_ibfk_1` FOREIGN KEY (`id_partner`) REFERENCES `partner` (`id`);
 
 --
 -- Constraints for table `bill`
 --
 ALTER TABLE `bill`
-  ADD CONSTRAINT `bill_ibfk_2` FOREIGN KEY (`id_transaction`) REFERENCES `transaction` (`id_transaction`),
-  ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`owner_by`) REFERENCES `account` (`id_account`);
+  ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`owner_by`) REFERENCES `account` (`id`),
+  ADD CONSTRAINT `bill_ibfk_2` FOREIGN KEY (`id_transaction`) REFERENCES `transaction` (`id`);
 
 --
 -- Constraints for table `category`
 --
 ALTER TABLE `category`
-  ADD CONSTRAINT `category_ibfk_1` FOREIGN KEY (`id_language`) REFERENCES `language` (`id_language`);
+  ADD CONSTRAINT `category_ibfk_1` FOREIGN KEY (`id_language`) REFERENCES `language` (`id`);
 
 --
 -- Constraints for table `document`
 --
 ALTER TABLE `document`
-  ADD CONSTRAINT `document_ibfk_1` FOREIGN KEY (`id_video`) REFERENCES `video` (`id_video`);
+  ADD CONSTRAINT `document_ibfk_1` FOREIGN KEY (`id_video`) REFERENCES `video` (`id`);
 
 --
 -- Constraints for table `entry`
 --
 ALTER TABLE `entry`
-  ADD CONSTRAINT `entry_ibfk_1` FOREIGN KEY (`owner_by`) REFERENCES `account` (`id_account`);
+  ADD CONSTRAINT `entry_ibfk_1` FOREIGN KEY (`owner_by`) REFERENCES `account` (`id`);
 
 --
 -- Constraints for table `lesson`
 --
 ALTER TABLE `lesson`
-  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`);
+  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`);
 
 --
 -- Constraints for table `lesson_account`
 --
 ALTER TABLE `lesson_account`
-  ADD CONSTRAINT `lesson_account_ibfk_2` FOREIGN KEY (`id_lesson`) REFERENCES `lesson` (`id_lesson`),
-  ADD CONSTRAINT `lesson_account_ibfk_1` FOREIGN KEY (`id_account`) REFERENCES `account` (`id_account`);
+  ADD CONSTRAINT `lesson_account_ibfk_1` FOREIGN KEY (`id_account`) REFERENCES `account` (`id`),
+  ADD CONSTRAINT `lesson_account_ibfk_2` FOREIGN KEY (`id_lesson`) REFERENCES `lesson` (`id`);
 
 --
 -- Constraints for table `mail`
 --
 ALTER TABLE `mail`
-  ADD CONSTRAINT `mail_ibfk_1` FOREIGN KEY (`owner_by`) REFERENCES `account` (`id_account`);
+  ADD CONSTRAINT `mail_ibfk_1` FOREIGN KEY (`owner_by`) REFERENCES `account` (`id`);
 
 --
 -- Constraints for table `notification`
 --
 ALTER TABLE `notification`
-  ADD CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`id_video`) REFERENCES `video` (`id_video`);
-
---
--- Constraints for table `permission_role`
---
-ALTER TABLE `permission_role`
-  ADD CONSTRAINT `permission_role_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`),
-  ADD CONSTRAINT `permission_role_ibfk_1` FOREIGN KEY (`id_permission`) REFERENCES `permission` (`id_permission`);
+  ADD CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`id_video`) REFERENCES `video` (`id`);
 
 --
 -- Constraints for table `survey`
 --
 ALTER TABLE `survey`
-  ADD CONSTRAINT `survey_ibfk_1` FOREIGN KEY (`id_video`) REFERENCES `video` (`id_video`);
+  ADD CONSTRAINT `survey_ibfk_1` FOREIGN KEY (`id_video`) REFERENCES `video` (`id`);
 
 --
 -- Constraints for table `videoranking`
 --
 ALTER TABLE `videoranking`
-  ADD CONSTRAINT `videoranking_ibfk_2` FOREIGN KEY (`ranked_by`) REFERENCES `account` (`id_account`),
-  ADD CONSTRAINT `videoranking_ibfk_1` FOREIGN KEY (`id_video`) REFERENCES `video` (`id_video`);
+  ADD CONSTRAINT `videoranking_ibfk_1` FOREIGN KEY (`id_video`) REFERENCES `video` (`id`),
+  ADD CONSTRAINT `videoranking_ibfk_2` FOREIGN KEY (`ranked_by`) REFERENCES `account` (`id`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
