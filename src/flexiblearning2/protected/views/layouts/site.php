@@ -5,6 +5,8 @@
         <title><?php echo Yii::app()->name?></title>        
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/stylesheet/style.css" media="screen" />            
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/stylesheet/form.css" media="screen" />            
+        
+        <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
     </head>
 
     <body>
@@ -90,6 +92,13 @@
 
                 <div id="content">
                     <!-- InstanceBeginEditable name="content" -->
+                    <?php if (isset($this->breadcrumbs)): ?>
+                        <?php
+                        $this->widget('zii.widgets.CBreadcrumbs', array(
+                            'links' => $this->breadcrumbs,
+                        ));
+                        ?><!-- breadcrumbs -->
+                    <?php endif ?>
                     <div class="home-wrap">
                         <?php echo $content; ?>
                     </div>

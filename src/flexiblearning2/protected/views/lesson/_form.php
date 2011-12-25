@@ -85,7 +85,7 @@
         <?php echo CHtml::activeFileField($model, 'fileThumbnail') ?>
         <?php echo $form->error($model, 'fileThumbnail'); ?>
     </div>
-
+    
     <div class="row buttons">
         <?php echo CHtml::submitButton(isset($model->id) ? 'Save' : 'Create'); ?>
     </div>

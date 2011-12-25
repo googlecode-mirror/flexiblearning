@@ -67,7 +67,9 @@ class Lesson extends Base {
         // class name for the relations automatically generated below.
         return array(
             'category' => array(self::BELONGS_TO, 'Category', 'id_category'),
+            'videos' => array(self::HAS_MANY, 'Video', 'id_lesson'),
             'accounts' => array(self::MANY_MANY, 'Account', 'lesson_account(id_lesson, id_account)'),
+            'createdBy' => array(self::BELONGS_TO, 'Account', 'created_by'),
         );
     }
 
@@ -117,5 +119,11 @@ class Lesson extends Base {
                     'criteria' => $criteria,
                 ));
     }
-
+    
+    public function getHref() {
+        return Yii::app()->createUrl('lesson/view', array(
+            'id'=>$this->getPrimaryKey(),
+            'title'=>$this->title,
+        ));
+    }
 }

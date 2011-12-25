@@ -47,6 +47,10 @@ class LessonController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
+        $this->layout = 'site';
+        Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.tabify.js');
+        Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/stylesheet/tabify.css');
+        
         $this->render('view', array(
             'model' => $this->loadModel($id),
         ));
@@ -82,7 +86,7 @@ class LessonController extends Controller {
                 $modelLesson->id_category = $model->category->getPrimaryKey();
                 
                 if ($modelLesson->save()) {
-                    $this->redirect(array('view', 'id' => $model->id));
+                    $this->redirect(array('view', 'id' => $modelLesson->getPrimaryKey()));
                 } else {
                     $arrayModels['modelLesson'] = $modelLesson;
                 }
