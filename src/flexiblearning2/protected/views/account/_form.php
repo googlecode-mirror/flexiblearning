@@ -28,9 +28,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'idNationality'); ?>
-		<?php echo $form->textField($model,'idNationality'); ?>
-		<?php echo $form->error($model,'idNationality'); ?>
+		<?php echo $form->labelEx($model,'id_nationality'); ?>
+		<?php echo $form->textField($model,'id_nationality'); ?>
+		<?php echo $form->error($model,'id_nationality'); ?>
 	</div>
 
 	<div class="row">
@@ -58,9 +58,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'idProfession'); ?>
-		<?php echo $form->textField($model,'idProfession'); ?>
-		<?php echo $form->error($model,'idProfession'); ?>
+		<?php echo $form->labelEx($model,'id_profession'); ?>
+		<?php echo $form->textField($model,'id_profession'); ?>
+		<?php echo $form->error($model,'id_profession'); ?>
 	</div>
 
 	<div class="row">
@@ -76,94 +76,11 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'idRole'); ?>
-		<?php echo $form->textField($model,'idRole'); ?>
-		<?php echo $form->error($model,'idRole'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'state'); ?>
 		<?php echo $form->textField($model,'state'); ?>
 		<?php echo $form->error($model,'state'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'enabledFullName'); ?>
-		<?php echo $form->textField($model,'enabledFullName'); ?>
-		<?php echo $form->error($model,'enabledFullName'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'enabledDateOfBirth'); ?>
-		<?php echo $form->textField($model,'enabledDateOfBirth'); ?>
-		<?php echo $form->error($model,'enabledDateOfBirth'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'enabledAddress'); ?>
-		<?php echo $form->textField($model,'enabledAddress'); ?>
-		<?php echo $form->error($model,'enabledAddress'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'enabledNationality'); ?>
-		<?php echo $form->textField($model,'enabledNationality'); ?>
-		<?php echo $form->error($model,'enabledNationality'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'enabledTel'); ?>
-		<?php echo $form->textField($model,'enabledTel'); ?>
-		<?php echo $form->error($model,'enabledTel'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'enabledEmail'); ?>
-		<?php echo $form->textField($model,'enabledEmail'); ?>
-		<?php echo $form->error($model,'enabledEmail'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'enabledProfession'); ?>
-		<?php echo $form->textField($model,'enabledProfession'); ?>
-		<?php echo $form->error($model,'enabledProfession'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'enabledFavorite'); ?>
-		<?php echo $form->textField($model,'enabledFavorite'); ?>
-		<?php echo $form->error($model,'enabledFavorite'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'createdDate'); ?>
-		<?php echo $form->textField($model,'createdDate'); ?>
-		<?php echo $form->error($model,'createdDate'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'createdBy'); ?>
-		<?php echo $form->textField($model,'createdBy'); ?>
-		<?php echo $form->error($model,'createdBy'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'updatedDate'); ?>
-		<?php echo $form->textField($model,'updatedDate'); ?>
-		<?php echo $form->error($model,'updatedDate'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'updatedBy'); ?>
-		<?php echo $form->textField($model,'updatedBy'); ?>
-		<?php echo $form->error($model,'updatedBy'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'lastLoginDate'); ?>
-		<?php echo $form->textField($model,'lastLoginDate'); ?>
-		<?php echo $form->error($model,'lastLoginDate'); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'ipAddress'); ?>

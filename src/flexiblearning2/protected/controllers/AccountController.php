@@ -163,7 +163,6 @@ class AccountController extends Controller {
                 $account = new Account();
                 $account->attributes = $_POST['RegisterForm'];
 
-                $account->idRole = Role::getDefaultRole()->getPrimaryKey();
                 if ($account->save()) {
                     Yii::app()->user->setFlash('register', 'Thank you for your registration. Please log in to the system with the new one account.');
                     $this->refresh();

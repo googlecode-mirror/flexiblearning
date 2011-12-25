@@ -42,7 +42,7 @@ return array(
         'urlManager' => array(
             'class' => 'application.extensions.langhandler.ELangCUrlManager',
             'urlFormat' => 'path',
-            'showScriptName'=>false,
+            'showScriptName' => false,
             'rules' => array(
                 '<lang:(en|vi|ko)>/<_c>/<_a>/' => '<_c>/<_a>',  
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',

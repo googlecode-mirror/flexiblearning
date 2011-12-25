@@ -91,15 +91,15 @@ $form = $this->beginWidget('CActiveForm', array(
                                 </td>
                             </tr>
                             <tr>
-                                <td><?php echo $form->labelEx($model, 'idNationality'); ?></td>
+                                <td><?php echo $form->labelEx($model, 'id_nationality'); ?></td>
                                 <td>
-                                    <?php echo $form->dropDownList($model, 'idNationality', CHtml::listData(Nationality::model()->findAll(), 'id', 'name')); ?>     
+                                    <?php echo $form->dropDownList($model, 'id_nationality', CHtml::listData(Nationality::model()->findAll(), 'id', 'name')); ?>     
                                 </td>
                             </tr>
                             <tr>
-                                <td><?php echo $form->labelEx($model, 'idProfession'); ?></td>
+                                <td><?php echo $form->labelEx($model, 'id_profession'); ?></td>
                                 <td>
-                                    <?php echo $form->dropDownList($model, 'idProfession', CHtml::listData(Profession::model()->findAll(), 'id', 'name')); ?>     
+                                    <?php echo $form->dropDownList($model, 'id_profession', CHtml::listData(Profession::model()->findAll(), 'id', 'name')); ?>     
                                 </td>
                             </tr>
                             <tr>
