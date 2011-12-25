@@ -11,33 +11,73 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name'); ?>
+		<?php echo $form->label($model,'title_vn'); ?>
+		<?php echo $form->textField($model,'title_vn',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'idLecture'); ?>
-		<?php echo $form->textField($model,'idLecture'); ?>
+		<?php echo $form->label($model,'title_en'); ?>
+		<?php echo $form->textField($model,'title_en',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'createdDate'); ?>
-		<?php echo $form->textField($model,'createdDate'); ?>
+		<?php echo $form->label($model,'title_ko'); ?>
+		<?php echo $form->textField($model,'title_ko',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'updatedDate'); ?>
-		<?php echo $form->textField($model,'updatedDate'); ?>
+		<?php echo $form->label($model,'description_vn'); ?>
+		<?php echo $form->textArea($model,'description_vn',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'createdBy'); ?>
-		<?php echo $form->textField($model,'createdBy'); ?>
+		<?php echo $form->label($model,'description_en'); ?>
+		<?php echo $form->textArea($model,'description_en',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'updatedBy'); ?>
-		<?php echo $form->textField($model,'updatedBy'); ?>
+		<?php echo $form->label($model,'description_ko'); ?>
+		<?php echo $form->textArea($model,'description_ko',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'price'); ?>
+		<?php echo $form->textField($model,'price',array('size'=>10,'maxlength'=>10)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'flag_del'); ?>
+		<?php echo $form->textField($model,'flag_del'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'flag_approve'); ?>
+		<?php echo $form->textField($model,'flag_approve'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'id_category'); ?>
+		<?php echo $form->textField($model,'id_category'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'created_by'); ?>
+		<?php echo $form->textField($model,'created_by'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'created_date'); ?>
+		<?php echo $form->textField($model,'created_date'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'updated_by'); ?>
+		<?php echo $form->textField($model,'updated_by'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'updated_date'); ?>
+		<?php echo $form->textField($model,'updated_date'); ?>
 	</div>
 
 	<div class="row buttons">

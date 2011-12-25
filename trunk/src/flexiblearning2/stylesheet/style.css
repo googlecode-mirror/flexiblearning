@@ -192,8 +192,9 @@ a:hover{
 #colo{
     color:#0f6987}
 /*------------------TrangChu----------------------*/
-#home-wrap{
+.home-wrap{
     background-color:white;
+    margin: 5px;
 }
 #home-td{
     margin-left:15px;
@@ -524,4 +525,9 @@ ul.operations li {
 
 #menu .link_manage a {
     margin: 0px 10px;
+}
+
+/*INDEX PAGE*/
+#index-page img.lesson-thumbnail {
+    
 }

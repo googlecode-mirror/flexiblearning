@@ -6,131 +6,118 @@
  * The followings are the available columns in table 'video':
  * @property integer $id
  * @property string $name
- * @property string $description
- * @property integer $numView
+ * @property string $description_vn
+ * @property string $description_en
+ * @property string $description_ko
+ * @property integer $id_lesson
+ * @property integer $num_view
  * @property integer $ranking
- * @property integer $numRanking
- * @property integer $price
- * @property integer $idLesson
- * @property integer $state
- * @property integer $ownerBy
- * @property integer $approved
- * @property integer $videoPath
- * @property integer $thumbnailPath
- * @property integer $createdDate
- * @property integer $createdBy
- * @property integer $updatedDate
- * @property integer $updatedBy
+ * @property integer $flag_approve
+ * @property integer $flag_del
+ * @property integer $created_by
+ * @property string $created_date
+ * @property integer $updated_by
+ * @property string $updated_date
  *
  * The followings are the available model relations:
- * @property Lesson $idLesson0
+ * @property Document[] $documents
+ * @property Notification[] $notifications
+ * @property Survey[] $surveys
+ * @property Videoranking[] $videorankings
  */
-class Video extends CActiveRecord
-{
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return Video the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+class Video extends Base {
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'video';
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return Video the static model class
+     */
+    public static function model($className=__CLASS__) {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('name, numView, ranking, numRanking, idLesson, state, ownerBy, approved, createdDate, createdBy, updatedDate, updatedBy', 'required'),
-			array('numView, ranking, numRanking, price, idLesson, state, ownerBy, approved, videoPath, thumbnailPath, createdDate, createdBy, updatedDate, updatedBy', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>256),
-			array('description', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, name, description, numView, ranking, numRanking, price, idLesson, state, ownerBy, approved, videoPath, thumbnailPath, createdDate, createdBy, updatedDate, updatedBy', 'safe', 'on'=>'search'),
-		);
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName() {
+        return 'video';
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'idLesson0' => array(self::BELONGS_TO, 'Lesson', 'idLesson'),
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules() {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+            array('name, id_lesson, num_view, ranking, flag_approve, flag_del', 'required'),
+            array('id_lesson, num_view, ranking, flag_approve, flag_del', 'numerical', 'integerOnly' => true),
+            array('name', 'length', 'max' => 50),
+            array('description_vn, description_en, description_ko', 'safe'),
+            // The following rule is used by search().
+            // Please remove those attributes that should not be searched.
+            array('name, id_lesson, num_view, ranking, flag_approve, flag_del', 'safe', 'on' => 'search'),
+        );
+    }
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'description' => 'Description',
-			'numView' => 'Num View',
-			'ranking' => 'Ranking',
-			'numRanking' => 'Num Ranking',
-			'price' => 'Price',
-			'idLesson' => 'Id Lesson',
-			'state' => 'State',
-			'ownerBy' => 'Owner By',
-			'approved' => 'Approved',
-			'videoPath' => 'Video Path',
-			'thumbnailPath' => 'Thumbnail Path',
-			'createdDate' => 'Created Date',
-			'createdBy' => 'Created By',
-			'updatedDate' => 'Updated Date',
-			'updatedBy' => 'Updated By',
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations() {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'documents' => array(self::HAS_MANY, 'Document', 'id_video'),
+            'notifications' => array(self::HAS_MANY, 'Notification', 'id_video'),
+            'surveys' => array(self::HAS_MANY, 'Survey', 'id_video'),
+            'videorankings' => array(self::HAS_MANY, 'Videoranking', 'id_video'),
+        );
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels() {
+        return array(
+            'id' => 'ID',
+            'name' => 'Name',
+            'description_vn' => 'Description',
+            'description_en' => 'Description',
+            'description_ko' => 'Description',
+            'id_lesson' => 'Lesson',
+            'num_view' => 'Num View',
+            'ranking' => 'Ranking',
+            'flag_approve' => 'Approved',
+            'flag_del' => 'Deleted',
+            'created_by' => 'Created By',
+            'created_date' => 'Created Date',
+            'updated_by' => 'Updated By',
+            'updated_date' => 'Updated Date',
+        );
+    }
 
-		$criteria=new CDbCriteria;
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search() {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('numView',$this->numView);
-		$criteria->compare('ranking',$this->ranking);
-		$criteria->compare('numRanking',$this->numRanking);
-		$criteria->compare('price',$this->price);
-		$criteria->compare('idLesson',$this->idLesson);
-		$criteria->compare('state',$this->state);
-		$criteria->compare('ownerBy',$this->ownerBy);
-		$criteria->compare('approved',$this->approved);
-		$criteria->compare('videoPath',$this->videoPath);
-		$criteria->compare('thumbnailPath',$this->thumbnailPath);
-		$criteria->compare('createdDate',$this->createdDate);
-		$criteria->compare('createdBy',$this->createdBy);
-		$criteria->compare('updatedDate',$this->updatedDate);
-		$criteria->compare('updatedBy',$this->updatedBy);
+        $criteria = new CDbCriteria;
 
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
-	}
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('description_vn', $this->description_vn, true);
+        $criteria->compare('description_en', $this->description_en, true);
+        $criteria->compare('description_ko', $this->description_ko, true);
+        $criteria->compare('id_lesson', $this->id_lesson);
+        $criteria->compare('num_view', $this->num_view);
+        $criteria->compare('ranking', $this->ranking);
+        $criteria->compare('flag_approve', $this->flag_approve);
+        $criteria->compare('flag_del', $this->flag_del);
+
+        return new CActiveDataProvider($this, array(
+                    'criteria' => $criteria,
+                ));
+    }
+
 }

@@ -14,12 +14,14 @@ class Base extends CActiveRecord {
 
     //put your code here
     protected function beforeValidate() {
-        if ($this->getIsNewRecord()) {
-            $this->createdDate = new CDbExpression('NOW()');
-            $this->createdBy = Yii::app()->user->id;
+        if ($this->hasAttribute('created_date')) {
+            if ($this->getIsNewRecord()) {
+                $this->created_date = new CDbExpression('NOW()');
+                $this->created_by = Yii::app()->user->getId();
+            }
+            $this->updated_date = new CDbExpression('NOW()');
+            $this->updated_by = Yii::app()->user->getId();
         }
-        $this->updatedDate = new CDbExpression('NOW()');
-        $this->updatedBy = Yii::app()->user->id;
 
         return parent::beforeValidate();
     }
@@ -37,11 +39,6 @@ class Base extends CActiveRecord {
         
         return parent::__get($name);
     }
-//    protected function beforeSave(){
-//        if (!parent::beforeSave()) {
-//            return false;
-//        }
-//    }
 }
 
 ?>

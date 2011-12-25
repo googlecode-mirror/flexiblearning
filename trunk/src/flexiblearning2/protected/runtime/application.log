@@ -1,1336 +1,182 @@
-2011/12/12 15:26:11 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:29:28 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:32:48 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:33:46 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:42:53 [error] [exception.CException] exception 'CException' with message 'Property "CActiveForm.enctype" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:174
+2011/12/25 03:01:07 [error] [php] Undefined variable: modelLesson (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lesson\create.php:18)
 Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWidgetFactory.php(162): CComponent->__set('enctype', 'multipart/form-...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(139): CWidgetFactory->createWidget(Object(LectureController), 'CActiveForm', Array)
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(182): CBaseController->createWidget('CActiveForm', Array)
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lecture\_form.php(11): CBaseController->beginWidget('CActiveForm', Array)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(119): require('D:\PHP's Projec...')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', Array, true)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): CBaseController->renderFile('D:\PHP's Projec...', Array, true)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lecture\create.php(16): CController->renderPartial('_form', Array)
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(119): require('D:\PHP's Projec...')
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', Array, true)
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): CBaseController->renderFile('D:\PHP's Projec...', Array, true)
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(779): CController->renderPartial('create', Array, true)
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(81): CController->render('create', Array)
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): LectureController->actionCreate()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
-#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
-#20 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#21 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#22 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('create')
-#23 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/create')
-#24 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#25 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#26 {main} REQUEST_URI=/index.php/lecture/create
-2011/12/12 15:44:51 [warning] [application] Failed to set unsafe attribute "enctype" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\LectureForm.php (44)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (60)
+#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): LessonController->renderFile()
+#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(779): LessonController->renderPartial()
+#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LessonController.php(93): LessonController->render()
+#3 unknown(0): LessonController->actionCreate()
+#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs()
+#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
+#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): LessonController->runAction()
+#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CAccessControlFilter->filter()
+#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): LessonController->filterAccessControl()
+#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
+#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): LessonController->runActionWithFilters()
+#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): LessonController->run()
+#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
+REQUEST_URI=/flexiblearning2/en/lesson/create?idCategory=5
+in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lesson\create.php (18)
+in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LessonController.php (93)
 in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:45:26 [warning] [application] Failed to set unsafe attribute "enctype" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\LectureForm.php (44)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (60)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:47:52 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:47:52 [error] [php] Undefined variable: dir (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php:70)
+2011/12/25 03:01:09 [error] [php] Undefined variable: modelLesson (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lesson\create.php:18)
 Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): LectureController->runAction()
+#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): LessonController->renderFile()
+#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(779): LessonController->renderPartial()
+#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LessonController.php(93): LessonController->render()
+#3 unknown(0): LessonController->actionCreate()
+#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs()
+#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
+#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): LessonController->runAction()
+#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CAccessControlFilter->filter()
+#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): LessonController->filterAccessControl()
+#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
+#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): LessonController->runActionWithFilters()
+#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): LessonController->run()
+#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
+#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
+REQUEST_URI=/flexiblearning2/en/lesson/create?idCategory=5
+in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lesson\create.php (18)
+in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LessonController.php (93)
+in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
+2011/12/25 03:05:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LessonController.php:168
+Stack trace:
+#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LessonController.php(51): LessonController->loadModel('')
+#1 [internal function]: LessonController->actionView('')
+#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(LessonController), Array)
+#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(LessonController), Object(ReflectionMethod), Array)
+#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
+#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
+#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('view')
+#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lesson/view')
+#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
+#16 {main} REQUEST_URI=/flexiblearning2/en/lesson/view?id=
+2011/12/25 03:12:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LessonController.php:168
+Stack trace:
+#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LessonController.php(51): LessonController->loadModel('')
+#1 [internal function]: LessonController->actionView('')
+#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(LessonController), Array)
+#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(LessonController), Object(ReflectionMethod), Array)
+#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
+#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
+#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('view')
+#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lesson/view')
+#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
+#16 {main} REQUEST_URI=/flexiblearning2/en/lesson/view?id=
+2011/12/25 03:31:31 [error] [php] Undefined index: idLanguage (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php:53)
+Stack trace:
+#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): SiteController->runAction()
 #1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
 #2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CAccessControlFilter->filter()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): LectureController->filterAccessControl()
+#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): SiteController->filterAccessControl()
 #4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
 #5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): LectureController->runActionWithFilters()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): LectureController->run()
+#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): SiteController->runActionWithFilters()
+#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): SiteController->run()
 #8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
 #9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
 #10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/index.php/lecture/create
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (70)
+REQUEST_URI=/flexiblearning2/en/site/index
+in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php (53)
 in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:48:35 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:48:35 [error] [php] move_uploaded_file(resources/lectures/hqdefault (2).jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CUploadedFile.php:183)
+2011/12/25 03:31:36 [error] [php] Undefined index: idLanguage (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php:53)
 Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): LectureController->actionCreate()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): LectureController->runAction()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CAccessControlFilter->filter()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): LectureController->filterAccessControl()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): LectureController->runActionWithFilters()
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): LectureController->run()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/index.php/lecture/create
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (70)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:50:45 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:50:45 [warning] [application] Failed to set unsafe attribute "fileThumbnail" of "Lecture".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (72)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:50:45 [error] [exception.CException] exception 'CException' with message 'LectureForm and its behaviors do not have a method or closure named "save".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:269
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(74): CComponent->__call('save', Array)
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(74): LectureForm->save(false)
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): LectureController->actionCreate()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('create')
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/create')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#15 {main} REQUEST_URI=/index.php/lecture/create
-2011/12/12 15:51:15 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:51:15 [warning] [application] Failed to set unsafe attribute "fileThumbnail" of "Lecture".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (72)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:51:15 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price' cannot be null. The SQL statement executed was: INSERT INTO `lecture` (`state`, `name`, `description`, `price`, `idCategory`, `thumbnail`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5).
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (74)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:51:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price' cannot be null. The SQL statement executed was: INSERT INTO `lecture` (`state`, `name`, `description`, `price`, `idCategory`, `thumbnail`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5)' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\CDbCommand.php:336
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1017): CDbCommand->execute()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(781): CActiveRecord->insert(NULL)
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(74): CActiveRecord->save(false)
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): LectureController->actionCreate()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('create')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/create')
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#16 {main} REQUEST_URI=/index.php/lecture/create
-2011/12/12 15:54:50 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:54:50 [warning] [application] Failed to set unsafe attribute "fileThumbnail" of "Lecture".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (72)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:54:50 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price' cannot be null. The SQL statement executed was: INSERT INTO `lecture` (`state`, `price`, `name`, `description`, `idCategory`, `thumbnail`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5).
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (74)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:54:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price' cannot be null. The SQL statement executed was: INSERT INTO `lecture` (`state`, `price`, `name`, `description`, `idCategory`, `thumbnail`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5)' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\CDbCommand.php:336
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1017): CDbCommand->execute()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(781): CActiveRecord->insert(NULL)
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(74): CActiveRecord->save(false)
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): LectureController->actionCreate()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('create')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/create')
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#16 {main} REQUEST_URI=/index.php/lecture/create
-2011/12/12 15:57:27 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:57:27 [warning] [application] Failed to set unsafe attribute "fileThumbnail" of "Lecture".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (72)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:57:27 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price' cannot be null. The SQL statement executed was: INSERT INTO `lecture` (`state`, `price`, `name`, `description`, `idCategory`, `thumbnail`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5).
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (74)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 15:57:27 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price' cannot be null. The SQL statement executed was: INSERT INTO `lecture` (`state`, `price`, `name`, `description`, `idCategory`, `thumbnail`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5)' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\CDbCommand.php:336
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1017): CDbCommand->execute()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(781): CActiveRecord->insert(NULL)
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(74): CActiveRecord->save(false)
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): LectureController->actionCreate()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('create')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/create')
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#16 {main} REQUEST_URI=/index.php/lecture/create
-2011/12/12 16:00:16 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:00:16 [warning] [application] Failed to set unsafe attribute "fileThumbnail" of "Lecture".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (72)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:00:16 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price' cannot be null. The SQL statement executed was: INSERT INTO `lecture` (`state`, `price`, `name`, `description`, `idCategory`, `thumbnail`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5).
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (74)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:00:17 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price' cannot be null. The SQL statement executed was: INSERT INTO `lecture` (`state`, `price`, `name`, `description`, `idCategory`, `thumbnail`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5)' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\CDbCommand.php:336
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1017): CDbCommand->execute()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(781): CActiveRecord->insert(NULL)
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(74): CActiveRecord->save(false)
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): LectureController->actionCreate()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('create')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/create')
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#16 {main} REQUEST_URI=/index.php/lecture/create
-2011/12/12 16:11:54 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:11:55 [warning] [application] Failed to set unsafe attribute "fileThumbnail" of "Lecture".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (72)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:11:55 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price' cannot be null. The SQL statement executed was: INSERT INTO `lecture` (`state`, `price`, `name`, `description`, `idCategory`, `thumbnail`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5).
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (74)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:11:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'price' cannot be null. The SQL statement executed was: INSERT INTO `lecture` (`state`, `price`, `name`, `description`, `idCategory`, `thumbnail`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5)' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\CDbCommand.php:336
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1017): CDbCommand->execute()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(781): CActiveRecord->insert(NULL)
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(74): CActiveRecord->save(false)
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): LectureController->actionCreate()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('create')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/create')
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#16 {main} REQUEST_URI=/index.php/lecture/create
-2011/12/12 16:46:27 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:46:27 [warning] [application] Failed to set unsafe attribute "fileThumbnail" of "Lecture".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (72)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:46:27 [error] [php] date() expects parameter 2 to be long, string given (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lecture\view.php:34)
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): LectureController->renderInternal()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): LectureController->renderFile()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(779): LectureController->renderPartial()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(52): LectureController->render()
-#4 unknown(0): LectureController->actionView()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): LectureController->runAction()
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CAccessControlFilter->filter()
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): LectureController->filterAccessControl()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): LectureController->runActionWithFilters()
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): LectureController->run()
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/index.php/lecture/3
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lecture\view.php (34)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (52)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:47:24 [error] [php] Trying to get property of non-object (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lecture\view.php:38)
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): LectureController->renderFile()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(779): LectureController->renderPartial()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(52): LectureController->render()
-#3 unknown(0): LectureController->actionView()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): LectureController->runAction()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CAccessControlFilter->filter()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): LectureController->filterAccessControl()
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): LectureController->runActionWithFilters()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): LectureController->run()
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/index.php/lecture/3
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lecture\view.php (38)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (52)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:48:27 [error] [php] Trying to get property of non-object (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lecture\view.php:38)
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): LectureController->renderFile()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(779): LectureController->renderPartial()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(52): LectureController->render()
-#3 unknown(0): LectureController->actionView()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): LectureController->runAction()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CAccessControlFilter->filter()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): LectureController->filterAccessControl()
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): LectureController->runActionWithFilters()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): LectureController->run()
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/index.php/lecture/3
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lecture\view.php (38)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (52)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:48:29 [error] [php] Trying to get property of non-object (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lecture\view.php:38)
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): LectureController->renderFile()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(779): LectureController->renderPartial()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(52): LectureController->render()
-#3 unknown(0): LectureController->actionView()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): LectureController->runAction()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CAccessControlFilter->filter()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): LectureController->filterAccessControl()
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): LectureController->runActionWithFilters()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): LectureController->run()
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/index.php/lecture/3
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lecture\view.php (38)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (52)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:49:41 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:49:41 [warning] [application] Failed to set unsafe attribute "fileThumbnail" of "Lecture".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (72)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:50:42 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:50:42 [warning] [application] Failed to set unsafe attribute "fileThumbnail" of "Lecture".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (72)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:51:37 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:51:37 [warning] [application] Failed to set unsafe attribute "fileThumbnail" of "Lecture".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (72)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:57:15 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 16:57:15 [warning] [application] Failed to set unsafe attribute "fileThumbnail" of "Lecture".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (72)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 17:02:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "resources".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php:477
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(262): CController->missingAction('resources')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('resources')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/resourc...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#5 {main} REQUEST_URI=/index.php/lecture/resources/lectures/hqdefault%20(1).jpg
-2011/12/12 17:02:40 [error] [exception.CException] exception 'CException' with message 'Property "LectureController.baseUrl" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lecture\view.php(24): CComponent->__get('baseUrl')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(119): require('D:\PHP's Projec...')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', Array, true)
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): CBaseController->renderFile('D:\PHP's Projec...', Array, true)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(779): CController->renderPartial('view', Array, true)
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(52): CController->render('view', Array)
-#6 [internal function]: LectureController->actionView('7')
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs(Object(LectureController), Array)
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(LectureController), Object(ReflectionMethod), Array)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('view')
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/view')
-#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#20 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#21 {main} REQUEST_URI=/index.php/lecture/7
-2011/12/12 17:03:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "resources".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php:477
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(262): CController->missingAction('resources')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('resources')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/resourc...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#5 {main} REQUEST_URI=/index.php/lecture/resources/lectures/hqdefault%20(1).jpg
-2011/12/12 17:05:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "resources".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php:477
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(262): CController->missingAction('resources')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('resources')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/resourc...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#5 {main} REQUEST_URI=/index.php/lecture/resources/lectures/hqdefault%20(1).jpg
-2011/12/12 17:07:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "resources".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php:477
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(262): CController->missingAction('resources')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('resources')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/resourc...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#5 {main} REQUEST_URI=/index.php/lecture/resources/lectures/hqdefault%20(1).jpg
-2011/12/12 17:08:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "resources".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php:477
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(262): CController->missingAction('resources')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('resources')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/resourc...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#5 {main} REQUEST_URI=/index.php/lecture/resources/lectures/hqdefault%20(1).jpg
-2011/12/12 17:13:02 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 17:13:02 [warning] [application] Failed to set unsafe attribute "fileThumbnail" of "Lecture".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (72)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/12 17:35:07 [error] [php] Undefined variable: lecutre (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lecture\_thumbnail.php:3)
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): CategoryController->renderFile()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\category\view.php(70): CategoryController->renderPartial()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(119): require()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CategoryController->renderInternal()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): CategoryController->renderFile()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(779): CategoryController->renderPartial()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\CategoryController.php(55): CategoryController->render()
-#7 unknown(0): CategoryController->actionView()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CAction.php(104): ReflectionMethod->invokeArgs()
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CategoryController->runAction()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CAccessControlFilter->filter()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CategoryController->filterAccessControl()
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CategoryController->runActionWithFilters()
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CategoryController->run()
-#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
-#20 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#21 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/index.php/category/2
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\lecture\_thumbnail.php (3)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\category\view.php (70)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\CategoryController.php (55)
-2011/12/12 17:35:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "resources".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php:477
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(262): CController->missingAction('resources')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('resources')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('category/resour...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#5 {main} REQUEST_URI=/index.php/category/resources/lectures/hqdefault%20(1).jpg
-2011/12/12 17:38:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "resources".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php:477
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(262): CController->missingAction('resources')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('resources')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('category/resour...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#5 {main} REQUEST_URI=/index.php/category/resources/lectures/hqdefault%20(1).jpg
-2011/12/13 00:52:48 [warning] [application] Failed to set unsafe attribute "verifiedCode" of "Account".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\AccountController.php (164)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/13 00:52:48 [warning] [application] Failed to set unsafe attribute "password_repeat" of "Account".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\AccountController.php (164)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/13 01:05:02 [warning] [application] Failed to set unsafe attribute "verifiedCode" of "Account".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\AccountController.php (164)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/13 01:05:02 [warning] [application] Failed to set unsafe attribute "password_repeat" of "Account".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\AccountController.php (164)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/13 01:05:10 [warning] [application] Failed to set unsafe attribute "verifiedCode" of "Account".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\AccountController.php (164)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/13 01:05:10 [warning] [application] Failed to set unsafe attribute "password_repeat" of "Account".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\AccountController.php (164)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/13 01:09:57 [warning] [application] Failed to set unsafe attribute "verifiedCode" of "Account".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\AccountController.php (164)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/13 01:09:57 [warning] [application] Failed to set unsafe attribute "password_repeat" of "Account".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\AccountController.php (164)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/13 17:49:09 [warning] [application] Failed to set unsafe attribute "description" of "LectureForm".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/13 17:49:09 [warning] [application] Failed to set unsafe attribute "fileThumbnail" of "Lecture".
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (75)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/13 18:08:25 [error] [php] Non-static method CApplication::getRequest() should not be called statically, assuming $this from incompatible context (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\LoginForm.php:66)
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): SiteController->runAction()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): SiteController->runActionWithFilters()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): SiteController->run()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/index.php/site/login
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\LoginForm.php (66)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php (79)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/16 17:12:08 [error] [php] include(RWebUser.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\YiiBase.php:421)
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\YiiBase.php(201): import()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CModule.php(371): createComponent()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CModule.php(86): CWebApplication->getComponent()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\layouts\site.php(42): CWebApplication->__get()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(119): require()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): SiteController->renderInternal()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(781): SiteController->renderFile()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php(31): SiteController->render()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): SiteController->actionIndex()
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): SiteController->runAction()
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): SiteController->runActionWithFilters()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): SiteController->run()
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\layouts\site.php (42)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php (31)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/16 17:13:28 [error] [exception.CException] exception 'CException' with message 'CWebApplication and its behaviors do not have a method or closure named "authManager".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:269
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php(95): CComponent->__call('authManager', Array)
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php(95): CWebApplication->authManager()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): SiteController->actionSetupRole()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('setupRole')
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('site/setupRole')
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#10 {main} REQUEST_URI=/index.php/site/setupRole
-2011/12/17 07:45:55 [error] [php] Undefined variable: adminOwnLecuterTask (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php:104)
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): SiteController->runAction()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): SiteController->runActionWithFilters()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): SiteController->run()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/index.php/site/setupRole
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php (104)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/17 07:51:34 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\auth\CAccessControlFilter.php:158
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\auth\CAccessControlFilter.php(120): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): SiteController->runAction()
+#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CAccessControlFilter->filter()
+#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): SiteController->filterAccessControl()
+#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
 #5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('admin')
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('account/admin')
+#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): SiteController->runActionWithFilters()
+#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): SiteController->run()
+#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
 #9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#11 {main} REQUEST_URI=/index.php/account/admin
-2011/12/17 07:56:42 [error] [exception.CException] exception 'CException' with message 'Property "Account.favorite" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
+#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
+REQUEST_URI=/flexiblearning2/en/site/index
+in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php (53)
+in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
+2011/12/25 03:32:00 [error] [php] Undefined index: idLanguage (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php:53)
 Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('favorite')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\helpers\CHtml.php(2063): CActiveRecord->__get('favorite')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\helpers\CHtml.php(1791): CHtml::resolveValue(Object(Account), 'favorite')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\helpers\CHtml.php(1199): CHtml::activeInputField('text', Object(Account), 'favorite', Array)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\widgets\CActiveForm.php(568): CHtml::activeTextField(Object(Account), 'favorite', Array)
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\account\_search.php(55): CActiveForm->textField(Object(Account), 'favorite', Array)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(119): require('D:\PHP's Projec...')
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', Array, true)
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): CBaseController->renderFile('D:\PHP's Projec...', Array, true)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\account\admin.php(37): CController->renderPartial('_search', Array)
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(119): require('D:\PHP's Projec...')
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', Array, true)
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): CBaseController->renderFile('D:\PHP's Projec...', Array, true)
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(779): CController->renderPartial('admin', Array, true)
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\AccountController.php(154): CController->render('admin', Array)
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): AccountController->actionAdmin()
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
-#20 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
-#21 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
-#22 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#23 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#24 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('admin')
-#25 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('account/admin')
-#26 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#27 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#28 {main} REQUEST_URI=/index.php/account/admin
-2011/12/17 07:57:34 [error] [exception.CException] exception 'CException' with message 'Property "Account.favorite" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('favorite')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\helpers\CHtml.php(2063): CActiveRecord->__get('favorite')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\helpers\CHtml.php(1791): CHtml::resolveValue(Object(Account), 'favorite')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\helpers\CHtml.php(1199): CHtml::activeInputField('text', Object(Account), 'favorite', Array)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\widgets\CActiveForm.php(568): CHtml::activeTextField(Object(Account), 'favorite', Array)
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\account\_search.php(55): CActiveForm->textField(Object(Account), 'favorite', Array)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(119): require('D:\PHP's Projec...')
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', Array, true)
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): CBaseController->renderFile('D:\PHP's Projec...', Array, true)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\account\admin.php(37): CController->renderPartial('_search', Array)
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(119): require('D:\PHP's Projec...')
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', Array, true)
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): CBaseController->renderFile('D:\PHP's Projec...', Array, true)
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(779): CController->renderPartial('admin', Array, true)
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\AccountController.php(154): CController->render('admin', Array)
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): AccountController->actionAdmin()
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
-#20 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
-#21 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
-#22 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#23 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#24 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('admin')
-#25 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('account/admin')
-#26 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#27 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#28 {main} REQUEST_URI=/index.php/account/admin
-2011/12/17 07:57:36 [error] [exception.CException] exception 'CException' with message 'Property "Account.favorite" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('favorite')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\helpers\CHtml.php(2063): CActiveRecord->__get('favorite')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\helpers\CHtml.php(1791): CHtml::resolveValue(Object(Account), 'favorite')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\helpers\CHtml.php(1199): CHtml::activeInputField('text', Object(Account), 'favorite', Array)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\widgets\CActiveForm.php(568): CHtml::activeTextField(Object(Account), 'favorite', Array)
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\account\_search.php(55): CActiveForm->textField(Object(Account), 'favorite', Array)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(119): require('D:\PHP's Projec...')
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', Array, true)
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): CBaseController->renderFile('D:\PHP's Projec...', Array, true)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\account\admin.php(37): CController->renderPartial('_search', Array)
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(119): require('D:\PHP's Projec...')
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', Array, true)
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): CBaseController->renderFile('D:\PHP's Projec...', Array, true)
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(779): CController->renderPartial('admin', Array, true)
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\AccountController.php(154): CController->render('admin', Array)
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): AccountController->actionAdmin()
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
-#20 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
-#21 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
-#22 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#23 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#24 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('admin')
-#25 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('account/admin')
-#26 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#27 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#28 {main} REQUEST_URI=/index.php/account/admin
-2011/12/17 17:56:39 [error] [exception.CException] exception 'CException' with message 'Property "Account.lastLoginDate" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('lastLoginDate')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\components\UserIdentity.php(31): CActiveRecord->__get('lastLoginDate')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\LoginForm.php(47): UserIdentity->authenticate()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\validators\CInlineValidator.php(39): LoginForm->authenticate('password', Array)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\validators\CValidator.php(192): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CModel.php(152): CValidator->validate(Object(LoginForm), NULL)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php(79): CModel->validate()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('login')
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('site/login')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#15 {main} REQUEST_URI=/index.php/site/login
-2011/12/17 17:57:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "yii".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('yii')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/index.php/yii
-2011/12/17 17:59:18 [error] [exception.CException] exception 'CException' with message 'Property "Account.lastLoginDate" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('lastLoginDate')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\components\UserIdentity.php(31): CActiveRecord->__get('lastLoginDate')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\LoginForm.php(47): UserIdentity->authenticate()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\validators\CInlineValidator.php(39): LoginForm->authenticate('password', Array)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\validators\CValidator.php(192): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CModel.php(152): CValidator->validate(Object(LoginForm), NULL)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php(79): CModel->validate()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('login')
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('site/login')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#15 {main} REQUEST_URI=/index.php/site/login
-2011/12/17 18:00:23 [error] [exception.CDbException] exception 'CDbException' with message 'No columns are being updated for table "account".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\schema\CDbCommandBuilder.php:266
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1688): CDbCommandBuilder->createUpdateCommand(Object(CMysqlTableSchema), Array, Object(CDbCriteria))
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\LoginForm.php(67): CActiveRecord->updateByPk('1', Array)
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php(79): LoginForm->login()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('login')
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('site/login')
+#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): SiteController->runAction()
+#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CAccessControlFilter->filter()
+#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): SiteController->filterAccessControl()
+#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
+#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): SiteController->runActionWithFilters()
+#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): SiteController->run()
+#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
 #9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#11 {main} REQUEST_URI=/index.php/site/login
-2011/12/17 18:01:19 [error] [exception.CDbException] exception 'CDbException' with message 'No columns are being updated for table "account".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\schema\CDbCommandBuilder.php:266
+#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
+REQUEST_URI=/flexiblearning2/en/site/index
+in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php (53)
+in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
+2011/12/25 03:36:32 [error] [exception.CException] exception 'CException' with message 'Property "Account.dateOfBirth" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
 Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1688): CDbCommandBuilder->createUpdateCommand(Object(CMysqlTableSchema), Array, Object(CDbCriteria))
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\LoginForm.php(67): CActiveRecord->updateByPk('1', Array)
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php(79): LoginForm->login()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('login')
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('site/login')
+#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('dateOfBirth')
+#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(40): CActiveRecord->__get('dateOfBirth')
+#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\helpers\CHtml.php(2063): Base->__get('dateOfBirth')
+#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\helpers\CHtml.php(1791): CHtml::resolveValue(Object(Account), 'dateOfBirth')
+#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\helpers\CHtml.php(1199): CHtml::activeInputField('text', Object(Account), 'dateOfBirth', Array)
+#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\widgets\CActiveForm.php(568): CHtml::activeTextField(Object(Account), 'dateOfBirth', Array)
+#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\account\_search.php(20): CActiveForm->textField(Object(Account), 'dateOfBirth')
+#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(119): require('D:\PHP's Projec...')
+#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', Array, true)
+#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): CBaseController->renderFile('D:\PHP's Projec...', Array, true)
+#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\account\admin.php(37): CController->renderPartial('_search', Array)
+#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(119): require('D:\PHP's Projec...')
+#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', Array, true)
+#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(866): CBaseController->renderFile('D:\PHP's Projec...', Array, true)
+#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(779): CController->renderPartial('admin', Array, true)
+#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\AccountController.php(154): CController->render('admin', Array)
+#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): AccountController->actionAdmin()
+#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
+#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#20 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
+#21 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#22 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#23 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
+#24 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('admin')
+#26 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('account/admin')
+#27 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
+#28 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
+#29 {main} REQUEST_URI=/flexiblearning2/en/account/admin
+2011/12/25 03:38:34 [error] [php] Undefined index: idLanguage (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php:53)
+Stack trace:
+#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): SiteController->runAction()
+#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CAccessControlFilter->filter()
+#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): SiteController->filterAccessControl()
+#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
+#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): SiteController->runActionWithFilters()
+#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): SiteController->run()
+#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
 #9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#11 {main} REQUEST_URI=/index.php/site/login
-2011/12/17 18:11:03 [error] [exception.CException] exception 'CException' with message 'Property "Account.lastLoginDate" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('lastLoginDate')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\components\UserIdentity.php(34): CActiveRecord->__get('lastLoginDate')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\LoginForm.php(47): UserIdentity->authenticate()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\validators\CInlineValidator.php(39): LoginForm->authenticate('password', Array)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\validators\CValidator.php(192): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CModel.php(152): CValidator->validate(Object(LoginForm), NULL)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php(79): CModel->validate()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('login')
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('site/login')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#15 {main} REQUEST_URI=/index.php/site/login
-2011/12/17 18:17:24 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'adminOwnLecture' for key 'PRIMARY'. The SQL statement executed was: INSERT INTO `AuthItem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES (:name, :type, :description, :bizrule, :data).
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php (106)
+#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
+REQUEST_URI=/flexiblearning2/en/site/index
+in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php (53)
 in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/17 18:17:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'adminOwnLecture' for key 'PRIMARY'. The SQL statement executed was: INSERT INTO `AuthItem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES (:name, :type, :description, :bizrule, :data)' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\CDbCommand.php:336
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\CDbCommand.php(1166): CDbCommand->execute(Array)
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\auth\CDbAuthManager.php(436): CDbCommand->insert('AuthItem', Array)
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\auth\CAuthManager.php(84): CDbAuthManager->createAuthItem('adminOwnLecture', 1, 'Manager the own...', NULL, NULL)
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\SiteController.php(106): CAuthManager->createTask('adminOwnLecture', 'Manager the own...')
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): SiteController->actionSetupRole()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('setupRole')
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('site/setupRole')
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#12 {main} REQUEST_URI=/index.php/site/setupRole
-2011/12/18 04:11:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('favicon.ico')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/favicon.ico
-2011/12/19 17:21:56 [error] [exception.CException] exception 'CException' with message 'Yii application can only be created once.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\YiiBase.php:155
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(119): YiiBase::setApplication(Object(CWebApplication))
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\YiiBase.php(128): CApplication->__construct('D:\PHP's Projec...')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\YiiBase.php(100): YiiBase::createApplication('CWebApplication', 'D:\PHP's Projec...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): YiiBase::createWebApplication('D:\PHP's Projec...')
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('index.php', NULL, false)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(10): CBaseController->renderFile('index.php')
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#15 {main} REQUEST_URI=/flexiblearning2/
-2011/12/19 17:22:16 [error] [php] require(index) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php:123)
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(10): IntroController->renderFile()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): IntroController->runAction()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): IntroController->runActionWithFilters()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): IntroController->run()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/flexiblearning2/
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php (10)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/19 17:22:49 [error] [php] require(intro/index.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php:123)
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(10): IntroController->renderFile()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): IntroController->runAction()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): IntroController->runActionWithFilters()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): IntroController->run()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/flexiblearning2/
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php (10)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/19 17:23:22 [error] [php] require(views/intro/index.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php:123)
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(10): IntroController->renderFile()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): IntroController->runAction()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): IntroController->runActionWithFilters()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): IntroController->run()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/flexiblearning2/
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php (10)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/19 17:23:51 [error] [php] require(../views/intro/index.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory (D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php:123)
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(10): IntroController->renderFile()
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): IntroController->runAction()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): IntroController->runActionWithFilters()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): IntroController->run()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController()
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CWebApplication->run()
-REQUEST_URI=/flexiblearning2/
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php (10)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/19 17:30:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "stylesheet/mageflow.packed.css".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('stylesheet/mage...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/stylesheet/mageflow.packed.css
-2011/12/19 17:30:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Images/intro-background.jpg".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('Images/intro-ba...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/Images/intro-background.jpg
-2011/12/19 17:31:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "stylesheet/mageflow.packed.css".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('stylesheet/mage...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/stylesheet/mageflow.packed.css
-2011/12/19 17:31:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Images/intro-background.jpg".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('Images/intro-ba...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/Images/intro-background.jpg
-2011/12/19 17:31:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "stylesheet/mageflow.packed.css".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('stylesheet/mage...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/stylesheet/mageflow.packed.css
-2011/12/19 17:31:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Images/intro-background.jpg".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('Images/intro-ba...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/Images/intro-background.jpg
-2011/12/19 17:31:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "stylesheet/mageflow.packed.css".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('stylesheet/mage...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/stylesheet/mageflow.packed.css
-2011/12/19 17:31:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Images/intro-background.jpg".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('Images/intro-ba...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/Images/intro-background.jpg
-2011/12/19 17:32:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Images/intro-background.jpg".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('Images/intro-ba...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/Images/intro-background.jpg
-2011/12/19 17:32:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "stylesheet/slider.png".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('stylesheet/slid...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/stylesheet/slider.png
-2011/12/19 17:32:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "null".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('null')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/null
-2011/12/19 17:32:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Images/intro-background.jpg".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('Images/intro-ba...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/Images/intro-background.jpg
-2011/12/19 17:32:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "stylesheet/slider.png".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('stylesheet/slid...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/stylesheet/slider.png
-2011/12/19 17:32:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Images/intro-background.jpg".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('Images/intro-ba...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/Images/intro-background.jpg
-2011/12/19 17:32:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "stylesheet/slider.png".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('stylesheet/slid...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/stylesheet/slider.png
-2011/12/19 17:33:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "stylesheet/slider.png".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('stylesheet/slid...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/stylesheet/slider.png
-2011/12/19 17:36:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "stylesheet/slider.png".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('stylesheet/slid...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/stylesheet/slider.png
-2011/12/19 17:37:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "stylesheet/slider.png".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('stylesheet/slid...')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/stylesheet/slider.png
-2011/12/19 17:39:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "null".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('null')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/null
-2011/12/19 17:51:30 [error] [exception.CException] exception 'CException' with message 'IntroController and its behaviors do not have a method or closure named "url".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:269
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(43): CComponent->__call('url', Array)
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(43): IntroController->url('site/index', Array)
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', NULL, false)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(5): CBaseController->renderFile('D:\PHP's Projec...')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#13 {main} REQUEST_URI=/flexiblearning2/
-2011/12/19 18:07:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "null".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('null')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/null
-2011/12/19 18:07:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "null".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('null')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/null
-2011/12/19 18:07:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "null".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('null')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/null
-2011/12/19 18:08:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "null".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('null')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/null
-2011/12/19 18:08:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "null".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('null')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/null
-2011/12/19 18:08:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "null".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('null')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/null
-2011/12/19 18:09:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "null".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('null')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/null
-2011/12/19 18:10:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "null".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('null')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/null
-2011/12/20 00:32:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "null".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php:281
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('null')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#3 {main} REQUEST_URI=/flexiblearning2/null
-2011/12/20 00:40:42 [error] [exception.CException] exception 'CException' with message 'Property "Language.name" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('name')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(24): CActiveRecord->__get('name')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', NULL, false)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(5): CBaseController->renderFile('D:\PHP's Projec...')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#13 {main} REQUEST_URI=/flexiblearning2/
-2011/12/20 00:51:17 [error] [exception.CException] exception 'CException' with message 'Property "Language.name" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('name')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(24): CActiveRecord->__get('name')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', NULL, false)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(5): CBaseController->renderFile('D:\PHP's Projec...')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#13 {main} REQUEST_URI=/flexiblearning2/
-2011/12/20 00:51:20 [error] [exception.CException] exception 'CException' with message 'Property "Language.name" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('name')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(24): CActiveRecord->__get('name')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', NULL, false)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(5): CBaseController->renderFile('D:\PHP's Projec...')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#13 {main} REQUEST_URI=/flexiblearning2/
-2011/12/20 00:51:51 [error] [exception.CException] exception 'CException' with message 'Property "Language._related" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('_related')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(46): CActiveRecord->__get('_related')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(36): Base->__get('_related')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(32): Base->__get('_attributes')
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1217): Base->__get('id')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1806): CActiveRecord->getPrimaryKey()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1831): CActiveRecord->populateRecord(Array, true)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1290): CActiveRecord->populateRecords(Array, true, NULL)
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1410): CActiveRecord->query(Object(CDbCriteria), true)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(23): CActiveRecord->findAll()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', NULL, false)
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(5): CBaseController->renderFile('D:\PHP's Projec...')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#20 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#21 {main} REQUEST_URI=/flexiblearning2/
-2011/12/20 00:52:48 [error] [exception.CException] exception 'CException' with message 'Property "Language._related" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('_related')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(46): CActiveRecord->__get('_related')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(36): Base->__get('_related')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(32): Base->__get('_attributes')
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1217): Base->__get('id')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1806): CActiveRecord->getPrimaryKey()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1831): CActiveRecord->populateRecord(Array, true)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1290): CActiveRecord->populateRecords(Array, true, NULL)
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1410): CActiveRecord->query(Object(CDbCriteria), true)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(23): CActiveRecord->findAll()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', NULL, false)
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(5): CBaseController->renderFile('D:\PHP's Projec...')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#20 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#21 {main} REQUEST_URI=/flexiblearning2/
-2011/12/20 00:53:49 [error] [exception.CException] exception 'CException' with message 'Property "Language._related" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('_related')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(46): CActiveRecord->__get('_related')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(36): Base->__get('_related')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(32): Base->__get('_attributes')
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1217): Base->__get('id')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1806): CActiveRecord->getPrimaryKey()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1831): CActiveRecord->populateRecord(Array, true)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1290): CActiveRecord->populateRecords(Array, true, NULL)
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1410): CActiveRecord->query(Object(CDbCriteria), true)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(23): CActiveRecord->findAll()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', NULL, false)
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(5): CBaseController->renderFile('D:\PHP's Projec...')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#20 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#21 {main} REQUEST_URI=/flexiblearning2/index.php?XDEBUG_SESSION_START=netbeans-xdebug
-2011/12/20 00:54:05 [error] [exception.CException] exception 'CException' with message 'Property "Language._related" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('_related')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(46): CActiveRecord->__get('_related')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(36): Base->__get('_related')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(32): Base->__get('_attributes')
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1217): Base->__get('id')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1806): CActiveRecord->getPrimaryKey()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1831): CActiveRecord->populateRecord(Array, true)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1290): CActiveRecord->populateRecords(Array, true, NULL)
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1410): CActiveRecord->query(Object(CDbCriteria), true)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(23): CActiveRecord->findAll()
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', NULL, false)
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(5): CBaseController->renderFile('D:\PHP's Projec...')
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#20 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#21 {main} REQUEST_URI=/flexiblearning2/
-2011/12/20 01:07:22 [error] [exception.CException] exception 'CException' with message 'Property "Language._attributes" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('_attributes')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(40): CActiveRecord->__get('_attributes')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(32): Base->__get('_attributes')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1217): Base->__get('id')
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1806): CActiveRecord->getPrimaryKey()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1831): CActiveRecord->populateRecord(Array, true)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1290): CActiveRecord->populateRecords(Array, true, NULL)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1410): CActiveRecord->query(Object(CDbCriteria), true)
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(23): CActiveRecord->findAll()
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', NULL, false)
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(5): CBaseController->renderFile('D:\PHP's Projec...')
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#20 {main} REQUEST_URI=/flexiblearning2/
-2011/12/20 01:09:40 [error] [exception.CException] exception 'CException' with message 'Property "Language.name" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('name')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(24): CActiveRecord->__get('name')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', NULL, false)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(5): CBaseController->renderFile('D:\PHP's Projec...')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#13 {main} REQUEST_URI=/flexiblearning2/index.php?XDEBUG_SESSION_START=netbeans-xdebug
-2011/12/20 01:09:45 [error] [exception.CException] exception 'CException' with message 'Property "Language.name" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('name')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(24): CActiveRecord->__get('name')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', NULL, false)
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(5): CBaseController->renderFile('D:\PHP's Projec...')
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#13 {main} REQUEST_URI=/flexiblearning2/
-2011/12/20 01:10:45 [error] [exception.CException] exception 'CException' with message 'Property "Language._attributes" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('_attributes')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(41): CActiveRecord->__get('_attributes')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(32): Base->__get('_attributes')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1217): Base->__get('id')
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1806): CActiveRecord->getPrimaryKey()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1831): CActiveRecord->populateRecord(Array, true)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1290): CActiveRecord->populateRecords(Array, true, NULL)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1410): CActiveRecord->query(Object(CDbCriteria), true)
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(23): CActiveRecord->findAll()
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', NULL, false)
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(5): CBaseController->renderFile('D:\PHP's Projec...')
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#20 {main} REQUEST_URI=/flexiblearning2/
-2011/12/20 01:11:31 [error] [exception.CException] exception 'CException' with message 'Property "Language._attributes" is not defined.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CComponent.php:131
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(129): CComponent->__get('_attributes')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(38): CActiveRecord->__get('_attributes')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\models\Base.php(34): Base->__get('_attributes')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1217): Base->__get('id')
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1806): CActiveRecord->getPrimaryKey()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1831): CActiveRecord->populateRecord(Array, true)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1290): CActiveRecord->populateRecords(Array, true, NULL)
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(1410): CActiveRecord->query(Object(CDbCriteria), true)
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\views\intro\index.php(23): CActiveRecord->findAll()
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(123): require('D:\PHP's Projec...')
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CBaseController.php(88): CBaseController->renderInternal('D:\PHP's Projec...', NULL, false)
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\IntroController.php(5): CBaseController->renderFile('D:\PHP's Projec...')
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): IntroController->actionIndex()
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(278): CController->runAction(Object(CInlineAction))
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('')
-#17 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('')
-#18 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#19 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#20 {main} REQUEST_URI=/flexiblearning2/
-2011/12/20 01:24:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "manage".' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php:477
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(262): CController->missingAction('manage')
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('manage')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/manage')
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#5 {main} REQUEST_URI=/flexiblearning2/en/lecture/manage
-2011/12/20 01:26:24 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_flexiblearning.lecture' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `lecture`.
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php (142)
-in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php (13)
-2011/12/20 01:26:24 [error] [exception.CDbException] exception 'CDbException' with message 'The table "lecture" for active record class "Lecture" cannot be found in the database.' in D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php:2276
-Stack trace:
-#0 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(372): CActiveRecordMetaData->__construct(Object(Lecture))
-#1 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(387): CActiveRecord::model('Lecture')
-#2 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\db\ar\CActiveRecord.php(62): CActiveRecord->getMetaData()
-#3 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\protected\controllers\LectureController.php(142): CActiveRecord->__construct('search')
-#4 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\actions\CInlineAction.php(50): LectureController->actionAdmin()
-#5 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(300): CInlineAction->runWithParams(Array)
-#6 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
-#7 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilter.php(41): CFilterChain->run()
-#8 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
-#9 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
-#10 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
-#11 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(283): CFilterChain->run()
-#12 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
-#13 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(277): CController->run('admin')
-#14 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\web\CWebApplication.php(136): CWebApplication->runController('lecture/admin')
-#15 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\framework\base\CApplication.php(158): CWebApplication->processRequest()
-#16 D:\PHP's Projects\flexiblearning\svn\trunk\src\flexiblearning2\index.php(13): CApplication->run()
-#17 {main} REQUEST_URI=/flexiblearning2/en/lecture/admin
