@@ -55,12 +55,10 @@ return array(
         ),
         // uncomment the following to use a MySQL database		
         'db' => array(
-
-            'connectionString' => 'mysql:host=localhost;dbname=flexiblearning',
-
+            'connectionString' => 'mysql:host=localhost;dbname=db_flexiblearning',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => '',
+            'password' => 'lighthouse',
             'charset' => 'utf8',
         ),
         'errorHandler' => array(
@@ -96,5 +94,6 @@ return array(
         'defaultLanguageCategory' => 'en',
         'widthThumbnailLesson' => '200px',
         'heightThumbnailLesson' => '135px',
+        'numberOfVideoPerRowOnIndex' => 4,
     ),
 );

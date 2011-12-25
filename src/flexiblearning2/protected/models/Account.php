@@ -86,9 +86,9 @@ class Account extends Base {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            
             'nationality' => array(self::BELONGS_TO, 'Nationality', 'id_nationality'),
             'profession' => array(self::BELONGS_TO, 'Profession', 'id_profession'),
+            
         );
     }
 

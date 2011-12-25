@@ -2,7 +2,7 @@
     <table width="910" border="0" id="home-td">
         <?php foreach($categories as $category) : ?>
             <tr>
-                <td colspan="4">
+                <td colspan="<?php echo Yii::app()->params['numberOfVideoPerRowOnIndex']?>">
                     <div id="title">
                         <a href="<?php echo $category->getHref()?>"><?php echo $category->name?></a>
                     </div>
@@ -12,7 +12,7 @@
                 </td>
             </tr>
             <?php foreach ($category->lessons as $index => $lesson) : ?>
-                <?php if ($index % 4 == 0) :?>
+                <?php if ($index % Yii::app()->params['numberOfVideoPerRowOnIndex'] == 0) :?>
                     <tr>
                 <?php endif; ?>        
                         
@@ -21,21 +21,23 @@
                          width="<?php echo Yii::app()->params['widthThumbnailLesson']?>" 
                          height="<?php echo Yii::app()->params['heightThumbnailLesson']?>" /> <br />
                     <a href="<?php echo $lesson->getHref()?>"><?php echo $lesson->title?></a><br />
-                    Teach: <span id="colo">Sara Corner</span> 	  
+                    Teacher : <span id="colo"><a href=""><?php echo $lesson->createdBy->fullname?></a></span> 	  
                 </td>
                 
-                <?php if ($index % 4 == 0) :?>
+                <?php if (($index + 1) % Yii::app()->params['numberOfVideoPerRowOnIndex'] == 0) :?>
                     </tr>
                 <?php endif; ?>
-                    
             <?php endforeach; ?>
             <?php if (Yii::app()->user->checkAccess('createLesson')) : ?>
                 <tr>
-                    <td colspan="4">
-                    <?php
-                        echo CHtml::link('Create lessons', $this->createUrl('lesson/create', 
-                                array('idCategory' => $category->getPrimaryKey())));
-                    ?>
+                    <td colspan="<?php echo Yii::app()->params['numberOfVideoPerRowOnIndex']?>">
+                        <div class="block-area">
+                            <?php
+                                echo CHtml::link('Create lessons', $this->createUrl('lesson/create', 
+                                        array('idCategory' => $category->getPrimaryKey())),
+                                        array('class' => 'bt link-btn'));
+                            ?>
+                        </div>
                     </td>
                 </tr>
             <?php endif; ?>        
