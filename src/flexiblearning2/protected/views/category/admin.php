@@ -18,10 +18,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(
-        array('name' => 'name_vn', 'filter' => false),
+        array('name' => 'name_vi', 'filter' => false),
         array('name' => 'name_en', 'filter' => false),
         array('name' => 'name_ko', 'filter' => false),
-        array('name' => 'description_vn', 'filter' => false),
+        array('name' => 'description_vi', 'filter' => false),
         array('name' => 'description_en', 'filter' => false),
         array(
             'name' => 'id_language',

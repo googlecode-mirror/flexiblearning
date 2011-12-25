@@ -26,8 +26,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'idNationality'); ?>
-		<?php echo $form->textField($model,'idNationality'); ?>
+		<?php echo $form->label($model,'id_nationality'); ?>
+		<?php echo $form->textField($model,'id_nationality'); ?>
 	</div>
 
 	<div class="row">
@@ -46,8 +46,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'idProfession'); ?>
-		<?php echo $form->textField($model,'idProfession'); ?>
+		<?php echo $form->label($model,'id_profession'); ?>
+		<?php echo $form->textField($model,'id_profession'); ?>
 	</div>
 
 	<div class="row">
@@ -60,14 +60,11 @@
 		<?php echo $form->textField($model,'avatar',array('size'=>60,'maxlength'=>256)); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'idRole'); ?>
-		<?php echo $form->textField($model,'idRole'); ?>
-	</div>
+	
 
 	<div class="row">
-		<?php echo $form->label($model,'state'); ?>
-		<?php echo $form->textField($model,'state'); ?>
+		<?php echo $form->label($model,'flag_del'); ?>
+		<?php echo $form->textField($model,'flag_del'); ?>
 	</div>
 
 	<div class="row">
@@ -111,33 +108,33 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'createdDate'); ?>
-		<?php echo $form->textField($model,'createdDate'); ?>
+		<?php echo $form->label($model,'created_date'); ?>
+		<?php echo $form->textField($model,'created_date'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'createdBy'); ?>
-		<?php echo $form->textField($model,'createdBy'); ?>
+		<?php echo $form->label($model,'created_by'); ?>
+		<?php echo $form->textField($model,'created_by'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'updatedDate'); ?>
-		<?php echo $form->textField($model,'updatedDate'); ?>
+		<?php echo $form->label($model,'updated_date'); ?>
+		<?php echo $form->textField($model,'updated_date'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'updatedBy'); ?>
-		<?php echo $form->textField($model,'updatedBy'); ?>
+		<?php echo $form->label($model,'updated_by'); ?>
+		<?php echo $form->textField($model,'updated_by'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'lastLoginDate'); ?>
-		<?php echo $form->textField($model,'lastLoginDate'); ?>
+		<?php echo $form->label($model,'last_login'); ?>
+		<?php echo $form->textField($model,'last_login'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'ipAddress'); ?>
-		<?php echo $form->textField($model,'ipAddress',array('size'=>30,'maxlength'=>30)); ?>
+		<?php echo $form->label($model,'ip_add'); ?>
+		<?php echo $form->textField($model,'ip_add',array('size'=>30,'maxlength'=>30)); ?>
 	</div>
 
 	<div class="row buttons">

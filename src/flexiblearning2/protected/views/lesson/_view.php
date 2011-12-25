@@ -4,8 +4,8 @@
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('title_vn')); ?>:</b>
-	<?php echo CHtml::encode($data->title_vn); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('title_vi')); ?>:</b>
+	<?php echo CHtml::encode($data->title_vi); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('title_en')); ?>:</b>
@@ -16,8 +16,8 @@
 	<?php echo CHtml::encode($data->title_ko); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('description_vn')); ?>:</b>
-	<?php echo CHtml::encode($data->description_vn); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('description_vi')); ?>:</b>
+	<?php echo CHtml::encode($data->description_vi); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('description_en')); ?>:</b>

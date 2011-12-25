@@ -98,8 +98,8 @@
                 <div id="wrap-menu-bottom" >
                     <div id="bottom">&nbsp;&nbsp;
                         <a href="PrivacyPolicy.html">Privacy Policy</a> &nbsp;&nbsp;
-                        <a href="LienHe.html">Contact</a>  &nbsp;&nbsp;
-                        <a href="GioiThieu.html">About us</a>		</div>
+                        <a href=<?php echo $this->createUrl('/site/contact')?>>Contact</a>  &nbsp;&nbsp;
+                        <a href=<?php echo $this->createUrl('/site/page/view/about')?>>About us</a>		</div>
                     <div id="bottom-l">
                         <span style="color:#666666">Flow us</span> &nbsp; 
                         <a href="#">

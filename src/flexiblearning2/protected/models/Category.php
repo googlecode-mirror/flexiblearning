@@ -5,10 +5,10 @@
  *
  * The followings are the available columns in table 'category':
  * @property integer $id
- * @property string $name_vn
+ * @property string $name_vi
  * @property string $name_en
  * @property string $name_ko
- * @property string $description_vn
+ * @property string $description_vi
  * @property string $description_en
  * @property string $description_ko
  * @property integer $id_language
@@ -48,11 +48,11 @@ class Category extends Base {
         return array(
             array('name_en, id_language', 'required'),
             array('id_language', 'numerical', 'integerOnly' => true),
-            array('name_vn, name_en, name_ko', 'length', 'max' => 50),
-            array('description_vn, description_en, description_ko', 'safe'),
+            array('name_vi, name_en, name_ko', 'length', 'max' => 50),
+            array('description_vi, description_en, description_ko', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('name_vn, name_en, name_ko, id_language, flag_del', 'safe', 'on' => 'search'),
+            array('name_vi, name_en, name_ko, id_language, flag_del', 'safe', 'on' => 'search'),
         );
     }
 
@@ -74,10 +74,10 @@ class Category extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name_vn' => 'Name Vn',
+            'name_vi' => 'Name Vn',
             'name_en' => 'Name En',
             'name_ko' => 'Name Ko',
-            'description_vn' => 'Description Vn',
+            'description_vi' => 'Description Vn',
             'description_en' => 'Description En',
             'description_ko' => 'Description Ko',
             'id_language' => 'Id Language',
