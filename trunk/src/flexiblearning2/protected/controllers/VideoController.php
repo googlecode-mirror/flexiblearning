@@ -63,6 +63,7 @@ class VideoController extends Controller {
         $arrayModels = array();
         if (isset($_POST['VideoForm'])) {
             $model->attributes = $_POST['VideoForm'];
+            
             if ($model->validate()) {
                 $file = CUploadedFile::getInstance($model, 'file');
                 $fileName = Yii::app()->params['video'] . '/' . $file->getName();
