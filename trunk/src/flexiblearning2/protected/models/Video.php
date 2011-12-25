@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'video':
  * @property integer $id
  * @property string $name
- * @property string $description_vn
+ * @property string $description_vi
  * @property string $description_en
  * @property string $description_ko
  * @property integer $id_lesson
@@ -49,10 +49,10 @@ class Video extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, id_lesson, num_view, ranking, flag_approve, flag_del', 'required'),
+            array('name, id_lesson, path', 'required'),
             array('id_lesson, num_view, ranking, flag_approve, flag_del', 'numerical', 'integerOnly' => true),
             array('name', 'length', 'max' => 50),
-            array('description_vn, description_en, description_ko', 'safe'),
+            array('description_vi, description_en, description_ko', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('name, id_lesson, num_view, ranking, flag_approve, flag_del', 'safe', 'on' => 'search'),
@@ -80,9 +80,9 @@ class Video extends Base {
         return array(
             'id' => 'ID',
             'name' => 'Name',
-            'description_vn' => 'Description',
-            'description_en' => 'Description',
-            'description_ko' => 'Description',
+            'description_vi' => 'Description vi',
+            'description_en' => 'Description en',
+            'description_ko' => 'Description ko',
             'id_lesson' => 'Lesson',
             'num_view' => 'Num View',
             'ranking' => 'Ranking',
@@ -106,9 +106,6 @@ class Video extends Base {
         $criteria = new CDbCriteria;
 
         $criteria->compare('name', $this->name, true);
-        $criteria->compare('description_vn', $this->description_vn, true);
-        $criteria->compare('description_en', $this->description_en, true);
-        $criteria->compare('description_ko', $this->description_ko, true);
         $criteria->compare('id_lesson', $this->id_lesson);
         $criteria->compare('num_view', $this->num_view);
         $criteria->compare('ranking', $this->ranking);

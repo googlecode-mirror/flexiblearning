@@ -60,4 +60,10 @@ class Language extends Base {
             'name' => 'Name',
         );
     }
+    
+    public function getHref() {
+        return Yii::app()->createUrl('site/index', array(
+            'idLanguage'=>$this->getPrimaryKey(),
+        ));
+    }
 }

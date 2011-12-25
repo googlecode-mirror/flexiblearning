@@ -15,6 +15,7 @@ return array(
     'import' => array(
         'application.models.*',
         'application.components.*',
+        'ext.xupload.models.XUploadForm',
     ),
     'modules' => array(
         // uncomment the following to enable the Gii tool		
@@ -90,6 +91,7 @@ return array(
         'defaultRoleId' => 3,
         'lectureThumbnails' => 'resources/lectures',
         'lessonThumbnails' => 'resources/lessons',
+        'video' => 'resources/videos',
         'state' => array(0 => 'Inactive', 1 => 'Active'),
         'defaultLanguageCategory' => 'en',
         'widthThumbnailLesson' => '200px',

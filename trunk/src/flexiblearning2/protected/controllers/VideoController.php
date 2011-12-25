@@ -55,21 +55,38 @@ class VideoController extends Controller {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate() {
-        $model = new Video;
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if (isset($_POST['Video'])) {
-            $model->attributes = $_POST['Video'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+    public function actionCreate($idLesson) {
+        $this->layout = 'site';
+        $model = new VideoForm;
+        $model->lesson = Lesson::model()->findByPk($idLesson);
+        
+        $arrayModels = array();
+        if (isset($_POST['VideoForm'])) {
+            $model->attributes = $_POST['VideoForm'];
+            if ($model->validate()) {
+                $file = CUploadedFile::getInstance($model, 'file');
+                $fileName = Yii::app()->params['video'] . '/' . $file->getName();
+                if (file_exists($fileName)) {
+                    $fileName = Yii::app()->params['lessonThumbnails'] . '/' . time() . '_' . $file->getName();
+                }
+                $file->saveAs($fileName, true);
+                
+                unset ($_POST['VideoForm']['file']);
+                $modelVideo = new Video;
+                $modelVideo->attributes = $_POST['VideoForm'];
+                $modelVideo->path = $fileName;
+                $modelVideo->id_lesson = $model->lesson->getPrimaryKey();
+                
+                if ($modelVideo->save()) {
+                    $this->redirect(array('view', 'id' => $modelVideo->getPrimaryKey()));
+                } else {
+                    $arrayModels['modelVideo'] = $modelVideo;
+                }
+            }
         }
+        $arrayModels['model'] = $model;
 
-        $this->render('create', array(
-            'model' => $model,
-        ));
+        $this->render('create', $arrayModels);
     }
 
     /**

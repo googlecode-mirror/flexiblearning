@@ -1,5 +1,4 @@
 <?php
-
 class SiteController extends Controller {
 
     public $layout = '//layouts/site';
@@ -18,6 +17,11 @@ class SiteController extends Controller {
             // They can be accessed via: index.php?r=site/page&view=FileName
             'page' => array(
                 'class' => 'CViewAction',
+            ),
+            'upload'=>array(
+                'class'=>'ext.xupload.actions.XUploadAction',
+                'subfolderVar' => false,
+                'path' => realpath(Yii::app()->getBasePath() . "/" . Yii::app()->params['lessonThumbnails']),
             ),
         );
     }
@@ -129,11 +133,11 @@ class SiteController extends Controller {
             $authMgr->clearAll();
 
             $authMgr->createOperation('adminUser', 'Manage users');
-            $authMgr->createOperation('adminLecture', 'Manage lectures');
-            $authMgr->createOperation('createLecture', 'Create lectures');
+            $authMgr->createOperation('adminLesson', 'Manage lessons');
+            $authMgr->createOperation('createLesson', 'Create lessons');
 
-            $bizRule = 'return Yii::app()->user->id==$params["lecture"]->authID;';
-            $authMgr->createOperation('adminOwnLecture', "Manager the own users' lectures");
+            $bizRule = 'return Yii::app()->user->id==$params["lesson"]->authID;';
+            $authMgr->createOperation('adminOwnLesson', "Manager the own users' lessons");
 
             $roleGuest = $authMgr->createRole('guest');
             $roleAuthenticated = $authMgr->createRole('authenticate');
@@ -141,12 +145,12 @@ class SiteController extends Controller {
             $roleTeacher = $authMgr->createRole('teacher');
             $roleAdmin = $authMgr->createRole('admin');
 
-            $roleTeacher->addChild('adminOwnLecture');
-            $roleTeacher->addChild('createLecture');
+            $roleTeacher->addChild('adminOwnLesson');
+            $roleTeacher->addChild('createLesson');
             
             $roleAdmin->addChild('adminUser');
-            $roleAdmin->addChild('adminLecture');
-            $roleAdmin->addChild('createLecture');
+            $roleAdmin->addChild('adminLesson');
+            $roleAdmin->addChild('createLesson');
 
             $authMgr->assign('admin', 1);
             $authMgr->assign('teacher', 2);
@@ -157,5 +161,11 @@ class SiteController extends Controller {
         $this->layout = 'main';
         $this->render('admin');
     }
-
+    
+    public function actionTestUpload() {
+        $model = new XUploadForm;
+		$this->render('testUpload', array(
+			'model' => $model,
+		));
+    }
 }

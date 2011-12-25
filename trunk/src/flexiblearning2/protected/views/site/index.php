@@ -20,7 +20,7 @@
                     <img class="lesson-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lesson->thumbnail; ?>" 
                          width="<?php echo Yii::app()->params['widthThumbnailLesson']?>" 
                          height="<?php echo Yii::app()->params['heightThumbnailLesson']?>" /> <br />
-                    <a href="#"><?php echo $lesson->title?></a><br />
+                    <a href="<?php echo $lesson->getHref()?>"><?php echo $lesson->title?></a><br />
                     Teach: <span id="colo">Sara Corner</span> 	  
                 </td>
                 
@@ -29,7 +29,7 @@
                 <?php endif; ?>
                     
             <?php endforeach; ?>
-            <?php if (Yii::app()->user->checkAccess('createLecture')) : ?>
+            <?php if (Yii::app()->user->checkAccess('createLesson')) : ?>
                 <tr>
                     <td colspan="4">
                     <?php
