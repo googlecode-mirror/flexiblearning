@@ -1,6 +1,7 @@
 <?php
 
 class SiteController extends Controller {
+
     public $layout = '//layouts/site';
 
     /**
@@ -22,13 +23,41 @@ class SiteController extends Controller {
     }
 
     /**
+     * @return array action filters
+     */
+    public function filters() {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+        );
+    }
+
+    /**
+     * Specifies the access control rules.
+     * This method is used by the 'accessControl' filter.
+     * @return array access control rules
+     */
+    public function accessRules() {
+        return array(
+            array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                'actions' => array('admin', 'setupRole'),
+                'roles' => array('admin'),
+            ),
+        );
+    }
+
+    /**
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
      */
     public function actionIndex() {
-        // renders the view file 'protected/views/site/index.php'
-        // using the default layout 'protected/views/layouts/main.php'
-        $this->render('index');
+        $idLanguage = $_GET['idLanguage'];
+        if (!isset($idLanguage)) {
+            $defaultLanguage = Language::model()->findByAttributes(array('code' => Yii::app()->params['defaultLanguageCategory']));
+            $idLanguage = $defaultLanguage->getPrimaryKey();
+        }
+        $categories = Category::model()->findAllByAttributes(array('id_language' => $idLanguage));
+        
+        $this->render('index', array('categories' => $categories));
     }
 
     /**
@@ -36,10 +65,11 @@ class SiteController extends Controller {
      */
     public function actionError() {
         if ($error = Yii::app()->errorHandler->error) {
-            if (Yii::app()->request->isAjaxRequest)
+            if (Yii::app()->request->isAjaxRequest) {
                 echo $error['message'];
-            else
+            } else {
                 $this->render('error', $error);
+            }
         }
     }
 
@@ -90,30 +120,40 @@ class SiteController extends Controller {
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
     }
-    
+
     public function actionSetupRole() {
         $authMgr = Yii::app()->authManager;
         if ($authMgr != null) {
             $authMgr->clearAll();
-            
+
             $authMgr->createOperation('adminUser', 'Manage users');
             $authMgr->createOperation('adminLecture', 'Manage lectures');
-            
+            $authMgr->createOperation('createLecture', 'Create lectures');
+
             $bizRule = 'return Yii::app()->user->id==$params["lecture"]->authID;';
             $authMgr->createOperation('adminOwnLecture', "Manager the own users' lectures");
-            
+
             $roleGuest = $authMgr->createRole('guest');
             $roleAuthenticated = $authMgr->createRole('authenticate');
             $roleStudent = $authMgr->createRole('student');
             $roleTeacher = $authMgr->createRole('teacher');
             $roleAdmin = $authMgr->createRole('admin');
-            
+
             $roleTeacher->addChild('adminOwnLecture');
+            $roleTeacher->addChild('createLecture');
+            
             $roleAdmin->addChild('adminUser');
             $roleAdmin->addChild('adminLecture');
-            
+            $roleAdmin->addChild('createLecture');
+
             $authMgr->assign('admin', 1);
             $authMgr->assign('teacher', 2);
         }
     }
+
+    public function actionAdmin() {
+        $this->layout = 'main';
+        $this->render('admin');
+    }
+
 }

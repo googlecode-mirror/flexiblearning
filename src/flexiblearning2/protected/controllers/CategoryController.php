@@ -6,7 +6,7 @@ class CategoryController extends Controller {
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/site-column1';
+    public $layout = '//layouts/column2';
 
     /**
      * @return array action filters
@@ -34,7 +34,7 @@ class CategoryController extends Controller {
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
                 'actions' => array('admin', 'delete'),
-                'users' => array('@'),
+                'roles' => array('admin'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -47,11 +47,9 @@ class CategoryController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
-//        $this->render('view', array(
-//            'model' => $this->loadModel($id),
-//        ));
+//        $this->layout = 'site';
         $this->render('view', array(
-            'model' => $this->loadModel($id)
+            'model' => $this->loadModel($id),
         ));
     }
 
@@ -60,14 +58,17 @@ class CategoryController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Category();
+        $model = new Category;
+
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
         if (isset($_POST['Category'])) {
             $model->attributes = $_POST['Category'];
-
             if ($model->save()) {
                 $this->redirect(array('view', 'id' => $model->id));
             } 
+            
         }
 
         $this->render('create', array(
@@ -120,9 +121,8 @@ class CategoryController extends Controller {
      */
     public function actionIndex() {
         $dataProvider = new CActiveDataProvider('Category');
-        
         $this->render('index', array(
-            'dataProvider' => $dataProvider
+            'dataProvider' => $dataProvider,
         ));
     }
 

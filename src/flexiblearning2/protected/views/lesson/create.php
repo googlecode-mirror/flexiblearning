@@ -12,4 +12,10 @@ $this->menu=array(
 
 <h1>Create Lesson</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php 
+    $arrayModels = array('model' => $model);
+    if (isset($modelLesson)) {
+        $arrayModels['modelLesson'] = $modelLesson;
+    }
+    echo $this->renderPartial('_form', $arrayModels); 
+?>

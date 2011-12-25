@@ -11,7 +11,5 @@ $this->menu=array(
 ?>
 
 <h1>Create Category</h1>
-<div class="block"></div>
-<div class="block">
-    <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
-</div>
+
+<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

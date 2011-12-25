@@ -5,26 +5,24 @@
  *
  * The followings are the available columns in table 'category':
  * @property integer $id
- * @property string $name
- * @property string $description
- * @property integer $idLanguage
- * @property integer $state
- * @property integer $createdDate
- * @property integer $createdBy
- * @property integer $updatedDate
- * @property integer $updatedBy
+ * @property string $name_vn
+ * @property string $name_en
+ * @property string $name_ko
+ * @property string $description_vn
+ * @property string $description_en
+ * @property string $description_ko
+ * @property integer $id_language
+ * @property integer $flag_del
+ * @property integer $created_by
+ * @property string $created_date
+ * @property integer $updated_by
+ * @property string $updated_date
  *
  * The followings are the available model relations:
- * @property Language $idLanguage0
- * @property Lecture[] $lectures
+ * @property Language $idLanguage
+ * @property Lesson[] $lessons
  */
 class Category extends Base {
-
-    public function init() {
-        if (empty($this->state)) {
-            $this->state = 1;
-        }
-    }
 
     /**
      * Returns the static model of the specified AR class.
@@ -48,12 +46,13 @@ class Category extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, idLanguage, state', 'required'),
-            array('name', 'length', 'max' => 256),
-            array('description', 'safe'),
+            array('name_en, id_language', 'required'),
+            array('id_language', 'numerical', 'integerOnly' => true),
+            array('name_vn, name_en, name_ko', 'length', 'max' => 50),
+            array('description_vn, description_en, description_ko', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('name, idLanguage, state', 'safe', 'on' => 'search'),
+            array('name_vn, name_en, name_ko, id_language, flag_del', 'safe', 'on' => 'search'),
         );
     }
 
@@ -64,10 +63,8 @@ class Category extends Base {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'language' => array(self::BELONGS_TO, 'Language', 'idLanguage'),
-            'createdByUser' => array(self::BELONGS_TO, 'Account', 'createdBy'),
-            'updatedByUser' => array(self::BELONGS_TO, 'Account', 'updatedBy'),
-            'lectures' => array(self::HAS_MANY, 'Lecture', 'idCategory'),
+            'language' => array(self::BELONGS_TO, 'Language', 'id_language'),
+            'lessons' => array(self::HAS_MANY, 'Lesson', 'id_category'),
         );
     }
 
@@ -77,10 +74,18 @@ class Category extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'state' => 'State',
-            'idLanguage' => 'Language'
+            'name_vn' => 'Name Vn',
+            'name_en' => 'Name En',
+            'name_ko' => 'Name Ko',
+            'description_vn' => 'Description Vn',
+            'description_en' => 'Description En',
+            'description_ko' => 'Description Ko',
+            'id_language' => 'Id Language',
+            'flag_del' => 'Flag Del',
+            'created_by' => 'Created By',
+            'created_date' => 'Created Date',
+            'updated_by' => 'Updated By',
+            'updated_date' => 'Updated Date',
         );
     }
 
@@ -94,13 +99,25 @@ class Category extends Base {
 
         $criteria = new CDbCriteria;
 
-        $criteria->compare('name', $this->name, true);
-        $criteria->compare('idLanguage', $this->idLanguage);
-        $criteria->compare('state', $this->state);
+        $criteria->compare('id_language', $this->id_language);
+        $criteria->compare('flag_del', $this->flag_del);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                 ));
     }
 
+    protected function beforeValidate() {
+        if ($this->getIsNewRecord()) {
+            $this->flag_del = 0;
+        }
+        return parent::beforeValidate();
+    }
+    
+    public function getHref() {
+        return Yii::app()->createUrl('category/view', array(
+            'id'=>$this->getPrimaryKey(),
+            'name'=>$this->name,
+        ));
+    }
 }

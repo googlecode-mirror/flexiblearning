@@ -85,6 +85,10 @@ return array(
         'dateFormatForTimestamp' => 'd/m/yy',
         'defaultRoleId' => 3,
         'lectureThumbnails' => 'resources/lectures',
+        'lessonThumbnails' => 'resources/lessons',
         'state' => array(0 => 'Inactive', 1 => 'Active'),
+        'defaultLanguageCategory' => 'en',
+        'widthThumbnailLesson' => '200px',
+        'heightThumbnailLesson' => '135px',
     ),
 );

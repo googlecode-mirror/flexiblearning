@@ -6,7 +6,7 @@ class LessonController extends Controller {
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-//    public $layout = '//layouts/column2';
+    public $layout = '//layouts/column2';
 
     /**
      * @return array action filters
@@ -34,7 +34,7 @@ class LessonController extends Controller {
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
                 'actions' => array('admin', 'delete'),
-                'users' => array('@'),
+                'roles' => array('admin'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -56,21 +56,41 @@ class LessonController extends Controller {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate() {
-        $model = new Lesson;
-
+    public function actionCreate($idCategory) {
+        $this->layout = 'site';
+        $model = new LessonForm;
+        $model->category = Category::model()->findByPk($idCategory);
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Lesson'])) {
-            $model->attributes = $_POST['Lesson'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+        $arrayModels = array();
+        if (isset($_POST['LessonForm'])) {
+            $model->attributes = $_POST['LessonForm'];
+            
+            if ($model->validate()) {
+                $file = CUploadedFile::getInstance($model, 'fileThumbnail');
+                $fileName = Yii::app()->params['lessonThumbnails'] . '/' . $file->getName();
+                if (file_exists($fileName)) {
+                    $fileName = Yii::app()->params['lessonThumbnails'] . '/' . time() . '_' . $file->getName();
+                }
+                $file->saveAs($fileName, true);
+                
+                unset ($_POST['LessonForm']['fileThumbnail']);
+                $modelLesson = new Lesson;
+                $modelLesson->attributes = $_POST['LessonForm'];
+                $modelLesson->thumbnail = $fileName;
+                $modelLesson->id_category = $model->category->getPrimaryKey();
+                
+                if ($modelLesson->save()) {
+                    $this->redirect(array('view', 'id' => $model->id));
+                } else {
+                    $arrayModels['modelLesson'] = $modelLesson;
+                }
+            } 
         }
+        $arrayModels['model'] = $model;
 
-        $this->render('create', array(
-            'model' => $model,
-        ));
+        $this->render('create', $arrayModels);
     }
 
     /**

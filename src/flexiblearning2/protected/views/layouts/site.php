@@ -78,8 +78,8 @@
                     <a href="" style="color:#FFFFFF">  French</a> 
                     
                     <div class="link_manage">
-                        <?php if (Yii::app()->user->checkAccess('adminUser')) : ?>
-                            <a href="<?php echo $this->createUrl('account/admin')?>">Manage users</a>
+                        <?php if (Yii::app()->user->checkAccess('admin')) : ?>
+                            <a href="<?php echo $this->createUrl('site/admin')?>">Admin Control Panel</a>
                         <?php endif; ?>
                         <?php if (Yii::app()->user->checkAccess('adminOwnLecture') || 
                                 (Yii::app()->user->checkAccess('adminLecture'))) : ?>
@@ -89,7 +89,9 @@
                 </div><!--end-menu-->
 
                 <div id="content"><!-- InstanceBeginEditable name="content" -->
-                    <?php echo $content; ?>
+                    <div class="home-wrap">
+                        <?php echo $content; ?>
+                    </div>
                 </div><!--end-content-->
 
                 <div id="wrap-menu-bottom" >
