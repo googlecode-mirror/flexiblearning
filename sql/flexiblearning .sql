@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 3.3.3
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Dec 25, 2011 at 05:25 AM
--- Server version: 5.5.16
--- PHP Version: 5.3.8
+-- Host: 127.0.0.1
+-- Generation Time: Dec 25, 2011 at 04:55 PM
+-- Server version: 5.1.50
+-- PHP Version: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `db_flexiblearning`
+-- Database: `flexiblearning`
 --
 
 -- --------------------------------------------------------
@@ -42,6 +41,14 @@ CREATE TABLE IF NOT EXISTS `account` (
   `asset` decimal(11,2) NOT NULL DEFAULT '0.00' COMMENT 'so tien co trong tai khoan',
   `flag_active` int(11) NOT NULL DEFAULT '1' COMMENT '1:active 0:not yet',
   `flag_del` int(11) NOT NULL DEFAULT '0' COMMENT '1:del',
+  `enabledFullName` int(11) NOT NULL DEFAULT '1',
+  `enabledDateOfBirth` int(11) NOT NULL DEFAULT '1',
+  `enabledAddress` int(11) NOT NULL DEFAULT '1',
+  `enabledNationality` int(11) NOT NULL DEFAULT '1',
+  `enabledTel` int(11) NOT NULL DEFAULT '1',
+  `enabledEmail` int(11) NOT NULL DEFAULT '1',
+  `enabledProfession` int(11) NOT NULL DEFAULT '1',
+  `enabledFavorite` int(11) NOT NULL DEFAULT '1',
   `active_key` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
   `ip_add` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -57,9 +64,9 @@ CREATE TABLE IF NOT EXISTS `account` (
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `username`, `password`, `fullname`, `dateOfBirth`, `address`, `id_nationality`, `tel`, `email`, `id_profession`, `favorite`, `avatar`, `asset`, `flag_active`, `flag_del`, `active_key`, `last_login`, `ip_add`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(1, 'sea2709', 'fad0ce221c826eede253cb0956ca0700', 'Trần Hải Đăng', '1988-09-27', '429/12A Lê Văn Sỹ P12 Q3 TPHCM', NULL, NULL, 'hdang.sea@gmail.com', NULL, NULL, NULL, 0.00, 1, 0, NULL, '2011-12-25 10:46:34', '127.0.0.1', 1, '2011-12-17 00:00:00', 1, '2011-12-17 00:00:00'),
-(2, 'sea', 'fad0ce221c826eede253cb0956ca0700', 'Trần Hải Đăng', '1988-09-27', '429/12A Lê Văn Sỹ P12 Q3 TPHCM', 1, '01227305086', 'sea2709@zing.vn', 1, NULL, NULL, 0.00, 1, 0, NULL, NULL, NULL, 0, '1970-01-01 01:00:00', 0, '1970-01-01 01:00:00');
+INSERT INTO `account` (`id`, `username`, `password`, `fullname`, `dateOfBirth`, `address`, `id_nationality`, `tel`, `email`, `id_profession`, `favorite`, `avatar`, `asset`, `flag_active`, `flag_del`, `enabledFullName`, `enabledDateOfBirth`, `enabledAddress`, `enabledNationality`, `enabledTel`, `enabledEmail`, `enabledProfession`, `enabledFavorite`, `active_key`, `last_login`, `ip_add`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
+(1, 'sea2709', 'fad0ce221c826eede253cb0956ca0700', 'Trần Hải Đăng', '1988-09-27', '429/12A Lê Văn Sỹ P12 Q3 TPHCM', NULL, NULL, 'hdang.sea@gmail.com', NULL, NULL, NULL, '0.00', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, '2011-12-25 14:12:40', '127.0.0.1', 1, '2011-12-17 00:00:00', 1, '2011-12-17 00:00:00'),
+(2, 'sea', 'fad0ce221c826eede253cb0956ca0700', 'Trần Hải Đăng', '1988-09-27', '429/12A Lê Văn Sỹ P12 Q3 TPHCM', 1, '01227305086', 'sea2709@zing.vn', 1, NULL, NULL, '0.00', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, '2011-12-25 16:43:58', '127.0.0.1', 0, '1970-01-01 01:00:00', 0, '1970-01-01 01:00:00');
 
 -- --------------------------------------------------------
 
@@ -77,6 +84,11 @@ CREATE TABLE IF NOT EXISTS `answer` (
   `updated_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `answer`
+--
+
 
 -- --------------------------------------------------------
 
@@ -174,6 +186,11 @@ CREATE TABLE IF NOT EXISTS `banner` (
   KEY `id_partner` (`id_partner`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `banner`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -195,6 +212,11 @@ CREATE TABLE IF NOT EXISTS `bill` (
   KEY `owner_by` (`owner_by`),
   KEY `id_transaction` (`id_transaction`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `bill`
+--
+
 
 -- --------------------------------------------------------
 
@@ -255,6 +277,11 @@ CREATE TABLE IF NOT EXISTS `document` (
   KEY `id_video_2` (`id_video`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `document`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -275,6 +302,11 @@ CREATE TABLE IF NOT EXISTS `entry` (
   KEY `owner_by` (`owner_by`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `entry`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -283,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `entry` (
 
 CREATE TABLE IF NOT EXISTS `language` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name_vn` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `name_vi` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name_ko` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `code` char(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -294,7 +326,8 @@ CREATE TABLE IF NOT EXISTS `language` (
 -- Dumping data for table `language`
 --
 
-INSERT INTO `language` (`id`, `name_vn`, `name_en`, `name_ko`, `code`) VALUES
+INSERT INTO `language` (`id`, `name_vi`, `name_en`, `name_ko`, `code`) VALUES
+(1, 'Tiếng Hàn', 'Korean', '한국의', 'ko'),
 (2, 'Tiếng Anh', 'English', '', 'en'),
 (3, 'Tiếng Pháp', 'French', '', 'fr');
 
@@ -306,10 +339,10 @@ INSERT INTO `language` (`id`, `name_vn`, `name_en`, `name_ko`, `code`) VALUES
 
 CREATE TABLE IF NOT EXISTS `lesson` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title_vn` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title_vi` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_en` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_ko` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description_vn` text COLLATE utf8_unicode_ci,
+  `description_vi` text COLLATE utf8_unicode_ci,
   `description_en` text COLLATE utf8_unicode_ci,
   `description_ko` text COLLATE utf8_unicode_ci,
   `price` decimal(10,0) NOT NULL,
@@ -330,8 +363,8 @@ CREATE TABLE IF NOT EXISTS `lesson` (
 -- Dumping data for table `lesson`
 --
 
-INSERT INTO `lesson` (`id`, `title_vn`, `title_en`, `title_ko`, `description_vn`, `description_en`, `description_ko`, `price`, `flag_del`, `flag_approve`, `id_category`, `created_by`, `created_date`, `updated_by`, `updated_date`, `thumbnail`) VALUES
-(1, 'asdf', 'sdf', 'sdf', 'sf sdfsdf', 'sdf sf sdfdsfwe wer', 'sdfswfwer wrrwer we rwe sdf', 23, 0, 0, 5, 1, '1970-01-01 01:00:00', 1, '1970-01-01 01:00:00', 'resources/lessons/1324778757_hqdefault (2).jpg');
+INSERT INTO `lesson` (`id`, `title_vi`, `title_en`, `title_ko`, `description_vi`, `description_en`, `description_ko`, `price`, `flag_del`, `flag_approve`, `id_category`, `created_by`, `created_date`, `updated_by`, `updated_date`, `thumbnail`) VALUES
+(1, 'asdf', 'sdf', 'sdf', 'sf sdfsdf', 'sdf sf sdfdsfwe wer', 'sdfswfwer wrrwer we rwe sdf', '23', 0, 0, 5, 1, '1970-01-01 01:00:00', 1, '1970-01-01 01:00:00', 'resources/lessons/1324778757_hqdefault (2).jpg');
 
 -- --------------------------------------------------------
 
@@ -345,6 +378,11 @@ CREATE TABLE IF NOT EXISTS `lesson_account` (
   PRIMARY KEY (`id_account`,`id_lesson`),
   KEY `id_lesson` (`id_lesson`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `lesson_account`
+--
+
 
 -- --------------------------------------------------------
 
@@ -366,6 +404,11 @@ CREATE TABLE IF NOT EXISTS `mail` (
   PRIMARY KEY (`id`),
   KEY `owner_by` (`owner_by`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `mail`
+--
+
 
 -- --------------------------------------------------------
 
@@ -396,10 +439,10 @@ INSERT INTO `nationality` (`id`, `name_en`, `name_vi`, `name_ko`) VALUES
 
 CREATE TABLE IF NOT EXISTS `notification` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title_vn` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `title_vi` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `title_en` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `title_korean` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `content_vn` text COLLATE utf8_unicode_ci,
+  `content_vi` text COLLATE utf8_unicode_ci,
   `content_en` text COLLATE utf8_unicode_ci,
   `content_korean` text COLLATE utf8_unicode_ci,
   `id_video` int(11) NOT NULL,
@@ -411,6 +454,11 @@ CREATE TABLE IF NOT EXISTS `notification` (
   PRIMARY KEY (`id`),
   KEY `id_video` (`id_video`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `notification`
+--
+
 
 -- --------------------------------------------------------
 
@@ -433,6 +481,11 @@ CREATE TABLE IF NOT EXISTS `partner` (
   `updated_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `partner`
+--
+
 
 -- --------------------------------------------------------
 
@@ -476,6 +529,11 @@ CREATE TABLE IF NOT EXISTS `question` (
   KEY `id_answer_2` (`id_answer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `question`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -485,12 +543,17 @@ CREATE TABLE IF NOT EXISTS `question` (
 CREATE TABLE IF NOT EXISTS `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `description_vn` text COLLATE utf8_unicode_ci NOT NULL,
+  `description_vi` text COLLATE utf8_unicode_ci NOT NULL,
   `description_en` text COLLATE utf8_unicode_ci NOT NULL,
   `description_korean` text COLLATE utf8_unicode_ci NOT NULL,
   `flag_del` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `role`
+--
+
 
 -- --------------------------------------------------------
 
@@ -500,7 +563,7 @@ CREATE TABLE IF NOT EXISTS `role` (
 
 CREATE TABLE IF NOT EXISTS `survey` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title_vn` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title_vi` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_en` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title_korean` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `filename` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
@@ -516,6 +579,11 @@ CREATE TABLE IF NOT EXISTS `survey` (
   KEY `id_video` (`id_video`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `survey`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -524,14 +592,19 @@ CREATE TABLE IF NOT EXISTS `survey` (
 
 CREATE TABLE IF NOT EXISTS `transaction` (
   `id` int(11) NOT NULL,
-  `transactiontype_vn` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `transactiontype_vi` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `transactiontype_en` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `transaction_korean` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `description_vn` text COLLATE utf8_unicode_ci NOT NULL,
+  `description_vi` text COLLATE utf8_unicode_ci NOT NULL,
   `description_en` text COLLATE utf8_unicode_ci NOT NULL,
   `description_korean` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `transaction`
+--
+
 
 -- --------------------------------------------------------
 
@@ -542,7 +615,7 @@ CREATE TABLE IF NOT EXISTS `transaction` (
 CREATE TABLE IF NOT EXISTS `video` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `description_vn` text COLLATE utf8_unicode_ci,
+  `description_vi` text COLLATE utf8_unicode_ci,
   `description_en` text COLLATE utf8_unicode_ci,
   `description_ko` text COLLATE utf8_unicode_ci,
   `id_lesson` int(11) NOT NULL,
@@ -556,6 +629,11 @@ CREATE TABLE IF NOT EXISTS `video` (
   `updated_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `video`
+--
+
 
 -- --------------------------------------------------------
 
@@ -571,6 +649,11 @@ CREATE TABLE IF NOT EXISTS `videoranking` (
   KEY `id_video` (`id_video`),
   KEY `ranked_by` (`ranked_by`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `videoranking`
+--
+
 
 --
 -- Constraints for dumped tables
@@ -663,7 +746,3 @@ ALTER TABLE `survey`
 ALTER TABLE `videoranking`
   ADD CONSTRAINT `videoranking_ibfk_1` FOREIGN KEY (`id_video`) REFERENCES `video` (`id`),
   ADD CONSTRAINT `videoranking_ibfk_2` FOREIGN KEY (`ranked_by`) REFERENCES `account` (`id`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
