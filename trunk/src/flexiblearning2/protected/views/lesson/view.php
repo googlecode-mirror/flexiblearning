@@ -7,18 +7,8 @@ $this->breadcrumbs = array(
     $category->name => $category->getHref(),
     $model->title,
 );
-
-//$this->menu=array(
-//	array('label'=>'List Lesson', 'url'=>array('index')),
-//	array('label'=>'Create Lesson', 'url'=>array('create')),
-//	array('label'=>'Update Lesson', 'url'=>array('update', 'id'=>$model->id)),
-//	array('label'=>'Delete Lesson', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-//	array('label'=>'Manage Lesson', 'url'=>array('admin')),
-//);
 ?>
 
-
-<h1>View Lesson #<?php echo $model->id; ?></h1>
 <table width="940" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td class="top" id="caption">
@@ -79,14 +69,6 @@ $this->breadcrumbs = array(
             </div>
 
             <div class="top">
-                <?php if (Yii::app()->user->getId() == $model->createdBy->getPrimaryKey()) : ?>
-                    <div>
-                        <?php
-                            echo CHtml::link(Yii::t('default', 'Create videos'), 
-                                    $this->createUrl('video/create', array('idLesson' => $model->getPrimaryKey())));
-                        ?>
-                    </div>
-                <?php endif;?>
                 <span style="font-size:12pt; color:#000000">
                     <a href="#"><?php echo Yii::t('default', 'Videos')?></a>
                 </span>
@@ -96,14 +78,27 @@ $this->breadcrumbs = array(
                     <tr>
                         <?php foreach($model->videos as $video) : ?>
                             <td class="top">
-                                <div><img src="<?php echo Yii::app()->request->baseUrl ?>/img/home-img2.jpg" class="bor" width="200" height="111"/></div>
-                                <div class="sticker"><img src="<?php echo Yii::app()->request->baseUrl ?>/img/sticker-free.png" /></div>
-                                <a href="../HTML/GiaoTrinh.html">Tiếng anh cao cấp 1</a><br />
-                                Teach: <span id="colo">Sara Corner</span> 
+                                <div>
+                                    <img src="<?php echo Yii::app()->request->baseUrl ?>/img/home-img3.jpg" class="bor" width="200" height="111" />
+                                </div>
+                                <div class="sticker">
+                                    <img src="<?php echo Yii::app()->request->baseUrl ?>/img/sticker-free.png" />
+                                </div>
+                                <a href="<?php echo $video->getHref()?>"><?php echo $video->name?></a><br />
                             </td>
                         <?php endforeach; ?>
                     </tr>
                 </table>
+                
+                <?php if (Yii::app()->user->getId() == $model->createdBy->getPrimaryKey()) : ?>
+                    <div class="block-area">
+                        <?php
+                            echo CHtml::link(Yii::t('default', 'Create videos'), 
+                                    $this->createUrl('video/create', 
+                                            array('idLesson' => $model->getPrimaryKey())), array('class' => 'bt link-btn'));
+                        ?>
+                    </div>
+                <?php endif;?>
             </div>
         </td>
 

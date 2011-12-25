@@ -15,7 +15,7 @@ $this->menu=array(
 <?php 
     $arrayModels = array('model' => $model);
     if (isset($modelVideo)) {
-        $arrayModels['modelLesson'] = $modelVideo;
+        $arrayModels['modelVideo'] = $modelVideo;
     }
     echo $this->renderPartial('_form', $arrayModels); 
 ?>

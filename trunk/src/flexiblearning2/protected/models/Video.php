@@ -117,4 +117,10 @@ class Video extends Base {
                 ));
     }
 
+    public function getHref() {
+        return Yii::app()->createUrl('video/view', array(
+            'id'=>$this->getPrimaryKey(),
+            'name'=>$this->name,
+        ));
+    }
 }

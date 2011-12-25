@@ -64,12 +64,14 @@ class VideoController extends Controller {
         if (isset($_POST['VideoForm'])) {
             $model->attributes = $_POST['VideoForm'];
             
-            if ($model->validate()) {
-                $file = CUploadedFile::getInstance($model, 'file');
-                $fileName = Yii::app()->params['video'] . '/' . $file->getName();
-                if (file_exists($fileName)) {
-                    $fileName = Yii::app()->params['lessonThumbnails'] . '/' . time() . '_' . $file->getName();
-                }
+            $file = CUploadedFile::getInstance($model, 'file');
+            $fileName = Yii::app()->params['video'] . '/' . $file->getName();
+            if (file_exists($fileName)) {
+                $fileName = Yii::app()->params['lessonThumbnails'] . '/' . time() . '_' . $file->getName();
+            }
+            $model->file = $fileName;
+            
+            if ($model->validate()) {    
                 $file->saveAs($fileName, true);
                 
                 unset ($_POST['VideoForm']['file']);

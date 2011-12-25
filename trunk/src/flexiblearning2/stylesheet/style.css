@@ -527,6 +527,22 @@ ul.operations li {
     margin: 0px 10px;
 }
 
+.sticker {
+    height: 50px;
+    z-index: 20;
+    margin-top: -35px;
+    padding-left: 150px;
+}
+
+.link-btn {
+    padding : 5px;
+}
+
+.block-area {
+    margin-top:10px;
+    margin-bottom: 5px;
+}
+
 /*INDEX PAGE*/
 #index-page img.lesson-thumbnail {
     

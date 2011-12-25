@@ -22,7 +22,7 @@ class VideoForm extends CFormModel {
     
     public function rules() {
          return array(
-            array('file', 'file'),
+            array('file', 'file', 'allowEmpty' => false, 'types' => 'flv'),
             array('name, file', 'required'),
             array('name', 'length', 'max' => 50),
             array('description_vi, description_en, description_ko', 'safe'),
