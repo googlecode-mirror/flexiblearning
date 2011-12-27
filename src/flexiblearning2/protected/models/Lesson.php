@@ -126,4 +126,12 @@ class Lesson extends Base {
             'title'=>$this->title,
         ));
     }
+    
+    public function getThumbnail() {
+        $thumbnail = $this->thumbnail;
+        if (!$thumbnail) {
+            $thumbnail = Yii::app()->params['defaultLessonThumbnail'];
+        }
+        return $thumbnail;
+    }
 }

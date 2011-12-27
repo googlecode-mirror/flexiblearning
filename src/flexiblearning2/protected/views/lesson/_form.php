@@ -45,7 +45,7 @@
   
        <?php 
            $this->widget('application.extensions.tinymce.ETinyMce', array(
-               'name'=>'description_vi',
+               'name'=>'LessonForm[description_vi]',
                'editorTemplate' => 'simple',
                'height'=>'100px',
                'width' =>'450px')
@@ -58,7 +58,7 @@
         <?php echo $form->labelEx($model,'description_en'); ?>
         <?php 
             $this->widget('application.extensions.tinymce.ETinyMce', array(
-                'name'=>'description_en',
+                'name'=>'LessonForm[description_en]',
                 'editorTemplate' => 'simple',
                 'height'=>'100px',
                 'width' =>'450px' )
@@ -72,7 +72,7 @@
         <?php echo $form->labelEx($model,'description_ko'); ?>
         <?php 
             $this->widget('application.extensions.tinymce.ETinyMce', array(
-                'name'=>'description_ko',
+                'name'=>'LessonForm[description_ko]',
                 'editorTemplate' => 'simple',
                 'height'=>'100px',
                 'width' =>'450px' )

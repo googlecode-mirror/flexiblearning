@@ -1,7 +1,11 @@
 <?php
+    $category = $model->category;
+    $language = $category->language;
+    
 $this->breadcrumbs=array(
-	'Lessons'=>array('index'),
-	'Create',
+    $language->name => $language->getHref(),    
+    $category->name => $category->getHref(),
+    Yii::t('default', 'Create lesson'),
 );
 
 $this->menu=array(

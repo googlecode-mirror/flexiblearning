@@ -95,5 +95,6 @@ return array(
         'widthThumbnailLesson' => '200px',
         'heightThumbnailLesson' => '135px',
         'numberOfVideoPerRowOnIndex' => 4,
+        'defaultLessonThumbnail' => 'default-lesson-thumbnail.jpg',
     ),
 );

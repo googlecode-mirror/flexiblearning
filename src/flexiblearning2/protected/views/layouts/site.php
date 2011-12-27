@@ -83,7 +83,7 @@
                         <?php if (Yii::app()->user->checkAccess('admin')) : ?>
                             <a href="<?php echo $this->createUrl('site/admin')?>"><?php echo Yii::t('zii', 'Admin Control Panel');?></a>
                         <?php endif; ?>
-                        <?php if (Yii::app()->user->checkAccess('adminOwnLecture') || 
+                        <?php if (Yii::app()->user->checkAccess('adminOwnLesson') || 
                                 (Yii::app()->user->checkAccess('adminLecture'))) : ?>
                             <a href="<?php echo $this->createUrl('lecture/admin')?>"><?php echo Yii::t('zii', 'Manage lectures');?></a>
                         <?php endif; ?>

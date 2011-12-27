@@ -132,11 +132,7 @@ $form = $this->beginWidget('CActiveForm', array(
                                     <?php echo $form->passwordField($model, 'password', array('size' => 30, 'maxlength' => 256)); ?>
                                     <?php echo $form->error($model, 'password'); ?>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>Password Strength (more info) </td>
-                            </tr>
+                            </tr>                            
                             <tr>
                                 <td><?php echo $form->labelEx($model, 'password_repeat'); ?></td>
                                 <td>
@@ -178,15 +174,13 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
 
  dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-					
-					
-                        </textarea>				
+s                        </textarea>				
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input name="" type="checkbox" value="" />
-                        Agree
+                        <?php echo $form->checkBox($model, 'agree', array('uncheckValue' => '')); ?>
+                        <?php echo $form->labelEx($model, 'agree', array('for' => 'RegisterForm_agree')); ?>
                     </td>
                 </tr>
                 <tr>

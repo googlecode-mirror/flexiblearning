@@ -25,10 +25,10 @@
                 <?php endforeach; ?>
             </div>
             <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/intro-gioithieu.png" /> 
-            <a href=<?php echo $this->createUrl('site/page/view/about')?>>Giới thiệu</a> 
+            <a href="<?php echo $this->createUrl('site/page/view/about')?>"><?php echo Yii::t('default', 'About us')?></a> 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
             <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/intro-lienhe.png" /> 
-            <a href=<?php echo $this->createUrl('site/contact')?>> Liên hệ</a>
+            <a href="<?php echo $this->createUrl('site/contact')?>"><?php echo Yii::t('default', 'Contact us')?></a>
         </div>
 
         <script type="text/javascript">

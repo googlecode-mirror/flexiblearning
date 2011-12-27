@@ -24,10 +24,12 @@ class RegisterForm extends CFormModel {
     public $password;
     public $password_repeat;
     public $id_profession;
+    public $agree;
     
     function rules() {
         return array(
-            array('fullname, dateOfBirth, address, id_nationality, email, username, password, id_profession', 'required'),
+            array('fullname, dateOfBirth, address, id_nationality, email, username, password, id_profession, agree', 'required'),
+//            array( 'agree', 'required', 'requiredValue'=>1 ),
             array('id_nationality, id_profession', 'numerical', 'integerOnly' => true),
             array('fullname, address, tel, password', 'length', 'max' => 256),
             array('email, username', 'length', 'max' => 128),                        

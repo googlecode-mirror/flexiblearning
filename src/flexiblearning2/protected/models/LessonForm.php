@@ -32,6 +32,12 @@ class LessonForm extends CFormModel {
             array('description_vi, description_en, description_ko, title_vi, title_en, title_ko', 'safe'),
         );
     }
+    
+    public function attributeLabels() {
+        return array(
+            'id_Category' => 'Category',
+        );
+    }
 }
 
 ?>
