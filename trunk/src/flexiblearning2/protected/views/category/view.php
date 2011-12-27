@@ -1,7 +1,9 @@
 <?php
+$language = $model->language;
+
 $this->breadcrumbs = array(
-    'Categories' => array('index'),
-    $model->id,
+    $language->name => $language->getHref(),
+    $model->name,
 );
 
 $this->menu = array(
@@ -11,31 +13,55 @@ $this->menu = array(
     array('label' => 'Delete Category', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this item?')),
     array('label' => 'Manage Category', 'url' => array('admin')),
     array('label' => 'Create Lesson', 'url' => array(
-        'lesson/create', 
-        'idCategory' => $model->id, 
-        'idLanguage' => $model->language->id)),    
+            'lesson/create',
+            'idCategory' => $model->id,
+            'idLanguage' => $model->language->id)),
 );
 ?>
 
-<h1>View Category #<?php echo $model->id; ?></h1>
+<table width="910" border="0" id="home-td" >
+    <tr>
+        <td colspan="4" id="home-box">
+            <div id="title">
+                <a href="javascript:void()"><?php echo $model->name?></a>
+            </div>
+            <div id="line-box"></div>	
+        </td>
+    </tr>
+    <?php foreach ($model->lessons as $index => $lesson) : ?>
+        <?php if ($index % Yii::app()->params['numberOfVideoPerRowOnIndex'] == 0) : ?>
+            <tr>
+        <?php endif; ?>
+                <td>
+                    <img class="lesson-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lesson->getThumbnail(); ?>" 
+                         style="max-width:<?php echo Yii::app()->params['widthThumbnailLesson']?>; max-height:<?php echo Yii::app()->params['heightThumbnailLesson']?>" />
+                    <br />
+                    <a href="<?php echo $lesson->getHref()?>"><?php echo $lesson->title?></a>
+                    <br />
+                    Teacher : <span id="colo"><a href=""><?php echo $lesson->createdBy->fullname?></a></span> 	  
+                </td>
+        <?php if (($index + 1) % Yii::app()->params['numberOfVideoPerRowOnIndex'] == 0) : ?>
+            </tr>
+        <?php endif; ?> 
+    <?php endforeach; ?>
+        
+    <tr>
+        <td>
+            <?php 
+                echo '<div class="block-area">';
+                if (Yii::app()->user->checkAccess('createLesson'))  {
+                    echo CHtml::link('Create lessons', $this->createUrl('lesson/create', 
+                        array('idCategory' => $model->getPrimaryKey())),
+                        array('class' => 'bt link-btn'));
+                }
+                echo '</div>';
+            ?>
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+</table>
 
-<?php
-    $this->widget('zii.widgets.CDetailView', array(
-        'data' => $model,
-        'attributes' => array(
-            'name_vi',
-            'name_en',
-            'name_ko',
-            'description_vi',
-            'description_en',
-            'description_ko',
-            'id_language',
-            'flag_del',
-            'created_by',
-            'created_date',
-            'updated_by',
-            'updated_date',
-        ),
-    ));
-?>
+
 

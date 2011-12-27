@@ -15,7 +15,9 @@ $this->breadcrumbs = array(
             <span id="title-text"><?php echo $model->title ?></span> 
             <br />
             <br />
-            <img src="<?php echo Yii::app()->request->baseUrl . '/' . $model->thumbnail; ?>" width="627" height="382" />
+            <p class="center">
+                <img src="<?php echo Yii::app()->request->baseUrl . '/' . $model->thumbnail; ?>" class="lesson-view" />
+            </p>
             <div style="margin-top:10px;">
                 <span style="font-size:13pt; color:#000000"><?php echo Yii::t('default', 'Price : ') ?></span>
                 <span style="font-size:15pt; color:#ff0000"><?php echo $model->price?></span> &nbsp; 

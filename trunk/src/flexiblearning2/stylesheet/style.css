@@ -543,7 +543,23 @@ ul.operations li {
     margin-bottom: 5px;
 }
 
+.breadcrumbs {
+    border-bottom: solid #32614F 2pt;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+/*COMMON*/
+.center {
+    text-align: center;
+}
 /*INDEX PAGE*/
 #index-page img.lesson-thumbnail {
     
+}
+
+/*LESSON PAGE*/
+img.lesson-view {
+    max-width:627px;
+    max-height:382px;
 }

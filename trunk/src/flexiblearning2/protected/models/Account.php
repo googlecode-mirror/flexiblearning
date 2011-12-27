@@ -108,7 +108,6 @@ class Account extends Base {
             'password' => 'Password',
             'id_profession' => 'Id Profession',
             'avatar' => 'Avatar',
-            
             'flag_del' => 'Flag_del',
             'createdDate' => 'Created Date',
             'createdBy' => 'Created By',

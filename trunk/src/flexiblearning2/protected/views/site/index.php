@@ -16,10 +16,10 @@
                     <tr>
                 <?php endif; ?>        
                         
-                <td>
+                <td style="text-align: center">
                     <img class="lesson-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lesson->thumbnail; ?>" 
-                         width="<?php echo Yii::app()->params['widthThumbnailLesson']?>" 
-                         height="<?php echo Yii::app()->params['heightThumbnailLesson']?>" /> <br />
+                         style='max-width:<?php echo Yii::app()->params['widthThumbnailLesson']?>; max-height:<?php echo Yii::app()->params['heightThumbnailLesson']?>' />
+                    <br />
                     <a href="<?php echo $lesson->getHref()?>"><?php echo $lesson->title?></a><br />
                     Teacher : <span id="colo"><a href=""><?php echo $lesson->createdBy->fullname?></a></span> 	  
                 </td>
