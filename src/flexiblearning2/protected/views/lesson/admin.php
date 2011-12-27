@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Lessons'=>array('index'),
-	'Manage',
+	Yii::t('zii', 'Lessons') =>array('index'),
+	Yii::t('zii', 'Manage'),
 );
 
 $this->menu=array(

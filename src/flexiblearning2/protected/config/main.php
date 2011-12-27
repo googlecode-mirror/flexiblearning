@@ -55,10 +55,10 @@ return array(
         ),
         // uncomment the following to use a MySQL database		
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=db_flexiblearning',
+            'connectionString' => 'mysql:host=localhost;dbname=flexiblearning',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => 'lighthouse',
+            'password' => '',
             'charset' => 'utf8',
         ),
         'errorHandler' => array(
