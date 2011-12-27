@@ -10,9 +10,9 @@
     <?php echo $form->errorSummary($model); ?>
 
     <div class="row">
-        <?php echo $form->labelEx($model,'name_vn'); ?>
-        <?php echo $form->textField($model,'name_vn',array('size'=>50,'maxlength'=>50)); ?>
-        <?php echo $form->error($model,'name_vn'); ?>
+        <?php echo $form->labelEx($model,'name_vi'); ?>
+        <?php echo $form->textField($model,'name_vi',array('size'=>50,'maxlength'=>50)); ?>
+        <?php echo $form->error($model,'name_vi'); ?>
     </div>
 
     <div class="row">
@@ -28,9 +28,9 @@
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($model,'description_vn'); ?>
-        <?php echo $form->textArea($model,'description_vn',array('rows'=>6, 'cols'=>50)); ?>
-        <?php echo $form->error($model,'description_vn'); ?>
+        <?php echo $form->labelEx($model,'description_vi'); ?>
+        <?php echo $form->textArea($model,'description_vi',array('rows'=>6, 'cols'=>50)); ?>
+        <?php echo $form->error($model,'description_vi'); ?>
     </div>
 
     <div class="row">

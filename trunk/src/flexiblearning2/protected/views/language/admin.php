@@ -16,7 +16,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider' => new CActiveDataProvider(Language::model()),
     'columns' => array(
         'id',
-        'name_vn',
+        'name_vi',
         'name_en',
         'name_ko',
         array(
