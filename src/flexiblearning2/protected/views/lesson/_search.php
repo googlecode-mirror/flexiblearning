@@ -46,8 +46,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'flag_del'); ?>
-		<?php echo $form->textField($model,'flag_del'); ?>
+		<?php echo $form->label($model,'is_active'); ?>
+		<?php echo $form->textField($model,'is_active'); ?>
 	</div>
 
 	<div class="row">

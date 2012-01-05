@@ -1,7 +1,7 @@
 <?php $this->beginContent('//layouts/site'); ?>
 <div class="container">
     <div class="span-19">
-        <div id="content">
+        <div id="left-content">
             <?php echo $content; ?>
         </div><!-- content -->
     </div>

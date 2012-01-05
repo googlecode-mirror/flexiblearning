@@ -6,8 +6,7 @@ class LessonController extends Controller {
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column2';
-
+    public $layout = '//layouts/site-column2';
     /**
      * @return array action filters
      */
@@ -30,14 +29,11 @@ class LessonController extends Controller {
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions' => array('create', 'update'),
-                'users' => array('@'),
+                'roles' => array('admin', 'teacher'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
                 'actions' => array('admin', 'delete'),
                 'roles' => array('admin'),
-            ),
-            array('deny', // deny all users
-                'users' => array('*'),
             ),
         );
     }
@@ -47,7 +43,6 @@ class LessonController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
-        $this->layout = 'site';
         Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.tabify.js');
         Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/stylesheet/tabify.css');
         
@@ -61,40 +56,26 @@ class LessonController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate($idCategory) {
-        $this->layout = 'site';
-        $model = new LessonForm;
-        $model->category = Category::model()->findByPk($idCategory);
+        $model = new Lesson();
+        $model->id_category = (int)($idCategory);
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        $arrayModels = array();
-        if (isset($_POST['LessonForm'])) {
-            $model->attributes = $_POST['LessonForm'];
+        if (isset($_POST['Lesson'])) {
+            $model->attributes = $_POST['Lesson'];
             
             if ($model->validate()) {
-                $file = CUploadedFile::getInstance($model, 'fileThumbnail');
-                $fileName = Yii::app()->params['lessonThumbnails'] . '/' . $file->getName();
-                if (file_exists($fileName)) {
-                    $fileName = Yii::app()->params['lessonThumbnails'] . '/' . time() . '_' . $file->getName();
+                $fileName = $this->getAndSaveUploadedFile($model);
+                if ($fileName) {
+                    $model->thumbnail = $fileName;
                 }
-                $file->saveAs($fileName, true);
-                
-                unset ($_POST['LessonForm']['fileThumbnail']);
-                $modelLesson = new Lesson;
-                $modelLesson->attributes = $_POST['LessonForm'];
-                $modelLesson->thumbnail = $fileName;
-                $modelLesson->id_category = $model->category->getPrimaryKey();
-                
-                if ($modelLesson->save()) {
-                    $this->redirect(array('view', 'id' => $modelLesson->getPrimaryKey()));
-                } else {
-                    $arrayModels['modelLesson'] = $modelLesson;
-                }
+                if ($model->save()) {
+                    $this->redirect(array('view', 'id' => $model->getPrimaryKey()));
+                } 
             } 
         }
-        $arrayModels['model'] = $model;
 
-        $this->render('create', $arrayModels);
+        $this->render('create', array('model' => $model));
     }
 
     /**
@@ -104,12 +85,18 @@ class LessonController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
         if (isset($_POST['Lesson'])) {
             $model->attributes = $_POST['Lesson'];
+            $fileName = $this->getAndSaveUploadedFile($model);
+            if ($fileName) {
+                if ($model->thumbnail) {
+                    unlink($model->thumbnail);
+                }
+                $model->thumbnail = $fileName;
+            }
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -151,6 +138,7 @@ class LessonController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
+        $this->layout = 'site-admin';
         $model = new Lesson('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Lesson']))
@@ -183,5 +171,17 @@ class LessonController extends Controller {
             Yii::app()->end();
         }
     }
-
+    
+    private function getAndSaveUploadedFile($model) {
+        $file = CUploadedFile::getInstance($model, 'fileThumbnail');
+        $fileName = null;
+        if ($file) {
+            $fileName = Yii::app()->params['lessonThumbnails'] . '/' . $file->getName();
+            if (file_exists($fileName)) {
+                $fileName = Yii::app()->params['lessonThumbnails'] . '/' . time() . '_' . $file->getName();
+            }
+            $file->saveAs($fileName, true);
+        }
+        return $fileName;
+    }
 }

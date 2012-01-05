@@ -5,7 +5,7 @@
 $this->breadcrumbs=array(
     $language->name => $language->getHref(),    
     $category->name => $category->getHref(),
-    Yii::t('default', 'Create lesson'),
+    Yii::t('zii', 'Create lesson'),
 );
 
 $this->menu=array(

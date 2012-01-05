@@ -15,13 +15,17 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'language-grid',
     'dataProvider' => new CActiveDataProvider(Language::model()),
     'columns' => array(
-        'id',
+        array(
+            'header' => 'No',
+            'value' => '$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize + $row+1',
+            'htmlOptions' => array('class' => 'number-column'),
+        ),
         'name_vi',
         'name_en',
         'name_ko',
         array(
             'class' => 'CButtonColumn',
-            'template'=>'{delete}{update}',
+            'template' => '{delete}{update}',
         ),
     ),
 ));

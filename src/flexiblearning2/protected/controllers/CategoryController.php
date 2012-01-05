@@ -6,7 +6,7 @@ class CategoryController extends Controller {
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column2';
+    public $layout = '//layouts/site-column2';
 
     /**
      * @return array action filters
@@ -106,7 +106,10 @@ class CategoryController extends Controller {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
+            $model = $this->loadModel($id);
+//            if (count($model->lessons == 0)) {
+                $model->delete();
+//            }
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
@@ -117,19 +120,12 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Lists all models.
-     */
-    public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Category');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
      * Manages all models.
      */
     public function actionAdmin() {
+        $this->layout = 'site-admin';
+        $this->activeMenuItemIndex = 2;
+        
         $model = new Category('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Category']))
@@ -162,5 +158,9 @@ class CategoryController extends Controller {
             Yii::app()->end();
         }
     }
-
+    
+    public function init() {
+        parent::init();
+        $this->activeMenuItemIndex = 2;
+    }
 }

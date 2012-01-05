@@ -144,6 +144,7 @@ class AccountController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
+        $this->layout = 'site-admin';
         $model = new Account('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Account']))

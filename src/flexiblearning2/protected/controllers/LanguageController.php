@@ -6,8 +6,9 @@ class LanguageController extends Controller {
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column2';
-
+    public $layout = '//layouts/site-admin';
+    public $activeMenuItemIndex = 1;
+    
     /**
      * @return array action filters
      */
@@ -54,8 +55,9 @@ class LanguageController extends Controller {
 
         if (isset($_POST['Language'])) {
             $model->attributes = $_POST['Language'];
-            if ($model->save())
-                $this->redirect(array('manage'));
+            if ($model->save()) {
+                $this->redirect(array('admin'));
+            }
         }
 
         $this->render('create', array(
@@ -76,8 +78,9 @@ class LanguageController extends Controller {
 
         if (isset($_POST['Language'])) {
             $model->attributes = $_POST['Language'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+            if ($model->save()) {
+                $this->redirect(array('admin'));
+            }
         }
 
         $this->render('update', array(
@@ -149,5 +152,4 @@ class LanguageController extends Controller {
             Yii::app()->end();
         }
     }
-
 }

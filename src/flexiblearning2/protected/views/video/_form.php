@@ -18,15 +18,18 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'name'); ?>
-        <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 256)); ?>
-        <?php echo $form->error($model, 'name'); ?>
+        <div>
+            <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 256)); ?>
+            <?php echo $form->error($model, 'name'); ?>
+        </div>
     </div>
 
     <div class="row">
         <?php echo $form->labelEx($model, 'description_vi'); ?>
         <?php 
            $this->widget('application.extensions.tinymce.ETinyMce', array(
-               'name'=>'description_vi',
+               'attribute' => 'description_vi',
+               'model' => $model,
                'editorTemplate' => 'simple',
                'height'=>'100px',
                'width' =>'450px')
@@ -39,7 +42,8 @@
         <?php echo $form->labelEx($model, 'description_en'); ?>
         <?php 
            $this->widget('application.extensions.tinymce.ETinyMce', array(
-               'name'=>'description_en',
+               'attribute' => 'description_en',
+               'model' => $model,
                'editorTemplate' => 'simple',
                'height'=>'100px',
                'width' =>'450px')
@@ -52,7 +56,8 @@
         <?php echo $form->labelEx($model, 'description_ko'); ?>
         <?php 
            $this->widget('application.extensions.tinymce.ETinyMce', array(
-               'name'=>'description_ko',
+               'attribute' => 'description_ko',
+               'model' => $model,
                'editorTemplate' => 'simple',
                'height'=>'100px',
                'width' =>'450px')
@@ -63,12 +68,15 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'file'); ?>
-        <?php echo CHtml::activeFileField($model, 'file') ?>
-        <?php echo $form->error($model, 'file'); ?>
+        <div>
+            <?php echo CHtml::activeFileField($model, 'file') ?>
+            <?php echo $form->error($model, 'file'); ?>
+        </div>
     </div>
 
     <div class="row buttons">
-      <?php echo CHtml::submitButton(isset($model->id) ? 'Save' : 'Create'); ?>
+        <label>&nbsp;</label>
+        <?php echo CHtml::submitButton(isset($model->id) ? 'Save' : 'Create', array('class' => 'bt')); ?>
     </div>
 
 <?php $this->endWidget(); ?>

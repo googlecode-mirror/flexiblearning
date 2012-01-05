@@ -23,7 +23,8 @@ class Controller extends CController {
      * for more details on how to specify this property.
      */
     public $breadcrumbs = array();
-
+    public $activeMenuItemIndex = -1;
+    
     public function init() {
         // register class paths for extension captcha extended
         Yii::$classMap = array_merge(Yii::$classMap, array(

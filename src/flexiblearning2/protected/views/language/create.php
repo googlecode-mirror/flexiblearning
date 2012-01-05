@@ -5,7 +5,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Language', 'url'=>array('index')),
 	array('label'=>'Manage Language', 'url'=>array('admin')),
 );
 ?>

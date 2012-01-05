@@ -1,30 +1,33 @@
 <?php
-$this->breadcrumbs=array(
-	'Videos'=>array('index'),
-	$model->name,
-);
+$lesson = $model->lesson;
+$category = $lesson->category;
+$language = $category->language;
 
-$this->menu=array(
-	array('label'=>'List Video', 'url'=>array('index')),
-	array('label'=>'Create Video', 'url'=>array('create')),
-	array('label'=>'Update Video', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Video', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Video', 'url'=>array('admin')),
+$this->breadcrumbs = array(
+    $language->name => $language->href,
+    $category->name => $category->href,
+    $lesson->title => $lesson->href,
+    $model->name,
 );
 ?>
 
-<h1>View Video #<?php echo $model->id; ?></h1>
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="top" id="caption">
+            <div class="title">
+                <span class="title-text"><?php echo $model->name ?></span> 
+            </div>
+            <p class="center">
+                <?php $this->renderPartial('/_video_player', array('model' => $model))?>
+            </p>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'name',
-		'description',
-		'num_view',
-		'ranking',
-		'ranking',
-		'id_lesson',
-		'path',
-	),
-)); ?>
+            <?php $this->renderPartial('/_lesson_detail', array('model' => $lesson));?>
+        </td>
+
+        <td style="vertical-align:top; background-color:white;">
+            <?php $this->renderPartial('/_skype');?>
+            <?php $this->renderPartial('/_qa');?>
+            <?php $this->renderPartial('/_ad');?>
+        </td>
+    </tr>
+</table>

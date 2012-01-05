@@ -31,7 +31,7 @@ body{
 }
 #head-mid-top{
     width:480px; 
-    padding-bottom:65px;
+    padding-bottom:45px;
 }
 #head-mid ul#icon{
     width:88%;
@@ -56,14 +56,9 @@ ul#icon li a{
     position:absolute;
     line-height:15px;
 }
-ul#nav li{
-    display:inline;
-}
 ul#nav li a{
-    padding-right:10px;
     text-decoration:none;
     color:#484545;
-    margin-left:30px;
 }
 ul#nav li a:hover{
     color:#00bcf2;
@@ -118,14 +113,63 @@ ul#nav li a:hover{
     width:930px;
     height:31px;
     color:#FFFFFF;
-    padding-top:8px;
+    padding-top:11px;
     padding-left:10px;
     text-transform:capitalize;
     clear:both;
 }
 
+#menu ul
+{
+    padding: 3px 20px 5px 0px;
+    margin:0px;
+}
+
+#menu ul li
+{
+    display: inline;
+}
+
+#menu ul li a
+{
+    color:#ffffff;
+    background-color:transparent;
+    font-size:12px;
+    font-weight:bold;
+    text-decoration:none;
+    padding:5px 8px;
+}
+
+#menu ul li a:hover, #menu ul li.active a
+{
+    color: #6399cd;
+    background-color:#EFF4FA;
+    text-decoration:none;
+}
+
 #menu a {
     color: #F3F3F3;
+}
+
+#menu > a.link-lang {
+    padding-left: 24px;   
+    padding-right: 10px;
+}
+
+#menu > a.link-en {
+    background: url("../img/menu-icon-anh.png") no-repeat;
+}
+
+#menu > a.link-vi {
+    background: url("../img/menu-icon-viet.png") no-repeat;
+}s
+
+#menu > a.link-fr {
+    background: url("../img/menu-icon-phap.png") no-repeat;
+}
+
+#menu > a.link-ko {
+    background: url("../img/menu-icon-han.png") no-repeat;
 }
 
 a{ 
@@ -186,7 +230,7 @@ a:hover{
     padding-bottom:20px;
 }
 .top{
-    padding-top:20px;
+    padding-top:10px;
 }
 
 #colo{
@@ -195,6 +239,7 @@ a:hover{
 .home-wrap{
     background-color:white;
     margin: 5px;
+    padding-bottom: 5px;
 }
 #home-td{
     margin-left:15px;
@@ -248,12 +293,13 @@ a:hover{
     color:white;
     border-style:none;
 }
-#skype{
+.skype{
     background-image:url(../img/giaotrinh-skype.jpg);
     background-repeat:no-repeat;
     width:231px;
     height:48px;
     margin-top:10px;
+    padding-top:15px;
     padding-left:50px;
     vertical-align:middle;
 }
@@ -266,23 +312,23 @@ a:hover{
     padding-right:20px; 
     height:800px;
 }
-#gt-left{
+#gt-left {
     width:450px; 
     float:left
 }
-#gt-right{
+#gt-right {
     width:430px; 
     float:left; 
     padding-left:20px;
 }
-#gt-line{
+#gt-line {
     border-bottom: solid #ccc 1px; 
     height:20px; 
     width:100%; 
     clear:both
 }
 #slide{
-    width:940px;
+    width:930px;
     height:196px;
     float:left;
     position:relative;
@@ -310,7 +356,12 @@ a:hover{
     height:40px; 
     border-bottom: solid #32614f 2pt;
 }
-#title-text{
+
+.title {
+    margin-bottom: 20px;
+}
+
+.title-text{
     font:Dekar; 
     font-size:15pt;
     text-transform:capitalize; 
@@ -545,17 +596,132 @@ ul.operations li {
 
 .breadcrumbs {
     border-bottom: solid #32614F 2pt;
-    padding-top:10px;
-    padding-bottom:10px;
+    padding: 10px 0px 10px 5px;
+}
+
+.container {
+    overflow: hidden;
+}
+
+.portlet-decoration {
+    padding: 3px 8px;
+    background: #D3E9DC;
+    border: solid #6FA987;
+    border-width: 1px 1px 1px 5px;
+}
+
+.portlet-title {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+.portlet-content {
+    font-size:0.9em;
+    margin: 0 0 15px 0;
+    padding: 5px 8px;
+    background:#F3F9F6;
+    border-width: 1px 1px 1px 5px;
+    border-style: solid;
+    border-color: #6FA987;
+}
+
+.portlet-content ul {
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
+}
+
+.portlet-content li {
+    padding: 2px 0 4px 0px;
+}
+
+#left-content {
+    float:left;
+    width:700px;
+}
+
+.span-5 {
+    width: 190px;
+    float: left;
 }
 
 /*COMMON*/
 .center {
     text-align: center;
 }
+
+.left {
+    float:left;
+}
+
+.right {
+    float:right;
+}
+
+.clear {
+    clear: both;
+}
+
+#sidebar {
+    margin-left: 10px;
+}
+
+.grid-view table.items th {
+    color: white;
+    background: #32614f repeat-x scroll left top;
+    text-align: center;
+}
+
+.grid-view table.items tr.odd {
+    background: #D3E9DC;
+}
+
+.grid-view .number-column {
+    text-align: right;
+}
+
+.lesson {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+td > .lesson {
+    text-align: center;
+}
+
+a.edit-link {
+    background-image:url(../img/edit-icon.png);
+    background-repeat: no-repeat;    
+    padding-left: 16px;
+}
+
+li.top-navigation-link {
+    background-repeat: no-repeat;
+    background-position: top center;
+    height:30px;    
+    width:100px;
+    padding-top: 24px;
+    display: inline-block;
+    text-align: center;
+}
+
+li.home-link {
+    background-image:url(../img/icon-trangchu.png);
+}
+
+li.about-link {
+    background-image:url(../img/icon-gioithieu.png);
+}
+
+li.contact-link {
+    background-image:url(../img/icon-lienhe.png);
+}
 /*INDEX PAGE*/
 #index-page img.lesson-thumbnail {
-    
+
 }
 
 /*LESSON PAGE*/
@@ -563,3 +729,34 @@ img.lesson-view {
     max-width:627px;
     max-height:382px;
 }
+
+.block-price {
+    margin-top:15px;
+}
+
+.block-price > .left > span {
+    font-size:13pt; 
+    color:#000000;
+}
+
+.block-price > .left > span + span {
+    font-size:15pt; 
+    color:#ff0000;
+}
+
+.sticker > .price {
+    background-image: url(../img/sticker.png);
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    padding-top: 15px;
+    font-size: 1.2em;
+    color: white;
+}
+
+/*CATEGORY PAGE*/
+p.description {
+    margin-bottom: 10px;
+}
+

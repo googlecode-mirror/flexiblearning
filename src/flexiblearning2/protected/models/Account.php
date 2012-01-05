@@ -106,7 +106,7 @@ class Account extends Base {
             'email' => 'Email',
             'username' => 'Username',
             'password' => 'Password',
-            'id_profession' => 'Id Profession',
+            'id_profession' => 'Profession',
             'avatar' => 'Avatar',
             'flag_del' => 'Flag_del',
             'createdDate' => 'Created Date',

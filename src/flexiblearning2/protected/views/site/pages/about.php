@@ -1,8 +1,8 @@
 <div id="slide">
-    <a href="#" class="show"><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/gioithieu-slice1.jpg" width="940" height="196" alt="slide1" /></a>
-    <a href="#" ><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/gioithieu-slice2.jpg" width="940" height="196"  alt="slide2"/></a>
-    <a href="#" ><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/gioithieu-slice3.jpg" width="940" height="196"  alt="slide3"/></a>
-    <a href="#" ><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/gioithieu-slice.jpg" width="940" height="196"  alt="slide4"/></a>
+    <a href="#" class="show"><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/gioithieu-slice1.jpg" width="930" height="196" alt="slide1" /></a>
+    <a href="#" ><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/gioithieu-slice2.jpg" width="930" height="196"  alt="slide2"/></a>
+    <a href="#" ><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/gioithieu-slice3.jpg" width="930" height="196"  alt="slide3"/></a>
+    <a href="#" ><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/gioithieu-slice.jpg" width="930" height="196"  alt="slide4"/></a>
 </div><!--end-slide-->
 <div class="clear"></div>
 <div id="gioithieu-wrap">
