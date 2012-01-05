@@ -34,7 +34,13 @@ class Base extends CActiveRecord {
         $lang = Yii::app()->getLanguage();
         $att = $name . '_' . $lang;
         if ($this->hasAttribute($att)) {
-            return parent::__get($att);    
+            $value = parent::__get($att);    
+            if (!$value) {
+                $defaultLang = Yii::app()->params['defaultLanguage'];
+                return parent::__get($name . '_' . $defaultLang);
+            } else {
+                return $value;
+            }
         }
         
         return parent::__get($name);

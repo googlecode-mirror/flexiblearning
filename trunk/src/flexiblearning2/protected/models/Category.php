@@ -12,7 +12,7 @@
  * @property string $description_en
  * @property string $description_ko
  * @property integer $id_language
- * @property integer $flag_del
+ * @property boolean $is_active
  * @property integer $created_by
  * @property string $created_date
  * @property integer $updated_by
@@ -49,10 +49,10 @@ class Category extends Base {
             array('name_en, id_language', 'required'),
             array('id_language', 'numerical', 'integerOnly' => true),
             array('name_vi, name_en, name_ko', 'length', 'max' => 50),
-            array('description_vi, description_en, description_ko', 'safe'),
+            array('description_vi, description_en, description_ko, is_active', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('name_vi, name_en, name_ko, id_language, flag_del', 'safe', 'on' => 'search'),
+            array('name_vi, name_en, name_ko, id_language, is_active', 'safe', 'on' => 'search'),
         );
     }
 
@@ -80,8 +80,8 @@ class Category extends Base {
             'description_vi' => 'Description Vn',
             'description_en' => 'Description En',
             'description_ko' => 'Description Ko',
-            'id_language' => 'Id Language',
-            'flag_del' => 'Flag Del',
+            'id_language' => 'Language',
+            'is_active' => 'Is Active',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'updated_by' => 'Updated By',
@@ -100,7 +100,7 @@ class Category extends Base {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id_language', $this->id_language);
-        $criteria->compare('flag_del', $this->flag_del);
+        $criteria->compare('is_active', $this->is_active);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -109,7 +109,7 @@ class Category extends Base {
 
     protected function beforeValidate() {
         if ($this->getIsNewRecord()) {
-            $this->flag_del = 0;
+            $this->is_active = 0;
         }
         return parent::beforeValidate();
     }

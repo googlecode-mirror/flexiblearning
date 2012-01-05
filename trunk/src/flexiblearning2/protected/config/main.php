@@ -43,9 +43,7 @@ return array(
         'urlManager' => array(
             'class' => 'application.extensions.langhandler.ELangCUrlManager',
             'urlFormat' => 'path',
-
-            'showScriptName'=>TRUE,
-
+            'showScriptName'=>false,
             'rules' => array(
                 '<lang:(en|vi|ko)>/<_c>/<_a>/' => '<_c>/<_a>',  
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
@@ -55,10 +53,10 @@ return array(
         ),
         // uncomment the following to use a MySQL database		
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=flexiblearning',
+            'connectionString' => 'mysql:host=localhost;dbname=db_flexiblearning',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => '',
+            'password' => 'lighthouse',
             'charset' => 'utf8',
         ),
         'errorHandler' => array(
@@ -91,10 +89,14 @@ return array(
         'lessonThumbnails' => 'resources/lessons',
         'video' => 'resources/videos',
         'state' => array(0 => 'Inactive', 1 => 'Active'),
-        'defaultLanguageCategory' => 'en',
+        'defaultLanguage' => 'en',
         'widthThumbnailLesson' => '200px',
         'heightThumbnailLesson' => '135px',
         'numberOfVideoPerRowOnIndex' => 4,
-        'defaultLessonThumbnail' => 'default-lesson-thumbnail.jpg',
+        'defaultLessonThumbnail' => 'resources/default-lesson-thumbnail.jpg',
+        'moneyUnit' => '$',
+        'flashObjectFolder' => 'flash_object',
+        'videoWidth' => 600,
+        'videoHeight' => 400,
     ),
 );

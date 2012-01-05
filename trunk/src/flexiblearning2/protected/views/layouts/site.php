@@ -16,22 +16,28 @@
                     <div id="logo">
                     </div>
                     <div id="head-mid">
-                        <div id="head-mid-top">
-                            <ul id="icon">
-                                <li><a><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/icon-trangchu.png" /></a></li>
-                                <li><a><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/icon-gioithieu.png" /></a></li>
-                                <li><a><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/icon-lienhe.png" /></a></li>
-                            </ul>
-                        </div>
+                        <div id="head-mid-top"></div>
 
                         <div id="wrap-nav">
                             <ul id="nav">
                                 <?php
                                 $this->widget('zii.widgets.CMenu', array(
                                     'items' => array(
-                                        array('label' => Yii::t('zii', 'Home'), 'url' => array('/site/index')),
-                                        array('label' => Yii::t('zii', 'About'), 'url' => array('/site/page', 'view' => 'about')),
-                                        array('label' => Yii::t('zii', 'Contact'), 'url' => array('/site/contact')),
+                                        array(
+                                            'label' => Yii::t('zii', 'Home'), 
+                                            'url' => array('/site/index'),
+                                            'itemOptions' => array('class' => 'home-link top-navigation-link')
+                                        ),
+                                        array(
+                                            'label' => Yii::t('zii', 'About'), 
+                                            'url' => array('/site/page', 'view' => 'about'),
+                                            'itemOptions' => array('class' => 'about-link top-navigation-link')
+                                        ),
+                                        array(
+                                            'label' => Yii::t('zii', 'Contact'), 
+                                            'url' => array('/site/contact'),
+                                            'itemOptions' => array('class' => 'contact-link top-navigation-link'),
+                                        ),
                                     ),
                                 ));
                                 ?>
@@ -47,7 +53,9 @@
                                     <a href="<?php echo $this->createUrl('account/register') ?>"><?php echo Yii::t('zii', 'Register');?></a>
                                 </div>
                                 <div class="link"> 
-                                    <a href="<?php echo $this->createUrl('site/login') ?>"><?php echo Yii::t('zii', 'Login');?></a>
+                                    <a href="<?php echo $this->createUrl('site/login', array('return-url' => Yii::app()->request->requestUri)) ?>">
+                                        <?php echo Yii::t('zii', 'Login');?>
+                                    </a>
                                 </div>
                             </div>
                         <?php else : ?>
@@ -69,15 +77,12 @@
                 </div><!--end-head-->
 
                 <div id="menu">
-                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/menu-icon-anh.png" />
-                    <a href="<?php ?>" style="color:#FFFFFF">  
-                        <?php echo Yii::t('zii', 'English');?>
-                    </a> 
-                    &nbsp; &nbsp; &nbsp; &nbsp; 
-                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/menu-icon-han.png" />
-                    <a href="" style="color:#FFFFFF">  <?php echo Yii::t('zii', 'Korean');?></a> &nbsp; &nbsp; &nbsp; &nbsp; 
-                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/menu-icon-phap.png" />
-                    <a href="" style="color:#FFFFFF">  <?php echo Yii::t('zii', 'French');?></a> 
+                    <?php foreach(Language::model()->findAll() as $lang) : ?>
+                        <a href="<?php echo $this->createUrl('site/switchLanguage', 
+                                array('code' => $lang->code))?>" class="link-lang link-<?php echo $lang->code?>">
+                            <?php echo $lang->name?>
+                        </a>
+                    <?php endforeach; ?>
                     
                     <div class="link_manage">
                         <?php if (Yii::app()->user->checkAccess('admin')) : ?>
@@ -97,7 +102,8 @@
                         $this->widget('zii.widgets.CBreadcrumbs', array(
                             'links' => $this->breadcrumbs,
                         ));
-                        ?><!-- breadcrumbs -->
+                        ?>
+                    <!-- breadcrumbs -->
                     <?php endif ?>
                     <div class="home-wrap">
                         <?php echo $content; ?>
@@ -107,8 +113,8 @@
                 <div id="wrap-menu-bottom" >
                     <div id="bottom">&nbsp;&nbsp;
                         <a href="PrivacyPolicy.html">Privacy Policy</a> &nbsp;&nbsp;
-                        <a href=<?php echo $this->createUrl('/site/contact')?>><?php echo Yii::t('zii', 'Contact');?></a>  &nbsp;&nbsp;
-                        <a href=<?php echo $this->createUrl('/site/page/view/about')?>><?php echo Yii::t('zii', 'About');?></a>		</div>
+                        <a href="<?php echo $this->createUrl('/site/contact')?>"><?php echo Yii::t('zii', 'Contact');?></a>  &nbsp;&nbsp;
+                        <a href="<?php echo $this->createUrl('/site/page/view/about')?>"><?php echo Yii::t('zii', 'About');?></a>		</div>
                     <div id="bottom-l">
                         <span style="color:#666666">Flow us</span> &nbsp; 
                         <a href="#">
@@ -127,13 +133,11 @@
                     	<?php echo Yii::app()->language;?>
                     </div>
                     <div id="bottom-r">Language  
-                        <a href=<?php echo $this->createUrl('')?>>
-                            
+                        <a href="<?php echo $this->createUrl('')?>">
                             <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/icon-lang-anh.png" border="0" />
                         </a> 
                         &nbsp; 
-                        <a href=<?php echo Yii::app()->request->baseUrl; ?>>
-                        
+                        <a href="<?php echo Yii::app()->request->baseUrl; ?>">
                             <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/icon-lang-han.png" border="0" 
                                  onmouseover="this.src='<?php echo Yii::app()->request->baseUrl; ?>/img/icon-lang-han-over.png';" onmouseout="this.src='<?php echo Yii::app()->request->baseUrl; ?>/img/icon-lang-han.png';" />
                         </a> 

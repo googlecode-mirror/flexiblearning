@@ -20,7 +20,7 @@ class ELangHandler extends CApplicationComponent {
                 Yii::app()->setLanguage($defaultLang);
             else
                 Yii::app()->setLanguage($this->languages[0]);
-        }elseif($_GET['lang']!=Yii::app()->getLanguage() && in_array($_GET['lang'],$this->languages)) {
+        } elseif($_GET['lang']!=Yii::app()->getLanguage() && in_array($_GET['lang'],$this->languages)) {
             Yii::app()->setLanguage($_GET['lang']);
         }
     }

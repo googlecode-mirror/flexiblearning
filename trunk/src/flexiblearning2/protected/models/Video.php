@@ -70,6 +70,7 @@ class Video extends Base {
             'notifications' => array(self::HAS_MANY, 'Notification', 'id_video'),
             'surveys' => array(self::HAS_MANY, 'Survey', 'id_video'),
             'videorankings' => array(self::HAS_MANY, 'Videoranking', 'id_video'),
+            'lesson' => array(self::BELONGS_TO, 'Lesson', 'id_lesson'),
         );
     }
 

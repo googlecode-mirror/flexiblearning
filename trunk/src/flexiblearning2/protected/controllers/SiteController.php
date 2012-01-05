@@ -58,7 +58,7 @@ class SiteController extends Controller {
             $idLanguage = $_GET['idLanguage'];
         } 
         if (!isset($idLanguage)) {
-            $defaultLanguage = Language::model()->findByAttributes(array('code' => Yii::app()->params['defaultLanguageCategory']));
+            $defaultLanguage = Language::model()->findByAttributes(array('code' => Yii::app()->params['defaultLanguage']));
             $idLanguage = $defaultLanguage->getPrimaryKey();
         }
         $categories = Category::model()->findAllByAttributes(array('id_language' => $idLanguage));
@@ -112,8 +112,14 @@ class SiteController extends Controller {
         if (isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
             // validate user input and redirect to the previous page if valid
-            if ($model->validate() && $model->login())
-                $this->redirect(Yii::app()->user->returnUrl);
+            if ($model->validate() && $model->login()) {
+                if (isset($_GET['return-url'])) {
+                    $url = $_GET['return-url'];
+                } else {
+                    $url = Yii::app()->user->returnUrl;
+                }
+                $this->redirect($url);
+            }
         }
         // display the login form
         $this->render('login', array('model' => $model));
@@ -134,6 +140,7 @@ class SiteController extends Controller {
 
             $authMgr->createOperation('adminUser', 'Manage users');
             $authMgr->createOperation('adminLesson', 'Manage lessons');
+            $authMgr->createOperation('adminCategory', 'Manage categories');
             $authMgr->createOperation('createLesson', 'Create lessons');
 
             $bizRule = 'return Yii::app()->user->id==$params["lesson"]->authID;';
@@ -151,6 +158,7 @@ class SiteController extends Controller {
             $roleAdmin->addChild('adminUser');
             $roleAdmin->addChild('adminLesson');
             $roleAdmin->addChild('createLesson');
+            $roleAdmin->addChild('adminCategory');
 
             $authMgr->assign('admin', 1);
             $authMgr->assign('teacher', 2);
@@ -158,14 +166,17 @@ class SiteController extends Controller {
     }
 
     public function actionAdmin() {
-        $this->layout = 'main';
+        $this->layout = 'site-admin';
         $this->render('admin');
     }
-    
-    public function actionTestUpload() {
-        $model = new XUploadForm;
-		$this->render('testUpload', array(
-			'model' => $model,
-		));
+
+    public function actionSwitchLanguage($code) {
+        $lang = Language::model()->findByAttributes(array('code' => $code));
+        if ($lang) {
+            Yii::app()->setLanguage($code);        
+            $this->redirect($this->createUrl(
+                    'site/index', array('idLanguage' => $lang->getPrimaryKey())
+            ));   
+        }
     }
 }

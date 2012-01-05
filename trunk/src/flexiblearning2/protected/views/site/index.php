@@ -4,10 +4,10 @@
             <tr>
                 <td colspan="<?php echo Yii::app()->params['numberOfVideoPerRowOnIndex']?>">
                     <div id="title">
-                        <a href="<?php echo $category->getHref()?>"><?php echo $category->name?></a>
+                        <a href="<?php echo $category->href?>"><?php echo $category->name?></a>
                     </div>
                     <div id="line-box"> 
-                        <a href="<?php echo $category->getHref()?>">&gt;View all</a> 
+                        <a href="<?php echo $category->href?>">&gt;View all</a> 
                     </div>	
                 </td>
             </tr>
@@ -16,12 +16,14 @@
                     <tr>
                 <?php endif; ?>        
                         
-                <td style="text-align: center">
-                    <img class="lesson-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lesson->thumbnail; ?>" 
-                         style='max-width:<?php echo Yii::app()->params['widthThumbnailLesson']?>; max-height:<?php echo Yii::app()->params['heightThumbnailLesson']?>' />
-                    <br />
-                    <a href="<?php echo $lesson->getHref()?>"><?php echo $lesson->title?></a><br />
-                    Teacher : <span id="colo"><a href=""><?php echo $lesson->createdBy->fullname?></a></span> 	  
+                <td>
+                    <div class="lesson">
+                        <img class="lesson-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lesson->thumb; ?>" 
+                             style='max-width:<?php echo Yii::app()->params['widthThumbnailLesson']?>; max-height:<?php echo Yii::app()->params['heightThumbnailLesson']?>' />
+                        <br />
+                        <a href="<?php echo $lesson->href?>"><?php echo $lesson->title?></a><br />
+                        Teacher : <span id="colo"><a href=""><?php echo $lesson->createdBy->fullname?></a></span> 	  
+                    </div>
                 </td>
                 
                 <?php if (($index + 1) % Yii::app()->params['numberOfVideoPerRowOnIndex'] == 0) :?>

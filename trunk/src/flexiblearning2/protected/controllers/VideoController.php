@@ -46,6 +46,8 @@ class VideoController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
+        Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.tabify.js');
+        Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/stylesheet/tabify.css');
         $this->render('view', array(
             'model' => $this->loadModel($id),
         ));
