@@ -586,6 +586,14 @@ ALTER TABLE `videoranking`
   ADD CONSTRAINT `videoranking_ibfk_1` FOREIGN KEY (`id_video`) REFERENCES `video` (`id`),
   ADD CONSTRAINT `videoranking_ibfk_2` FOREIGN KEY (`ranked_by`) REFERENCES `account` (`id`);
 
+--
+-- Dumping data for table `language`
+--
+
+INSERT INTO `language` (`id`, `name_vi`, `name_en`, `name_ko`, `code`) VALUES
+(2, 'Tiếng Anh', 'English', 'English', 'en'),
+(3, 'Tiếng Việt', 'Vietnamese', '', 'vi'),
+(4, 'Tiếng Hàn', 'Korean', '', 'ko');
   
 --
 -- Dumping data for table `category`
@@ -636,14 +644,6 @@ INSERT INTO `account` (`id`, `username`, `password`, `fullname`, `dateOfBirth`, 
 (4, 'abc123', 'fad0ce221c826eede253cb0956ca0700', 'abcv', '1988-09-27', '429/12A Lê Văn Sỹ P12 Q3 TPHCM', 1, '01227305086', 'aaaa@aaa.aaa', 1, NULL, NULL, 0.00, 1, 0, NULL, NULL, NULL, 0, '1970-01-01 01:00:00', 0, '1970-01-01 01:00:00');
 
 --
--- Dumping data for table `authassignment`
---
-
-INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
-('admin', '1', NULL, 'N;'),
-('teacher', '2', NULL, 'N;');
-
---
 -- Dumping data for table `authitem`
 --
 
@@ -658,6 +658,14 @@ INSERT INTO `authitem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
 ('guest', 2, '', NULL, 'N;'),
 ('student', 2, '', NULL, 'N;'),
 ('teacher', 2, '', NULL, 'N;');
+
+--
+-- Dumping data for table `authassignment`
+--
+
+INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
+('admin', '1', NULL, 'N;'),
+('teacher', '2', NULL, 'N;');
 
 --
 -- Dumping data for table `authitemchild`
