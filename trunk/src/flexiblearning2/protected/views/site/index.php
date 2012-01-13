@@ -11,7 +11,7 @@
                     </div>	
                 </td>
             </tr>
-            <?php foreach ($category->lessons as $index => $lesson) : ?>
+            <?php foreach ($category->lectures as $index => $lecture) : ?>
                 <?php if ($index % Yii::app()->params['numberOfVideoPerRowOnIndex'] == 0) :?>
                     <tr>
                 <?php endif; ?>        

@@ -6,7 +6,8 @@ class LectureController extends Controller {
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/site-column1';
+    public $layout = '//layouts/site-admin';
+    public $activeMenuItemIndex = 3;
 
     /**
      * @return array action filters
@@ -57,24 +58,34 @@ class LectureController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new LectureForm();
+        $model = new Lecture();
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['LectureForm'])) {
-            $model->attributes = $_POST['LectureForm'];
-            $file = CUploadedFile::getInstance($model, 'fileThumbnail');
-            if ($model->validate()) {
-                $fileName = Yii::app()->params['lectureThumbnails'] . '/' . $file->getName();
-                if (file_exists($fileName)) {
-                    $fileName = Yii::app()->params['lectureThumbnails'] . '/' . time() . '_' . $file->getName();
-                }
-                $file->saveAs($fileName, true);
-                $lecture = new Lecture();
-                $lecture->attributes = $_POST['LectureForm'];
-                $lecture->thumbnail = $fileName;
-                if ($lecture->save()) {
-                    $this->redirect(array('view', 'id' => $lecture->id));
+        if (isset($_POST['Lecture'])) {
+            $model->attributes = $_POST['Lecture'];
+            $model->owner_by = Yii::app()->user->getId();
+            
+            $file = CUploadedFile::getInstance($model, 'fileIntro');
+            $fileName = Yii::app()->params['video'] . '/' . $file->getName();
+            if (file_exists($fileName)) {
+                $fileName = Yii::app()->params['video'] . '/' 
+                        . time() . '_' . $file->getName();
+            }
+            if ($file->saveAs($fileName, true)) {
+                $videoHelper = new CVideo();
+                $videoThumbnailName = $videoHelper->create_thumbnail($fileName, 
+                        Yii::app()->params['videoWidth'], 
+                        Yii::app()->params['videoHeight'], 
+                        Yii::app()->params['videoThumbnail']
+                );
+                $convertVideoFileName = $videoHelper->convertVideo($fileName);
+
+                $model->path_video_intro = $convertVideoFileName;
+                $model->path_video_thumbnail = $videoThumbnailName;
+
+                if ($model->save()) {
+                    $this->redirect(array('view', 'id' => $model->id));
                 }
             }
         }

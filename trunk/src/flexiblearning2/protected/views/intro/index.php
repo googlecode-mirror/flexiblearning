@@ -21,7 +21,7 @@
         <div id="intro">
             <div class="languages">
                 <?php foreach(Language::model()->findAll() as $lang) : ?>
-                <a href="<?php echo CHtml::normalizeUrl(array('site/index', 'idLanguage' => $lang->id))?>"><?php echo $lang->name?></a>
+                    <a href="<?php echo CHtml::normalizeUrl(array('site/index', 'idLanguage' => $lang->id))?>"><?php echo $lang->name?></a>
                 <?php endforeach; ?>
             </div>
             <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/intro-gioithieu.png" /> 

@@ -64,9 +64,33 @@ class AccountController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
+        $model = $this->loadModel($id);
+        $roles = Yii::app()->authManager->getRoles($id);
+        if (array_key_exists('student', $roles)) {
+            $this->render('view_student', array(
+                'model' => $this->loadModel($id),
+            ));
+        } else {
+            if (count($roles) > 0) {
+                $criteria = new CDbCriteria();
+                $criteria->order = 'created_date DESC';
+                $criteria->addCondition(array('owner_by' => $id));
+                
+                $count = Entry::model()->count($criteria);
+                $pages = new CPagination($count);
+
+                // results per page
+                $pages->pageSize = Yii::app()->params['entriesPerPage'];
+                $pages->applyLimit($criteria);
+                $entries = Entry::model()->findAll($criteria);
+    
+                $this->render('view_teacher', array(
+                    'model' => $this->loadModel($id),
+                    'entries' => $entries,
+                    'pages' => $pages,
+                ));    
+            }
+        }
     }
 
     /**

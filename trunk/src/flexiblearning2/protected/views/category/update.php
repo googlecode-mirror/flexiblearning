@@ -1,14 +1,14 @@
 <?php
 $this->breadcrumbs = array(
-    'Categories' => array('index'),
+    Yii::t('zii', 'Categories') => array('index'),
     $model->name => array('view', 'id' => $model->id),
-    'Update',
+    Yii::t('zii', 'Update'),
 );
 
 $this->menu = array(
-    array('label' => 'Create Category', 'url' => array('create')),
-    array('label' => 'View Category', 'url' => array('view', 'id' => $model->id)),
-    array('label' => 'Manage Category', 'url' => array('admin')),
+    array('label' => Yii::t('zii', 'Create Category'), 'url' => array('create')),
+    array('label' => Yii::t('zii', 'View Category'), 'url' => array('view', 'id' => $model->id)),
+    array('label' => Yii::t('zii', 'Manage Category'), 'url' => array('admin')),
 );
 ?>
 

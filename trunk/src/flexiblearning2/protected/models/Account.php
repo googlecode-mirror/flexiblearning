@@ -88,7 +88,7 @@ class Account extends Base {
         return array(
             'nationality' => array(self::BELONGS_TO, 'Nationality', 'id_nationality'),
             'profession' => array(self::BELONGS_TO, 'Profession', 'id_profession'),
-            
+            'entries' => array(self::HAS_MANY, 'Entry', 'owner_by'),
         );
     }
 
@@ -159,4 +159,18 @@ class Account extends Base {
         $this->password = $this->hashPassword($this->password);
     }
 
+    public function getHref() {
+        return Yii::app()->createUrl('account/view', array(
+            'id'=>$this->getPrimaryKey(),
+            'username'=>$this->username,
+        ));
+    }
+    
+    public function getAvatarPath() {
+        $avatar = $this->avatar;
+        if (!$avatar) {
+            return Yii::app()->params['defaultUserAvatar'];
+        }
+        return $avatar;
+    }
 }
