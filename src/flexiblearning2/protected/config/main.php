@@ -21,7 +21,7 @@ return array(
         // uncomment the following to enable the Gii tool		
         'gii' => array(
             'class' => 'system.gii.GiiModule',
-            'password' => '',
+            'password' => 'lighthouse',
             // If removed, Gii defaults to localhost only. Edit carefully to taste.
             'ipFilters' => array('127.0.0.1', '::1'),
         ),
@@ -43,7 +43,7 @@ return array(
         'urlManager' => array(
             'class' => 'application.extensions.langhandler.ELangCUrlManager',
             'urlFormat' => 'path',
-            'showScriptName'=>false,
+            'showScriptName'=>true,
             'rules' => array(
                 '<lang:(en|vi|ko)>/<_c>/<_a>/' => '<_c>/<_a>',  
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
@@ -53,7 +53,7 @@ return array(
         ),
         // uncomment the following to use a MySQL database		
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=db_flexiblearning',
+            'connectionString' => 'mysql:host=localhost;dbname=db_flexib',
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => 'lighthouse',
@@ -85,8 +85,10 @@ return array(
         'dateFormat' => 'dd/MM/yyyy',
         'dateFormatForTimestamp' => 'd/m/yy',
         'defaultRoleId' => 3,
+        'resourceDefault' => 'resources',
         'lectureThumbnails' => 'resources/lectures',
         'lessonThumbnails' => 'resources/lessons',
+        'entryThumbnails' => 'resources/entries',
         'video' => 'resources/videos',
         'state' => array(0 => 'Inactive', 1 => 'Active'),
         'defaultLanguage' => 'en',
@@ -94,9 +96,17 @@ return array(
         'heightThumbnailLesson' => '135px',
         'numberOfVideoPerRowOnIndex' => 4,
         'defaultLessonThumbnail' => 'resources/default-lesson-thumbnail.jpg',
+        'defaultUserAvatar' => 'resources/default-user-avatar.jpg',
+        'defaultEntryThumbnail' => 'resources/default-entry-thumbnail.jpg',
+        'videoThumbnail' => 'resources/video-thumbnails',
         'moneyUnit' => '$',
         'flashObjectFolder' => 'flash_object',
         'videoWidth' => 600,
         'videoHeight' => 400,
+        'roles' => array('teacher' => 'Teacher', 'admin' => 'Admin', 'student' => 'Student', 'user' => 'User'),
+        'blogTeaserLength' => 300,
+        'entriesPerPage' => 1,
+        'convert_command' => 'ffmpeg\\ffmpeg.exe -i %s %s',
+        'create_thumbnail_command' => 'ffmpeg\\ffmpeg.exe  -itsoffset -4  -i %s -vcodec mjpeg -vframes 1 -an -f rawvideo -s %dx%d %s',
     ),
 );

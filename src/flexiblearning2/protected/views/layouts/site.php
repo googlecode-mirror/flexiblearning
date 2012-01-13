@@ -3,10 +3,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        
         <title><?php echo Yii::app()->name?></title>        
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/stylesheet/style.css" media="screen" />            
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/stylesheet/form.css" media="screen" />            
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/stylesheet/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/stylesheet/form.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/stylesheet/tabify.css" media="screen" />
         
         <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
+        <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.tabify.js" type="text/javascript" charset="utf-8"></script>
     </head>
 
     <body>
@@ -61,7 +63,8 @@
                         <?php else : ?>
                             <div id="logout">
                                 <div class="hi-username">    
-                                    <?php echo Yii::t('zii', 'Hi');?> <?php echo Yii::app()->user->name?>                                
+                                    <?php echo Yii::t('zii', 'Hi');?> 
+                                    <?php echo CHtml::link(Yii::app()->user->name, $this->createUrl('account/view', array('id' => Yii::app()->user->getId())))?>                                
                                 </div>
                                 <span class="link"> 
                                     <a href="<?php echo $this->createUrl('site/logout') ?>"><?php echo Yii::t('zii', 'Logout');?></a>

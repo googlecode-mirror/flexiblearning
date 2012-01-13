@@ -15,33 +15,92 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>256)); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'description'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'price'); ?>
-		<?php echo $form->textField($model,'price'); ?>
-		<?php echo $form->error($model,'price'); ?>
-	</div>
-
-	<div class="row">
-            <?php echo $form->labelEx($model,'idCategory'); ?>
-            <?php echo $form->dropDownList($model,'idCategory', CHtml::listData(Category::model()->findAllByAttributes(array('state' => 1)), 'id', 'name') ); ?>
-            <?php echo $form->error($model,'idCategory'); ?>
+		<?php echo $form->labelEx($model,'title_en'); ?>
+		<?php echo $form->textField($model,'title_en',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->error($model,'title_en'); ?>
 	</div>
         
         <div class="row">
-            <?php echo $form->labelEx($model,'fileThumbnail'); ?>
-            <?php echo CHtml::activeFileField($model, 'fileThumbnail')?>
-            <?php echo $form->error($model,'fileThumbnail'); ?>
+		<?php echo $form->labelEx($model,'title_vi'); ?>
+		<?php echo $form->textField($model,'title_vi',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->error($model,'title_vi'); ?>
+	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'title_ko'); ?>
+		<?php echo $form->textField($model,'title_ko',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->error($model,'title_ko'); ?>
+	</div>
+
+        <div class="row">
+            <?php echo $form->labelEx($model,'content_en'); ?>
+            <div>
+                <?php 
+                   $this->widget('ext.tinymce.ETinyMce', array(
+                       'model' => $model,
+                       'attribute' => 'content_en',
+                       'editorTemplate' => 'simple',
+                       'height'=>'100px',
+                       'width' =>'450px',
+                       )
+                   ); 
+               ?>
+                <?php echo $form->error($model,'content_en'); ?>
+            </div>
+        </div>
+        
+	<div class="row">
+            <?php echo $form->labelEx($model,'content_vi'); ?>
+            <div>
+                <?php 
+                   $this->widget('ext.tinymce.ETinyMce', array(
+                       'model' => $model,
+                       'attribute' => 'content_vi',
+                       'editorTemplate' => 'simple',
+                       'height'=>'100px',
+                       'width' =>'450px',
+                       )
+                   ); 
+               ?>
+                <?php echo $form->error($model,'content_vi'); ?>
+            </div>
+        </div>
+        
+        <div class="row">
+            <?php echo $form->labelEx($model,'content_ko'); ?>
+            <div>
+                <?php 
+                   $this->widget('ext.tinymce.ETinyMce', array(
+                       'model' => $model,
+                       'attribute' => 'content_ko',
+                       'editorTemplate' => 'simple',
+                       'height'=>'100px',
+                       'width' =>'450px',
+                       )
+                   ); 
+               ?>
+                <?php echo $form->error($model,'content_ko'); ?>
+            </div>
+        </div>
+        
+	<div class="row">
+            <?php echo $form->labelEx($model,'id_category'); ?>
+            <?php echo $form->dropDownList($model,'id_category', CHtml::listData(Category::model()->findAllByAttributes(array('is_active' => 1)), 'id', 'name') ); ?>
+            <?php echo $form->error($model,'id_category'); ?>
+	</div>
+        
+        <div class="row">
+            <?php echo $form->labelEx($model,'fileIntro'); ?>
+            <?php echo CHtml::activeFileField($model, 'fileIntro')?>
+            <?php echo $form->error($model,'fileIntro'); ?>
+        </div>
+        
+        <div class="row">
+            <?php echo $form->labelEx($model,'is_active'); ?>
+            <div>
+                <?php echo $form->checkBox($model, 'is_active', array('uncheckValue' => 0)) ?>
+                <?php echo $form->error($model,'is_active'); ?>
+            </div>
         </div>
 
 	<div class="row buttons">

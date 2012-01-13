@@ -92,7 +92,6 @@
         </div>
     </div>
 
-    
     <div class="row">
         <?php echo $form->labelEx($model,'is_active'); ?>
         <div>

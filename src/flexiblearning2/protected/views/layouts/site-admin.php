@@ -79,11 +79,9 @@
                     <?php
                         $menuItems = array(
                             array('label' => 'Home', 'url' => array('/site/admin')),
-                            array(
-                                'label' => 'Language', 
-                                'url' => array('/language/admin'),
-                            ),
+                            array('label' => 'Language', 'url' => array('/language/admin')),
                             array('label' => 'Category', 'url' => array('/category/admin')),
+                            array('label' => 'Lecture', 'url' => array('/lecture/admin')),
                             array('label' => 'Lesson', 'url' => array('/lesson/admin')),
                             array('label' => 'User', 'url' => array('/account/admin')),
                             array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)

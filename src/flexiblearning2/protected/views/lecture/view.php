@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
 	'Lectures'=>array('index'),
-	$model->name,
+	$model->title,
 );
 
 $this->menu=array(
@@ -18,38 +18,15 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(		
-		'name',
-                array (
-                    'name' => 'thumbnail',
-                    'value' => CHtml::image(Yii::app()->request->baseUrl . '/' . $model->thumbnail),
-                    'visible' => $model->thumbnail == null ? false : true,
-                    'type' => 'raw',
-                ),
+		'title',
 		array(
                     'name' => 'description',
-                    'value' => $model->description,
-                    'visible' => $model->description == null ? false : true, 
+                    'value' => $model->content,
+                    'visible' => $model->content == null ? false : true, 
                 ),
-		'price',
 		array(
                     'name' => 'idCategory',
                     'value' => $model->category->name,                    
-                ),
-		array(
-                    'name' => 'createdDate',
-                    'value' => Yii::app()->dateFormatter->format(Yii::app()->params['dateFormat'],$model->createdDate),
-                ),
-		array(
-                    'name' => 'createdBy',
-                    'value' => $model->createdByUser->username,
-                ),
-		array(
-                    'name' => 'updatedDate',
-                    'value' => Yii::app()->dateFormatter->format(Yii::app()->params['dateFormat'],$model->updatedDate),
-                ),
-		array(
-                    'name' => 'updatedBy',
-                    'value' => $model->updatedByUser->username,
                 ),
 	),
 )); ?>

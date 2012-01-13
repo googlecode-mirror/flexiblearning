@@ -64,7 +64,7 @@ class Category extends Base {
         // class name for the relations automatically generated below.
         return array(
             'language' => array(self::BELONGS_TO, 'Language', 'id_language'),
-            'lessons' => array(self::HAS_MANY, 'Lesson', 'id_category'),
+            'lectures' => array(self::HAS_MANY, 'Lecture', 'id_category'),
         );
     }
 

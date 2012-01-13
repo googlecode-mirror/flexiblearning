@@ -240,6 +240,7 @@ a:hover{
     background-color:white;
     margin: 5px;
     padding-bottom: 5px;
+    overflow: hidden;
 }
 #home-td{
     margin-left:15px;
@@ -498,26 +499,26 @@ a:hover{
 .bor{
     border:thin solid #c1c1c1
 }
-#box-blog{
+.box-blog{
     width:750px;
     height:180px;
     padding-top:10px;
     border-bottom:solid thin #c1c1c1;
 }
 
-#box-blog-1{
+.box-blog-1{
     width:180px;
     height:180px;
     float:left;
 }
 
-#box-blog-2{
+.box-blog-2{
     width:550px;
     height:180px;
     float:left;
 }
 
-#blog-title{
+.blog-title{
     color:#336250; font-weight:bold
 }
 
@@ -760,3 +761,10 @@ p.description {
     margin-bottom: 10px;
 }
 
+table.full {
+    width: 100%;
+}
+
+.row img.thumbnail {
+    max-width: 200px;
+}

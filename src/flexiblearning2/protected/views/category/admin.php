@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs = array(
-    'Categories' => array('index'),
-    'Manage',
+    Yii::t('zii', 'Categories') => array('index'),
+    Yii::t('zii', 'Manage'),
 );
 
 $this->menu = array(
-    array('label' => 'Create Category', 'url' => array('create')),
+    array('label' => Yii::t('zii', 'Create Category'), 'url' => array('create')),
 );
 ?>
 
-<h1>Manage Categories</h1>
+<h1><?php echo Yii::t('zii', 'Manage Categories')?></h1>
 
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(

@@ -5,7 +5,6 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => 'List Lecture', 'url' => array('index')),
     array('label' => 'Create Lecture', 'url' => array('create')),
 );
 
@@ -25,55 +24,25 @@ $('.search-form form').submit(function(){
 
 <h1>Manage Lectures</h1>
 
-<p>
-    You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-    or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
-<div class="search-form" style="display:none">
-    <?php
-    $this->renderPartial('_search', array(
-        'model' => $model,
-    ));
-    ?>
-</div><!-- search-form -->
-
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'lecture-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(
-        'name',
-        array (
-            'name' => 'description',
-            'filter' => false,
-        ),
-        'price',
+        'title_en',
+        'title_vi',
+        'title_ko',
         array(
-            'name' => 'idCategory',
+            'name' => 'id_category',
             'header' => 'Category',
             'value' => '$data->category->name',
             'filter' => CHtml::listData(Category::model()->findAll(), 'id', 'name'),
         ),
         array(
-            'name' => 'createdDate',
-            'value' => 'Yii::app()->dateFormatter->format(Yii::app()->params["dateFormat"],$data->createdDate)',
-            'filter' => false
-        ),
-        array(
-            'name' => 'createdByUser.username',
-            'header' => 'Created by',
-        ),
-        array(
-            'name' => 'updatedDate',
-            'value' => 'Yii::app()->dateFormatter->format(Yii::app()->params["dateFormat"],$data->updatedDate)',
-            'filter' => false
-        ),
-        array(
-            'name' => 'updatedByUser.username',
-            'header' => 'Updated by',
+            'name' => 'is_active',
+            'filter' => array('0' => 'No', '1' => 'Yes'),
+            'value' => '($data->is_active)?"Yes":"No"',
         ),
         array(
             'class' => 'CButtonColumn',
