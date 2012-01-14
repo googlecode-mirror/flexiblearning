@@ -10,7 +10,7 @@
     <param name="FlashVars"
            value="&amp;MM_ComponentVersion=1&amp;skinName=<?php 
                echo Yii::app()->request->baseUrl . '/' . Yii::app()->params['flashObjectFolder']
-                       ?>/Clear_Skin_3&amp;streamName=<?php echo Yii::app()->request->baseUrl . '/' . substr($model->path, 0, strrpos($model->path, ".")) ?>&amp;autoPlay=false&amp;autoRewind=false" />
+                       ?>/Clear_Skin_3&amp;streamName=<?php echo Yii::app()->request->baseUrl . '/' . substr($file, 0, strrpos($file, ".")) ?>&amp;autoPlay=false&amp;autoRewind=false" />
     <param name="swfversion" value="8,0,0,0" />
     <param name="expressinstall"
            value="<?php echo Yii::app()->params['flashObjectFolder'] ?>/expressInstall.swf" />

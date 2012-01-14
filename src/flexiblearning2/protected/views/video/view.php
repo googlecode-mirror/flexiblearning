@@ -1,11 +1,13 @@
 <?php
 $lesson = $model->lesson;
-$category = $lesson->category;
+$lecture = $lesson->lecture;
+$category = $lecture->category;
 $language = $category->language;
 
 $this->breadcrumbs = array(
     $language->name => $language->href,
     $category->name => $category->href,
+    $lecture->title => $lecture->href,
     $lesson->title => $lesson->href,
     $model->name,
 );
@@ -18,7 +20,7 @@ $this->breadcrumbs = array(
                 <span class="title-text"><?php echo $model->name ?></span> 
             </div>
             <p class="center">
-                <?php $this->renderPartial('/_video_player', array('model' => $model))?>
+                <?php $this->renderPartial('/_video_player', array('file' => $model->path))?>
             </p>
 
             <?php $this->renderPartial('/_lesson_detail', array('model' => $lesson));?>

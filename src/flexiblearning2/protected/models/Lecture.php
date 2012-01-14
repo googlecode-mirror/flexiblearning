@@ -69,7 +69,7 @@ class Lecture extends Base {
         // class name for the relations automatically generated below.
         return array(
             'notificationLectures' => array(self::HAS_MANY, 'NotificationLecture', 'id_lecture'),
-            'lessons' => array(self::HAS_MANY, 'Lesson', 'id_lesson'),
+            'lessons' => array(self::HAS_MANY, 'Lesson', 'id_lecture'),
             'category' => array(self::BELONGS_TO, 'Category', 'id_category'),
             'ownerBy' => array(self::BELONGS_TO, 'Account', 'owner_by'),
         );

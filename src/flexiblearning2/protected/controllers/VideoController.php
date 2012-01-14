@@ -59,39 +59,38 @@ class VideoController extends Controller {
      */
     public function actionCreate($idLesson) {
         $this->layout = 'site';
-        $model = new VideoForm;
+        $model = new Video();
         $model->lesson = Lesson::model()->findByPk($idLesson);
         
         $arrayModels = array();
-        if (isset($_POST['VideoForm'])) {
-            $model->attributes = $_POST['VideoForm'];
+        if (isset($_POST['Video'])) {
+            $model->attributes = $_POST['Video'];
+            $model->id_lesson = $idLesson;
             
             $file = CUploadedFile::getInstance($model, 'file');
             $fileName = Yii::app()->params['video'] . '/' . $file->getName();
             if (file_exists($fileName)) {
                 $fileName = Yii::app()->params['lessonThumbnails'] . '/' . time() . '_' . $file->getName();
             }
-            $model->file = $fileName;
-            
-            if ($model->validate()) {    
-                $file->saveAs($fileName, true);
-                
-                unset ($_POST['VideoForm']['file']);
-                $modelVideo = new Video;
-                $modelVideo->attributes = $_POST['VideoForm'];
-                $modelVideo->path = $fileName;
-                $modelVideo->id_lesson = $model->lesson->getPrimaryKey();
-                
-                if ($modelVideo->save()) {
-                    $this->redirect(array('view', 'id' => $modelVideo->getPrimaryKey()));
-                } else {
-                    $arrayModels['modelVideo'] = $modelVideo;
+            if ($file->saveAs($fileName)) {
+                $videoHelper = new CVideo();
+                $videoThumbnailName = $videoHelper->create_thumbnail($fileName, 
+                        Yii::app()->params['videoWidth'], 
+                        Yii::app()->params['videoHeight'], 
+                        Yii::app()->params['videoThumbnail']
+                );
+                $convertVideoFileName = $videoHelper->convertVideo($fileName);
+
+                $model->path = $convertVideoFileName;
+                $model->path_video_thumbnail = $videoThumbnailName;
+
+                if ($model->save()) {    
+                    $this->redirect(array('view', 'id' => $model->getPrimaryKey()));
                 }
             }
         }
-        $arrayModels['model'] = $model;
 
-        $this->render('create', $arrayModels);
+        $this->render('create', array('model' => $model));
     }
 
     /**

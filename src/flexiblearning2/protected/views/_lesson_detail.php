@@ -75,7 +75,9 @@
             <?php foreach ($model->videos as $video) : ?>
                 <td class="top">
                     <div>
-                        <img src="<?php echo Yii::app()->request->baseUrl ?>/img/home-img3.jpg" class="bor" width="200" height="111" />
+                        <img src="<?php echo Yii::app()->request->baseUrl . '/' . $video->path_video_thumbnail ?>" 
+                             class="bor" width="<?php echo Yii::app()->params['widthThumbnailLesson']?>" 
+                             height="<?php echo Yii::app()->params['heightThumbnailLesson']?>" />
                     </div>
                     <a href="<?php echo $video->getHref() ?>"><?php echo $video->name ?></a><br />
                 </td>

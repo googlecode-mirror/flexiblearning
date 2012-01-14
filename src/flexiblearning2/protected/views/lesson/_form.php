@@ -16,10 +16,10 @@
     ?>
 
     <div class="row">
-        <?php echo $form->labelEx($model,'id_category'); ?>
+        <?php echo $form->labelEx($model,'id_lecture'); ?>
         <div>
             <?php
-                echo CHtml::link($model->category->name, $model->category->href);
+                echo CHtml::link($model->lecture->title, $model->lecture->href);
             ?>
         </div>
     </div>

@@ -15,7 +15,7 @@ class CVideo {
     //put your code here
     public function convertVideo($fileName) {
         $outputFile = $this->convert_to_flv($fileName);
-        if ($fileName != $outputFile) {
+        if (strtolower($fileName) != strtolower($outputFile)) {
             unlink($fileName);
         }
         return $outputFile;

@@ -52,9 +52,9 @@ class LessonController extends Controller {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate($idCategory) {
+    public function actionCreate($idLecture) {
         $model = new Lesson();
-        $model->id_category = (int)($idCategory);
+        $model->id_lecture = (int)($idLecture);
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
@@ -64,7 +64,7 @@ class LessonController extends Controller {
             if ($model->validate()) {
                 $fileName = $this->getAndSaveUploadedFile($model);
                 if ($fileName) {
-                    $model->imagepath = $fileName;
+                    $model->thumbnail = $fileName;
                 }
                 if ($model->save()) {
                     $this->redirect(array('view', 'id' => $model->getPrimaryKey()));

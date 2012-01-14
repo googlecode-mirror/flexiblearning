@@ -26,7 +26,8 @@
  * @property Videoranking[] $videorankings
  */
 class Video extends Base {
-
+    public $file;
+    
     /**
      * Returns the static model of the specified AR class.
      * @return Video the static model class
@@ -49,13 +50,14 @@ class Video extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, id_lesson, path', 'required'),
-            array('id_lesson, num_view, ranking, flag_approve, flag_del', 'numerical', 'integerOnly' => true),
+            array('file', 'file', 'allowEmpty' => false),
+            array('name, id_lesson, path, path_video_thumbnail', 'required'),
+            array('id_lesson, num_view, ranking, flag_approve, is_active', 'numerical', 'integerOnly' => true),
             array('name', 'length', 'max' => 50),
             array('description_vi, description_en, description_ko', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('name, id_lesson, num_view, ranking, flag_approve, flag_del', 'safe', 'on' => 'search'),
+            array('name, id_lesson, num_view, ranking, flag_approve, is_active', 'safe', 'on' => 'search'),
         );
     }
 
@@ -88,7 +90,7 @@ class Video extends Base {
             'num_view' => 'Num View',
             'ranking' => 'Ranking',
             'flag_approve' => 'Approved',
-            'flag_del' => 'Deleted',
+            'is_active' => 'Is Active',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'updated_by' => 'Updated By',
