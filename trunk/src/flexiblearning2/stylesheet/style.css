@@ -151,24 +151,24 @@ ul#nav li a:hover{
     color: #F3F3F3;
 }
 
-#menu > a.link-lang {
+#menu a.link-lang {
     padding-left: 24px;   
     padding-right: 10px;
 }
 
-#menu > a.link-en {
+#menu a.link-en {
     background: url("../img/menu-icon-anh.png") no-repeat;
 }
 
-#menu > a.link-vi {
+#menu a.link-vi {
     background: url("../img/menu-icon-viet.png") no-repeat;
-}s
+}
 
-#menu > a.link-fr {
+#menu a.link-fr {
     background: url("../img/menu-icon-phap.png") no-repeat;
 }
 
-#menu > a.link-ko {
+#menu a.link-ko {
     background: url("../img/menu-icon-han.png") no-repeat;
 }
 

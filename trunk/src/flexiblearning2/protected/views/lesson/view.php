@@ -1,10 +1,12 @@
 <?php
-$category = $model->category;
+$lecture = $model->lecture;
+$category = $lecture->category;
 $language = $category->language;
 
 $this->breadcrumbs = array(
     $language->name => $language->href,
     $category->name => $category->href,
+    $lecture->title => $lecture->href,
     $model->title,
 );
 ?>

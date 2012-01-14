@@ -141,10 +141,16 @@ class SiteController extends Controller {
             $authMgr->createOperation('adminUser', 'Manage users');
             $authMgr->createOperation('adminLesson', 'Manage lessons');
             $authMgr->createOperation('adminCategory', 'Manage categories');
+            $authMgr->createOperation('adminLecture', 'Manage lectures');
+            
             $authMgr->createOperation('createLesson', 'Create lessons');
+            $authMgr->createOperation('createLecture', 'Create lectures');
 
             $bizRule = 'return Yii::app()->user->id==$params["lesson"]->authID;';
             $authMgr->createOperation('adminOwnLesson', "Manager the own users' lessons");
+            
+            $bizRule = 'return Yii::app()->user->id==$params["lecture"]->authID;';
+            $authMgr->createOperation('adminOwnLecture', "Manager the own users' lectures");
 
             $roleGuest = $authMgr->createRole('guest');
             $roleAuthenticated = $authMgr->createRole('authenticate');
@@ -153,12 +159,16 @@ class SiteController extends Controller {
             $roleAdmin = $authMgr->createRole('admin');
 
             $roleTeacher->addChild('adminOwnLesson');
+            $roleTeacher->addChild('adminOwnLecture');
             $roleTeacher->addChild('createLesson');
+            $roleTeacher->addChild('createLecture');
             
             $roleAdmin->addChild('adminUser');
             $roleAdmin->addChild('adminLesson');
             $roleAdmin->addChild('createLesson');
+            $roleAdmin->addChild('createLecture');
             $roleAdmin->addChild('adminCategory');
+            $roleAdmin->addChild('adminLecture');
 
             $authMgr->assign('admin', 1);
             $authMgr->assign('teacher', 2);

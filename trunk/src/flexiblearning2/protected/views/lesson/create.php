@@ -1,10 +1,12 @@
 <?php
-    $category = $model->category;
+    $lecture = $model->lecture;
+    $category = $lecture->category;
     $language = $category->language;
     
 $this->breadcrumbs=array(
     $language->name => $language->getHref(),    
     $category->name => $category->getHref(),
+    $lecture->title => $lecture->getHref(),
     Yii::t('zii', 'Create lesson'),
 );
 
