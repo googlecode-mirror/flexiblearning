@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 13, 2012 at 01:39 AM
+-- Generation Time: Jan 15, 2012 at 03:13 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -62,14 +62,6 @@ CREATE TABLE IF NOT EXISTS `account` (
   KEY `id_profession` (`id_profession`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
---
--- Dumping data for table `account`
---
-
-INSERT INTO `account` (`id`, `username`, `password`, `fullname`, `dateOfBirth`, `address`, `id_nationality`, `tel`, `email`, `id_profession`, `favorite`, `avatar`, `asset`, `flag_active`, `flag_del`, `enabledFullName`, `enabledDateOfBirth`, `enabledAddress`, `enabledNationality`, `enabledTel`, `enabledEmail`, `enabledProfession`, `enabledFavorite`, `active_key`, `last_login`, `ip_add`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(1, 'sea2709', 'fad0ce221c826eede253cb0956ca0700', 'Trần Hải Đăng', '1988-09-27', '429/12A Lê Văn Sỹ P12 Q3 TPHCM', NULL, NULL, 'hdang.sea@gmail.com', NULL, NULL, NULL, 0.00, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, '2012-01-13 06:29:48', '127.0.0.1', 1, '2011-12-17 00:00:00', 1, '2011-12-17 00:00:00'),
-(2, 'sea', 'fad0ce221c826eede253cb0956ca0700', 'Trần Hải Đăng', '1988-09-27', '429/12A Lê Văn Sỹ P12 Q3 TPHCM', 1, '01227305086', 'sea2709@zing.vn', 1, NULL, NULL, 0.00, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, '2011-12-25 16:43:58', '127.0.0.1', 0, '1970-01-01 01:00:00', 0, '1970-01-01 01:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -101,14 +93,6 @@ CREATE TABLE IF NOT EXISTS `authassignment` (
   PRIMARY KEY (`itemname`,`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `authassignment`
---
-
-INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
-('admin', '1', NULL, 'N;'),
-('teacher', '2', NULL, 'N;');
-
 -- --------------------------------------------------------
 
 --
@@ -124,22 +108,6 @@ CREATE TABLE IF NOT EXISTS `authitem` (
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `authitem`
---
-
-INSERT INTO `authitem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
-('admin', 2, '', NULL, 'N;'),
-('adminCategory', 0, 'Manage categories', NULL, 'N;'),
-('adminLesson', 0, 'Manage lessons', NULL, 'N;'),
-('adminOwnLesson', 0, 'Manager the own users'' lessons', NULL, 'N;'),
-('adminUser', 0, 'Manage users', NULL, 'N;'),
-('authenticate', 2, '', NULL, 'N;'),
-('createLesson', 0, 'Create lessons', NULL, 'N;'),
-('guest', 2, '', NULL, 'N;'),
-('student', 2, '', NULL, 'N;'),
-('teacher', 2, '', NULL, 'N;');
-
 -- --------------------------------------------------------
 
 --
@@ -152,18 +120,6 @@ CREATE TABLE IF NOT EXISTS `authitemchild` (
   PRIMARY KEY (`parent`,`child`),
   KEY `child` (`child`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `authitemchild`
---
-
-INSERT INTO `authitemchild` (`parent`, `child`) VALUES
-('admin', 'adminCategory'),
-('admin', 'adminLesson'),
-('teacher', 'adminOwnLesson'),
-('admin', 'adminUser'),
-('admin', 'createLesson'),
-('teacher', 'createLesson');
 
 -- --------------------------------------------------------
 
@@ -231,13 +187,6 @@ CREATE TABLE IF NOT EXISTS `category` (
   KEY `id_language` (`id_language`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`id`, `name_vi`, `name_en`, `name_ko`, `description_vi`, `description_en`, `description_ko`, `id_language`, `is_active`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(5, 'Tiếng Anh sơ cấp', 'Basic English', '', 'Miêu tả tiếng Anh sơ cấp', 'Basic English description', '', 2, 1, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -285,14 +234,6 @@ CREATE TABLE IF NOT EXISTS `entry` (
   KEY `owner_by` (`owner_by`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
---
--- Dumping data for table `entry`
---
-
-INSERT INTO `entry` (`id`, `title`, `content`, `imagepath`, `owner_by`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(1, 'werwr werwe rwr', '<p>sdf asdf asdf &nbsp;sd fsdf sdfds sdf sdf<img title="Cool" src="http://localhost.com/flexiblearning2/assets/20b78892/tiny_mce/plugins/emotions/img/smiley-cool.gif" alt="Cool" border="0" /></p>', 'resources/entries/P1040441.JPG', 1, 1, '1970-01-01 01:00:00', 1, '1970-01-01 01:00:00'),
-(2, 'asdfsadf', '<p>asdf</p>', NULL, 1, 1, '1970-01-01 01:00:00', 1, '1970-01-01 01:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -307,15 +248,6 @@ CREATE TABLE IF NOT EXISTS `language` (
   `code` char(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `language`
---
-
-INSERT INTO `language` (`id`, `name_vi`, `name_en`, `name_ko`, `code`) VALUES
-(1, 'Tiếng Hàn', 'Korean', '한국의', 'ko'),
-(2, 'Tiếng Anh', 'English', '', 'en'),
-(3, 'Tiếng Pháp', 'French', '', 'fr');
 
 -- --------------------------------------------------------
 
@@ -344,19 +276,6 @@ CREATE TABLE IF NOT EXISTS `lecture` (
   KEY `id_category` (`id_category`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
---
--- Dumping data for table `lecture`
---
-
-INSERT INTO `lecture` (`id`, `id_category`, `title_vi`, `title_en`, `title_ko`, `content_vi`, `content_en`, `content_ko`, `path_video_intro`, `path_video_thumbnail`, `is_active`, `owner_by`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(2, 5, 'wefsdf', 'erwe', 'sfsdf`', '<p>sdfsdf</p>', '<p>sdfsdf</p>', '<p>sfsdfsdf</p>', 'resources/videos/1326412237_videoplayback2.FLV', 'resources/video-thumbnails/1326412237_videoplayback2.jpg', 0, 1, 1, '1970-01-01', 1, '1970-01-01'),
-(3, 5, 'sdf', 'sfdsf', 'sfsdf', '<p>sdfsdf</p>', '<p>sdfsdf</p>', '<p>sfdfsdf</p>', 'resources/videos/1326412699_videoplayback2.FLV', 'resources/video-thumbnails/1326412699_videoplayback2.jpg', 0, 1, 1, '1970-01-01', 1, '1970-01-01'),
-(4, 5, 'asda', 'asda', 'asdasda', '<p>asdasd</p>', '<p>adasd</p>', '<p>adasd</p>', 'resources/videos/Wildlife.flv', 'resources/video-thumbnails/Wildlife.jpg', 0, 1, 1, '1970-01-01', 1, '1970-01-01'),
-(5, 5, 'wrw', '234', 'wer', '<p>werwer</p>', '<p>aedf</p>', '<p>werwer</p>', 'resources/videos/1326413180_Wildlife.flv', 'resources/video-thumbnails/1326413180_Wildlife.jpg', 0, 1, 1, '1970-01-01', 1, '1970-01-01'),
-(6, 5, 'ertert', 'ertert', 'ertret', '<p>rtertert</p>', '<p>erterte</p>', '<p>ertertret</p>', 'resources/videos/1326413479_Wildlife.flv', 'resources/video-thumbnails/1326413479_Wildlife.jpg', 0, 1, 1, '1970-01-01', 1, '1970-01-01'),
-(7, 5, 'sdf', 'asdf', 'sdfsfd', '<p>fsdfs</p>', '<p>sdfsffdf</p>', '<p>sfsdfsdf</p>', 'resources/videos/1326413832_Wildlife.flv', 'resources/video-thumbnails/1326413832_Wildlife.jpg', 0, 1, 1, '1970-01-01', 1, '1970-01-01'),
-(8, 5, 'sdfsdf', 'asdf', 'sdf', '<p>sdfsdf</p>', '<p>sdfsdfsd</p>', '<p>sdfsdfdfsdf</p>', 'resources/videos/1326413964_Wildlife.flv', 'resources/video-thumbnails/1326413964_Wildlife.jpg', 0, 1, 1, '1970-01-01', 1, '1970-01-01');
-
 -- --------------------------------------------------------
 
 --
@@ -372,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `lesson` (
   `description_en` text COLLATE utf8_unicode_ci,
   `description_ko` text COLLATE utf8_unicode_ci,
   `price` decimal(10,0) NOT NULL,
-  `flag_del` int(11) NOT NULL DEFAULT '0' COMMENT '1:del',
+  `is_active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1:del',
   `flag_approve` int(11) NOT NULL DEFAULT '0' COMMENT '1: approved',
   `id_lecture` int(11) NOT NULL,
   `created_by` int(11) NOT NULL,
@@ -383,14 +302,7 @@ CREATE TABLE IF NOT EXISTS `lesson` (
   PRIMARY KEY (`id`),
   KEY `IdCategory` (`id_lecture`),
   KEY `id_lecture` (`id_lecture`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `lesson`
---
-
-INSERT INTO `lesson` (`id`, `title_vi`, `title_en`, `title_ko`, `description_vi`, `description_en`, `description_ko`, `price`, `flag_del`, `flag_approve`, `id_lecture`, `created_by`, `created_date`, `updated_by`, `updated_date`, `thumbnail`) VALUES
-(1, 'asdf', 'sdf', 'sdf', 'sf sdfsdf', 'sdf sf sdfdsfwe wer', 'sdfswfwer wrrwer we rwe sdf', 23, 0, 0, 5, 1, '1970-01-01 01:00:00', 1, '1970-01-01 01:00:00', 'resources/lessons/1324778757_hqdefault (2).jpg');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -426,13 +338,6 @@ CREATE TABLE IF NOT EXISTS `nationality` (
   `name_ko` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `nationality`
---
-
-INSERT INTO `nationality` (`id`, `name_en`, `name_vi`, `name_ko`) VALUES
-(1, 'English', 'Anh', 'English');
 
 -- --------------------------------------------------------
 
@@ -517,13 +422,6 @@ CREATE TABLE IF NOT EXISTS `profession` (
   `name_ko` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `profession`
---
-
-INSERT INTO `profession` (`id`, `name_vi`, `name_en`, `name_ko`) VALUES
-(1, 'Giáo viên', 'Teacher', '');
 
 -- --------------------------------------------------------
 
@@ -617,15 +515,16 @@ CREATE TABLE IF NOT EXISTS `video` (
   `num_view` int(11) NOT NULL,
   `ranking` int(11) NOT NULL,
   `flag_approve` int(11) NOT NULL,
-  `flag_del` int(11) NOT NULL,
-  `path` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `path` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
   `created_by` int(11) NOT NULL,
   `created_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
   `updated_date` datetime NOT NULL,
+  `path_video_thumbnail` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_lesson` (`id_lesson`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
