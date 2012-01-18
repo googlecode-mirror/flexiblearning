@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 15, 2012 at 03:13 PM
+-- Generation Time: Jan 17, 2012 at 12:14 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -40,16 +40,16 @@ CREATE TABLE IF NOT EXISTS `account` (
   `favorite` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `avatar` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `asset` decimal(11,2) NOT NULL DEFAULT '0.00' COMMENT 'so tien co trong tai khoan',
-  `flag_active` int(11) NOT NULL DEFAULT '1' COMMENT '1:active 0:not yet',
-  `flag_del` int(11) NOT NULL DEFAULT '0' COMMENT '1:del',
-  `enabledFullName` int(11) NOT NULL DEFAULT '1',
-  `enabledDateOfBirth` int(11) NOT NULL DEFAULT '1',
-  `enabledAddress` int(11) NOT NULL DEFAULT '1',
-  `enabledNationality` int(11) NOT NULL DEFAULT '1',
-  `enabledTel` int(11) NOT NULL DEFAULT '1',
-  `enabledEmail` int(11) NOT NULL DEFAULT '1',
-  `enabledProfession` int(11) NOT NULL DEFAULT '1',
-  `enabledFavorite` int(11) NOT NULL DEFAULT '1',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:active 0:not yet',
+  `is_deleted` tinyint(11) NOT NULL DEFAULT '0' COMMENT '1:del',
+  `enabledFullName` tinyint(1) NOT NULL DEFAULT '1',
+  `enabledDateOfBirth` tinyint(1) NOT NULL DEFAULT '1',
+  `enabledAddress` tinyint(1) NOT NULL DEFAULT '1',
+  `enabledNationality` tinyint(1) NOT NULL DEFAULT '1',
+  `enabledTel` tinyint(1) NOT NULL DEFAULT '1',
+  `enabledEmail` tinyint(1) NOT NULL DEFAULT '1',
+  `enabledProfession` tinyint(1) NOT NULL DEFAULT '1',
+  `enabledFavorite` tinyint(1) NOT NULL DEFAULT '1',
   `active_key` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
   `ip_add` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -232,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `entry` (
   `updated_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `owner_by` (`owner_by`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -274,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `lecture` (
   `updated_date` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_category` (`id_category`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 -- --------------------------------------------------------
 
@@ -302,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `lesson` (
   PRIMARY KEY (`id`),
   KEY `IdCategory` (`id_lecture`),
   KEY `id_lecture` (`id_lecture`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -524,7 +524,7 @@ CREATE TABLE IF NOT EXISTS `video` (
   `path_video_thumbnail` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_lesson` (`id_lesson`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -546,92 +546,11 @@ CREATE TABLE IF NOT EXISTS `videoranking` (
 --
 
 --
--- Constraints for table `account`
---
-ALTER TABLE `account`
-  ADD CONSTRAINT `account_fk1` FOREIGN KEY (`id_nationality`) REFERENCES `nationality` (`id`),
-  ADD CONSTRAINT `account_ibfk_1` FOREIGN KEY (`id_profession`) REFERENCES `profession` (`id`);
-
---
--- Constraints for table `authassignment`
---
-ALTER TABLE `authassignment`
-  ADD CONSTRAINT `authassignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `authitemchild`
 --
 ALTER TABLE `authitemchild`
   ADD CONSTRAINT `authitemchild_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `authitemchild_ibfk_2` FOREIGN KEY (`child`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `banner`
---
-ALTER TABLE `banner`
-  ADD CONSTRAINT `banner_ibfk_1` FOREIGN KEY (`id_partner`) REFERENCES `partner` (`id`);
-
---
--- Constraints for table `bill`
---
-ALTER TABLE `bill`
-  ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`owner_by`) REFERENCES `account` (`id`),
-  ADD CONSTRAINT `bill_ibfk_2` FOREIGN KEY (`id_transaction`) REFERENCES `transaction` (`id`);
-
---
--- Constraints for table `category`
---
-ALTER TABLE `category`
-  ADD CONSTRAINT `category_ibfk_1` FOREIGN KEY (`id_language`) REFERENCES `language` (`id`);
-
---
--- Constraints for table `document`
---
-ALTER TABLE `document`
-  ADD CONSTRAINT `document_ibfk_1` FOREIGN KEY (`id_lesson`) REFERENCES `lesson` (`id`);
-
---
--- Constraints for table `entry`
---
-ALTER TABLE `entry`
-  ADD CONSTRAINT `entry_ibfk_1` FOREIGN KEY (`owner_by`) REFERENCES `account` (`id`);
-
---
--- Constraints for table `mail`
---
-ALTER TABLE `mail`
-  ADD CONSTRAINT `mail_ibfk_1` FOREIGN KEY (`owner_by`) REFERENCES `account` (`id`);
-
---
--- Constraints for table `notification`
---
-ALTER TABLE `notification`
-  ADD CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`id_lesson`) REFERENCES `lesson` (`id`);
-
---
--- Constraints for table `notification_lecture`
---
-ALTER TABLE `notification_lecture`
-  ADD CONSTRAINT `notification_lecture_ibfk_1` FOREIGN KEY (`id_lecture`) REFERENCES `lecture` (`id`);
-
---
--- Constraints for table `survey`
---
-ALTER TABLE `survey`
-  ADD CONSTRAINT `survey_ibfk_1` FOREIGN KEY (`id_video`) REFERENCES `video` (`id`);
-
---
--- Constraints for table `video`
---
-ALTER TABLE `video`
-  ADD CONSTRAINT `video_ibfk_1` FOREIGN KEY (`id_lesson`) REFERENCES `lesson` (`id`);
-
---
--- Constraints for table `videoranking`
---
-ALTER TABLE `videoranking`
-  ADD CONSTRAINT `videoranking_ibfk_1` FOREIGN KEY (`id_video`) REFERENCES `video` (`id`),
-  ADD CONSTRAINT `videoranking_ibfk_2` FOREIGN KEY (`ranked_by`) REFERENCES `account` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
