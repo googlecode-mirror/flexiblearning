@@ -25,7 +25,7 @@ class CategoryController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view', 'listByLanguage'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -42,14 +42,35 @@ class CategoryController extends Controller {
         );
     }
 
+    public function init() {
+        parent::init();
+        $this->activeMenuItemIndex = 2;
+    }
+
     /**
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
         $this->layout = 'site';
+
+        $criteria = new CDbCriteria();
+        $criteria->order = 'created_date DESC';
+        $criteria->addCondition('id_category = ' . $id);
+        $criteria->addCondition('is_active = 1');
+
+        $count = Lecture::model()->count($criteria);
+        $pages = new CPagination($count);
+
+        // results per page
+        $pages->pageSize = Yii::app()->params['lecturesPerPage'];
+        $pages->applyLimit($criteria);
+        $lectures = Lecture::model()->findAll($criteria);
+
         $this->render('view', array(
             'model' => $this->loadModel($id),
+            'pages' => $pages,
+            'lectures' => $lectures
         ));
     }
 
@@ -67,10 +88,9 @@ class CategoryController extends Controller {
             $model->attributes = $_POST['Category'];
             if ($model->save()) {
                 $this->redirect(array('view', 'id' => $model->id));
-            } 
-            
+            }
         }
-
+        $model->is_active = 1;
         $this->render('create', array(
             'model' => $model,
         ));
@@ -108,9 +128,8 @@ class CategoryController extends Controller {
             // we only allow deletion via POST request
             $model = $this->loadModel($id);
 //            if (count($model->lessons == 0)) {
-                $model->delete();
+            $model->delete();
 //            }
-
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
@@ -125,7 +144,7 @@ class CategoryController extends Controller {
     public function actionAdmin() {
         $this->layout = 'site-admin';
         $this->activeMenuItemIndex = 2;
-        
+
         $model = new Category('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Category']))
@@ -158,9 +177,16 @@ class CategoryController extends Controller {
             Yii::app()->end();
         }
     }
-    
-    public function init() {
-        parent::init();
-        $this->activeMenuItemIndex = 2;
+
+    public function actionListByLanguage() {
+        $idLanguage = (int) $_POST['language_id'];
+        if ($idLanguage) {
+            $data = Category::model()->findAllByAttributes(array('id_language' => $idLanguage));
+            $data = CHtml::listData($data, 'id', 'name');
+            foreach ($data as $value => $name) {
+                echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+            }
+        }
     }
+
 }

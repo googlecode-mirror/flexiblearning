@@ -50,8 +50,17 @@ class Lecture extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('fileIntro', 'file', 'allowEmpty' => true),
-            array('id_category, title_vi, title_en, title_ko, content_vi, content_en, content_ko, path_video_intro, owner_by, created_by, created_date, updated_by, updated_date, path_video_thumbnail', 'required'),
+            array('fileIntro', 'file', 'allowEmpty' => false,
+                'types' => Yii::app()->params['videoExtensions'],
+                'maxSize' => Yii::app()->params['videoMaxSize'],
+                'on' => 'create'
+            ),
+            array('fileIntro', 'file', 'allowEmpty' => true,
+                'types' => Yii::app()->params['videoExtensions'],
+                'maxSize' => Yii::app()->params['videoMaxSize'],
+                'on' => 'update'
+            ),
+            array('id_category, title_en, content_en, path_video_intro, owner_by, created_by, created_date, updated_by, updated_date, path_video_thumbnail', 'required'),
             array('id_category, owner_by, created_by, updated_by', 'numerical', 'integerOnly' => true),
             array('title_vi, title_en, title_ko', 'length', 'max' => 256),
             array('path_video_intro, path_video_thumbnail', 'length', 'max' => 512),
@@ -68,7 +77,7 @@ class Lecture extends Base {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'notificationLectures' => array(self::HAS_MANY, 'NotificationLecture', 'id_lecture'),
+//            'notificationLectures' => array(self::HAS_MANY, 'NotificationLecture', 'id_lecture'),
             'lessons' => array(self::HAS_MANY, 'Lesson', 'id_lecture'),
             'category' => array(self::BELONGS_TO, 'Category', 'id_category'),
             'ownerBy' => array(self::BELONGS_TO, 'Account', 'owner_by'),
@@ -89,6 +98,7 @@ class Lecture extends Base {
             'content_en' => 'Content En',
             'content_ko' => 'Content Ko',
             'path_video_intro' => 'Video Intro',
+            'is_active' => 'Active',
         );
     }
 
@@ -121,4 +131,10 @@ class Lecture extends Base {
                 ));
     }
 
+    protected function afterDelete() {
+        parent::afterDelete();
+        if ($this->path_video_intro && file_exists($this->path_video_intro)) {
+            unlink($this->imagepath);
+        }
+    }
 }

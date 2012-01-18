@@ -41,6 +41,10 @@ class AccountController extends Controller {
      */
     public function accessRules() {
         return array(
+            array('deny',
+                'actions' => array('register'),
+                'users' => array('@'),
+            ),
             array('allow', // allow all users to perform 'index' and 'view' actions
                 'actions' => array('index', 'view', 'register', 'captcha'),
                 'users' => array('*'),
@@ -65,17 +69,21 @@ class AccountController extends Controller {
      */
     public function actionView($id) {
         $model = $this->loadModel($id);
-        $roles = Yii::app()->authManager->getRoles($id);
+        $this->renderProfileDetail($model);
+    }
+
+    private function renderProfileDetail($model) {
+        $roles = Yii::app()->authManager->getRoles($model->getPrimaryKey());
         if (array_key_exists('student', $roles)) {
             $this->render('view_student', array(
-                'model' => $this->loadModel($id),
+                'model' => $model,
             ));
         } else {
             if (count($roles) > 0) {
                 $criteria = new CDbCriteria();
                 $criteria->order = 'created_date DESC';
-                $criteria->addCondition(array('owner_by' => $id));
-                
+                $criteria->addCondition(array('owner_by' => $model->getPrimaryKey()));
+
                 $count = Entry::model()->count($criteria);
                 $pages = new CPagination($count);
 
@@ -83,12 +91,12 @@ class AccountController extends Controller {
                 $pages->pageSize = Yii::app()->params['entriesPerPage'];
                 $pages->applyLimit($criteria);
                 $entries = Entry::model()->findAll($criteria);
-    
+
                 $this->render('view_teacher', array(
-                    'model' => $this->loadModel($id),
+                    'model' => $model,
                     'entries' => $entries,
                     'pages' => $pages,
-                ));    
+                ));
             }
         }
     }
@@ -99,6 +107,7 @@ class AccountController extends Controller {
      */
     public function actionCreate() {
         $model = new Account;
+        $model->is_active = 1;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
@@ -111,7 +120,7 @@ class AccountController extends Controller {
 
         $this->render('create', array(
             'model' => $model,
-        ));        
+        ));
     }
 
     /**
@@ -127,13 +136,12 @@ class AccountController extends Controller {
 
         if (isset($_POST['Account'])) {
             $model->attributes = $_POST['Account'];
-            if ($model->save())
+            if ($model->save()) {
                 $this->redirect(array('view', 'id' => $model->id));
+            }
         }
 
-        $this->render('update', array(
-            'model' => $model,
-        ));
+        $this->renderProfileDetail($model);
     }
 
     /**
@@ -181,7 +189,7 @@ class AccountController extends Controller {
 
     public function actionRegister() {
         $model = new RegisterForm();
-        $outputModels = array('model' => $model);
+//        $outputModels = array('model' => $model);
         if (isset($_POST['RegisterForm'])) {
             $model->attributes = $_POST['RegisterForm'];
             if ($model->validate()) {
@@ -191,13 +199,13 @@ class AccountController extends Controller {
                 if ($account->save()) {
                     Yii::app()->user->setFlash('register', 'Thank you for your registration. Please log in to the system with the new one account.');
                     $this->refresh();
-                } else {
-                    $errs = $account->getErrors();
-                    $outputModels['account'] = $account;
-                }
+                } 
+            } else {
+                $model->password = '';
+                $model->password_repeat = '';
             }
         }
-        $this->render('register', $outputModels);
+        $this->render('register', array('model' => $model));
     }
 
     /**
@@ -222,4 +230,5 @@ class AccountController extends Controller {
             Yii::app()->end();
         }
     }
+
 }

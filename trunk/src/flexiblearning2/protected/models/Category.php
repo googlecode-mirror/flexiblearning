@@ -50,6 +50,7 @@ class Category extends Base {
             array('id_language', 'numerical', 'integerOnly' => true),
             array('name_vi, name_en, name_ko', 'length', 'max' => 50),
             array('description_vi, description_en, description_ko, is_active', 'safe'),
+            array('is_active', 'default', 'value' => 1),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('name_vi, name_en, name_ko, id_language, is_active', 'safe', 'on' => 'search'),
@@ -74,14 +75,14 @@ class Category extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name_vi' => 'Name Vn',
+            'name_vi' => 'Name Vi',
             'name_en' => 'Name En',
             'name_ko' => 'Name Ko',
-            'description_vi' => 'Description Vn',
+            'description_vi' => 'Description Vi',
             'description_en' => 'Description En',
             'description_ko' => 'Description Ko',
             'id_language' => 'Language',
-            'is_active' => 'Is Active',
+            'is_active' => 'Active',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'updated_by' => 'Updated By',
@@ -107,17 +108,28 @@ class Category extends Base {
                 ));
     }
 
-    protected function beforeValidate() {
-        if ($this->getIsNewRecord()) {
-            $this->is_active = 0;
-        }
-        return parent::beforeValidate();
-    }
-    
+//    protected function beforeValidate() {
+//        if ($this->getIsNewRecord()) {
+//            $this->is_active = 1;
+//        }
+//        return parent::beforeValidate();
+//    }
+
     public function getHref() {
         return Yii::app()->createUrl('category/view', array(
-            'id'=>$this->getPrimaryKey(),
-            'name'=>$this->name,
-        ));
+                    'id' => $this->getPrimaryKey(),
+                    'name' => $this->name,
+                ));
     }
+
+//    public function init() {
+//        $field = array();
+//        foreach ($this->rules() as $chunk) {
+//            if ($chunk[1] === 'default') {
+//                $params = array_slice($chunk, 2);
+//                $validator = CValidator::createValidator($chunk[1], self::model(), $chunk[0], $params);
+//                $validator->validate($this);
+//            }
+//        }
+//    }
 }

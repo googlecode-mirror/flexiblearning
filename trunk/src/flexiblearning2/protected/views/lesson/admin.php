@@ -11,14 +11,6 @@ $this->menu = array(
 
 <h1>Manage Lessons</h1>
 
-<div class="search-form" style="display:none">
-    <?php
-    $this->renderPartial('_search', array(
-        'model' => $model,
-    ));
-    ?>
-</div><!-- search-form -->
-
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'lesson-grid',
@@ -34,15 +26,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'title_en',
         'title_ko',
         array(
-            'name' => 'id_category',
-            'value' => '$data->category->name',
-            'filter' => CHtml::listData(Category::model()->findAll(), 'id', 'name'),
-        ),
-        array(
-            'name' => 'category.id_language',
-            'value' => '$data->category->language->name',
-            'filter' => CHtml::listData(Language::model()->findAll(), 'id', 'name'),
-        ),
+            'name' => 'id_lecture',
+            'value' => '$data->lecture->title',
+            'filter' => CHtml::listData(Lecture::model()->findAll(), 'id', 'title'),
+        ),        
         array(
             'class' => 'CButtonColumn',
         ),

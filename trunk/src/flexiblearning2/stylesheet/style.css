@@ -593,6 +593,7 @@ ul.operations li {
 .block-area {
     margin-top:10px;
     margin-bottom: 5px;
+    clear:both;
 }
 
 .breadcrumbs {
@@ -688,15 +689,26 @@ ul.operations li {
 .lesson {
     margin-top: 5px;
     margin-bottom: 10px;
+    float:left;
+    margin-right:20px;
 }
 td > .lesson {
     text-align: center;
 }
 
+a.icon-control-link {
+    padding-left: 16px;
+    margin-right: 16px;
+}
+
 a.edit-link {
     background-image:url(../img/edit-icon.png);
+    background-repeat: no-repeat;        
+}
+
+a.delete-link {
+    background-image:url(../img/delete-icon.png);
     background-repeat: no-repeat;    
-    padding-left: 16px;
 }
 
 li.top-navigation-link {
@@ -754,6 +766,7 @@ img.lesson-view {
     padding-top: 15px;
     font-size: 1.2em;
     color: white;
+    text-align: center;
 }
 
 /*CATEGORY PAGE*/
@@ -767,4 +780,8 @@ table.full {
 
 .row img.thumbnail {
     max-width: 200px;
+}
+
+#blog {
+    width: inherit;        
 }

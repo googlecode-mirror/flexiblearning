@@ -19,7 +19,7 @@ $this->breadcrumbs = array(
                     echo CHtml::link(
                             Yii::t('zii', 'Update category'), 
                             $this->createUrl('category/update', array('id' => $model->getPrimaryKey())), 
-                            array('class' => 'edit-link'));
+                            array('class' => 'edit-link icon-control-link'));
                 } 
                 ?>
             </div>	
@@ -30,7 +30,7 @@ $this->breadcrumbs = array(
             <p class="description"><?php echo $model->description?></p>
         </td>
     </tr>
-    <?php foreach ($model->lectures as $index => $lecture) : ?>
+    <?php foreach ($lectures as $index => $lecture) : ?>
         <?php if ($index % Yii::app()->params['numberOfVideoPerRowOnIndex'] == 0) : ?>
             <tr>
         <?php endif; ?>
@@ -53,7 +53,10 @@ $this->breadcrumbs = array(
                         </div>-->
                         <a href="<?php echo $lecture->getHref()?>"><?php echo $lecture->title?></a>
                         <br />
-                        Teacher : <span id="colo"><a href=""><?php echo $lecture->ownerBy->fullname?></a></span> 	  
+                        <?php echo Yii::t('zii', 'Teacher') ?> : 
+                        <span id="colo">
+                            <a href="<?php echo $lecture->ownerBy->href ?>"><?php echo $lecture->ownerBy->fullname?></a>
+                        </span> 	  
                     </div>
                 </td>
         <?php if (($index + 1) % Yii::app()->params['numberOfVideoPerRowOnIndex'] == 0) : ?>
@@ -79,5 +82,4 @@ $this->breadcrumbs = array(
     </tr>
 </table>
 
-
-
+<?php $this->widget('CLinkPager', array('pages' => $pages)) ?>

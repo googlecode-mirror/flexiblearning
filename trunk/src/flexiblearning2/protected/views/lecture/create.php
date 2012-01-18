@@ -5,7 +5,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Lecture', 'url'=>array('index')),
 	array('label'=>'Manage Lecture', 'url'=>array('admin')),
 );
 ?>

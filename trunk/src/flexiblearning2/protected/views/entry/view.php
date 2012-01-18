@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
                             echo CHtml::link(
                                     Yii::t('zii', 'Update Entry'), 
                                     $this->createUrl('entry/update', array('id' => $model->getPrimaryKey())),
-                                    array('class' => 'edit-link'));
+                                    array('class' => 'edit-link icon-control-link'));
                         } 
                     ?>
                 </div>

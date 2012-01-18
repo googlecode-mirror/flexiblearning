@@ -61,9 +61,21 @@ class SiteController extends Controller {
             $defaultLanguage = Language::model()->findByAttributes(array('code' => Yii::app()->params['defaultLanguage']));
             $idLanguage = $defaultLanguage->getPrimaryKey();
         }
-        $categories = Category::model()->findAllByAttributes(array('id_language' => $idLanguage));
-        
-        $this->render('index', array('categories' => $categories));
+        $categories = Category::model()->findAllByAttributes(array('id_language' => $idLanguage, 'is_active' => 1));
+        $arrLectures = array();
+        foreach($categories as $category) {
+            $criteria = new CDbCriteria();
+            $criteria->order = 'created_date DESC';
+            $criteria->addCondition(array(
+                sprintf('id_category = %d', $category->getPrimaryKey()),
+                'is_active= 1')
+            );
+            $criteria->limit = Yii::app()->params['numberOfLecturePerCategoryInIndexPage'];
+            
+            $arrLectures[$category->getPrimaryKey()] = Lecture::model()->findAll($criteria);
+        }
+                
+        $this->render('index', array('categories' => $categories, 'arrLectures' => $arrLectures));
     }
 
     /**

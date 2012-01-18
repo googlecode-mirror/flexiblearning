@@ -66,31 +66,35 @@ class LectureController extends Controller {
         if (isset($_POST['Lecture'])) {
             $model->attributes = $_POST['Lecture'];
             $model->owner_by = Yii::app()->user->getId();
-            
-            $file = CUploadedFile::getInstance($model, 'fileIntro');
-            $fileName = Yii::app()->params['video'] . '/' . $file->getName();
-            if (file_exists($fileName)) {
-                $fileName = Yii::app()->params['video'] . '/' 
-                        . time() . '_' . $file->getName();
-            }
-            if ($file->saveAs($fileName, true)) {
-                $videoHelper = new CVideo();
-                $videoThumbnailName = $videoHelper->create_thumbnail($fileName, 
-                        Yii::app()->params['videoWidth'], 
-                        Yii::app()->params['videoHeight'], 
-                        Yii::app()->params['videoThumbnail']
-                );
-                $convertVideoFileName = $videoHelper->convertVideo($fileName);
+                        
+            $model->fileIntro = $file = CUploadedFile::getInstance($model, 'fileIntro');
+            if ($model->validate(array('fileIntro'))) {
+                $fileName = Yii::app()->params['video'] . '/' . $file->getName();
+                if (file_exists($fileName)) {
+                    $fileName = Yii::app()->params['video'] . '/' 
+                            . time() . '_' . $file->getName();
+                }
+                if ($file->saveAs(strtolower($fileName), true)) {
+                    /*$videoHelper = new CVideo();
+                    $videoThumbnailName = $videoHelper->create_thumbnail($fileName, 
+                            Yii::app()->params['videoWidth'], 
+                            Yii::app()->params['videoHeight'], 
+                            Yii::app()->params['videoThumbnail']
+                    );
+                    $convertVideoFileName = $videoHelper->convertVideo($fileName);
 
-                $model->path_video_intro = $convertVideoFileName;
-                $model->path_video_thumbnail = $videoThumbnailName;
+                    $model->path_video_intro = $convertVideoFileName;
+                    $model->path_video_thumbnail = $videoThumbnailName;*/
+                    $model->path_video_intro = $fileName;
+                    $model->path_video_thumbnail = Yii::app()->params['defaultLectureThumbnail'];
 
-                if ($model->save()) {
-                    $this->redirect(array('view', 'id' => $model->id));
+                    if ($model->save()) {
+                        $this->redirect(array('view', 'id' => $model->id));
+                    }
                 }
             }
         }
-
+        $model->is_active = 1;
         $this->render('create', array(
             'model' => $model,
         ));
