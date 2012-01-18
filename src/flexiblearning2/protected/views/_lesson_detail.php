@@ -6,7 +6,8 @@
     </div>
     <div class="right">
         <?php if (Yii::app()->user->checkAccess('adminOwnLesson') || Yii::app()->user->checkAccess('adminLesson')) : ?>
-            <a class="edit-link" href="<?php echo $this->createUrl('lesson/update', array('id' => $model->getPrimaryKey())) ?>">
+            <a class="edit-link icon-control-link" 
+               href="<?php echo $this->createUrl('lesson/update', array('id' => $model->getPrimaryKey())) ?>">
                 <?php echo Yii::t('zii', 'Update lesson') ?>
             </a>
         <?php endif; ?>
@@ -19,11 +20,11 @@
         <ul id="tab" class="tab">
             <li class="active">
                 <a href="#description">
-                    <?php echo Yii::t('default', 'Description') ?>
+                    <?php echo Yii::t('zii', 'Description') ?>
                 </a>
             </li>
-            <li> <a href="#thongbao"><?php echo Yii::t('default', 'Annoucements') ?></a></li>
-            <li><a href="#tailieu"><?php echo Yii::t('default', 'Attachments') ?></a></li>
+            <li> <a href="#thongbao"><?php echo Yii::t('zii', 'Annoucements') ?></a></li>
+            <li><a href="#tailieu"><?php echo Yii::t('zii', 'Attachments') ?></a></li>
         </ul>
     </div><!--end-box-tap-->
 

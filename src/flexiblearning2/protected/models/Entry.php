@@ -18,7 +18,9 @@
  * @property Account $ownerBy
  */
 class Entry extends Base {
+
     public $fileThumbnail;
+
     /**
      * Returns the static model of the specified AR class.
      * @return Entry the static model class
@@ -41,7 +43,10 @@ class Entry extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('fileThumbnail', 'file', 'allowEmpty' => true),
+            array('fileThumbnail', 'file', 'allowEmpty' => true,
+                'types' => Yii::app()->params['imageExtionsions'],
+                'maxSize' => Yii::app()->params['imageMaxSize']
+            ),
             array('title, content, owner_by, created_by, created_date, updated_by, updated_date', 'required'),
             array('owner_by, created_by, updated_by', 'numerical', 'integerOnly' => true),
             array('title', 'length', 'max' => 256),
@@ -106,11 +111,18 @@ class Entry extends Base {
         }
         return $thumbnailPath;
     }
-    
+
     public function getHref() {
         return Yii::app()->createUrl('entry/view', array(
                     'id' => $this->getPrimaryKey(),
                     'title' => $this->title,
                 ));
+    }
+
+    protected function afterDelete() {
+        parent::afterDelete();
+        if ($this->imagepath && file_exists($this->imagepath)) {
+            unlink($this->imagepath);
+        }
     }
 }

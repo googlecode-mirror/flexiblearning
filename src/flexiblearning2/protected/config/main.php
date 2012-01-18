@@ -45,7 +45,7 @@ return array(
             'urlFormat' => 'path',
             'showScriptName'=>true,
             'rules' => array(
-                '<lang:(en|vi|ko)>/<_c>/<_a>/' => '<_c>/<_a>',  
+                '<lang:(en|vi|ko|fr)>/<_c>/<_a>/' => '<_c>/<_a>',  
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
@@ -56,7 +56,7 @@ return array(
             'connectionString' => 'mysql:host=localhost;dbname=db_flexib',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => 'lighthouse',
+            'password' => '',
             'charset' => 'utf8',
         ),
         'errorHandler' => array(
@@ -68,7 +68,7 @@ return array(
             'routes' => array(
                 array(
                     'class' => 'CFileLogRoute',
-                    'levels' => 'error, warning',
+                    'levels' => 'error, warning, info',
                 ),
             ),
         ),
@@ -95,6 +95,8 @@ return array(
         'widthThumbnailLesson' => '200px',
         'heightThumbnailLesson' => '135px',
         'numberOfVideoPerRowOnIndex' => 4,
+        'numberOfLecturePerCategoryInIndexPage' => 4,
+        'defaultLectureThumbnail' => 'resources/default-lecture-thumbnail.jpg',
         'defaultLessonThumbnail' => 'resources/default-lesson-thumbnail.jpg',
         'defaultUserAvatar' => 'resources/default-user-avatar.jpg',
         'defaultEntryThumbnail' => 'resources/default-entry-thumbnail.jpg',
@@ -105,8 +107,13 @@ return array(
         'videoHeight' => 400,
         'roles' => array('teacher' => 'Teacher', 'admin' => 'Admin', 'student' => 'Student', 'user' => 'User'),
         'blogTeaserLength' => 300,
-        'entriesPerPage' => 1,
+        'entriesPerPage' => 5,
+        'lecturesPerPage' => 20,
         'convert_command' => 'ffmpeg\\ffmpeg.exe -i %s %s',
         'create_thumbnail_command' => 'ffmpeg\\ffmpeg.exe  -itsoffset -4  -i %s -vcodec mjpeg -vframes 1 -an -f rawvideo -s %dx%d %s',
+        'videoExtensions' => 'flv, wmv, avi, mpg, mpeg, mp4',
+        'imageExtionsions' => 'jpg, jpeg, gif, png, bmp',
+        'imageMaxSize' => 1*(1024*1024), // 1 MB
+        'videoMaxSize' => 20 *(1024*1024), // 20 MB
     ),
 );

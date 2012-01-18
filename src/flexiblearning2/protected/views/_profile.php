@@ -44,7 +44,9 @@ $form = $this->beginWidget('CActiveForm', array(
                             <div>
                                 <?php
                                     $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-                                        'name' => 'RegisterForm[dateOfBirth]',
+//                                        'model' => $model,
+//                                        'attribute' => 'dateOfBirth',
+                                        'name' => 'Account[dateOfBirth]',
                                         'options' => array(
                                             'showAnim' => 'fold',
                                         ),

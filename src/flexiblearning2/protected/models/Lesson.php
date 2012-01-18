@@ -48,7 +48,9 @@ class Lesson extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('fileThumbnail', 'file', 'allowEmpty' => true),
+            array('fileThumbnail', 'file', 'allowEmpty' => true, 
+                'types' => Yii::app()->params['imageExtionsions'],
+                'maxSize' => Yii::app()->params['imageMaxSize']),
             array('price, id_lecture, title_en', 'required'),
             array('id_lecture', 'numerical', 'integerOnly' => true),
             array('title_vi, title_en, title_ko', 'length', 'max' => 50),
@@ -68,7 +70,7 @@ class Lesson extends Base {
         // class name for the relations automatically generated below.
         return array(
             'videos' => array(self::HAS_MANY, 'Video', 'id_lesson'),
-            'accounts' => array(self::MANY_MANY, 'Account', 'lesson_account(id_lesson, id_account)'),
+//            'accounts' => array(self::MANY_MANY, 'Account', 'lesson_account(id_lesson, id_account)'),
             'lecture' => array(self::BELONGS_TO, 'Lecture', 'id_lecture'),
             'createdBy' => array(self::BELONGS_TO, 'Account', 'created_by'),
             'updatedBy' => array(self::BELONGS_TO, 'Account', 'updated_by'),
@@ -94,7 +96,7 @@ class Lesson extends Base {
             'created_date' => 'Created Date',
             'updated_by' => 'Updated By',
             'updated_date' => 'Updated Date',
-            'thumbnail' => 'Thumbnail',
+            'fileThumbnail' => 'Thumbnail',
         );
     }
 
@@ -137,4 +139,10 @@ class Lesson extends Base {
         return $thumbnail;
     }
 
+    protected function afterDelete() {
+        parent::afterDelete();
+        if ($this->thumbnail && file_exists($this->thumbnail)) {
+            unlink($this->thumbnail);
+        }
+    }
 }

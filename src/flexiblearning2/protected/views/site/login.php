@@ -76,7 +76,7 @@
                             Quản lý hộp thư khác <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/iconew.gif" width="48" height="24" /><br /><br />
                             Nhận thư từ các địa chỉ khác như Gmail, Yahoo mail,... 
                             <form action="<?php echo $this->createUrl('account/register')?>">    
-                                <input type="button" name="" value="<?php echo Yii::t('zii', 'Register')?>" class="bt" />
+                                <input type="submit" class="bt" name="" value="<?php echo Yii::t('zii', 'Register')?>" class="bt" />
                             </form>
 
                         </td>

@@ -7,6 +7,7 @@ class LessonController extends Controller {
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
     public $layout = '//layouts/site-column2';
+
     /**
      * @return array action filters
      */
@@ -54,24 +55,25 @@ class LessonController extends Controller {
      */
     public function actionCreate($idLecture) {
         $model = new Lesson();
-        $model->id_lecture = (int)($idLecture);
+        $model->id_lecture = (int) ($idLecture);
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
         if (isset($_POST['Lesson'])) {
             $model->attributes = $_POST['Lesson'];
-            
-            if ($model->validate()) {
+            $model->fileThumbnail = $file = CUploadedFile::getInstance($model, 'fileThumbnail');
+
+            if ($model->validate(array('file'))) {
                 $fileName = $this->getAndSaveUploadedFile($model);
                 if ($fileName) {
                     $model->thumbnail = $fileName;
                 }
                 if ($model->save()) {
                     $this->redirect(array('view', 'id' => $model->getPrimaryKey()));
-                } 
-            } 
+                }
+            }
         }
-
+        $model->is_active = 1;
         $this->render('create', array('model' => $model));
     }
 
@@ -87,15 +89,21 @@ class LessonController extends Controller {
 
         if (isset($_POST['Lesson'])) {
             $model->attributes = $_POST['Lesson'];
-            $fileName = $this->getAndSaveUploadedFile($model);
-            if ($fileName) {
-                if ($model->thumbnail) {
-                    unlink($model->thumbnail);
-                }
-                $model->thumbnail = $fileName;
+            $model->fileThumbnail = CUploadedFile::getInstance($model, 'fileThumbnail');
+            if ($model->fileThumbnail) {
+                if ($model->validate(array('fileThumbnail'))) {
+                    $fileName = $this->getAndSaveUploadedFile($model);
+                    if ($fileName) {
+                        if ($model->thumbnail && file_exists($model->thumbnail)) {
+                            unlink($model->thumbnail);
+                        }
+                        $model->thumbnail = $fileName;
+                    }
+                } 
             }
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+            if ($model->save()) {
+                $this->redirect(array('view', 'id' => $model->getPrimaryKey()));                
+            }
         }
 
         $this->render('update', array(
@@ -168,9 +176,9 @@ class LessonController extends Controller {
             Yii::app()->end();
         }
     }
-    
+
     private function getAndSaveUploadedFile($model) {
-        $file = CUploadedFile::getInstance($model, 'fileThumbnail');
+        $file = $model->fileThumbnail;
         $fileName = null;
         if ($file) {
             $fileName = Yii::app()->params['lessonThumbnails'] . '/' . $file->getName();
@@ -181,4 +189,5 @@ class LessonController extends Controller {
         }
         return $fileName;
     }
+
 }

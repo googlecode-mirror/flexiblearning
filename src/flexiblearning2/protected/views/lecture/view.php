@@ -22,7 +22,7 @@ $this->breadcrumbs = array(
                             echo CHtml::link(
                                     Yii::t('zii', 'Update Lecture'), 
                                     $this->createUrl('lecture/update', array('id' => $model->getPrimaryKey())),
-                                    array('class' => 'edit-link'));
+                                    array('class' => 'edit-link icon-control-link'));
                         } 
                     ?>
                 </div>
@@ -42,7 +42,7 @@ $this->breadcrumbs = array(
                     <?php foreach($lessons as $lesson) : ?>
                         <div class="lesson">
                             <div>
-                                <img class="lesson-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lesson->path_video_thumbnail; ?>" 
+                                <img class="lesson-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lesson->thumb; ?>" 
                                  style="max-width:<?php echo Yii::app()->params['widthThumbnailLesson']?>; max-height:<?php echo Yii::app()->params['heightThumbnailLesson']?>" />
                             </div>
                             <div class="sticker">
@@ -56,13 +56,16 @@ $this->breadcrumbs = array(
                                     ?>
                                 </div>
                             </div>
-                            <a href="<?php echo $lecture->getHref()?>"><?php echo $lecture->title?></a>
+                            <a href="<?php echo $lesson->href?>"><?php echo $lesson->title?></a>
                             <br />
-                            <?php echo Yii::t('zii', 'Teacher') ?> : <span id="colo"><a href=""><?php echo $lecture->ownerBy->fullname?></a></span> 	  
+                            <?php echo Yii::t('zii', 'Teacher') ?> : 
+                            <span id="colo">
+                                <a href="<?php echo $lesson->createdBy->href?>"><?php echo $lesson->createdBy->fullname?></a>
+                            </span> 	  
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
-                    <?php echo Yii::t('zii', 'There is no video in this lecture !')?>
+                    <?php echo Yii::t('zii', 'There is no lesson in this lecture !')?>
                 <?php endif; ?>
                 <?php if(Yii::app()->user->checkAccess('createLecture')) : ?>
                     <div class="block-area">

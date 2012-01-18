@@ -50,7 +50,16 @@ class Video extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('file', 'file', 'allowEmpty' => false),
+            array('file', 'file', 'allowEmpty' => false, 
+                'types' => Yii::app()->params['videoExtensions'],
+                'maxSize' => Yii::app()->params['videoMaxSize'],
+                'on' => 'create'
+            ),
+            array('file', 'file', 'allowEmpty' => true, 
+                'types' => Yii::app()->params['videoExtensions'],
+                'maxSize' => Yii::app()->params['videoMaxSize'],
+                'on' => 'update'
+            ),
             array('name, id_lesson, path, path_video_thumbnail', 'required'),
             array('id_lesson, num_view, ranking, flag_approve, is_active', 'numerical', 'integerOnly' => true),
             array('name', 'length', 'max' => 50),
@@ -68,10 +77,10 @@ class Video extends Base {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'documents' => array(self::HAS_MANY, 'Document', 'id_video'),
-            'notifications' => array(self::HAS_MANY, 'Notification', 'id_video'),
-            'surveys' => array(self::HAS_MANY, 'Survey', 'id_video'),
-            'videorankings' => array(self::HAS_MANY, 'Videoranking', 'id_video'),
+//            'documents' => array(self::HAS_MANY, 'Document', 'id_video'),
+//            'notifications' => array(self::HAS_MANY, 'Notification', 'id_video'),
+//            'surveys' => array(self::HAS_MANY, 'Survey', 'id_video'),
+//            'videorankings' => array(self::HAS_MANY, 'Videoranking', 'id_video'),
             'lesson' => array(self::BELONGS_TO, 'Lesson', 'id_lesson'),
         );
     }
@@ -83,18 +92,19 @@ class Video extends Base {
         return array(
             'id' => 'ID',
             'name' => 'Name',
-            'description_vi' => 'Description vi',
-            'description_en' => 'Description en',
-            'description_ko' => 'Description ko',
+            'description_vi' => 'Description Vi',
+            'description_en' => 'Description En',
+            'description_ko' => 'Description Ko',
             'id_lesson' => 'Lesson',
             'num_view' => 'Num View',
             'ranking' => 'Ranking',
             'flag_approve' => 'Approved',
-            'is_active' => 'Is Active',
+            'is_active' => 'Active',
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'updated_by' => 'Updated By',
             'updated_date' => 'Updated Date',
+            'file' => 'Video file'
         );
     }
 
@@ -125,5 +135,15 @@ class Video extends Base {
             'id'=>$this->getPrimaryKey(),
             'name'=>$this->name,
         ));
+    }
+    
+    protected function afterDelete() {
+        parent::afterDelete();
+        if (file_exists($this->path)) {
+            unlink($this->path);
+        }
+        if (file_exists($this->path_video_thumbnail)) {
+            unlink($this->path_video_thumbnail);
+        }
     }
 }

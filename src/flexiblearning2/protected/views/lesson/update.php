@@ -1,8 +1,13 @@
 <?php
+$lecture = $model->lecture;
+$category = $lecture->category;
+$language = $category->language;
 
 $this->breadcrumbs=array(
-    $model->category->language->name => $model->category->language->href,    
-    $model->category->name => $model->category->href,
+    $language->name => $language->href,
+    $category->name => $category->href,
+    $lecture->title => $lecture->href,
+    $model->title => $model->href,
     Yii::t('zii', 'Update lesson'),
 );
 

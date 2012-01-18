@@ -63,10 +63,8 @@ class Account extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-
             array('fullname, dateOfBirth, address, id_nationality, email, username, password, id_profession', 'required'),
-            array('id_nationality, id_profession, last_login', 'numerical', 'integerOnly' => true),
-
+            array('id_nationality, id_profession', 'numerical', 'integerOnly' => true),
             array('fullname, address, tel, password, avatar', 'length', 'max' => 256),
             array('email, username', 'length', 'max' => 128),
             array('email, username', 'unique'),
@@ -89,6 +87,7 @@ class Account extends Base {
             'nationality' => array(self::BELONGS_TO, 'Nationality', 'id_nationality'),
             'profession' => array(self::BELONGS_TO, 'Profession', 'id_profession'),
             'entries' => array(self::HAS_MANY, 'Entry', 'owner_by'),
+//            'lessons' => array(self::MANY_MANY, 'Lesson', 'lesson_account(id_lesson, id_account)'),
         );
     }
 

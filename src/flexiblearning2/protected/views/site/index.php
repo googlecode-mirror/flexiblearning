@@ -11,7 +11,7 @@
                     </div>	
                 </td>
             </tr>
-            <?php foreach ($category->lectures as $index => $lecture) : ?>
+            <?php foreach ($arrLectures[$category->getPrimaryKey()] as $index => $lecture) : ?>
                 <?php if ($index % Yii::app()->params['numberOfVideoPerRowOnIndex'] == 0) :?>
                     <tr>
                 <?php endif; ?>        
@@ -35,7 +35,7 @@
                     <td colspan="<?php echo Yii::app()->params['numberOfVideoPerRowOnIndex']?>">
                         <div class="block-area">
                             <?php
-                                echo CHtml::link('Create lessons', $this->createUrl('lesson/create', 
+                                echo CHtml::link(Yii::t('zii', 'Create lectures'), $this->createUrl('lecture/create', 
                                         array('idCategory' => $category->getPrimaryKey())),
                                         array('class' => 'bt link-btn'));
                             ?>

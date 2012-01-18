@@ -34,7 +34,7 @@ class Base extends CActiveRecord {
         $lang = Yii::app()->getLanguage();
         $att = $name . '_' . $lang;
         if ($this->hasAttribute($att)) {
-            $value = parent::__get($att);    
+            $value = parent::__get($att);
             if (!$value) {
                 $defaultLang = Yii::app()->params['defaultLanguage'];
                 return parent::__get($name . '_' . $defaultLang);
@@ -42,9 +42,29 @@ class Base extends CActiveRecord {
                 return $value;
             }
         }
-        
+
         return parent::__get($name);
     }
+
+    public function deleteByPk($pk, $condition='', $params=array()) {
+        foreach ($this->relations() as $key => $relation) {
+            if ($relation[0] == self::HAS_MANY) {
+                $className = $relation[1];
+                foreach ($className::model()->relations() as $keyRelation => $otherRelation) {
+                    if ($otherRelation[1] == get_class($this)) {
+                        if ($otherRelation[0] == self::BELONGS_TO && $otherRelation[2] == $relation[2]) {
+                            foreach ($this->getRelated($key) as $obj) {
+                                $obj->delete();
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        return parent::deleteByPk($pk, $condition, $params);
+    }
+
 }
 
 ?>

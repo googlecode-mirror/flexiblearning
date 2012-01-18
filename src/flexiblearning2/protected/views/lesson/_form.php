@@ -16,7 +16,7 @@
     ?>
 
     <div class="row">
-        <?php echo $form->labelEx($model,'id_lecture'); ?>
+        <?php echo $form->label($model,'id_lecture'); ?>
         <div>
             <?php
                 echo CHtml::link($model->lecture->title, $model->lecture->href);
@@ -108,6 +108,17 @@
     <div class="row">
         <?php echo $form->labelEx($model, 'fileThumbnail'); ?>
         <div>
+            <?php
+                if ($model->thumbnail) {
+                    echo CHtml::image(Yii::app()->baseUrl . '/' . $model->thumbnail, '', 
+                            array(
+                                'style' => sprintf('max-width:%s;max-height:%s', 
+                                        Yii::app()->params['widthThumbnailLesson'],
+                                        Yii::app()->params['heightThumbnailLesson']) ,
+                            )
+                        );
+                }
+            ?>
             <?php echo CHtml::activeFileField($model, 'fileThumbnail') ?>
             <?php echo $form->error($model, 'fileThumbnail'); ?>
         </div>

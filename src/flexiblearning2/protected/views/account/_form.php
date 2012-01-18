@@ -88,13 +88,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'state'); ?>
-		<?php echo $form->textField($model,'state'); ?>
-		<?php echo $form->error($model,'state'); ?>
-	</div>
-
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'ipAddress'); ?>
 		<?php echo $form->textField($model,'ipAddress',array('size'=>30,'maxlength'=>30)); ?>
 		<?php echo $form->error($model,'ipAddress'); ?>
