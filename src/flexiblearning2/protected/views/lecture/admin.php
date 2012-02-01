@@ -23,11 +23,30 @@ $('.search-form form').submit(function(){
 ?>
 
 <h1>Manage Lectures</h1>
-
+<br />
+<?php echo CHtml::label('Language', ''); ?>
+&nbsp;
 <?php
+    $arrData = array($this->createUrl('lecture/admin') => '');
+    $languages = Language::model()->findAll();
+    foreach($languages as $language) {
+        $url = $this->createUrl('lecture/admin', array('language_id' => $language->getPrimaryKey()));
+        $arrData[$url] = $language->name;        
+    }
+    echo CHtml::dropDownList('language_id', Yii::app()->request->getRequestUri(), $arrData);
+    $idLanguage = Yii::app()->request->getQuery('language_id');
+    
+?>
+<?php
+if ($idLanguage) {
+    $data = Category::model()->findAllByAttributes(array('id_language' => $idLanguage));
+} else {
+    $data = Category::model()->findAll();
+}
+
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'lecture-grid',
-    'dataProvider' => $model->search(),
+    'dataProvider' => $model->search($idLanguage),
     'filter' => $model,
     'columns' => array(
         'title_en',
@@ -37,7 +56,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'name' => 'id_category',
             'header' => 'Category',
             'value' => '$data->category->name',
-            'filter' => CHtml::listData(Category::model()->findAll(), 'id', 'name'),
+            'filter' => CHtml::listData($data, 'id', 'name'),
         ),
         array(
             'name' => 'is_active',
@@ -50,3 +69,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
     ),
 ));
 ?>
+<script language="javascript" type="text/javascript">
+    $('#language_id').change(function() {
+        window.location.href = $(this).val();
+    });
+</script>

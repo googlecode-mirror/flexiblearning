@@ -233,8 +233,9 @@ a:hover{
     padding-top:10px;
 }
 
-#colo{
-    color:#0f6987}
+.colo{
+    color:#0f6987;
+}
 /*------------------TrangChu----------------------*/
 .home-wrap{
     background-color:white;
@@ -389,11 +390,24 @@ a:hover{
     border-bottom:none;
 }
 .bt-cauhoi{
-    background-image:url(../img/bt-dangcauhoi.png);
+    /*background-image:url(../img/bt-dangcauhoi.png);
     background-repeat:no-repeat;
     width:105px;
-    height:25px;
+    height:25px;*/
+    background-color: #336250;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
     color:white;
+    padding:5px;
+    border-style: none;
+}
+
+.btn {
+    background-image:url(../img/bt-bg.jpg);
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    color:white;
+    padding:5px;
     border-style:none;
 }
 
@@ -404,13 +418,13 @@ a:hover{
     -moz-border-radius:0 0 5px 5px;
     -webkit-border-radius:0 0 5px 5px ;
 }
-#question{
+.question{
     color:#FF0000; 
     font-weight:bold; 
     vertical-align:top; 
     padding-left:10px;
 }
-#answer{
+.answer{
     color:#3366cc; 
     font-weight:bold; 
     vertical-align:top; 
@@ -784,4 +798,30 @@ table.full {
 
 #blog {
     width: inherit;        
+}
+
+/*QA*/
+textarea.qa_question {
+    width:260px; 
+    height:145px;     
+}
+
+textarea.qa_answer {
+    width:250px; 
+    height:50px;     
+}
+
+#qa_area .btn-area {
+    text-align: right;
+    padding-top: 5px;
+    
+}
+
+.frm-answer {
+    display: none;
+}
+
+.form-element label {
+    width: 100px;
+    display: inline-block;
 }

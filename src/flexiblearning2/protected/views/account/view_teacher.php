@@ -126,5 +126,5 @@
 </div>
 
 <script type="text/javascript">
-    $('#menu-doc').tabify();
+    $('#menu-doc').tabify();    
 </script>

@@ -64,6 +64,7 @@ class Lecture extends Base {
             array('id_category, owner_by, created_by, updated_by', 'numerical', 'integerOnly' => true),
             array('title_vi, title_en, title_ko', 'length', 'max' => 256),
             array('path_video_intro, path_video_thumbnail', 'length', 'max' => 512),
+            array('is_active', 'default', 'value' => 1),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id_category, title_vi, title_en, title_ko, is_active, owner_by', 'safe', 'on' => 'search'),
@@ -106,13 +107,19 @@ class Lecture extends Base {
      * Retrieves a list of models based on the current search/filter conditions.
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
-    public function search() {
+    public function search($idLanguage = null) {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
 
         $criteria = new CDbCriteria;
 
+        if ($idLanguage) {
+            $criteria->join = 'JOIN category ON category.id = id_category';
+            $criteria->condition = 'category.id_language = ' . $idLanguage;
+        } 
         $criteria->compare('id_category', $this->id_category);
+        
+        
         $criteria->compare('title_vi', $this->title_vi, true);
         $criteria->compare('title_en', $this->title_en, true);
         $criteria->compare('title_ko', $this->title_ko, true);

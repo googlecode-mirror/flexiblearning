@@ -99,10 +99,10 @@ class LessonController extends Controller {
                         }
                         $model->thumbnail = $fileName;
                     }
-                } 
+                }
             }
             if ($model->save()) {
-                $this->redirect(array('view', 'id' => $model->getPrimaryKey()));                
+                $this->redirect(array('view', 'id' => $model->getPrimaryKey()));
             }
         }
 
@@ -152,6 +152,32 @@ class LessonController extends Controller {
         $this->render('admin', array(
             'model' => $model,
         ));
+    }
+
+    public function actionPostQuestion() {
+        $idLession = (int) $_GET['idLesson'];
+        if ($idLession) {
+            $lesson = Lesson::model()->findByPk($idLession);
+        }
+
+        if (isset($lesson) && $lesson) {
+            $viewer = Yii::app()->user;
+            $id = $viewer->getId();
+            if (isset($_POST['Question'])) {
+                $question = new Question();
+                $question->attributes = $_POST['Question'];
+                $question->id_account = $viewer->getId();
+                $question->id_lesson = $idLession;
+                $question->username = $viewer->getName();
+
+                if ($question->save()) {
+                    $this->renderPartial('/_qa', array('lesson' => $lesson));
+                }
+                else {
+                    echo '-1';
+                }
+            } 
+        }
     }
 
     /**
