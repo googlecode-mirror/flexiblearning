@@ -55,6 +55,7 @@ class Lesson extends Base {
             array('id_lecture', 'numerical', 'integerOnly' => true),
             array('title_vi, title_en, title_ko', 'length', 'max' => 50),
             array('price', 'length', 'max' => 10),
+            array('is_active', 'default', 'value' => 1),
             array('description_vi, description_en, description_ko, fileThumbnail, is_active, flag_approve', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
@@ -70,6 +71,7 @@ class Lesson extends Base {
         // class name for the relations automatically generated below.
         return array(
             'videos' => array(self::HAS_MANY, 'Video', 'id_lesson'),
+            'questions' => array(self::HAS_MANY, 'Question', 'id_lesson'),
 //            'accounts' => array(self::MANY_MANY, 'Account', 'lesson_account(id_lesson, id_account)'),
             'lecture' => array(self::BELONGS_TO, 'Lecture', 'id_lecture'),
             'createdBy' => array(self::BELONGS_TO, 'Account', 'created_by'),
@@ -97,6 +99,7 @@ class Lesson extends Base {
             'updated_by' => 'Updated By',
             'updated_date' => 'Updated Date',
             'fileThumbnail' => 'Thumbnail',
+            'is_active' => 'Active'
         );
     }
 
@@ -104,7 +107,7 @@ class Lesson extends Base {
      * Retrieves a list of models based on the current search/filter conditions.
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
-    public function search() {
+    public function search($idCategory = null, $idLanguage = null) {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
 
@@ -116,8 +119,18 @@ class Lesson extends Base {
         $criteria->compare('price', $this->price, true);
         $criteria->compare('is_active', $this->is_active);
         $criteria->compare('flag_approve', $this->flag_approve);
+        
+        if ($idCategory) {
+            $criteria->join = 'JOIN lecture ON lecture.id = id_lecture';
+            $criteria->condition = 'lecture.id_category = ' . $idCategory;
+        } else {
+            if ($idLanguage) {
+                $criteria->join = 'JOIN lecture ON lecture.id = id_lecture ' . 
+                    'JOIN category ON category.id = lecture.id_category';
+                $criteria->condition = 'category.id_language = ' . $idLanguage;                
+            }
+        }
         $criteria->compare('id_lecture', $this->id_lecture);
-//        $criteria->compare('category.id_language', $this->category->id_language);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,

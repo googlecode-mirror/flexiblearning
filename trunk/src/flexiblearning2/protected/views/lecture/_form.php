@@ -121,7 +121,9 @@
         </div>
 
 	<div class="row buttons">
-             <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'bt')); ?>    
+             <?php echo CHtml::submitButton($model->isNewRecord ? 
+                 Yii::t('zii', 'Create') : Yii::t('zii', 'Saves'), 
+                 array('class' => 'bt')); ?>    
 	</div>
 
 <?php $this->endWidget(); ?>

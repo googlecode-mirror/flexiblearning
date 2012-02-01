@@ -103,7 +103,8 @@
     <div class="row buttons">
         <label>&nbsp;</label>
         <div>
-            <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'bt')); ?>
+            <?php echo CHtml::submitButton($model->isNewRecord ? 
+                    Yii::t('zii', 'Create') : Yii::t('zii', 'Save'), array('class' => 'bt')); ?>
         </div>
     </div>
 

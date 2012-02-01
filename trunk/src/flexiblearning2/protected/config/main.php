@@ -56,7 +56,7 @@ return array(
             'connectionString' => 'mysql:host=localhost;dbname=db_flexib',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => '',
+            'password' => 'lighthouse',
             'charset' => 'utf8',
         ),
         'errorHandler' => array(
