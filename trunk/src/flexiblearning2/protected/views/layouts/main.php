@@ -29,12 +29,12 @@
                 <?php
                 $this->widget('zii.widgets.CMenu', array(
                     'items' => array(
-                        array('label' => 'Home', 'url' => array('/site/index')),
-                        array('label' => 'Language', 'url' => array('/language/admin')),
-                        array('label' => 'Category', 'url' => array('/category/admin')),
-                        array('label' => 'Lesson', 'url' => array('/lesson/admin')),
-                        array('label' => 'User', 'url' => array('/account/admin')),
-                        array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+                        array('label' => Yii::t('zii', 'Home'), 'url' => array('/site/index')),
+                        array('label' => Yii::t('zii', 'Language'), 'url' => array('/language/admin')),
+                        array('label' => Yii::t('zii', 'Category'), 'url' => array('/category/admin')),
+                        array('label' => Yii::t('zii', 'Lesson'), 'url' => array('/lesson/admin')),
+                        array('label' => Yii::t('zii', 'User'), 'url' => array('/account/admin')),
+                        array('label' => Yii::t('zii', 'Logout') . ' (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
                     ),
                 ));
                 ?>

@@ -54,7 +54,7 @@
                    )
                ); 
            ?>
-            <?php echo $form->error($model,'description_vi'); ?>
+           <?php echo $form->error($model,'description_vi'); ?>
         </div>
     </div>
 

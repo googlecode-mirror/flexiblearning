@@ -75,18 +75,14 @@ class Category extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name_vi' => 'Name Vi',
-            'name_en' => 'Name En',
-            'name_ko' => 'Name Ko',
-            'description_vi' => 'Description Vi',
-            'description_en' => 'Description En',
-            'description_ko' => 'Description Ko',
-            'id_language' => 'Language',
-            'is_active' => 'Active',
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'updated_by' => 'Updated By',
-            'updated_date' => 'Updated Date',
+            'name_vi' => Yii::t('zii', 'Name Vi'),
+            'name_en' => Yii::t('zii', 'Name En'),
+            'name_ko' => Yii::t('zii', 'Name Ko'),
+            'description_vi' => Yii::t('zii', 'Description Vi'),
+            'description_en' => Yii::t('zii', 'Description En'),
+            'description_ko' => Yii::t('zii', 'Description Ko'),
+            'id_language' => Yii::t('zii', 'Language'),
+            'is_active' => Yii::t('zii', 'Active'),
         );
     }
 
@@ -108,28 +104,10 @@ class Category extends Base {
                 ));
     }
 
-//    protected function beforeValidate() {
-//        if ($this->getIsNewRecord()) {
-//            $this->is_active = 1;
-//        }
-//        return parent::beforeValidate();
-//    }
-
     public function getHref() {
         return Yii::app()->createUrl('category/view', array(
                     'id' => $this->getPrimaryKey(),
                     'name' => $this->name,
                 ));
     }
-
-//    public function init() {
-//        $field = array();
-//        foreach ($this->rules() as $chunk) {
-//            if ($chunk[1] === 'default') {
-//                $params = array_slice($chunk, 2);
-//                $validator = CValidator::createValidator($chunk[1], self::model(), $chunk[0], $params);
-//                $validator->validate($this);
-//            }
-//        }
-//    }
 }

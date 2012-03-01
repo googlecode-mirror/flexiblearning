@@ -6,5 +6,5 @@
  */
 ?>
 <div id="content">
-    <h3>Welcome to admin page !!!</h3>
-</content>
+    <h3><?php echo Yii::t('zii', 'Welcome to admin page !!!')?></h3>
+</div>

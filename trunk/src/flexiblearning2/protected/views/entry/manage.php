@@ -5,12 +5,12 @@ $this->breadcrumbs = array(
     Yii::t('zii', 'Manage'),
 );
 
-$this->menu=array(
-	array('label' => Yii::t('zii', 'Create Entry'), 'url'=>array('create')),
+$this->menu = array(
+    array('label' => Yii::t('zii', 'Create Entry'), 'url' => array('create')),
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Manage Entries')?></h1>
+<h1><?php echo Yii::t('zii', 'Manage Entries') ?></h1>
 
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(

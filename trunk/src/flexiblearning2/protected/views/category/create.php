@@ -1,14 +1,15 @@
 <?php
-$this->breadcrumbs=array(
-	'Categories'=>array('index'),
-	'Create',
+$language = $model->language;
+$this->breadcrumbs = array(
+    Yii::t('zii', $langauge->name) => $language->href,
+    Yii::t('zii', 'Create Category'),
 );
 
-$this->menu=array(
-	array('label'=>'Manage Category', 'url'=>array('admin')),
+$this->menu = array(
+    array('label' => Yii::t('zii', 'Manage Category'), 'url' => array('admin')),
 );
 ?>
 
-<h1>Create Category</h1>
+<h1><?php echo Yii::t('zii', 'Create Category')?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model' => $model)); ?>

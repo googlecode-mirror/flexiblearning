@@ -1,17 +1,19 @@
 <?php
-$this->pageTitle=Yii::app()->name . ' - Contact Us';
-$this->breadcrumbs=array(
-	'Contact us',
+$this->pageTitle = Yii::app()->name . ' - Contact Us';
+$this->breadcrumbs = array(
+    'Contact us',
 );
 ?>
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'contact-form',
-	'enableClientValidation'=>true,
-	'clientOptions'=>array(
-		'validateOnSubmit'=>true,
-	),
-)); ?>
+<?php
+$form = $this->beginWidget('CActiveForm', array(
+    'id' => 'contact-form',
+    'enableClientValidation' => true,
+    'clientOptions' => array(
+        'validateOnSubmit' => true,
+    ),
+        ));
+?>
 <table width="940" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td class="top" id="caption" colspan="2">
@@ -43,44 +45,75 @@ $this->breadcrumbs=array(
 
         <td id="bg-td">
             <div id="lienhe-right">
+                <?php if (Yii::app()->user->hasFlash('contact')): ?>
+                    <div style="color: #0066ff">
+                        <?php echo Yii::app()->user->getFlash('contact'); ?>
+                    </div>
+                <?php endif; ?>
                 <table width="450" border="0">
                     <tr>
-                        <td>Gender<br /></td>
-                        <td>Your name </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select name="select">
-                                <option>Male</option>
-                                <option>Female</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="text" name="textfield" class="text-field" />    
+                        <td colspan="2">
+                            <?php echo CHtml::errorSummary($model) ?>
                         </td>
                     </tr>
                     <tr>
+                        <td><?php echo CHtml::activeLabel($model, 'gender'); ?><br /></td>
+                        <td> <?php echo CHtml::activeLabel($model, 'name'); ?> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <?php
+                            $selected = 'Male';
+                            $gender = array(
+                                array('id' => 1, 'name' => Yii::t('zii', 'Male')),
+                                array('id' => 2, 'name' => Yii::t('zii', 'Female'))
+                            );
+                            $list = CHtml::listData($gender, 'id', 'name');
+                            echo CHtml::activeDropDownList($model, 'gender', $list);
+							
+                            ?>
+
+                        </td>
+                        <td>
+                            <?php echo CHtml::activeTextField($model, 'name') ?>   
+                        </td>
+                    </tr>
+                    <tr>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>Your email?</td>
-                        <td>Your phone number </td>
+                        <td><?php echo CHtml::activeLabel($model, 'email'); ?></td>
+                        <td><?php echo CHtml::activeLabel($model, 'phone'); ?> </td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="textfield" class="text-field" /></td>
-                        <td><input type="text" name="textfield" class="text-field" /></td>
+                        <td> <?php echo CHtml::activeTextField($model, 'email') ?> </td>
+                        <td> <?php echo CHtml::activeTextField($model, 'phone') ?> </td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>Message</td>
+                        <td> <?php echo CHtml::activeLabel($model, 'subject'); ?></td>
+
+                    </tr>
+                    <tr>
+                        <td> <?php echo CHtml::activeTextField($model, 'subject'); ?></td>
+
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td colspan="2"><textarea name="" cols="" rows="" style="width:420px; height:100px"></textarea></td>
+                        <td><?php echo CHtml::activeLabel($model, 'body'); ?></td>
+
+                    </tr>
+
+                    <tr>
+                        <td COLSPAN=2><?php echo CHtml::activeTextArea($model, 'body', array('rows' => 5, 'cols' => 35)); ?></td>
+
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
@@ -88,7 +121,7 @@ $this->breadcrumbs=array(
                     </tr>
                     <tr>
                         <td>
-                            <?php echo CHtml::submitButton('SEND', array('class' => 'bt-no-img')); ?>                            
+                            <?php echo CHtml::submitButton(Yii::t('zii', 'SEND'), array('class' => 'bt-no-img')); ?>
                         </td>
                         <td>&nbsp;</td>
                     </tr>

@@ -49,9 +49,10 @@
                                 <tr>
                                     <td>&nbsp;</td>
                                     <td>
-                                        <a href="../HTML/QuenMatKhau.html">
-                                            <span id="style-for">Forget the password</span>
-                                        </a> 
+                                        <?php
+                                            echo CHtml::link(Yii::t('zii', 'Forget the password'), 
+                                                    array('site/forget'));
+                                        ?>                                          
                                     </td>                                        
                                 </tr>
                                 <tr>

@@ -1,11 +1,10 @@
-
-<div class="skype">
-    <a href="#">
-        <span style="color:#fff">Nguyễn Gia Thiều</span>
-    </a>
-</div>
-<div class="skype">
-    <a href="#">
-        <span style="color:#fff">Bùi Viện</span>
-    </a>
-</div>
+<?php
+    $account = $lesson->createdBy;
+?>
+<?php if ($account->skype) : ?>
+    <div class="skype">
+        <a href="skype:<?php echo $account->skype?>?chat">
+            <span style="color:#fff"><?php echo $account->fullname?></span>
+        </a>
+    </div>
+<?php endif; ?>

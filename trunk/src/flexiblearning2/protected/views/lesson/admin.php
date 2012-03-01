@@ -1,19 +1,25 @@
 <?php
-$this->breadcrumbs = array(
-    Yii::t('zii', 'Lessons') => array('index'),
-    Yii::t('zii', 'Manage'),
+$lecture = $model->lecture;
+$category = $lecture->category;
+$language = $category->language;
+    
+$this->breadcrumbs=array(
+    Yii::t('zii', $language->name) => $language->href,    
+    $category->name => $category->href,
+    Yii::t('zii', 'Lecture : ') . $lecture->title => $lecture->getHref(),
+    Yii::t('zii', 'Admin lesson'),
 );
 
 $this->menu = array(
-    array('label' => 'List Lesson', 'url' => array('index')),
+    array('label' => Yii::t('zii', 'Create Lesson'), 'url' => array('create')),
 );
 ?>
 
-<h1>Manage Lessons</h1>
+<h1><?php echo Yii::t('zii', 'Manage Lessons')?></h1>
 
 <br />
 <div class="form-element">
-    <?php echo CHtml::label('Language', ''); ?>
+    <?php echo CHtml::label(Yii::t('zii', 'Language'), ''); ?>
     <?php
         $arrDataLanguages = array($this->createUrl('lesson/admin') => '');
         $languages = Language::model()->findAll();
@@ -33,7 +39,7 @@ $this->menu = array(
 
 <br />
 <div class="form-element">
-    <?php echo CHtml::label('Category', ''); ?>
+    <?php echo CHtml::label(Yii::t('zii', 'Category'), ''); ?>
     <?php
         if ($idLanguage) {
             $arrDataCategories = array($this->createUrl('lesson/admin', array('language_id' => $idLanguage)) => '');

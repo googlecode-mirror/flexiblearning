@@ -7,7 +7,7 @@
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Flexiblearning',
-    'defaultController'=>'intro',
+    'defaultController' => 'intro',
     'language' => 'en',
     // preloading 'log' component
     'preload' => array('log', 'ELangHandler'),
@@ -16,6 +16,7 @@ return array(
         'application.models.*',
         'application.components.*',
         'ext.xupload.models.XUploadForm',
+        'application.extensions.CAdvancedArBehavior',
     ),
     'modules' => array(
         // uncomment the following to enable the Gii tool		
@@ -43,9 +44,9 @@ return array(
         'urlManager' => array(
             'class' => 'application.extensions.langhandler.ELangCUrlManager',
             'urlFormat' => 'path',
-            'showScriptName'=>true,
+            'showScriptName' => true,
             'rules' => array(
-                '<lang:(en|vi|ko|fr)>/<_c>/<_a>/' => '<_c>/<_a>',  
+                '<lang:(en|vi|ko|fr)>/<_c>/<_a>/' => '<_c>/<_a>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
@@ -76,24 +77,45 @@ return array(
             'class' => 'application.extensions.langhandler.ELangHandler',
             'languages' => array('en', 'ko', 'vi'),
         ),
+        'mail' => array(
+            'class' => 'application.extensions.yii-mail.YiiMail',
+            'transportType' => 'smtp', /// case sensitive!
+            'transportOptions' => array(
+                'host' => 'smtp.gmail.com',
+                'username' => 'flexiblearning@gmail.com',
+                // or email@googleappsdomain.com
+                'password' => 'flexiblearning',
+                'port' => '587',
+//                'encryption' => 'ssl',
+            ),
+            'viewPath' => 'application.views.mail',
+            'logging' => true,
+            'dryRun' => false
+        ),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
     'params' => array(
+        'siteEmail' => 'flexiblearning@gmail.com',
+        'siteName' => 'Fleiblearning Site',
         // this is used in contact page
-        'adminEmail' => 'webmaster@example.com',
         'dateFormat' => 'dd/MM/yyyy',
         'dateFormatForTimestamp' => 'd/m/yy',
         'defaultRoleId' => 3,
         'resourceDefault' => 'resources',
         'lectureThumbnails' => 'resources/lectures',
+        'lectureVideoIntro' => 'resources/lectures',
         'lessonThumbnails' => 'resources/lessons',
         'entryThumbnails' => 'resources/entries',
         'video' => 'resources/videos',
+        'partner' => 'resources/partners',
+        'banner' => 'resources/banners',
         'state' => array(0 => 'Inactive', 1 => 'Active'),
         'defaultLanguage' => 'en',
-        'widthThumbnailLesson' => '200px',
+        'widthThumbnailLesson' => '98px',
         'heightThumbnailLesson' => '135px',
+        'widthThumbnailImage' => '98px',
+        'heightThumbnailImage' => '135px',
         'numberOfVideoPerRowOnIndex' => 4,
         'numberOfLecturePerCategoryInIndexPage' => 4,
         'defaultLectureThumbnail' => 'resources/default-lecture-thumbnail.jpg',
@@ -105,15 +127,25 @@ return array(
         'flashObjectFolder' => 'flash_object',
         'videoWidth' => 600,
         'videoHeight' => 400,
-        'roles' => array('teacher' => 'Teacher', 'admin' => 'Admin', 'student' => 'Student', 'user' => 'User'),
+        'roles' => array('teacher' => 'Teacher', 'admin' => 'Admin', 'student' => 'Student'),
         'blogTeaserLength' => 300,
         'entriesPerPage' => 5,
         'lecturesPerPage' => 20,
         'convert_command' => 'ffmpeg\\ffmpeg.exe -i %s %s',
         'create_thumbnail_command' => 'ffmpeg\\ffmpeg.exe  -itsoffset -4  -i %s -vcodec mjpeg -vframes 1 -an -f rawvideo -s %dx%d %s',
         'videoExtensions' => 'flv, wmv, avi, mpg, mpeg, mp4',
+        'arrayVideoExtensions' => array('flv', 'wmv', 'avi', 'mpg', 'mpeg', 'mp4'),
         'imageExtionsions' => 'jpg, jpeg, gif, png, bmp',
-        'imageMaxSize' => 1*(1024*1024), // 1 MB
-        'videoMaxSize' => 20 *(1024*1024), // 20 MB
+        'imageMaxSize' => 1 * (1024 * 1024), // 1 MB
+        'videoMaxSize' => 60 * (1024 * 1024), // 60 MB
+        'nQuestionsInLessonPage' => 5,
+        'widthThumbnailVideo' => '200px',
+        'heightThumbnailVideo' => '135px',
+        
+        // contact information
+        'contactEmail' => 'flexiblearning@gmail.com',
+        'contactSubject' => 'There is a contact on your site',
+        'passwordLength' => 6,
+        'adminName' => 'Flexiblearning Admin',
     ),
 );

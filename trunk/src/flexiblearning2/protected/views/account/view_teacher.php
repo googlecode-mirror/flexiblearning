@@ -27,52 +27,27 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
-                <tr>
-                    <td class="top"><img src="../Images/baigiang-img1.jpg"/><br />
-                        <a href="GiaoTrinh.html">Tiếng anh sơ cấp 1</a><br />
-                        20/11/2011<br />
-                        <input name="" type="button" value="10$" class="bt-price" border="0"/>
-                    </td>
-                    <td class="top"><img src="../Images/baigiang-img2.jpg"/><br />
-                        <a href="GiaoTrinh.html">Tiếng anh sơ cấp 1</a><br />
-                        20/11/2011<br />
-                        <input name="" type="button" value="10$" class="bt-price" border="0"/>
-                    </td>
-                    <td class="top"><img src="../Images/baigiang-img3.jpg"/><br />
-                        <a href="GiaoTrinh.html">Tiếng anh sơ cấp 1</a><br />
-                        20/11/2011<br />
-                        <input name="" type="button" value="10$" class="bt-price" border="0"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="top"><img src="../Images/baigiang-img3.jpg"/><br />
-                        <a href="#">Tiếng anh sơ cấp 1</a><br />
-                        20/11/2011<br />
-                        <input name="" type="button" value="10$" class="bt-price" border="0"/>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
+                <?php foreach($model->lessons as $index => $lesson) : ?>                    
+                    <?php if ($index % 3 == 0) : ?>
+                        <tr>
+                    <?php endif; ?>
+                        <td class="top">
+                            <img class="img-thumbnail"
+                                src="<?php echo Yii::app()->request->baseUrl . '/' . $lesson->thumbnail?>" />
+                            <br />
+                            <a href="<?php echo $lesson->href?>"><?php echo $lesson->title?></a>
+                            <br />                            
+                            <?php 
+                                echo Yii::app()->dateFormatter->format(
+                                        Yii::app()->params['dateFormat'], $lesson->created_date);
+                            ?>
+                            <br />
+                            <div class="bt-price"><?php echo $lesson->price?></div>                            
+                        </td> 
+                    <?php if (($index + 1) % 3 == 0 || $index == count($model->lessons) - 1) : ?>
+                        </tr>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </table>
         </div><!--end-#videodahoc-->
 
@@ -115,12 +90,7 @@
                 </div><!--end-box-blog-->
             <?php endforeach; ?>
 
-<!--            <div class="pad-top-bot">
-                <a href="#">1</a> - <a href="#">2</a> - <a href="#">3</a> - <a href="#">4</a>                
-            </div>-->
-            <?php 
-                $this->widget('CLinkPager', array('pages' => $pages)) 
-            ?>
+            <?php $this->widget('CLinkPager', array('pages' => $pages)) ?>
         </div><!--end-blog-->
     </div>
 </div>

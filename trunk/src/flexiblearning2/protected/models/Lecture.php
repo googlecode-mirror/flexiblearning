@@ -26,7 +26,7 @@
  */
 class Lecture extends Base {
 
-    public $fileIntro;
+//    public $fileIntro;
 
     /**
      * Returns the static model of the specified AR class.
@@ -50,17 +50,18 @@ class Lecture extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('fileIntro', 'file', 'allowEmpty' => false,
-                'types' => Yii::app()->params['videoExtensions'],
-                'maxSize' => Yii::app()->params['videoMaxSize'],
-                'on' => 'create'
-            ),
-            array('fileIntro', 'file', 'allowEmpty' => true,
-                'types' => Yii::app()->params['videoExtensions'],
-                'maxSize' => Yii::app()->params['videoMaxSize'],
-                'on' => 'update'
-            ),
-            array('id_category, title_en, content_en, path_video_intro, owner_by, created_by, created_date, updated_by, updated_date, path_video_thumbnail', 'required'),
+//            array('fileIntro', 'file', 'allowEmpty' => false,
+//                'types' => Yii::app()->params['videoExtensions'],
+//                'maxSize' => Yii::app()->params['videoMaxSize'],
+//                'on' => 'create'
+//            ),
+//            array('fileIntro', 'file', 'allowEmpty' => true,
+//                'types' => Yii::app()->params['videoExtensions'],
+//                'maxSize' => Yii::app()->params['videoMaxSize'],
+//                'on' => 'update'
+//            ),
+//            array('id_category, title_en, content_en, path_video_intro, owner_by, path_video_thumbnail, fileIntro', 'required'),
+            array('id_category, title_en, content_en, path_video_intro, owner_by', 'required'),
             array('id_category, owner_by, created_by, updated_by', 'numerical', 'integerOnly' => true),
             array('title_vi, title_en, title_ko', 'length', 'max' => 256),
             array('path_video_intro, path_video_thumbnail', 'length', 'max' => 512),
@@ -91,15 +92,15 @@ class Lecture extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'id_category' => 'Category',
-            'title_vi' => 'Title Vi',
-            'title_en' => 'Title En',
-            'title_ko' => 'Title Ko',
-            'content_vi' => 'Content Vi',
-            'content_en' => 'Content En',
-            'content_ko' => 'Content Ko',
-            'path_video_intro' => 'Video Intro',
-            'is_active' => 'Active',
+            'id_category' => Yii::t('zii', 'Category'),
+            'title_vi' => Yii::t('zii', 'Title Vi'),
+            'title_en' => Yii::t('zii', 'Title En'),
+            'title_ko' => Yii::t('zii', 'Title Ko'),
+            'content_vi' => Yii::t('zii', 'Content Vi'),
+            'content_en' => Yii::t('zii', 'Content En'),
+            'content_ko' => Yii::t('zii', 'Content Ko'),
+            'path_video_intro' => Yii::t('zii', 'Video Intro'),
+            'is_active' => Yii::t('zii', 'Active'),
         );
     }
 
@@ -112,18 +113,16 @@ class Lecture extends Base {
         // should not be searched.
 
         $criteria = new CDbCriteria;
-
+        $is_active = $this->is_active;
         if ($idLanguage) {
             $criteria->join = 'JOIN category ON category.id = id_category';
             $criteria->condition = 'category.id_language = ' . $idLanguage;
         } 
         $criteria->compare('id_category', $this->id_category);
-        
-        
         $criteria->compare('title_vi', $this->title_vi, true);
         $criteria->compare('title_en', $this->title_en, true);
         $criteria->compare('title_ko', $this->title_ko, true);
-        $criteria->compare('is_active', $this->is_active);
+        $criteria->compare('t.is_active', $this->is_active);
         $criteria->compare('owner_by', $this->owner_by);
 
         return new CActiveDataProvider($this, array(
@@ -136,6 +135,13 @@ class Lecture extends Base {
                     'id' => $this->getPrimaryKey(),
                     'name' => $this->title,
                 ));
+    }
+    
+    public function getId_language() {
+        if ($this->category) {
+            return $this->category->id_language;
+        }
+        return null;
     }
 
     protected function afterDelete() {

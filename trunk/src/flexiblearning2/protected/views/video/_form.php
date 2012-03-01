@@ -78,8 +78,29 @@
     <div class="row">
         <?php echo $form->labelEx($model, 'file'); ?>
         <div>
-            <?php echo CHtml::activeFileField($model, 'file') ?>
-            <?php echo $form->error($model, 'file'); ?>
+            <?php 
+//                echo CHtml::activeFileField($model, 'file');
+                echo $form->hiddenField($model, 'path');
+                $this->widget('ext.EAjaxUpload.EAjaxUpload',
+                    array(
+                        'id' => 'uploadFile',
+                        'config' => array(
+                            'action' => $this->createUrl('video/upload'),
+                            'allowedExtensions' => Yii::app()->params['arrayVideoExtensions'],
+                            'sizeLimit' => Yii::app()->params['videoMaxSize'],// maximum file size in bytes
+                            'onComplete' => "js:function(id, fileName, responseJSON){ $('#Video_path').val(responseJSON.file);}",
+                            'messages' => array(
+                                 'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+                                 'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+                                 'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+                                 'emptyError'=>"{file} is empty, please select files again without it.",
+                                 'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+                            ),
+                        )
+                )); 
+            ?>
+            
+            <?php echo $form->error($model, 'path'); ?>
         </div>
     </div>
 

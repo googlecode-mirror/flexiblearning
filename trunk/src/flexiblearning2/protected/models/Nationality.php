@@ -16,7 +16,7 @@
  */
 class Nationality extends Base {
 
-    /**
+    /**;
      * Returns the static model of the specified AR class.
      * @return Nationality the static model class
      */
@@ -64,11 +64,7 @@ class Nationality extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => 'Name',
-            'createdDate' => 'Created Date',
-            'createdBy' => 'Created By',
-            'updatedDate' => 'Updated Date',
-            'updatedBy' => 'Updated By',
+            'name' => Yii::t('zii', 'Name'),
         );
     }
 

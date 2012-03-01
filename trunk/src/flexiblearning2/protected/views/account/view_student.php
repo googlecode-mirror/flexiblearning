@@ -7,9 +7,15 @@
 <div >
     <div id="template2-menu">			
         <ul id="menu-doc" class="menu-doc">
-            <li class="active"><a href="#thongtincanhan">Thông tin cá nhân</a></li>
-            <li><a href="#video">Các video</a></li>
-            <li><a href="#blog">Blog</a></li>
+            <li class="active">
+                <a href="#thongtincanhan"><?php echo Yii::t('zii', 'Personal information')?></a>
+            </li>
+            <li>
+                <a href="#video"><?php echo Yii::t('zii', 'Videos')?></a>
+            </li>
+            <li>
+                <a href="#blog"><?php echo Yii::t('zii', 'Blogs')?></a>
+            </li>
         </ul>				
     </div>
 
@@ -23,7 +29,7 @@
         <div id="video" class="inner">
             <table width="750" border="0">
                 <tr>
-                    <td id="title-text">Các video : </td>
+                    <td id="title-text"><?php echo Yii::t('zii', 'Videos : ')?></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>

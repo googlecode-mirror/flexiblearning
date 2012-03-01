@@ -3,9 +3,9 @@ $category = $model->category;
 $language = $category->language;
 
 $this->breadcrumbs = array(
-    $language->name => $language->href,
+    Yii::t('zii', $language->name) => $language->href,
     $category->name => $category->href,
-    $model->title,
+    Yii::t('zii', 'Lecture : ') . $model->title,
 );
 ?>
 
@@ -43,25 +43,27 @@ $this->breadcrumbs = array(
                         <div class="lesson">
                             <div>
                                 <img class="lesson-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lesson->thumb; ?>" 
-                                 style="max-width:<?php echo Yii::app()->params['widthThumbnailLesson']?>; max-height:<?php echo Yii::app()->params['heightThumbnailLesson']?>" />
-                            </div>
-                            <div class="sticker">
-                                <div class="price">
-                                    <?php
-                                        if ($lesson->price == 0) {
-                                            echo Yii::t('zii', 'Free');
-                                        } else {
-                                            echo $lesson->price . ' ' . Yii::app()->params['moneyUnit'];
-                                        }
-                                    ?>
+                                 style="width:<?php echo Yii::app()->params['widthThumbnailLesson']?>; height:<?php echo Yii::app()->params['heightThumbnailLesson']?>" />
+                                <div class="sticker">
+                                    <div class="price">
+                                        <?php
+                                            if ($lesson->price == 0) {
+                                                echo Yii::t('zii', 'Free');
+                                            } else {
+                                                echo $lesson->price . ' ' . Yii::app()->params['moneyUnit'];
+                                            }
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
-                            <a href="<?php echo $lesson->href?>"><?php echo $lesson->title?></a>
-                            <br />
-                            <?php echo Yii::t('zii', 'Teacher') ?> : 
-                            <span id="colo">
+                            <div>
+                                <a href="<?php echo $lesson->href?>" class="title">
+                                    <?php echo $lesson->title?>
+                                </a>
+                                <br />
+                                <?php echo Yii::t('zii', 'Teacher') ?> : 
                                 <a href="<?php echo $lesson->createdBy->href?>"><?php echo $lesson->createdBy->fullname?></a>
-                            </span> 	  
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
@@ -70,7 +72,7 @@ $this->breadcrumbs = array(
                 <?php if(Yii::app()->user->checkAccess('createLecture')) : ?>
                     <div class="block-area">
                         <?php 
-                            echo CHtml::link('Create lessons', $this->createUrl('lesson/create', 
+                            echo CHtml::link(Yii::t('zii', 'Create lessons'), $this->createUrl('lesson/create', 
                                 array('idLecture' => $model->getPrimaryKey())),
                                 array('class' => 'bt link-btn'));
                         ?>

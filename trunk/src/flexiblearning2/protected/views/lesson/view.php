@@ -1,13 +1,15 @@
 <?php
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/qa.js');
+
 $lecture = $model->lecture;
 $category = $lecture->category;
 $language = $category->language;
 
 $this->breadcrumbs = array(
-    $language->name => $language->href,
+    Yii::t('zii', $language->name) => $language->href,
     $category->name => $category->href,
-    $lecture->title => $lecture->href,
-    $model->title,
+    Yii::t('zii', 'Lecture : ') . $lecture->title => $lecture->href,
+    Yii::t('zii', 'Lesson : ') . $model->title,
 );
 ?>
 
@@ -26,39 +28,17 @@ $this->breadcrumbs = array(
         </td>
 
         <td style="vertical-align:top; background-color:white;">            
-            <?php $this->renderPartial('/_skype'); ?>
-            <div id="qa_area">
-                <?php $this->renderPartial('/_qa', array('lesson' => $model)); ?>
+            <?php $this->renderPartial('/_skype', array('lesson' => $model)); ?>
+            <div id="lesson-qa-area">
+                <?php 
+                    $this->renderPartial('/_qa', array(
+                        'lesson' => $model,
+                        'questions' => $questions,
+                        'questionPages' => $questionPages
+                    )); 
+                ?>
             </div>
-            <?php $this->renderPartial('/_ad'); ?>
+            <?php $this->renderPartial('/_ad', array('banners' => $banners)); ?>
         </td>
     </tr>
 </table>
-<script type="text/javascript" language="javascript">
-    $('#question-form').submit(function() {
-        
-        var action = $(this).attr('action');
-        var data = $(this).serialize();        
-        $.post(action, data, function(data) {
-            if (data != '-1') {
-                $('#qa_area').html(data);
-            } else {
-                alert('<?php echo Yii::t('zii', 'There is an error occured ! Please try again !') ?>');
-            }
-        });
-        return false;
-    });
-    
-    $('form.frm-answer').submit(function() {
-        var action = $(this).attr('action');
-        var data = $(this).serialize();
-        $.post(action, data, function(data) {
-            if (data != '-1') {
-                $('#qa_area').html(data);
-            } else {
-                alert('<?php echo Yii::t('zii', 'There is an error occured ! Please try again !') ?>');
-            }
-        });
-        return false;
-    });
-</script>

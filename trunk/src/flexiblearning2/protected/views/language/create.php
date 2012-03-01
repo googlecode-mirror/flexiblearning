@@ -1,14 +1,14 @@
 <?php
-$this->breadcrumbs=array(
-	'Languages'=>array('index'),
-	'Create',
+$this->breadcrumbs = array(
+    Yii::t('zii', 'Languages') => array('index'),
+    Yii::t('zii', 'Create'),
 );
 
-$this->menu=array(
-	array('label'=>'Manage Language', 'url'=>array('admin')),
+$this->menu = array(
+    array('label' => Yii::t('zii', 'Manage Language'), 'url' => array('admin')),
 );
 ?>
 
-<h1>Create Language</h1>
+<h1><?php echo Yii::t('zii', 'Create Language')?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model' => $model)); ?>

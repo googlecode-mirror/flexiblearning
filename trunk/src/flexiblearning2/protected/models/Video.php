@@ -91,20 +91,16 @@ class Video extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => 'Name',
-            'description_vi' => 'Description Vi',
-            'description_en' => 'Description En',
-            'description_ko' => 'Description Ko',
-            'id_lesson' => 'Lesson',
-            'num_view' => 'Num View',
-            'ranking' => 'Ranking',
-            'flag_approve' => 'Approved',
-            'is_active' => 'Active',
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'updated_by' => 'Updated By',
-            'updated_date' => 'Updated Date',
-            'file' => 'Video file'
+            'name' => Yii::t('zii', 'Name'),
+            'description_vi' => Yii::t('zii', 'Description Vi'),
+            'description_en' => Yii::t('zii', 'Description En'),
+            'description_ko' => Yii::t('zii', 'Description Ko'),
+            'id_lesson' => Yii::t('zii', 'Lesson'),
+            'num_view' => Yii::t('zii', 'Num View'),
+            'ranking' => Yii::t('zii', 'Ranking'),
+            'flag_approve' => Yii::t('zii', 'Approved'),
+            'is_active' => Yii::t('zii', 'Active'),
+            'file' => Yii::t('zii', 'Video file'),
         );
     }
 

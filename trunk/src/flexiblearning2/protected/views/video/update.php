@@ -1,18 +1,24 @@
 <?php
-$this->breadcrumbs=array(
-	'Videos'=>array('index'),
-	$model->name=>array('view','id'=>$model->id),
-	'Update',
+$lesson = $model->lesson;
+$lecture = $lesson->lecture;
+$category = $lecture->category;
+$language = $category->language;
+
+$this->breadcrumbs = array(
+    Yii::t('zii', $language->name) => $language->href,
+    $category->name => $category->href,
+    $lecture->title => $lecture->href,
+    $lesson->title => $lesson->href,
+    Yii::t('zii', 'Update video'),
 );
 
-$this->menu=array(
-	array('label'=>'List Video', 'url'=>array('index')),
-	array('label'=>'Create Video', 'url'=>array('create')),
-	array('label'=>'View Video', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Video', 'url'=>array('admin')),
+$this->menu = array(
+    array('label' => Yii::t('zii', 'Create Video'), 'url' => array('create')),
+    array('label' => Yii::t('zii', 'View Video'), 'url' => array('view', 'id' => $model->id)),
+    array('label' => Yii::t('zii', 'Manage Video'), 'url' => array('admin')),
 );
 ?>
 
-<h1>Update Video <?php echo $model->id; ?></h1>
+<h1><?php echo Yii::t('zii', 'Update Video')?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model' => $model)); ?>

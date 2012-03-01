@@ -74,14 +74,10 @@ class Entry extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'title' => 'Title',
-            'content' => 'Content',
-            'full' => 'Owner By',
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'updated_by' => 'Updated By',
-            'updated_date' => 'Updated Date',
-            'fileThumbnail' => 'Image',
+            'title' => Yii::t('zii', 'Title'),
+            'content' => Yii::t('zii', 'Content'),
+            'full' => Yii::t('zii', 'Owner By'),
+            'fileThumbnail' => Yii::t('zii', 'Image'),
         );
     }
 
@@ -125,4 +121,5 @@ class Entry extends Base {
             unlink($this->imagepath);
         }
     }
+
 }

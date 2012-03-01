@@ -17,12 +17,15 @@
                 <?php endif; ?>        
                         
                 <td>
-                    <div class="lesson">
-                        <img class="lesson-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lecture->path_video_thumbnail; ?>" 
+                    <div class="lecture">
+                        <img class="lecture-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lecture->path_video_thumbnail; ?>" 
                              style='max-width:<?php echo Yii::app()->params['widthThumbnailLesson']?>; max-height:<?php echo Yii::app()->params['heightThumbnailLesson']?>' />
                         <br />
                         <a href="<?php echo $lecture->href?>"><?php echo $lecture->title?></a><br />
-                        Teacher : <span id="colo"><a href=""><?php echo $lecture->ownerBy->fullname?></a></span> 	  
+                        <?php echo Yii::t('zii', 'Teacher : ')?>
+                            <span id="colo">
+                                <a href="<?php echo $lecture->ownerBy->href?>"><?php echo $lecture->ownerBy->fullname?></a>
+                            </span> 	  
                     </div>
                 </td>
                 

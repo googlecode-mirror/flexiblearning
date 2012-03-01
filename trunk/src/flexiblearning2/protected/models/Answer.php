@@ -37,11 +37,11 @@ class Answer extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id_question, id_account, content, created_by, created_date, updated_by, updated_date', 'required'),
-            array('id_question, id_account, created_by, updated_by', 'numerical', 'integerOnly' => true),
+            array('id_question, id_account, content', 'required'),
+            array('id_question, id_account', 'numerical', 'integerOnly' => true),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, id_question, id_account, content, created_by, created_date, updated_by, updated_date', 'safe', 'on' => 'search'),
+            array('id_question, id_account, content', 'safe', 'on' => 'search'),
         );
     }
 
@@ -63,13 +63,9 @@ class Answer extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'id_question' => 'Id Question',
-            'id_account' => 'Id Account',
-            'content' => 'Content',
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'updated_by' => 'Updated By',
-            'updated_date' => 'Updated Date',
+            'id_question' => Yii::t('zii', 'Question'),
+            'id_account' => Yii::t('zii', 'Account'),
+            'content' => Yii::t('zii', 'Content'),
         );
     }
 
@@ -83,14 +79,9 @@ class Answer extends Base {
 
         $criteria = new CDbCriteria;
 
-        $criteria->compare('id', $this->id);
         $criteria->compare('id_question', $this->id_question);
         $criteria->compare('id_account', $this->id_account);
         $criteria->compare('content', $this->content, true);
-        $criteria->compare('created_by', $this->created_by);
-        $criteria->compare('created_date', $this->created_date, true);
-        $criteria->compare('updated_by', $this->updated_by);
-        $criteria->compare('updated_date', $this->updated_date, true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,

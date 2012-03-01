@@ -1,11 +1,11 @@
 <?php
 $this->breadcrumbs = array(
-    'Accounts' => array('index'),
-    'Manage',
+    Yii::t('zii', 'Accounts') => array('index'),
+    Yii::t('zii', 'Manage'),
 );
 ?>
 
-<h1>Manage Accounts</h1>
+<h1><?php echo Yii::t('zii', 'Manage Accounts')?></h1>
 
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
