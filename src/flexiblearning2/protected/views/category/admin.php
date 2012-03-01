@@ -1,7 +1,8 @@
 <?php
+$language = $model->language;
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Categories') => array('index'),
-    Yii::t('zii', 'Manage'),
+    Yii::t('zii', $language->name) => array('index'),
+    Yii::t('zii', 'Admin Categories'),
 );
 
 $this->menu = array(
@@ -9,7 +10,7 @@ $this->menu = array(
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Manage Categories')?></h1>
+<h1><?php echo Yii::t('zii', 'Manage Categories') ?></h1>
 
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(

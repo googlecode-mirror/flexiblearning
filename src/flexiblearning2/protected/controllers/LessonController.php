@@ -36,6 +36,14 @@ class LessonController extends Controller {
                 'actions' => array('admin', 'delete'),
                 'roles' => array('admin'),
             ),
+            array('allow',
+                'actions' => array('deleteAnswer', 'deleteQuestion'),
+                'roles' => array('admin', 'teacher'),
+            ),
+            array('allow',
+                'actions' => array('postQuestion'),
+                'users' => array('@'),
+            )
         );
     }
 
@@ -44,8 +52,26 @@ class LessonController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
+        $lesson = $this->loadModel($id);
+                
+        $criteria = new CDbCriteria();
+        $criteria->addCondition(array('id_lesson' => $lesson->getPrimaryKey()));
+                
+        $count = Question::model()->count($criteria);
+        $questionPages = new CPagination($count);
+
+        // results per page
+        $questionPages->pageSize= Yii::app()->params['nQuestionsInLessonPage'];
+        $questionPages->applyLimit($criteria);
+        $questions = Question::model()->findAll($criteria);
+        
+        $banners = Banner::model()->findAll('is_active = 1');
+
         $this->render('view', array(
-            'model' => $this->loadModel($id),
+            'model' => $lesson,
+            'questions' => $questions,
+            'questionPages' => $questionPages,
+            'banners' => $banners
         ));
     }
 
@@ -56,8 +82,6 @@ class LessonController extends Controller {
     public function actionCreate($idLecture) {
         $model = new Lesson();
         $model->id_lecture = (int) ($idLecture);
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
 
         if (isset($_POST['Lesson'])) {
             $model->attributes = $_POST['Lesson'];
@@ -74,6 +98,10 @@ class LessonController extends Controller {
             }
         }
         $model->is_active = 1;
+        $params = $this->getActionParams();
+        if ($params && array_key_exists('idLecture', $params)) {
+            $model->id_lecture = (int)$params['idLecture'];
+        }
         $this->render('create', array('model' => $model));
     }
 
@@ -130,16 +158,6 @@ class LessonController extends Controller {
     }
 
     /**
-     * Lists all models.
-     */
-    public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Lesson');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
      * Manages all models.
      */
     public function actionAdmin() {
@@ -171,12 +189,96 @@ class LessonController extends Controller {
                 $question->username = $viewer->getName();
 
                 if ($question->save()) {
-                    $this->renderPartial('/_qa', array('lesson' => $lesson));
-                }
-                else {
+                    $criteria = new CDbCriteria();
+                    $criteria->addCondition(array('id_lesson' => $lesson->getPrimaryKey()));
+                    $criteria->order = 'id DESC';
+
+                    $count = Question::model()->count($criteria);
+                    $questionPages = new CPagination($count);
+
+                    // results per page
+                    $questionPages->pageSize= Yii::app()->params['nQuestionsInLessonPage'];
+                    $questionPages->applyLimit($criteria);
+                    $questions = Question::model()->findAll($criteria);
+                    $this->renderPartial('/_questions_answers', 
+                        array(
+                            'lesson' => $lesson,
+                            'questions' => $questions,
+                            'questionPages' => $questionPages,
+                        )
+                    );
+                } else {
                     echo '-1';
                 }
-            } 
+            }
+        }
+    }
+
+    public function actionDeleteQuestion() {
+        $idQuestion = (int) $_POST['question_id'];
+        if ($idQuestion) {
+            $question = Question::model()->findByPk($idQuestion);
+        }
+
+        if (isset($question) && $question) {
+            if ($question->delete()) {
+                $lesson = Lesson::model()->findByPk($question->id_lesson);
+                $criteria = new CDbCriteria();
+                $criteria->addCondition(array('id_lesson' => $lesson->getPrimaryKey()));
+                $criteria->order = 'id DESC';
+
+                $count = Question::model()->count($criteria);
+                $questionPages = new CPagination($count);
+
+                // results per page
+                $questionPages->pageSize= Yii::app()->params['nQuestionsInLessonPage'];
+                $questionPages->applyLimit($criteria);
+                $questions = Question::model()->findAll($criteria);
+
+                $this->renderPartial('/_questions_answers', 
+                    array(
+                        'lesson' => $lesson,
+                        'questions' => $questions,
+                        'questionPages' => $questionPages,
+                    )
+                );
+            } else {
+                echo '-1';
+            }
+        }
+    }
+    
+    public function actionDeleteAnswer() {
+        $idAnswer = (int) $_POST['answer_id'];
+        if ($idAnswer) {
+            $answer = Answer::model()->findByPk($idAnswer);
+        }
+
+        if (isset($answer) && $answer) {
+            if ($answer->delete()) {
+                $lesson = Lesson::model()->findByPk($answer->question->id_lesson);
+                $criteria = new CDbCriteria();
+                $criteria->addCondition(array('id_lesson' => $lesson->getPrimaryKey()));
+                $criteria->order = 'id DESC';
+
+                $count = Question::model()->count($criteria);
+                $questionPages = new CPagination($count);
+
+                // results per page
+                $questionPages->pageSize= Yii::app()->params['nQuestionsInLessonPage'];
+                $questionPages->applyLimit($criteria);
+                $questions = Question::model()->findAll($criteria);
+
+                $this->renderPartial('/_questions_answers', 
+                    array(
+                        'lesson' => $lesson,
+                        'questions' => $questions,
+                        'questionPages' => $questionPages,
+                    )
+                );
+            } else {
+                echo '-1';
+            }
         }
     }
 

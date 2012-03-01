@@ -78,13 +78,15 @@
                 <div id="menu">
                     <?php
                         $menuItems = array(
-                            array('label' => 'Home', 'url' => array('/site/admin')),
-                            array('label' => 'Language', 'url' => array('/language/admin')),
-                            array('label' => 'Category', 'url' => array('/category/admin')),
-                            array('label' => 'Lecture', 'url' => array('/lecture/admin')),
-                            array('label' => 'Lesson', 'url' => array('/lesson/admin')),
-                            array('label' => 'User', 'url' => array('/account/admin')),
-                            array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+                            array('label' => Yii::t('zii', 'Home'), 'url' => array('/site/admin')),
+                            array('label' => Yii::t('zii', 'Language'), 'url' => array('/language/admin')),
+                            array('label' => Yii::t('zii', 'Category'), 'url' => array('/category/admin')),
+                            array('label' => Yii::t('zii', 'Lecture'), 'url' => array('/lecture/admin')),
+                            array('label' => Yii::t('zii', 'Lesson'), 'url' => array('/lesson/admin')),
+                            array('label' => Yii::t('zii', 'User'), 'url' => array('/account/admin')),
+                            array('label' => Yii::t('zii', 'Partner'), 'url' => array('/partner/admin')),
+                            array('label' => Yii::t('zii', 'Banner'), 'url' => array('/banner/admin')),
+                            array('label' => Yii::t('zii', 'Logout') . ' (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
                         );
                         if ($this->activeMenuItemIndex != -1) {
                             $menuItems[$this->activeMenuItemIndex]['active'] = true;

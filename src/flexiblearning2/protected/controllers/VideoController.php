@@ -23,17 +23,17 @@ class VideoController extends Controller {
      */
     public function accessRules() {
         return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
-                'users' => array('*'),
-            ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
-                'users' => array('@'),
+                'actions' => array('create', 'update', 'upload'),
+                'roles' => array('admin', 'teacher'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
                 'actions' => array('admin', 'delete'),
-                'users' => array('admin'),
+                'roles' => array('admin'),
+            ),
+            array('allow',
+                'actions' => array('view'),
+                'users' => array('@')
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -46,10 +46,29 @@ class VideoController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
-        Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.tabify.js');
-        Yii::app()->getClientScript()->registerCssFile(Yii::app()->baseUrl . '/stylesheet/tabify.css');
+        $video = $this->loadModel($id);
+        $lesson = $video->lesson;
+
+        $criteria = new CDbCriteria();
+        $criteria->addCondition(array('id_lesson' => $lesson->getPrimaryKey()));
+        $criteria->order = 'id DESC';
+
+        $count = Question::model()->count($criteria);
+        $questionPages = new CPagination($count);
+
+        // results per page
+        $questionPages->pageSize = Yii::app()->params['nQuestionsInLessonPage'];
+        $questionPages->applyLimit($criteria);
+        $questions = Question::model()->findAll($criteria);
+
+        $banners = Banner::model()->findAll('is_active = 1');
+
         $this->render('view', array(
             'model' => $this->loadModel($id),
+            'lesson' => $lesson,
+            'questions' => $questions,
+            'questionPages' => $questionPages,
+            'banners' => $banners
         ));
     }
 
@@ -66,33 +85,38 @@ class VideoController extends Controller {
         if (isset($_POST['Video'])) {
             $model->attributes = $_POST['Video'];
             $model->id_lesson = $idLesson;
-            $model->file = $file = CUploadedFile::getInstance($model, 'file');
-
-            if ($model->validate(array('file'))) {
-                $fileName = Yii::app()->params['video'] . '/' . $file->getName();
-                if (file_exists($fileName)) {
-                    $fileName = Yii::app()->params['lessonThumbnails'] . '/' . time() . '_' . $file->getName();
-                }
-                if ($file->saveAs(strtolower($fileName))) {
-//                    $videoHelper = new CVideo();
-//                    $videoThumbnailName = $videoHelper->create_thumbnail($fileName, 
-//                            Yii::app()->params['videoWidth'], 
-//                            Yii::app()->params['videoHeight'], 
-//                            Yii::app()->params['videoThumbnail']
-//                    );
-//                    $convertVideoFileName = $videoHelper->convertVideo($fileName);
-//
-//                    $model->path = $convertVideoFileName;
-//                    $model->path_video_thumbnail = $videoThumbnailName;
-                    
-                    $model->path = $fileName;
-                    $model->path_video_thumbnail = Yii::app()->params['defaultLessonThumbnail'];
-
-                    if ($model->save()) {
-                        $this->redirect(array('view', 'id' => $model->getPrimaryKey()));
-                    }
-                }
+            $model->path_video_thumbnail = Yii::app()->params['defaultLessonThumbnail'];
+            
+            if ($model->save()) {
+                $this->redirect(array('view', 'id' => $model->id));
             }
+//            $model->file = $file = CUploadedFile::getInstance($model, 'file');
+
+//            if ($model->validate(array('file'))) {
+//                $fileName = Yii::app()->params['video'] . '/' . $file->getName();
+//                if (file_exists($fileName)) {
+//                    $fileName = Yii::app()->params['lessonThumbnails'] . '/' . time() . '_' . $file->getName();
+//                }
+//                if ($file->saveAs(strtolower($fileName))) {
+////                    $videoHelper = new CVideo();
+////                    $videoThumbnailName = $videoHelper->create_thumbnail($fileName, 
+////                            Yii::app()->params['videoWidth'], 
+////                            Yii::app()->params['videoHeight'], 
+////                            Yii::app()->params['videoThumbnail']
+////                    );
+////                    $convertVideoFileName = $videoHelper->convertVideo($fileName);
+////
+////                    $model->path = $convertVideoFileName;
+////                    $model->path_video_thumbnail = $videoThumbnailName;
+//
+//                    $model->path = $fileName;
+//                    $model->path_video_thumbnail = Yii::app()->params['defaultLessonThumbnail'];
+//
+//                    if ($model->save()) {
+//                        $this->redirect(array('view', 'id' => $model->getPrimaryKey()));
+//                    }
+//                }
+//            }
         }
         $model->is_active = 1;
         $this->render('create', array('model' => $model));
@@ -174,15 +198,19 @@ class VideoController extends Controller {
         return $model;
     }
 
-    /**
-     * Performs the AJAX validation.
-     * @param CModel the model to be validated
-     */
-    protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'video-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
+    public function actionUpload() {
+        Yii::import("ext.EAjaxUpload.qqFileUploader");
+
+        $folder = Yii::app()->params['video'] . '/'; // folder for uploaded files
+
+        $uploader = new qqFileUploader(Yii::app()->params['arrayVideoExtensions'], Yii::app()->params['videoMaxSize']);
+        $result = $uploader->handleUpload($folder);
+
+        $fileSize = filesize($folder . $result['filename']); //GETTING FILE SIZE
+        $fileName = $result['file'] = $folder . $result['filename'];
+
+        $result = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+        echo $result; // it's array
     }
 
 }

@@ -55,84 +55,82 @@ Yii::import("ext.xupload.models.XUploadForm");
  * @author Dimitrios Mengidis, [Asgaroth](http://www.yiiframework.com/user/1883/)
  */
 Yii::import("ext.xupload.models.XUploadForm");
-class XUploadAction extends CAction
-{
-	/**
-	 * The query string variable name where the subfolder name will be taken from.
-	 *
-	 * Defaults to false meaning the subfolder to be used will be the result of date("mdY").
-	 *
-	 * @see XUploadAction::init().
-	 * @var string
-	 * @since 0.2
-	 */
-	public $subfolderVar = false;
 
-	/**
-	 * Full path of the main uploading folder.
-	 * @see XUploadAction::init()
-	 * @var string
-	 * @since 0.1
-	 */
-	public $path;
-	
-	/**
-	 * The resolved subfolder to upload the file to
-	 * @var string
-	 * @since 0.2
-	 */
-	private $_subfolder;
-	
-	
-	/**
-	 * Initialize the propeties of this action, if they are not set.
-	 *
-	 * @since 0.1
-	 */
-	public function init()
-	{
-		if(!isset($this->path)){
-			$this->path = realpath(Yii::app()->getBasePath()."/../uploads");
-		}
-		
-		if(!is_dir($this->path)){
-			throw new CHttpException(500, "{$this->path} does not exists.");
-		}else if(!is_writable($this->path)){
-			throw new CHttpException(500, "{$this->path} is not writable.");
-		}
-		
-		if($this->subfolderVar !== false){
-			$this->_subfolder = Yii::app()->request->getQuery($this->subfolderVar, date("mdY"));
-		}else{
-			$this->_subfolder = date("mdY");
-		}
-	}
-	
-	/**
-	 * The main action that handles the file upload request.
-	 * @since 0.1
-	 * @author Asgaroth
-	 */
-	public function run()
-	{
-		$this->init();
-		$model = new XUploadForm;
-		$model->file = CUploadedFile::getInstance($model, 'file');
-		$model->mime_type = $model->file->getType();
-		$model->size = $model->file->getSize();
-		$model->name = $model->file->getName();
+class XUploadAction extends CAction {
 
-		if ($model->validate()) {
-			$path = $this->path."/".$this->_subfolder."/";
-			if(!is_dir($path)){
-				mkdir($path);
-			}
-			$model->file->saveAs($path.$model->name);
-			echo json_encode(array("name" => $model->name,"type" => $model->mime_type,"size"=> $model->getReadableFileSize()));
-		} else {
-			echo CVarDumper::dumpAsString($model->getErrors());
-			Yii::log("XUploadAction: ".CVarDumper::dumpAsString($model->getErrors()), CLogger::LEVEL_ERROR, "application.extensions.xupload.actions.XUploadAction");
-			throw new CHttpException(500, "Could not upload file");
-		}
-	}
+    /**
+     * The query string variable name where the subfolder name will be taken from.
+     *
+     * Defaults to false meaning the subfolder to be used will be the result of date("mdY").
+     *
+     * @see XUploadAction::init().
+     * @var string
+     * @since 0.2
+     */
+    public $subfolderVar = false;
+
+    /**
+     * Full path of the main uploading folder.
+     * @see XUploadAction::init()
+     * @var string
+     * @since 0.1
+     */
+    public $path;
+
+    /**
+     * The resolved subfolder to upload the file to
+     * @var string
+     * @since 0.2
+     */
+    private $_subfolder;
+
+    /**
+     * Initialize the propeties of this action, if they are not set.
+     *
+     * @since 0.1
+     */
+    public function init() {
+        if (!isset($this->path)) {
+            $this->path = realpath(Yii::app()->getBasePath() . "/../uploads");
+        }
+
+        if (!is_dir($this->path)) {
+            throw new CHttpException(500, "{$this->path} does not exists.");
+        } else if (!is_writable($this->path)) {
+            throw new CHttpException(500, "{$this->path} is not writable.");
+        }
+
+        if ($this->subfolderVar !== false) {
+            $this->_subfolder = Yii::app()->request->getQuery($this->subfolderVar, date("mdY"));
+        } else {
+            $this->_subfolder = date("mdY");
+        }
+    }
+
+    /**
+     * The main action that handles the file upload request.
+     * @since 0.1
+     * @author Asgaroth
+     */
+    public function run() {
+        $this->init();
+        $model = new XUploadForm;
+        $model->file = CUploadedFile::getInstance($model, 'file');
+        $model->mime_type = $model->file->getType();
+        $model->size = $model->file->getSize();
+        $model->name = $model->file->getName();
+
+        if ($model->validate()) {
+            $path = $this->path . "/" . $this->_subfolder . "/";
+            if (!is_dir($path)) {
+                mkdir($path);
+            }
+            $model->file->saveAs($path . $model->name);
+            echo json_encode(array("name" => $model->name, "type" => $model->mime_type, "size" => $model->getReadableFileSize()));
+        } else {
+            echo CVarDumper::dumpAsString($model->getErrors());
+            Yii::log("XUploadAction: " . CVarDumper::dumpAsString($model->getErrors()), CLogger::LEVEL_ERROR, "application.extensions.xupload.actions.XUploadAction");
+            throw new CHttpException(500, "Could not upload file");
+        }
+    }
 }

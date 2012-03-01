@@ -10,7 +10,24 @@ class QuestionController extends Controller {
             if ($answer->save()) {
                 $question = $answer->question;
                 $lesson = $question->lesson;
-                $this->renderPartial('/_qa', array('lesson' => $lesson));
+                
+                $criteria = new CDbCriteria();
+                $criteria->addCondition(array('id_lesson' => $lesson->getPrimaryKey()));
+                $criteria->order = 'id DESC';
+
+                $count = Question::model()->count($criteria);
+                $questionPages = new CPagination($count);
+
+                // results per page
+                $questionPages->pageSize= Yii::app()->params['nQuestionsInLessonPage'];
+                $questionPages->applyLimit($criteria);
+                $questions = Question::model()->findAll($criteria);
+                
+                $this->renderPartial('/_questions_answers', array(
+                    'lesson' => $lesson,
+                    'questions' => $questions,
+                    'questionPages' => $questionPages
+                ));
             } else {
                 echo '-1';
             }

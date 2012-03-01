@@ -24,110 +24,101 @@
  * The followings are the available model relations:
  * @property Lesson $idLesson
  */
-class Document extends CActiveRecord
-{
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return Document the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+class Document extends CActiveRecord {
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'document';
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return Document the static model class
+     */
+    public static function model($className=__CLASS__) {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('id, subject_vi, subject_en, subject_ko, filename, document_path, id_lesson, created_by, created_date, updated_by, updated_date', 'required'),
-			array('id, flag_del, flag_approve, id_lesson, created_by, updated_by', 'numerical', 'integerOnly'=>true),
-			array('subject_vi, subject_en, subject_ko, filename, document_path', 'length', 'max'=>256),
-			array('description_vi, description_en, description_ko', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, subject_vi, subject_en, subject_ko, filename, description_vi, description_en, description_ko, document_path, flag_del, flag_approve, id_lesson, created_by, created_date, updated_by, updated_date', 'safe', 'on'=>'search'),
-		);
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName() {
+        return 'document';
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'idLesson' => array(self::BELONGS_TO, 'Lesson', 'id_lesson'),
-		);
-	}
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules() {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+            array('id, subject_vi, subject_en, subject_ko, filename, document_path, id_lesson, created_by, created_date, updated_by, updated_date', 'required'),
+            array('id, flag_del, flag_approve, id_lesson, created_by, updated_by', 'numerical', 'integerOnly' => true),
+            array('subject_vi, subject_en, subject_ko, filename, document_path', 'length', 'max' => 256),
+            array('description_vi, description_en, description_ko', 'safe'),
+            // The following rule is used by search().
+            // Please remove those attributes that should not be searched.
+            array('id, subject_vi, subject_en, subject_ko, filename, description_vi, description_en, description_ko, document_path, flag_del, flag_approve, id_lesson, created_by, created_date, updated_by, updated_date', 'safe', 'on' => 'search'),
+        );
+    }
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'ID',
-			'subject_vi' => 'Subject Vi',
-			'subject_en' => 'Subject En',
-			'subject_ko' => 'Subject Ko',
-			'filename' => 'Filename',
-			'description_vi' => 'Description Vi',
-			'description_en' => 'Description En',
-			'description_ko' => 'Description Ko',
-			'document_path' => 'Document Path',
-			'flag_del' => 'Flag Del',
-			'flag_approve' => 'Flag Approve',
-			'id_lesson' => 'Id Lesson',
-			'created_by' => 'Created By',
-			'created_date' => 'Created Date',
-			'updated_by' => 'Updated By',
-			'updated_date' => 'Updated Date',
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations() {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'idLesson' => array(self::BELONGS_TO, 'Lesson', 'id_lesson'),
+        );
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels() {
+        return array(
+            'id' => 'ID',
+            'subject_vi' => Yii::t('zii', 'Subject Vi'),
+            'subject_en' => Yii::t('zii', 'Subject En'),
+            'subject_ko' => Yii::t('zii', 'Subject Ko'),
+            'filename' => Yii::t('zii', 'Filename'),
+            'description_vi' => Yii::t('zii', 'Description Vi'),
+            'description_en' => Yii::t('zii', 'Description En'),
+            'description_ko' => Yii::t('zii', 'Description Ko'),
+            'document_path' => Yii::t('zii', 'Document Path'),
+            'flag_del' => Yii::t('zii', 'Flag Del'),
+            'flag_approve' => Yii::t('zii', 'Approve'),
+            'id_lesson' => Yii::t('zii', 'Lesson'),
+        );
+    }
 
-		$criteria=new CDbCriteria;
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search() {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('subject_vi',$this->subject_vi,true);
-		$criteria->compare('subject_en',$this->subject_en,true);
-		$criteria->compare('subject_ko',$this->subject_ko,true);
-		$criteria->compare('filename',$this->filename,true);
-		$criteria->compare('description_vi',$this->description_vi,true);
-		$criteria->compare('description_en',$this->description_en,true);
-		$criteria->compare('description_ko',$this->description_ko,true);
-		$criteria->compare('document_path',$this->document_path,true);
-		$criteria->compare('flag_del',$this->flag_del);
-		$criteria->compare('flag_approve',$this->flag_approve);
-		$criteria->compare('id_lesson',$this->id_lesson);
-		$criteria->compare('created_by',$this->created_by);
-		$criteria->compare('created_date',$this->created_date,true);
-		$criteria->compare('updated_by',$this->updated_by);
-		$criteria->compare('updated_date',$this->updated_date,true);
+        $criteria = new CDbCriteria;
 
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
-	}
+        $criteria->compare('id', $this->id);
+        $criteria->compare('subject_vi', $this->subject_vi, true);
+        $criteria->compare('subject_en', $this->subject_en, true);
+        $criteria->compare('subject_ko', $this->subject_ko, true);
+        $criteria->compare('filename', $this->filename, true);
+        $criteria->compare('description_vi', $this->description_vi, true);
+        $criteria->compare('description_en', $this->description_en, true);
+        $criteria->compare('description_ko', $this->description_ko, true);
+        $criteria->compare('document_path', $this->document_path, true);
+        $criteria->compare('flag_del', $this->flag_del);
+        $criteria->compare('flag_approve', $this->flag_approve);
+        $criteria->compare('id_lesson', $this->id_lesson);
+        $criteria->compare('created_by', $this->created_by);
+        $criteria->compare('created_date', $this->created_date, true);
+        $criteria->compare('updated_by', $this->updated_by);
+        $criteria->compare('updated_date', $this->updated_date, true);
+
+        return new CActiveDataProvider($this, array(
+                    'criteria' => $criteria,
+                ));
+    }
+
 }

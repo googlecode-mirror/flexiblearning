@@ -1,15 +1,15 @@
 <?php
-$this->breadcrumbs=array(
-	'Accounts'=>array('index'),
-	'Create',
+$this->breadcrumbs = array(
+    Yii::t('zii', 'Accounts') => array('index'),
+    Yii::t('zii', 'Create'),
 );
 
-$this->menu=array(
-	array('label'=>'List Account', 'url'=>array('index')),
-	array('label'=>'Manage Account', 'url'=>array('admin')),
+$this->menu = array(
+    array('label' => Yii::t('zii', 'List Account'), 'url' => array('index')),
+    array('label' => Yii::t('zii', 'Manage Account'), 'url' => array('admin')),
 );
 ?>
 
-<h1>Create Account</h1>
+<h1><?php echo Yii::t('zii', 'Create Account')?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model' => $model)); ?>

@@ -179,8 +179,14 @@ class CategoryController extends Controller {
     }
 
     public function actionListByLanguage() {
-        $idLanguage = (int) $_POST['language_id'];
-        if ($idLanguage) {
+        $params = $_POST;
+        foreach($params as $param) {
+            if (isset($params) && is_array($param) && array_key_exists('id_language', $param)) {
+                $idLanguage = (int)$param['id_language'];
+            }
+        }
+        
+        if (isset($idLanguage)) {
             $data = Category::model()->findAllByAttributes(array('id_language' => $idLanguage));
             $data = CHtml::listData($data, 'id', 'name');
             foreach ($data as $value => $name) {
@@ -188,5 +194,4 @@ class CategoryController extends Controller {
             }
         }
     }
-
 }

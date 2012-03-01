@@ -1,27 +1,26 @@
 <?php
-    $lecture = $model->lecture;
-    $category = $lecture->category;
-    $language = $category->language;
-    
-$this->breadcrumbs=array(
-    $language->name => $language->getHref(),    
+$lecture = $model->lecture;
+$category = $lecture->category;
+$language = $category->language;
+
+$this->breadcrumbs = array(
+    Yii::t('zii', $language->name) => $language->href,
     $category->name => $category->getHref(),
-    $lecture->title => $lecture->getHref(),
+    Yii::t('zii', 'Lecture : ') . $lecture->title => $lecture->getHref(),
     Yii::t('zii', 'Create lesson'),
 );
 
-$this->menu=array(
-	array('label'=>'List Lesson', 'url'=>array('index')),
-	array('label'=>'Manage Lesson', 'url'=>array('admin')),
+$this->menu = array(
+    array('label' => Yii::t('zii', 'Manage Lesson'), 'url' => array('admin')),
 );
 ?>
 
-<h1>Create Lesson</h1>
+<h1><?php echo Yii::t('zii', 'Create Lesson') ?></h1>
 
-<?php 
-    $arrayModels = array('model' => $model);
-    if (isset($modelLesson)) {
-        $arrayModels['modelLesson'] = $modelLesson;
-    }
-    echo $this->renderPartial('_form', $arrayModels); 
+<?php
+$arrayModels = array('model' => $model);
+if (isset($modelLesson)) {
+    $arrayModels['modelLesson'] = $modelLesson;
+}
+echo $this->renderPartial('_form', $arrayModels);
 ?>

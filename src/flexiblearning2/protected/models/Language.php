@@ -57,7 +57,7 @@ class Language extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => Yii::t('zii', 'Name'),
         );
     }
     

@@ -1,10 +1,12 @@
 <div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php 
+    $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'lesson-form',
 	'enableAjaxValidation'=>false,
         'htmlOptions' => array('enctype' => 'multipart/form-data'),
-)); ?>
+    )); 
+?>
 
     <p class="note">Fields with <span class="required">*</span> are required.</p>
 
@@ -16,10 +18,49 @@
     ?>
 
     <div class="row">
+        <?php echo CHtml::label(Yii::t('zii', 'Language'), ''); ?>
+        <?php
+            echo $form->dropDownList(
+                $model, 
+                'id_language', 
+                CHtml::listData(Language::model()->findAll(), 'id', 'name'),
+                array(
+                    'ajax' => array(
+                        'type' => 'POST',
+                        'url' => $this->createUrl('category/listByLanguage'),
+                        'update' => '#Lesson_id_category'
+                    )
+                )
+            ); 
+        ?>
+    </div>
+    
+    <div class="row">
+        <?php echo $form->labelEx($model, 'id_category'); ?>
+        <div>
+            <?php 
+                echo $form->dropDownList($model, 'id_category', 
+                    CHtml::listData(Category::model()->findAll("id_language = {$model->id_language}"), 'id', 'name'),
+                    array(
+                        'ajax' => array(
+                            'type' => 'POST',
+                            'url' => $this->createUrl('lecture/listByCategory'),
+                            'update' => '#Lesson_id_lecture'
+                        )
+                    )
+                ); 
+            ?>
+            <?php echo $form->error($model, 'id_category'); ?>
+        </div>
+    </div>       
+    
+    <div class="row">
         <?php echo $form->label($model,'id_lecture'); ?>
         <div>
             <?php
-                echo CHtml::link($model->lecture->title, $model->lecture->href);
+                echo $form->dropDownList($model, 'id_lecture', 
+                    CHtml::listData(Lecture::model()->findAll("id_category = {$model->id_category}"), 'id', 'title')); 
+//                echo CHtml::link($model->lecture->title, $model->lecture->href);
             ?>
         </div>
     </div>

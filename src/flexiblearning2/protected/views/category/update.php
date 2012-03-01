@@ -1,8 +1,8 @@
 <?php
+$language = $model->language;
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Categories') => array('index'),
-    $model->name => array('view', 'id' => $model->id),
-    Yii::t('zii', 'Update'),
+    Yii::t('zii', $langauge->name) => $language->href,
+    Yii::t('zii', 'Update Category'),
 );
 
 $this->menu = array(
@@ -12,6 +12,6 @@ $this->menu = array(
 );
 ?>
 
-<h1>Update Category</h1>
+<h1><?php echo Yii::t('zii', 'Update Category')?></h1>
 
 <?php echo $this->renderPartial('_form', array('model' => $model)); ?>

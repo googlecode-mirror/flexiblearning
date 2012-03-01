@@ -26,16 +26,16 @@ class LectureController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view', 'listByCategory'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
-                'users' => array('@'),
+                'actions' => array('create', 'update', 'upload'),
+                'roles' => array('admin', 'teacher'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
                 'actions' => array('admin', 'delete'),
-                'users' => array('@'),
+                'roles' => array('admin'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -60,40 +60,48 @@ class LectureController extends Controller {
      */
     public function actionCreate() {
         $model = new Lecture();
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
 
         if (isset($_POST['Lecture'])) {
             $model->attributes = $_POST['Lecture'];
             $model->owner_by = Yii::app()->user->getId();
-                        
-            $model->fileIntro = $file = CUploadedFile::getInstance($model, 'fileIntro');
-            if ($model->validate(array('fileIntro'))) {
-                $fileName = Yii::app()->params['video'] . '/' . $file->getName();
-                if (file_exists($fileName)) {
-                    $fileName = Yii::app()->params['video'] . '/' 
-                            . time() . '_' . $file->getName();
-                }
-                if ($file->saveAs(strtolower($fileName), true)) {
-                    /*$videoHelper = new CVideo();
-                    $videoThumbnailName = $videoHelper->create_thumbnail($fileName, 
-                            Yii::app()->params['videoWidth'], 
-                            Yii::app()->params['videoHeight'], 
-                            Yii::app()->params['videoThumbnail']
-                    );
-                    $convertVideoFileName = $videoHelper->convertVideo($fileName);
 
-                    $model->path_video_intro = $convertVideoFileName;
-                    $model->path_video_thumbnail = $videoThumbnailName;*/
-                    $model->path_video_intro = $fileName;
-                    $model->path_video_thumbnail = Yii::app()->params['defaultLectureThumbnail'];
-
-                    if ($model->save()) {
-                        $this->redirect(array('view', 'id' => $model->id));
-                    }
-                }
+            if ($model->save()) {
+                $this->redirect(array('view', 'id' => $model->id));
             }
+                
+//            $model->fileIntro = $file = CUploadedFile::getInstance($model, 'fileIntro');
+//            if ($model->validate(array('fileIntro'))) {
+//                if ($file) {
+//                    $fileName = Yii::app()->params['video'] . '/' . $file->getName();
+//                    if (file_exists($fileName)) {
+//                        $fileName = Yii::app()->params['video'] . '/'
+//                                . time() . '_' . $file->getName();
+//                    }
+//                    if ($file->saveAs(strtolower($fileName), true)) {
+//                        /* $videoHelper = new CVideo();
+//                          $videoThumbnailName = $videoHelper->create_thumbnail($fileName,
+//                          Yii::app()->params['videoWidth'],
+//                          Yii::app()->params['videoHeight'],
+//                          Yii::app()->params['videoThumbnail']
+//                          );
+//                          $convertVideoFileName = $videoHelper->convertVideo($fileName);
+//
+//                          $model->path_video_intro = $convertVideoFileName;
+//                          $model->path_video_thumbnail = $videoThumbnailName; */
+//                        $model->path_video_intro = $fileName;
+//                        $model->path_video_thumbnail = Yii::app()->params['defaultLectureThumbnail'];
+//                    }
+//                }
+//                if ($model->save()) {
+//                    $this->redirect(array('view', 'id' => $model->id));
+//                }
+//            }
         }
+        $params = $this->getActionParams();
+        if ($params && array_key_exists('idCategory', $params)) {
+            $model->id_category = (int) $params['idCategory'];
+        }
+
         $model->is_active = 1;
         $this->render('create', array(
             'model' => $model,
@@ -142,23 +150,14 @@ class LectureController extends Controller {
     }
 
     /**
-     * Lists all models.
-     */
-    public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Lecture');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
      * Manages all models.
      */
     public function actionAdmin() {
         $model = new Lecture('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Lecture']))
+        if (isset($_GET['Lecture'])) {
             $model->attributes = $_GET['Lecture'];
+        }
 
         $this->render('admin', array(
             'model' => $model,
@@ -177,15 +176,35 @@ class LectureController extends Controller {
         return $model;
     }
 
-    /**
-     * Performs the AJAX validation.
-     * @param CModel the model to be validated
-     */
-    protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'lecture-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
+    public function actionListByCategory() {
+        $params = $_POST;
+        foreach ($params as $param) {
+            if (isset($params) && is_array($param) && array_key_exists('id_category', $param)) {
+                $idCategory = (int) $param['id_category'];
+            }
+        }
+
+        if (isset($idCategory)) {
+            $data = Lecture::model()->findAllByAttributes(array('id_category' => $idCategory));
+            $data = CHtml::listData($data, 'id', 'title');
+            foreach ($data as $value => $name) {
+                echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+            }
         }
     }
 
+    public function actionUpload() {
+        Yii::import("ext.EAjaxUpload.qqFileUploader");
+
+        $folder = Yii::app()->params['lectureVideoIntro'] . '/'; // folder for uploaded files
+        
+        $uploader = new qqFileUploader(Yii::app()->params['arrayVideoExtensions'], Yii::app()->params['videoMaxSize']);
+        $result = $uploader->handleUpload($folder);
+
+        $fileSize = filesize($folder . $result['filename']); //GETTING FILE SIZE
+        $fileName = $result['file'] = $folder . $result['filename']; 
+
+        $result = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+        echo $result; // it's array
+    }
 }

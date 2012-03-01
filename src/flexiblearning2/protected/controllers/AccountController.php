@@ -50,7 +50,7 @@ class AccountController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+                'actions' => array('create', 'update', 'buy'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -131,16 +131,31 @@ class AccountController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
         if (isset($_POST['Account'])) {
             $model->attributes = $_POST['Account'];
             if ($model->save()) {
+                Yii::app()->user->setFlash('message', Yii::t('zii', 'User information is updated successfully'));
                 $this->redirect(array('view', 'id' => $model->id));
             }
+        } else {
+            if (isset($_POST['updateRole']) &&  $_POST['updateRole'] == 'Update') {
+                $newRole = $_POST['role'];
+                if ($newRole) {
+                    if (Yii::app()->user->checkAccess('adminUser') && Yii::app()->user->getId() != $id) {
+                        $authMgr = Yii::app()->authManager;
+                        foreach(Yii::app()->params['roles'] as $role) {
+                            if ($authMgr->isAssigned($role, $id)) {
+                                $authMgr->revoke($role, $id);
+                            }
+                        }
+                        $authMgr->assign($newRole, $id);
+                        Yii::app()->user->setFlash('message', Yii::t('zii', 'User\'s role has been updated successfully'));
+                        $this->redirect(array('view', 'id' => $model->id));
+                    }
+                }
+            }
         }
-
+        
         $this->renderProfileDetail($model);
     }
 
@@ -155,11 +170,12 @@ class AccountController extends Controller {
             $this->loadModel($id)->delete();
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-            if (!isset($_GET['ajax']))
+            if (!isset($_GET['ajax'])) {
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-        }
-        else
+            }
+        } else {
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+        }
     }
 
     /**
@@ -189,7 +205,7 @@ class AccountController extends Controller {
 
     public function actionRegister() {
         $model = new RegisterForm();
-//        $outputModels = array('model' => $model);
+        $arrModels = array('model' => $model);
         if (isset($_POST['RegisterForm'])) {
             $model->attributes = $_POST['RegisterForm'];
             if ($model->validate()) {
@@ -199,13 +215,54 @@ class AccountController extends Controller {
                 if ($account->save()) {
                     Yii::app()->user->setFlash('register', 'Thank you for your registration. Please log in to the system with the new one account.');
                     $this->refresh();
-                } 
+                }
+                $arrModels['account'] = $account;
             } else {
                 $model->password = '';
                 $model->password_repeat = '';
             }
         }
-        $this->render('register', array('model' => $model));
+        $this->render('register', $arrModels);
+    }
+    
+    public function actionBuy() {
+        $result = array();
+        
+        $lessonId = (int)$_POST['lessonId'];
+        if ($lessonId) {
+            $lesson = Lesson::model()->findByPk($lessonId);
+            $accountId = Yii::app()->user->getId();
+            $account = Account::model()->findByPk($accountId);
+            if ($lesson && $account) {
+                if ($lesson->price > $account->asset) {
+                    $result['status'] = 0;
+                    $result['reason'] = Yii::t('zii', 'You do not have enough money to buy this lesson. Please add some money to it !');
+                } else {
+                    $account->asset = $account->asset - $lesson->price;
+                    $idBoughtLessons = array();
+                    foreach($account->boughtLessons as $lesson) {
+                        array_push($idBoughtLessons, $lesson->getPrimaryKey());
+                    }
+                    array_push($idBoughtLessons, $lessonId);
+                    $account->boughtLessons = $idBoughtLessons;
+                    if ($account->save()) {
+                        Yii::app()->user->setFlash('buy-message', Yii::app()->t('zii', 'You bought this lesson successfully !'));
+                        
+                        $this->redirect($this->createUrl(
+                                'lesson/view', 
+                                array('id' => $model->getPrimaryKey(), 'success' => 1)));
+                    } else {
+                        Yii::app()->user->setFlash('buy-message', Yii::app()->t('zii', 'You bought this lesson unsuccessfully !'));
+                        $this->redirect($this->createUrl(
+                                'lesson/view', 
+                                array('id' => $model->getPrimaryKey(), 'success' => 0, 'account' => $account)));
+                    }                    
+                    
+                }
+            }
+        } else {
+            $result['status'] = 0;
+        }
     }
 
     /**
@@ -219,16 +276,4 @@ class AccountController extends Controller {
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
     }
-
-    /**
-     * Performs the AJAX validation.
-     * @param CModel the model to be validated
-     */
-    protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'account-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
-    }
-
 }

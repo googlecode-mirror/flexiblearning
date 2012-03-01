@@ -27,7 +27,11 @@ class Base extends CActiveRecord {
     }
 
     public function behaviors() {
-        return array('datetimeI18NBehavior' => array('class' => 'ext.DateTimeI18NBehavior')); // 'ext' is in Yii 1.0.8 version. For early versions, use 'application.extensions' instead.
+        return 
+            array(
+                'datetimeI18NBehavior' => array('class' => 'application.extensions.DateTimeI18NBehavior'),
+                'CAdvancedArBehavior' => array('class' => 'application.extensions.CAdvancedArBehavior')
+            ); 
     }
 
     public function __get($name) {
@@ -49,8 +53,9 @@ class Base extends CActiveRecord {
     public function deleteByPk($pk, $condition='', $params=array()) {
         foreach ($this->relations() as $key => $relation) {
             if ($relation[0] == self::HAS_MANY) {
-                $className = $relation[1];
-                foreach ($className::model()->relations() as $keyRelation => $otherRelation) {
+                $className = $relation[1];                
+                $classObj = new $className;
+                foreach ($classObj->model()->relations() as $keyRelation => $otherRelation) {
                     if ($otherRelation[1] == get_class($this)) {
                         if ($otherRelation[0] == self::BELONGS_TO && $otherRelation[2] == $relation[2]) {
                             foreach ($this->getRelated($key) as $obj) {

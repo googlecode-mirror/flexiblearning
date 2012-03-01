@@ -13,7 +13,7 @@
  * @property string $description_ko
  * @property string $price
  * @property integer $is_active
- * @property integer $flag_approve
+ * @property integer $approved
  * @property integer $created_by
  * @property string $created_date
  * @property integer $updated_by
@@ -56,10 +56,10 @@ class Lesson extends Base {
             array('title_vi, title_en, title_ko', 'length', 'max' => 50),
             array('price', 'length', 'max' => 10),
             array('is_active', 'default', 'value' => 1),
-            array('description_vi, description_en, description_ko, fileThumbnail, is_active, flag_approve', 'safe'),
+            array('description_vi, description_en, description_ko, fileThumbnail, is_active, approved', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('title_vi, title_en, title_ko, price, is_active, flag_approve, id_lecture', 'safe', 'on' => 'search'),
+            array('title_vi, title_en, title_ko, price, is_active, approved, id_lecture', 'safe', 'on' => 'search'),
         );
     }
 
@@ -85,21 +85,18 @@ class Lesson extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'title_vi' => 'Title Vi',
-            'title_en' => 'Title En',
-            'title_ko' => 'Title Ko',
-            'description_vi' => 'Description Vi',
-            'description_en' => 'Description En',
-            'description_ko' => 'Description Ko',
-            'price' => 'Price',
-            'flag_approve' => 'Flag Approve',
-            'id_lecture' => 'Lecture',
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'updated_by' => 'Updated By',
-            'updated_date' => 'Updated Date',
-            'fileThumbnail' => 'Thumbnail',
-            'is_active' => 'Active'
+            'title_vi' => Yii::t('zii', 'Title Vi'),
+            'title_en' => Yii::t('zii', 'Title En'),
+            'title_ko' => Yii::t('zii', 'Title Ko'),
+            'description_vi' => Yii::t('zii', 'Description Vi'),
+            'description_en' => Yii::t('zii', 'Description En'),
+            'description_ko' => Yii::t('zii', 'Description Ko'),
+            'price' => Yii::t('zii', 'Price'),
+            'approve' => Yii::t('zii', 'Approve'),
+            'id_category' => Yii::t('zii', 'Category'),
+            'id_lecture' => Yii::t('zii', 'Lecture'),
+            'fileThumbnail' => Yii::t('zii', 'Thumbnail'),
+            'is_active' => Yii::t('zii', 'Active')
         );
     }
 
@@ -112,13 +109,6 @@ class Lesson extends Base {
         // should not be searched.
 
         $criteria = new CDbCriteria;
-
-        $criteria->compare('title_vi', $this->title_vi, true);
-        $criteria->compare('title_en', $this->title_en, true);
-        $criteria->compare('title_ko', $this->title_ko, true);
-        $criteria->compare('price', $this->price, true);
-        $criteria->compare('is_active', $this->is_active);
-        $criteria->compare('flag_approve', $this->flag_approve);
         
         if ($idCategory) {
             $criteria->join = 'JOIN lecture ON lecture.id = id_lecture';
@@ -128,10 +118,18 @@ class Lesson extends Base {
                 $criteria->join = 'JOIN lecture ON lecture.id = id_lecture ' . 
                     'JOIN category ON category.id = lecture.id_category';
                 $criteria->condition = 'category.id_language = ' . $idLanguage;                
+            } else {
+                $criteria->compare('t.id_lecture', $this->id_lecture);
             }
         }
-        $criteria->compare('id_lecture', $this->id_lecture);
 
+        $criteria->compare('title_vi', $this->title_vi, true);
+        $criteria->compare('title_en', $this->title_en, true);
+        $criteria->compare('title_ko', $this->title_ko, true);
+        $criteria->compare('price', $this->price, true);
+        $criteria->compare('t.is_active', $this->is_active);
+        $criteria->compare('approved', $this->approved);
+        
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                 ));
@@ -152,10 +150,29 @@ class Lesson extends Base {
         return $thumbnail;
     }
 
+    public function getId_category() {
+        if ($this->lecture) {
+            return $this->lecture->id_category;
+        }
+        return null;    
+    }
+    
+    public function getId_language() {
+        if ($this->lecture) {
+            return $this->lecture->category->id_language;
+        }
+        return null;
+    }
+    
     protected function afterDelete() {
         parent::afterDelete();
         if ($this->thumbnail && file_exists($this->thumbnail)) {
             unlink($this->thumbnail);
         }
     }
+    
+    public function isBoughtBuy($accountId) {
+        $model = AccountLesson::model()->findByAttributes(array('id_account' => $accountId, 'id_lesson' => $this->getPrimaryKey()));
+        return $model != true;
+    }  
 }

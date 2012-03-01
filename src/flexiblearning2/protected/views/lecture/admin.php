@@ -1,28 +1,20 @@
 <?php
-$this->breadcrumbs = array(
-    'Lectures' => array('index'),
-    'Manage',
+
+$category = $model->category;
+$language = $category->language;
+
+$this->breadcrumbs=array(
+    Yii::t('zii', $language->name) => $language->getHref(),    
+    $category->name => $category->getHref(),
+    Yii::t('zii', 'Manage lectures'),
 );
 
 $this->menu = array(
     array('label' => 'Create Lecture', 'url' => array('create')),
 );
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('lecture-grid', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
 ?>
 
-<h1>Manage Lectures</h1>
+<h1><?php echo Yii::t('zii', 'Managage Lectures')?></h1>
 <br />
 <?php echo CHtml::label('Language', ''); ?>
 &nbsp;
@@ -49,6 +41,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider' => $model->search($idLanguage),
     'filter' => $model,
     'columns' => array(
+        array(
+            'header' => 'No',
+            'value' => '$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize + $row+1',
+            'htmlOptions' => array('class' => 'number-column')
+        ),
         'title_en',
         'title_vi',
         'title_ko',

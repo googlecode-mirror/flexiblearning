@@ -15,7 +15,7 @@
  * @property string $password
  * @property integer $id_profession
  * @property string $avatar
- 
+
  * @property integer $state
  * @property integer $enabledFullName
  * @property integer $enabledDateOfBirth
@@ -72,8 +72,7 @@ class Account extends Base {
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
 
-            array('id, fullname, dateOfBirth, address, id_nationality, tel, email, username, password, id_profession, avatar, flag_del, enabledFullName, enabledDateOfBirth, enabledAddress, enabledNationality, enabledTel, enabledEmail, enabledProfession, enabledFavorite', 'safe', 'on' => 'search'),
-
+            array('id, fullname, dateOfBirth, address, id_nationality, tel, email, username, password, id_profession, avatar, enabledFullName, enabledDateOfBirth, enabledAddress, enabledNationality, enabledTel, enabledEmail, enabledProfession, enabledFavorite', 'safe', 'on' => 'search'),
         );
     }
 
@@ -87,7 +86,8 @@ class Account extends Base {
             'nationality' => array(self::BELONGS_TO, 'Nationality', 'id_nationality'),
             'profession' => array(self::BELONGS_TO, 'Profession', 'id_profession'),
             'entries' => array(self::HAS_MANY, 'Entry', 'owner_by'),
-//            'lessons' => array(self::MANY_MANY, 'Lesson', 'lesson_account(id_lesson, id_account)'),
+            'lessons' => array(self::HAS_MANY, 'Lesson', 'created_by'),
+            'boughtLessons' => array(self::MANY_MANY, 'Lesson', 'account_lesson(id_account, id_lesson)'),
         );
     }
 
@@ -97,23 +97,18 @@ class Account extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'fullname' => 'Fullname',
-            'dateOfBirth' => 'Date Of Birth',
-            'address' => 'Address',
-            'id_nationality' => 'Nationality',
-            'tel' => 'Tel',
-            'email' => 'Email',
-            'username' => 'Username',
-            'password' => 'Password',
-            'id_profession' => 'Profession',
-            'avatar' => 'Avatar',
-            'flag_del' => 'Flag_del',
-            'createdDate' => 'Created Date',
-            'createdBy' => 'Created By',
-            'updatedDate' => 'Updated Date',
-            'updatedBy' => 'Updated By',
-            'last_login' => 'Last Login Date',
-            'ipAddress' => 'Ip Address',
+            'fullname' => Yii::t('zii', 'Fullname'),
+            'dateOfBirth' => Yii::t('zii', 'Date Of Birth'),
+            'address' => Yii::t('zii', 'Address'),
+            'id_nationality' => Yii::t('zii', 'Nationality'),
+            'tel' => Yii::t('zii', 'Tel'),
+            'email' => Yii::t('zii', 'Email'),
+            'username' => Yii::t('zii', 'Username'),
+            'password' => Yii::t('zii', 'Password'),
+            'id_profession' => Yii::t('zii', 'Profession'),
+            'avatar' => Yii::t('zii', 'Avatar'),
+            'last_login' => Yii::t('zii', 'Last Login Date'),
+            'ipAddress' => Yii::t('zii', 'Ip Address'),
         );
     }
 
@@ -128,17 +123,9 @@ class Account extends Base {
         $criteria = new CDbCriteria;
 
         $criteria->compare('fullname', $this->fullname, true);
-        $criteria->compare('dateOfBirth', $this->dateOfBirth);
-        $criteria->compare('address', $this->address, true);
         $criteria->compare('id_nationality', $this->id_nationality);
-        $criteria->compare('tel', $this->tel, true);
-        $criteria->compare('email', $this->email, true);
-        $criteria->compare('username', $this->username, true);
-        $criteria->compare('password', $this->password, true);
+        $criteria->compare('username', '%' . $this->username . '%', true, 'AND', false);
         $criteria->compare('id_profession', $this->id_profession);
-        $criteria->compare('avatar', $this->avatar, true);
-       
-        $criteria->compare('flag_del', $this->flag_del);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -155,16 +142,18 @@ class Account extends Base {
 
     protected function afterValidate() {
         parent::afterValidate();
-        $this->password = $this->hashPassword($this->password);
+        if ($this->isNewRecord) {
+            $this->password = $this->hashPassword($this->password);
+        }
     }
 
     public function getHref() {
         return Yii::app()->createUrl('account/view', array(
-            'id'=>$this->getPrimaryKey(),
-            'username'=>$this->username,
-        ));
+                    'id' => $this->getPrimaryKey(),
+                    'username' => $this->username,
+                ));
     }
-    
+
     public function getAvatarPath() {
         $avatar = $this->avatar;
         if (!$avatar) {
@@ -172,4 +161,5 @@ class Account extends Base {
         }
         return $avatar;
     }
+
 }

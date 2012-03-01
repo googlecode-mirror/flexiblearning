@@ -15,8 +15,11 @@ $form = $this->beginWidget('CActiveForm', array(
                 $roles = Yii::app()->authManager->getRoles($model->getPrimaryKey());
                 $keys = array_keys($roles);
                 
-                if (Yii::app()->user->checkAccess('adminUser')) {
+                if (Yii::app()->user->checkAccess('adminUser') && Yii::app()->user->getId() != $model->getPrimaryKey()) {
                     echo CHtml::dropDownList('role', $keys[0], Yii::app()->params['roles']);
+                    echo '&nbsp;';
+                    echo CHtml::submitButton(Yii::t('zii', 'Update Role'), 
+                            array('name' => 'updateRole', 'value' => 'Update'));
                 } else {
                     echo Yii::app()->params['roles'][$keys[0]];
                 }
@@ -27,6 +30,13 @@ $form = $this->beginWidget('CActiveForm', array(
         <td width="450" id="bg-td">
             <?php if ($model->getPrimaryKey() == Yii::app()->user->getId()) : ?>
                 <table width="450" cellspacing="10">
+                    <?php if (Yii::app()->user->hasFlash('message')): ?>
+                        <tr>
+                            <td colspan="2" style="color: #0066ff">
+                                <?php echo Yii::app()->user->getFlash('message'); ?>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
                     <tr>
                         <td width="150"><?php echo Yii::t('zii', $form->label($model, 'username')) ?></td>
                         <td><strong><?php echo $model->username?></strong> </td>
@@ -44,16 +54,14 @@ $form = $this->beginWidget('CActiveForm', array(
                             <div>
                                 <?php
                                     $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-//                                        'model' => $model,
-//                                        'attribute' => 'dateOfBirth',
-                                        'name' => 'Account[dateOfBirth]',
+                                        'model' => $model,
+                                        'attribute' => 'dateOfBirth',
                                         'options' => array(
                                             'showAnim' => 'fold',
                                         ),
                                         'htmlOptions' => array(
                                             'style' => 'height:20px;'
                                         ),
-                                        'value' => Yii::app()->dateFormatter->format(Yii::app()->params["dateFormat"], $model->dateOfBirth),
                                         'options' => array('yearRange' => '2000:2010', 'dateFormat' => 'dd/mm/yy')
                                     ));
                                 ?>

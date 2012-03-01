@@ -9,67 +9,57 @@
  * Requires: Yii 1.0.9 version 
  */
 
-class DateTimeI18NBehavior  extends CActiveRecordBehavior
-{
-//	public $dateOutcomeFormat = 'Y-m-d';
-//	public $dateTimeOutcomeFormat = 'Y-m-d H:i:s';
-        public $dateIncomeFormat = 'dd/MM/yyyy';
-	public $dateTimeIncomeFormat = 'dd/MM/yyyy H:i:s';
+class DateTimeI18NBehavior extends CActiveRecordBehavior {
 
-        //$dateOutcomeFormat
-        
-	public $dateOutcomeFormat = 'Y-m-d';
-	public $dateTimeOutcomeFormat = 'Y-m-d H:i:s';
+    public $dateIncomeFormat = 'dd/MM/yyyy';
+    public $dateTimeIncomeFormat = 'dd/MM/yyyy H:i:s';
+    public $dateOutcomeFormat = 'yyyy-MM-dd';
+    public $dateTimeOutcomeFormat = 'yyyy-MM-dd H:i:s';
+    public $dateDBFormat = 'Y-m-d';
+    public $dateTimeDBFormat = 'Y-m-d';
 
-	public function beforeSave($event){
-		
-		//search for date/datetime columns. Convert it to pure PHP date format
-		foreach($event->sender->tableSchema->columns as $columnName => $column){
-						
-			if (($column->dbType != 'date') and ($column->dbType != 'datetime')) continue;
-									
-			if (!strlen($event->sender->$columnName)){ 
-				$event->sender->$columnName = null;
-				continue;
-			}
-			
-			if (($column->dbType == 'date')) {				
-				$temp = $event->sender->$columnName = date($this->dateOutcomeFormat, 
-                                        CDateTimeParser::parse($event->sender->$columnName, Yii::app()->params['dateFormat']));
-			}else{				
-				$event->sender->$columnName = date($this->dateTimeOutcomeFormat, 
-					CDateTimeParser::parse($event->sender->$columnName, 
-						strtr(Yii::app()->locale->dateTimeFormat, 
-							array("{0}" => Yii::app()->locale->timeFormat,
-								  "{1}" => Yii::app()->locale->dateFormat))));
-			}			
-			
-		}
+    public function beforeSave($event) {
 
-		return true;
-	}
-	
-	public function afterFind($event){
-					
-		foreach($event->sender->tableSchema->columns as $columnName => $column){
-						
-			if (($column->dbType != 'date') and ($column->dbType != 'datetime')) continue;
-			
-			if (!strlen($event->sender->$columnName)){ 
-				$event->sender->$columnName = null;
-				continue;
-			}
-			
-			if ($column->dbType == 'date'){				
-				$event->sender->$columnName = Yii::app()->dateFormatter->formatDateTime(
-								CDateTimeParser::parse($event->sender->$columnName, $this->dateIncomeFormat),'medium',null);
-			}else{				
-				$event->sender->$columnName = 
-					Yii::app()->dateFormatter->formatDateTime(
-							CDateTimeParser::parse($event->sender->$columnName,	$this->dateTimeIncomeFormat), 
-							'medium', 'medium');
-			}
-		}
-		return true;
-	}
+        //search for date/datetime columns. Convert it to pure PHP date format
+        foreach ($event->sender->tableSchema->columns as $columnName => $column) {
+            if (($column->dbType != 'date') and ($column->dbType != 'datetime'))
+                continue;
+
+            if (!strlen($event->sender->$columnName)) {
+                $event->sender->$columnName = null;
+                continue;
+            }
+
+            if (($column->dbType == 'date')) {
+                $temp = $event->sender->$columnName = date($this->dateDBFormat, CDateTimeParser::parse($event->sender->$columnName, Yii::app()->params['dateFormat']));
+            } else {
+                $event->sender->$columnName = date($this->dateTimeDBFormat, CDateTimeParser::parse($event->sender->$columnName, strtr(Yii::app()->locale->dateTimeFormat, array(
+                                    "{0}" => Yii::app()->locale->timeFormat,
+                                    "{1}" => Yii::app()->locale->dateFormat
+                                ))));
+            }
+        }
+
+        return true;
+    }
+
+    public function afterFind($event) {
+        foreach ($event->sender->tableSchema->columns as $columnName => $column) {
+            if (($column->dbType != 'date') and ($column->dbType != 'datetime'))
+                continue;
+
+            if (!strlen($event->sender->$columnName)) {
+                $event->sender->$columnName = null;
+                continue;
+            }
+
+            if ($column->dbType == 'date') {
+                $event->sender->$columnName = Yii::app()->dateFormatter->format($this->dateIncomeFormat, CDateTimeParser::parse($event->sender->$columnName, $this->dateOutcomeFormat));
+            } else {
+                $event->sender->$columnName = Yii::app()->dateFormatter->format($this->dateTimeIncomeFormat, CDateTimeParser::parse($event->sender->$columnName, $this->dateTimeOutcomeFormat));
+            }
+        }
+        return true;
+    }
+
 }

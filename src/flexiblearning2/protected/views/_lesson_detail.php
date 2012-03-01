@@ -1,8 +1,14 @@
 <div class="block-price">
     <div class="left">
-        <span><?php echo Yii::t('zii', 'Price : ') ?></span>
-        <span><?php echo $model->price ?></span> &nbsp; 
-        <input type="button" value="<?php echo Yii::t('zii', 'Buy Now') ?>" class="bt-muangay" border="0"/>
+        <form action="<?php echo $this->createUrl('account/buy')?>" method="post">
+            <span><?php echo Yii::t('zii', 'Price : ') ?></span>
+            <span class="price-text"><?php echo $model->price ?></span>
+            <?php if (!$model->isBoughtBuy(Yii::app()->user->getId())) : ?>
+                <input type="hidden" name="lessonId" value="<?php echo $model->getPrimaryKey()?>" />
+                &nbsp; 
+                <input type="submit" value="<?php echo Yii::t('zii', 'Buy Now') ?>" class="bt-muangay" border="0"/>
+            <?php endif;?>
+        </form>
     </div>
     <div class="right">
         <?php if (Yii::app()->user->checkAccess('adminOwnLesson') || Yii::app()->user->checkAccess('adminLesson')) : ?>
@@ -62,30 +68,26 @@
 
     </div><!--end-box-tab-content-->
 
-    <div  class="tab-bottom"></div>
+    <div class="tab-bottom"></div>
 </div>
 
 <div class="top">
-    <span style="font-size:12pt; color:#000000">
-        <a href="#"><?php echo Yii::t('zii', 'Videos') ?></a>
-    </span>
-    <br />
-
-    <table width="630px">
-        <tr>
-            <?php foreach ($model->videos as $video) : ?>
-                <td class="top">
-                    <div>
-                        <img src="<?php echo Yii::app()->request->baseUrl . '/' . $video->path_video_thumbnail ?>" 
-                             class="bor" width="<?php echo Yii::app()->params['widthThumbnailLesson']?>" 
-                             height="<?php echo Yii::app()->params['heightThumbnailLesson']?>" />
-                    </div>
-                    <a href="<?php echo $video->getHref() ?>"><?php echo $video->name ?></a><br />
-                </td>
-            <?php endforeach; ?>
-        </tr>
-    </table>
-
+    <h2><?php echo Yii::t('zii', 'Videos') ?></h2>
+    <div class="block-area">
+        <?php foreach ($model->videos as $video) : ?>
+            <div class="video">
+                <div>
+                    <img src="<?php echo Yii::app()->request->baseUrl . '/' . $video->path_video_thumbnail ?>" 
+                         class="bor" max-width="<?php echo Yii::app()->params['widthThumbnailVideo']?>" 
+                         max-height="<?php echo Yii::app()->params['heightThumbnailVideo']?>" />
+                </div>
+                <div class="title-area">
+                    <a class="title" href="<?php echo $video->getHref() ?>"><?php echo $video->name ?></a>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    
     <?php if (Yii::app()->user->getId() == $model->createdBy->getPrimaryKey()) : ?>
         <div class="block-area">
             <?php
@@ -98,5 +100,5 @@
 </div>
 
 <script type="text/javascript">
-    $('#tab').tabify();
+    jQuery('#tab').tabify();
 </script>

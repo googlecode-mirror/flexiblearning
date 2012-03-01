@@ -2,10 +2,11 @@
 $language = $model->language;
 
 $this->breadcrumbs = array(
-    $language->name => $language->href,
+    Yii::t('zii', $language->name) => $language->href,
     $model->name,
 );
 ?>
+
 
 <table border="0" id="home-td" >
     <tr>

@@ -1,18 +1,20 @@
 <?php
 $category = $model->category;
+$language = $category->language;
+
 $this->breadcrumbs = array(
+    Yii::t('zii', $language->name) => $language->href,
     $category->name => $category->href,
-    $model->title => array('view', 'id' => $model->id),
-    Yii::t('zii', 'Update'),
+    Yii::t('zii', 'Update lecture'),
 );
 
-$this->menu=array(
-	array('label'=>'Create Lecture', 'url'=>array('create')),
-	array('label'=>'View Lecture', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Lecture', 'url'=>array('admin')),
+$this->menu = array(
+    array('label' => Yii::t('zii', 'Create Lecture'), 'url' => array('create')),
+    array('label' => Yii::t('zii', 'View Lecture'), 'url' => array('view', 'id' => $model->id)),
+    array('label' => Yii::t('zii', 'Manage Lecture'), 'url' => array('admin')),
 );
 ?>
 
-<h1>Update Lecture</h1>
+<h1><?php echo Yii::t('zii', 'Update Lecture') ?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model' => $model)); ?>
