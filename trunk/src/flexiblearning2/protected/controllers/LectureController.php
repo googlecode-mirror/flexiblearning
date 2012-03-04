@@ -102,7 +102,25 @@ class LectureController extends Controller {
             $model->id_category = (int) $params['idCategory'];
         }
 
-        $model->is_active = 1;
+        if (Yii::app()->user->checkAccess('adminLecture')) {
+            $model->is_active = 1;
+        } else {
+            $user = User::model()->findByPk(Yii::app()->user->getId());
+            $model->is_active = 0;
+            $adminUserIds = Yii::app()->db->createCommand()->select('userid')->from('authassignment')
+                ->where('itemname=:itemname', array(':itemname' => 'admin'))->queryAll();
+            foreach($adminUserIds as $id) {
+                $message = new Message();
+                $message->id_from = Yii::app()->user->getId();
+                $message->id_user = $id;
+                $message->message = "User " . 
+                    CHtml::link($user->username, $this->createUrl('account/view', array('id' => $user->getPrimaryKey()))) .   
+                    " have just created the lecture " .
+                    CHtml::link($lecture->title, $this->createUrl('lecture/view', array('id' => $lecture->getPrimaryKey())));
+                $message->save();
+            }
+        }
+        
         $this->render('create', array(
             'model' => $model,
         ));

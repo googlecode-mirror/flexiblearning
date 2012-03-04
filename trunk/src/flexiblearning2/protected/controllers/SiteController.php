@@ -153,7 +153,9 @@ class SiteController extends Controller {
             $authMgr->createOperation('adminLesson', 'Manage lessons');
             $authMgr->createOperation('adminCategory', 'Manage categories');
             $authMgr->createOperation('adminLecture', 'Manage lectures');
+            $authMgr->createOperation('adminVideo', 'Manage videos');
 
+            $authMgr->createOperation('createVideo', 'Create videos');
             $authMgr->createOperation('createLesson', 'Create lessons');
             $authMgr->createOperation('createLecture', 'Create lectures');
 
@@ -173,6 +175,7 @@ class SiteController extends Controller {
             $roleTeacher->addChild('adminOwnLecture');
             $roleTeacher->addChild('createLesson');
             $roleTeacher->addChild('createLecture');
+            $roleTeacher->addChild('createVideo');
 
             $roleAdmin->addChild('adminUser');
             $roleAdmin->addChild('adminLesson');
@@ -180,6 +183,7 @@ class SiteController extends Controller {
             $roleAdmin->addChild('createLecture');
             $roleAdmin->addChild('adminCategory');
             $roleAdmin->addChild('adminLecture');
+            $roleAdmin->addChild('adminVideo');
 
             $authMgr->assign('admin', 1);
             $authMgr->assign('teacher', 2);

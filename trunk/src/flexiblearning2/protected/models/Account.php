@@ -84,11 +84,12 @@ class Account extends Base {
         // class name for the relations automatically generated below.
         return array(
             'nationality' => array(self::BELONGS_TO, 'Nationality', 'id_nationality'),
-            array(self::HAS_MANY, 'Lesson', 'created_by'),
             'entries' => array(self::HAS_MANY, 'Entry', 'owner_by'),
             'lessons' => array(self::HAS_MANY, 'Lesson', 'created_by'),
             'boughtLessons' => array(self::MANY_MANY, 'Lesson', 'account_lesson(id_account, id_lesson)'),
-            'receivedMessages' => array(self::HAS_MANY, 'Lesson', 'user_id'),
+            'receivedMessages' => array(self::HAS_MANY, 'Message', 'id_user'),
+            'receivedMessagesCount' => array(self::STAT, 'Message', 'id_user'),
+            'profession' => array(self::BELONGS_TO, 'Profession', 'id_profession'),
         );
     }
 

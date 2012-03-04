@@ -1,13 +1,6 @@
 <?php
-$lecture = $model->lecture;
-$category = $lecture->category;
-$language = $category->language;
-    
 $this->breadcrumbs=array(
-    Yii::t('zii', $language->name) => $language->href,    
-    $category->name => $category->href,
-    Yii::t('zii', 'Lecture : ') . $lecture->title => $lecture->getHref(),
-    Yii::t('zii', 'Admin lesson'),
+    Yii::t('zii', 'Admin lesson') => array('lesson/admin'),
 );
 
 $this->menu = array(
@@ -77,6 +70,7 @@ if ($idCategory) {
         $data = Lecture::model()->findAll();
     }
 }
+
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'lesson-grid',
     'dataProvider' => $model->search($idCategory, $idLanguage),

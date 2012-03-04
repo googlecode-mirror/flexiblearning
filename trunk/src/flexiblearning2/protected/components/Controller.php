@@ -24,12 +24,15 @@ class Controller extends CController {
      */
     public $breadcrumbs = array();
     public $activeMenuItemIndex = -1;
-    
+    public $unreadReceivedMessagesCount;
+
     public function init() {
         // register class paths for extension captcha extended
         Yii::$classMap = array_merge(Yii::$classMap, array(
             'CaptchaExtendedAction' => Yii::getPathOfAlias('ext.captchaExtended') . DIRECTORY_SEPARATOR . 'CaptchaExtendedAction.php',
             'CaptchaExtendedValidator' => Yii::getPathOfAlias('ext.captchaExtended') . DIRECTORY_SEPARATOR . 'CaptchaExtendedValidator.php'
                 ));
+        $this->unreadReceivedMessagesCount = Yii::app()->db->createCommand()->select('count(*)')
+            ->from('message')->where(array('and', 'id_user = :id', 'is_read = 0'), array('id' => Yii::app()->user->getId()))->queryScalar();
     }
 }

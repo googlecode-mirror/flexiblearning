@@ -64,15 +64,20 @@
                             <div id="logout">
                                 <div class="hi-username">    
                                     <?php echo Yii::t('zii', 'Hi');?> 
-                                    <?php echo CHtml::link(Yii::app()->user->name, $this->createUrl('account/view', array('id' => Yii::app()->user->getId())))?>                                
+                                    <?php echo CHtml::link(Yii::app()->user->name, $this->createUrl('account/view', array('id' => Yii::app()->user->getId())))?>
+                                    <?php if (isset($this->unreadReceivedMessagesCount)) : ?>
+                                        <span id="message">
+                                            <a href="<?php echo $this->createUrl('message/manage')?>">
+                                                <?php 
+                                                    echo Yii::t('zii', '({n} message)|({n} messages)', $this->unreadReceivedMessagesCount)
+                                                ?>
+                                            </a>
+                                        </span>
+                                    <?php endif; ?>
                                 </div>
                                 <span class="link"> 
                                     <a href="<?php echo $this->createUrl('site/logout') ?>"><?php echo Yii::t('zii', 'Logout');?></a>
                                 </span>
-                            </div>
-                        
-                            <div id="message">
-                                
                             </div>
                         <?php endif; ?>
                         

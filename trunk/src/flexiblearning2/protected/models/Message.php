@@ -40,8 +40,8 @@ class Message extends Base {
      */
     public function relations() {
         return array(
-            'fromUser' => array(self::BELONGS_TO, 'User', 'id_from'),
-            'toUser' => array(self::BELONGS_TO, 'User', 'id_user'),
+            'fromUser' => array(self::BELONGS_TO, 'Account', 'id_from'),
+            'toUser' => array(self::BELONGS_TO, 'Account', 'id_user'),
         );
     }
 
@@ -71,4 +71,10 @@ class Message extends Base {
                 ));
     }
 
+    public function getTeaser() {
+        
+//        $helper = new CString();
+//        return $helper->truncate(strip_tags($this->message), Yii::app()->params['messageTeaserLength']);
+//        return strip_tags($this->message);
+    }
 }
