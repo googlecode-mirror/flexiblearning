@@ -1,8 +1,6 @@
 <?php
-$language = $model->language;
 $this->breadcrumbs = array(
-    Yii::t('zii', $language->name) => array('index'),
-    Yii::t('zii', 'Admin Categories'),
+    Yii::t('zii', 'Admin Categories') => array('category/admin'),
 );
 
 $this->menu = array(

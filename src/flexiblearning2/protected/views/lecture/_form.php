@@ -154,13 +154,15 @@
         </div>
     </div>
 
-    <div class="row">
-        <?php echo $form->labelEx($model,'is_active'); ?>
-        <div>
-            <?php echo $form->checkBox($model, 'is_active', array('uncheckValue' => 0)) ?>
-            <?php echo $form->error($model,'is_active'); ?>
+    <?php if (Yii::app()->user->checkAccess('adminLecture')) : ?>
+        <div class="row">
+            <?php echo $form->labelEx($model,'is_active'); ?>
+            <div>
+                <?php echo $form->checkBox($model, 'is_active', array('uncheckValue' => 0)) ?>
+                <?php echo $form->error($model,'is_active'); ?>
+            </div>
         </div>
-    </div>
+    <?php endif;?>
 
     <div class="row buttons">
          <?php echo CHtml::submitButton($model->isNewRecord ? 

@@ -1,12 +1,7 @@
 <?php
 
-$category = $model->category;
-$language = $category->language;
-
 $this->breadcrumbs=array(
-    Yii::t('zii', $language->name) => $language->getHref(),    
-    $category->name => $category->getHref(),
-    Yii::t('zii', 'Manage lectures'),
+    Yii::t('zii', 'Manage lectures') => array('lecture/admin'),
 );
 
 $this->menu = array(

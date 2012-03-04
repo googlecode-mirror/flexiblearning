@@ -25,7 +25,6 @@ class Base extends CActiveRecord {
 
         return parent::beforeValidate();
     }
-
     public function behaviors() {
         return 
             array(

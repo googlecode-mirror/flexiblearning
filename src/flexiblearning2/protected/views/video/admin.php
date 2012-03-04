@@ -1,15 +1,6 @@
 <?php
-$lesson = $model->lesson;
-$lecture = $lesson->lecture;
-$category = $lecture->category;
-$language = $category->language;
-
 $this->breadcrumbs=array(
-    Yii::t('zii', $language->name) => $language->href,    
-    $category->name => $category->href,
-    $lecture->title => $lecture->href,
-    $lesson->title => $lesson->href,
-    Yii::t('zii', 'Manage videos'),
+    Yii::t('zii', 'Manage videos') => array('video/admin'),
 );
 
 $this->menu = array(

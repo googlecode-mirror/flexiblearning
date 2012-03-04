@@ -141,6 +141,8 @@ return array(
         'nQuestionsInLessonPage' => 5,
         'widthThumbnailVideo' => '200px',
         'heightThumbnailVideo' => '135px',
+        'messagesPerPage' => 20,
+        'messageTeaserLength' => 50,
         
         // contact information
         'contactEmail' => 'flexiblearning@gmail.com',
