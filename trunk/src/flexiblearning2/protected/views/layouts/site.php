@@ -15,8 +15,8 @@
         <center>
             <div id="page">
                 <div id="head">
-                    <div id="logo">
-                    </div>
+                    <div id="logo"></div>
+                    
                     <div id="head-mid">
                         <div id="head-mid-top"></div>
 
@@ -70,6 +70,10 @@
                                     <a href="<?php echo $this->createUrl('site/logout') ?>"><?php echo Yii::t('zii', 'Logout');?></a>
                                 </span>
                             </div>
+                        
+                            <div id="message">
+                                
+                            </div>
                         <?php endif; ?>
                         
                         <div id="search"> <?php echo Yii::t('zii', 'Search');?>|
@@ -93,20 +97,22 @@
                         <?php endif; ?>
                         <?php if (Yii::app()->user->checkAccess('adminOwnLesson') || 
                                 (Yii::app()->user->checkAccess('adminLecture'))) : ?>
-                            <a href="<?php echo $this->createUrl('lecture/admin')?>"><?php echo Yii::t('zii', 'Manage lectures');?></a>
+                            <a href="<?php echo $this->createUrl('lecture/admin')?>">
+                                <?php echo Yii::t('zii', 'Manage lectures');?>
+                            </a>
                         <?php endif; ?>
                     </div>
                 </div><!--end-menu-->
 
                 <div id="content">
                     <!-- InstanceBeginEditable name="content" -->
+                    <!-- breadcrumbs -->
                     <?php if (isset($this->breadcrumbs)): ?>
                         <?php
                         $this->widget('zii.widgets.CBreadcrumbs', array(
                             'links' => $this->breadcrumbs,
                         ));
                         ?>
-                    <!-- breadcrumbs -->
                     <?php endif ?>
                     <div class="home-wrap">
                         <?php echo $content; ?>
@@ -115,9 +121,14 @@
 
                 <div id="wrap-menu-bottom" >
                     <div id="bottom">&nbsp;&nbsp;
-                        <a href="PrivacyPolicy.html">Privacy Policy</a> &nbsp;&nbsp;
-                        <a href="<?php echo $this->createUrl('/site/contact')?>"><?php echo Yii::t('zii', 'Contact');?></a>  &nbsp;&nbsp;
-                        <a href="<?php echo $this->createUrl('/site/page/view/about')?>"><?php echo Yii::t('zii', 'About');?></a>		</div>
+                        <a href="PrivacyPolicy.html">Privacy Policy</a>
+                        &nbsp;&nbsp;
+                        <a href="<?php echo $this->createUrl('/site/contact')?>">
+                            <?php echo Yii::t('zii', 'Contact');?>
+                        </a>
+                        &nbsp;&nbsp;
+                        <a href="<?php echo $this->createUrl('/site/page/view/about')?>"><?php echo Yii::t('zii', 'About');?></a>
+                    </div>
                     <div id="bottom-l">
                         <span style="color:#666666">Flow us</span> &nbsp; 
                         <a href="#">

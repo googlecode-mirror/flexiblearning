@@ -47,10 +47,12 @@
     padding:10px;
     clear: both; 
 }
+
 .tab2 li { 
     display: inline; 
     font-weight: normal;
 }
+
 .tab2 li a { 
     padding-top: 15px; 
     float:left;text-decoration: none; 
@@ -60,7 +62,9 @@
     line-height:11px; 
     padding-right:15px;
     padding-left:15px; 
-    padding-bottom:7px; }
+    padding-bottom:7px; 
+}
+
 .tab2 li.active a { 
     background-color:#eee; 
     color:#000000;
@@ -68,17 +72,20 @@
     border-bottom:none;
     border-radius:5px 5px 0 0;
     -moz-border-radius:5px 5px 0 0;
-    -webkit-border-radius:5px 5px 0 0;}
+    -webkit-border-radius:5px 5px 0 0;
+}
+
 #tab2-box{
-    height:200px;
     border:1px solid #ccc; 
     border-bottom:none;
     -moz-border-radius:5px 5px 0 0;
     -webkit-border-radius:5px 5px 0 0; 
     background-color:#eee; 
+    padding-bottom: 3px;
     padding-right:10px;
     padding-left:10px;
 }
+
 #tab2-content{
 
 }
