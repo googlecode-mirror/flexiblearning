@@ -48,7 +48,11 @@
             <?php endif ?>
 
             <?php echo $content; ?>
-
+	<div  id="language-selector" style="float:right; margin:5px;">
+    <?php 
+        $this->widget('application.components.widgets.LanguageSelector');
+    ?>
+</div>
             <div id="footer">
                 Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
                 All Rights Reserved.<br/>
