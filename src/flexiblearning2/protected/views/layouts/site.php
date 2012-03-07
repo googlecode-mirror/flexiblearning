@@ -97,6 +97,9 @@
                     <?php endforeach; ?>
                     
                     <div class="link_manage">
+                    	<?php if (Yii::app()->user->checkAccess('viewPayment')) {
+                    		echo CHtml::link('account/viewPayment', 'view payments');
+                    	}?>
                         <?php if (Yii::app()->user->checkAccess('admin')) : ?>
                             <a href="<?php echo $this->createUrl('site/admin')?>"><?php echo Yii::t('zii', 'Admin Control Panel');?></a>
                         <?php endif; ?>
@@ -149,22 +152,31 @@
                 <div>
                     <div id="bottom-l2">
                         &nbsp;&nbsp; Copy right 2011 by Flexilearning. All rights reserved
-                    	<?php echo Yii::app()->language;?>
+                    	
                     </div>
                     <div id="bottom-r">Language  
-                        <a href="<?php echo $this->createUrl('')?>">
+                        <a href="<?php echo $this->createUrl('site/switchLanguage', 
+                                array('code' => 'en'))?>" class="link-lang link-<?php echo 'en'?>">
+                        
+                        
                             <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/icon-lang-anh.png" border="0" />
                         </a> 
                         &nbsp; 
-                        <a href="<?php echo Yii::app()->request->baseUrl; ?>">
+                        <a href="<?php echo $this->createUrl('site/switchLanguage', 
+                                array('code' => 'ko'))?>" class="link-lang link-<?php echo 'ko'?>">
+                        
                             <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/icon-lang-han.png" border="0" 
                                  onmouseover="this.src='<?php echo Yii::app()->request->baseUrl; ?>/img/icon-lang-han-over.png';" onmouseout="this.src='<?php echo Yii::app()->request->baseUrl; ?>/img/icon-lang-han.png';" />
+								                         
                         </a> 
                         &nbsp;
-                        <a href="#">
+                        <a href="<?php echo $this->createUrl('site/switchLanguage', 
+                                array('code' => 'fr'))?>" class="link-lang link-<?php echo 'fr'?>">
+                        
                         	
                             <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/icon-lang-phap.png" border="0" 
                                  onmouseover="this.src='<?php echo Yii::app()->request->baseUrl; ?>/img/icon-lang-phap-over.png';"
+                                 onmouseclick = "this.src='<?php echo Yii::app()->request->baseUrl; ?>/img/icon-lang-phap.png';"
                                  onmouseout="this.src='<?php echo Yii::app()->request->baseUrl; ?>/img/icon-lang-phap.png';"  />
                         </a>
                     </div>

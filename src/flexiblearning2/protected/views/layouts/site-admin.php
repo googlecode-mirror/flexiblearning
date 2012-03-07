@@ -96,6 +96,7 @@
                             array('label' => Yii::t('zii', 'User'), 'url' => array('/account/admin')),
                             array('label' => Yii::t('zii', 'Partner'), 'url' => array('/partner/admin')),
                             array('label' => Yii::t('zii', 'Banner'), 'url' => array('/banner/admin')),
+                            array('label' => Yii::t('zii', 'Document'), 'url' => array('/document/admin')),
                             array('label' => Yii::t('zii', 'Logout') . ' (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
                         );
                         if ($this->activeMenuItemIndex != -1) {
