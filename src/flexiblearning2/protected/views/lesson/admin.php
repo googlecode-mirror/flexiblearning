@@ -3,9 +3,6 @@ $this->breadcrumbs=array(
     Yii::t('zii', 'Admin lesson') => array('lesson/admin'),
 );
 
-$this->menu = array(
-    array('label' => Yii::t('zii', 'Create Lesson'), 'url' => array('create')),
-);
 ?>
 
 <h1><?php echo Yii::t('zii', 'Manage Lessons')?></h1>

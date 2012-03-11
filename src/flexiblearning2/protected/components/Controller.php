@@ -25,6 +25,7 @@ class Controller extends CController {
     public $breadcrumbs = array();
     public $activeMenuItemIndex = -1;
     public $unreadReceivedMessagesCount;
+    public $viewer;
 
     public function init() {
         // register class paths for extension captcha extended
@@ -34,5 +35,10 @@ class Controller extends CController {
                 ));
         $this->unreadReceivedMessagesCount = Yii::app()->db->createCommand()->select('count(*)')
             ->from('message')->where(array('and', 'id_user = :id', 'is_read = 0'), array('id' => Yii::app()->user->getId()))->queryScalar();
+        
+        $this->viewer = null;
+        if (!Yii::app()->user->getIsGuest()) {
+            $this->viewer = Account::model()->findByPk(Yii::app()->user->getId());
+        }
     }
 }

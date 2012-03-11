@@ -2,12 +2,6 @@
 
 class AccountController extends Controller {
     /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
-//    public $layout = '//layouts/site';
-
-    /**
      * @return array action filters
      */
     public function filters() {
@@ -46,7 +40,7 @@ class AccountController extends Controller {
                 'users' => array('@'),
             ),
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'register', 'captcha'),
+                'actions' => array('index', 'view', 'register', 'captcha', 'suggest'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -71,15 +65,33 @@ class AccountController extends Controller {
         $model = $this->loadModel($id);
         $this->renderProfileDetail($model);
     }
+    
+    public function actionSuggest() {
+        //{ query:'vi',suggestions:['Viet Nam','Virgin Islands, British','Virgin Islands, U.s.'],data:['vn','vg','vi'] }
+        
+        $query = $_GET['query'];
+        if (!empty ($query)) {
+            $criteria = new CDbCriteria();
+            $criteria->compare('username', $query, true);
+            $criteria->compare('fullname', $query, true, 'OR');
+            $accounts = Account::model()->findAll($criteria);
+
+            $suggestions = array();
+            $data = array();
+            foreach($accounts as $account) {
+                array_push($suggestions, "{$account->username} - {$account->fullname}");
+                array_push($data, $account->getPrimaryKey());
+            }
+            $returnData = array('query' => $query, 'suggestions' => $suggestions, 'data' => $data);
+            echo json_encode($returnData);
+        }
+    }
 
     private function renderProfileDetail($model) {
-        $roles = Yii::app()->authManager->getRoles($model->getPrimaryKey());
-        if (array_key_exists('student', $roles)) {
-            $this->render('view_student', array(
-                'model' => $model,
-            ));
-        } else {
-            if (count($roles) > 0) {
+//        $roles = Yii::app()->authManager->getRoles($model->getPrimaryKey());
+        $role = $model->role;
+        if (!empty($role)) {
+            if ($role == 'admin' || $role == 'teacher') {
                 $criteria = new CDbCriteria();
                 $criteria->order = 'created_date DESC';
                 $criteria->addCondition(array('owner_by' => $model->getPrimaryKey()));
@@ -96,6 +108,14 @@ class AccountController extends Controller {
                     'model' => $model,
                     'entries' => $entries,
                     'pages' => $pages,
+                ));
+            } elseif ($role == 'student') {
+                $this->render('view_student', array(
+                    'model' => $model,
+                ));
+            } else {
+                $this->render('view_user', array(
+                    'model' => $model,
                 ));
             }
         }
@@ -148,7 +168,9 @@ class AccountController extends Controller {
                                 $authMgr->revoke($role, $id);
                             }
                         }
-                        $authMgr->assign($newRole, $id);
+                        if ($newRole != 'user') {
+                            $authMgr->assign($newRole, $id);
+                        }
                         Yii::app()->user->setFlash('message', Yii::t('zii', 'User\'s role has been updated successfully'));
                         $this->redirect(array('view', 'id' => $model->id));
                     }

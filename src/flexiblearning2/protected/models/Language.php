@@ -66,4 +66,9 @@ class Language extends Base {
             'idLanguage'=>$this->getPrimaryKey(),
         ));
     }
+    
+    public function getAvatar() {
+        return Yii::app()->request->baseUrl . '/' . Yii::app()->params['languageAvatars'] 
+                . '/' . $this->code . '.jpg';
+    }
 }

@@ -11,7 +11,8 @@
         </form>
     </div>
     <div class="right">
-        <?php if (Yii::app()->user->checkAccess('adminOwnLesson') || Yii::app()->user->checkAccess('adminLesson')) : ?>
+        <?php if (Yii::app()->user->checkAccess('adminOwnLesson', array('lesson' => $model)) 
+                || Yii::app()->user->checkAccess('adminLesson')) : ?>
             <a class="edit-link icon-control-link" 
                href="<?php echo $this->createUrl('lesson/update', array('id' => $model->getPrimaryKey())) ?>">
                 <?php echo Yii::t('zii', 'Update lesson') ?>
@@ -82,7 +83,17 @@
                          max-height="<?php echo Yii::app()->params['heightThumbnailVideo']?>" />
                 </div>
                 <div class="title-area">
-                    <a class="title" href="<?php echo $video->getHref() ?>"><?php echo $video->name ?></a>
+                    <a class="title" href="<?php echo $video->getHref() ?>">
+                        <?php echo $video->name ?>
+                    </a>
+                    <?php if (Yii::app()->user->checkAccess('adminOwnLesson', array('lesson' => $model)) 
+                        || Yii::app()->user->checkAccess('adminLesson')) : ?>
+                        <div>
+                            <a href="<?php echo $this->createUrl('video/delete', array('id' => $video->getPrimaryKey()))?>" class="delete-link icon-control-link">
+                                <?php echo Yii::t('zii', 'Delete')?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>

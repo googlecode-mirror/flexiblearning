@@ -468,11 +468,11 @@ a:hover{
 
 /*------------------Hop-Thu----------------------*/
 
-#pad{
-    padding-bottom:20px; 
+tr.pad td {
+    padding-bottom:10px; 
     padding-top:10px;
 }
-#hopthu-bg-title{
+.hopthu-bg-title{
     background-color:#666666;
     color:white;
 }
@@ -655,14 +655,13 @@ ul.operations li {
     padding: 2px 0 4px 0px;
 }
 
-#left-content {
-    float:left;
-    width:700px;
+.span-19 {
+    overflow: hidden;
 }
 
 .span-5 {
     width: 190px;
-    float: left;
+    float: right;
 }
 
 /*COMMON*/
@@ -715,7 +714,7 @@ td > .lesson {
 }
 
 a.icon-control-link {
-    padding-left: 16px;
+    padding-left: 20px;
     margin-right: 16px;
 }
 
@@ -890,4 +889,13 @@ li.a-banner > a > img {
     font-weight: bold;
     padding: 0px 0px 0px 16px;
     border: none;
+}
+
+table.table-message {
+    width: 98%;
+    margin-left: 10px;
+    border-collapse: collapse;
+}
+tr.message-unread {
+    background-color: #EFF4FA;
 }

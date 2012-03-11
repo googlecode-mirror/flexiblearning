@@ -1,9 +1,15 @@
 <?php
-$language = $model->language;
-$this->breadcrumbs = array(
-    Yii::t('zii', $langauge->name) => $language->href,
-    Yii::t('zii', 'Create Category'),
-);
+    if (isset($model->id_language)) {
+        $language = $model->language;
+        $this->breadcrumbs = array(
+            Yii::t('zii', $langauge->name) => $language->href,
+            Yii::t('zii', 'Create Category'),
+        );
+    } else {
+        $this->breadcrumbs = array(
+            Yii::t('zii', 'Create Category'),
+        );
+    }
 
 $this->menu = array(
     array('label' => Yii::t('zii', 'Manage Category'), 'url' => array('admin')),

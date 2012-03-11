@@ -79,9 +79,11 @@ class LessonController extends Controller {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate($idLecture) {
+    public function actionCreate(/*$idLecture*/) {
         $model = new Lesson();
-        $model->id_lecture = (int) ($idLecture);
+        if (isset($_GET['idLecture'])) {
+            $model->id_lecture = (int) $_GET['idLecture'];
+        }
 
         if (isset($_POST['Lesson'])) {
             $model->attributes = $_POST['Lesson'];

@@ -7,7 +7,8 @@
  * @property integer $from_id
  */
 class Message extends Base {
-
+    public $toUsers;
+    
     /**
      * Returns the static model of the specified AR class.
      * @return Message the static model class
@@ -51,6 +52,7 @@ class Message extends Base {
     public function attributeLabels() {
         return array(
             'from_id' => 'From',
+            'toUsers' => 'To Users'
         );
     }
 
@@ -59,22 +61,25 @@ class Message extends Base {
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
     public function search() {
-        // Warning: Please modify the following code to remove attributes that
-        // should not be searched.
-
         $criteria = new CDbCriteria;
-
         $criteria->compare('from_id', $this->from_id);
-
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                 ));
     }
 
-    public function getTeaser() {
-        
-//        $helper = new CString();
-//        return $helper->truncate(strip_tags($this->message), Yii::app()->params['messageTeaserLength']);
-//        return strip_tags($this->message);
+    public function getDisplaySubject() {
+        $subject = $this->subject;
+        if (empty($subject)) {
+            $subject = Yii::t('zii', '(No Subject)');
+        }
+        return $subject;
     }
+
+    public function getHref() {
+        return Yii::app()->createUrl('message/view', array(
+                    'id' => $this->getPrimaryKey(),
+                ));
+    }
+
 }
