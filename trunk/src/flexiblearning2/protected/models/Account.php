@@ -38,7 +38,11 @@
  * @property Profession $id_profession0
  */
 class Account extends Base {
-
+    public static $ROLE_ADMIN = 'admin';
+    public static $ROLE_TEACHER = 'teacher';
+    public static $ROLE_USER = 'user';
+    public static $ROLE_STUDENT = 'student';
+    
     public $password_repeat;
 
     /**
@@ -131,6 +135,9 @@ class Account extends Base {
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
+                    'pagination' => array(
+                        'pageSize' => Yii::app()->params['nUserPerPage'],
+                    ),
                 ));
     }
 
@@ -164,4 +171,18 @@ class Account extends Base {
         return $avatar;
     }
 
+    public function getRole() {
+        $roles = Yii::app()->authManager->getRoles($this->getPrimaryKey());
+        if (!empty($roles) && is_array($roles)) {
+            if (array_key_exists('admin', $roles)) {
+                return self::$ROLE_ADMIN;
+            } else {
+                if (array_key_exists('teacher', $roles)) {
+                    return self::$ROLE_TEACHER;
+                } 
+                return self::$ROLE_STUDENT;
+            }
+        }
+        return self::$ROLE_USER;
+    }
 }

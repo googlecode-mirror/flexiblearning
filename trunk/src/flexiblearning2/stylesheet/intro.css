@@ -1,7 +1,8 @@
 /* CSS Document */
 *{margin:0px; padding:0xp}
 body{
-    background-image:url(../img/intro-background.jpg); background-repeat:repeat-x; height:800px;
+    background-image:url(../img/intro-background.jpg); 
+    background-repeat:repeat-x; 
     text-align:center;
     color:#ccc
 }
@@ -11,15 +12,9 @@ body{
 
 }
 #flip{
-    width:940px; height:560px;
+    width:940px; 
     margin: 0 auto;
     padding: 0px 0px 0px 0px;
-}
-#intro{
-    position:relative; 
-    z-index:10; 
-    top:-150px;
-
 }
 a  {
     color:#ccc;

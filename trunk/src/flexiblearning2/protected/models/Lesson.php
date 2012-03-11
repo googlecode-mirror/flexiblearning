@@ -26,6 +26,22 @@
 class Lesson extends Base {
     public $fileThumbnail;
     
+    public function init() {
+        $this->onAfterSave = array($this, "activeLesson");
+    }
+
+    public function activeLesson($event) {
+        $lesson = $event->sender;
+        if ($lesson->is_active) {
+            if (!Yii::app()->user->checkAccess('adminLesson')) {
+                foreach($lesson->videos as $video) {
+                    $video->is_active = 1;
+                    $video->save();
+                }
+            }
+        }
+    }
+    
     /**
      * Returns the static model of the specified AR class.
      * @return Lesson the static model class

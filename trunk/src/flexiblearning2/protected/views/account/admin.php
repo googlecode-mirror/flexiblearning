@@ -10,6 +10,7 @@ $this->breadcrumbs = array(
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'account-grid',
+    'enablePagination' => true,
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(
@@ -37,6 +38,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'name' => 'id_profession',
             'filter' => CHtml::listData(Profession::model()->findAll(), 'id', 'name'),
             'value' => '($data->profession)?$data->profession->name:""'
+        ),
+        array(
+            'header' => Yii::t('zii', 'Role'), 
+            'value' => 'Yii::t("zii", $data->role)'
         ),
         array(
             'class' => 'CButtonColumn',

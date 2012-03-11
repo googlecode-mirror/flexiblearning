@@ -15,12 +15,12 @@ class Base extends CActiveRecord {
     //put your code here
     protected function beforeValidate() {
         if ($this->hasAttribute('created_date')) {
+            $this->updated_date = Yii::app()->user->getId();
+            $this->updated_date = Yii::app()->dateFormatter->format('dd/MM/yyyy H:i:s', date('Y-m-d H:i:s'));
             if ($this->getIsNewRecord()) {
-                $this->created_date = new CDbExpression('NOW()');
-                $this->created_by = Yii::app()->user->getId();
+                $this->created_date = $this->updated_date;
+                $this->created_by = $this->updated_by;
             }
-            $this->updated_date = new CDbExpression('NOW()');
-            $this->updated_by = Yii::app()->user->getId();
         }
 
         return parent::beforeValidate();

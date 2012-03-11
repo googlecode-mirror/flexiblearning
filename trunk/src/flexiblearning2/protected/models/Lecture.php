@@ -27,7 +27,21 @@
 class Lecture extends Base {
 
 //    public $fileIntro;
+    public function init() {
+        $this->onAfterSave = array($this, "activeLecture");
+    }
 
+    public function activeLecture($event) {
+        $lecture = $event->sender;
+        if ($lecture->is_active) {
+            if (!Yii::app()->user->checkAccess('adminLecture')) {
+                foreach($lecture->lessons as $lesson) {
+                    $lesson->is_active = 1;
+                    $lesson->save();
+                }
+            }
+        }
+    }
     /**
      * Returns the static model of the specified AR class.
      * @return Lecture the static model class
@@ -117,7 +131,7 @@ class Lecture extends Base {
         if ($idLanguage) {
             $criteria->join = 'JOIN category ON category.id = id_category';
             $criteria->condition = 'category.id_language = ' . $idLanguage;
-        } 
+        }
         $criteria->compare('id_category', $this->id_category);
         $criteria->compare('title_vi', $this->title_vi, true);
         $criteria->compare('title_en', $this->title_en, true);
@@ -136,7 +150,7 @@ class Lecture extends Base {
                     'name' => $this->title,
                 ));
     }
-    
+
     public function getId_language() {
         if ($this->category) {
             return $this->category->id_language;
@@ -150,4 +164,5 @@ class Lecture extends Base {
             unlink($this->imagepath);
         }
     }
+
 }

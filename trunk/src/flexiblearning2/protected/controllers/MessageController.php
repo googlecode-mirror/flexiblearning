@@ -34,7 +34,7 @@ class MessageController extends Controller {
      */
     public function accessRules() {
         return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
+            array('allow',
                 'users' => array('@'),
             ),
         );
@@ -46,7 +46,13 @@ class MessageController extends Controller {
      */
     public function actionView($id) {
         $model = $this->loadModel($id);
-        $this->renderProfileDetail($model);
+        if ($model->id_user != Yii::app()->user->getId()) {
+            echo Yii::t('zii', 'The message you required is not existed !');
+        } else {
+            $model->is_read = 1;
+            $model->save();
+            echo $model->message;
+        }
     }
 
     /**
@@ -54,72 +60,100 @@ class MessageController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Account;
-        $model->is_active = 1;
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if (isset($_POST['Account'])) {
-            $model->attributes = $_POST['Account'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+        if (isset($_POST['Message'])) {
+            $toUsers = explode(',', $_POST['toUsers']);
+            $arrUserIds = array();
+            foreach($toUsers as $toUser) {
+                $username = trim(strtok(trim($toUser), '-'));
+                $user = Account::model()->findByAttributes(array('username' => $username));
+                if ($user && $user->getPrimaryKey() != $this->viewer->getPrimaryKey()) {
+                    $arrUserIds = array_merge($arrUserIds, array($user->getPrimaryKey()));
+                }
+            }
+            if (!empty ($arrUserIds)) {
+                foreach($arrUserIds as $userId) {
+                    $model = new Message;
+                    $model->subject = $_POST['Message']['subject'];
+                    $model->message = $_POST['Message']['message'];
+                    $model->id_from = $this->viewer->getPrimaryKey();
+                    $model->id_user = $userId;
+                    $model->save();
+                }
+            }
+            Yii::app()->user->setFlash('message', Yii::t('zii', 'Your message is sent successfully !!!'));
+            $this->redirect(array('manage'));
         }
 
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.autocomplete-min.js');
+        Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/stylesheet/autocomplete.css');
+        
         $this->render('create', array(
-            'model' => $model,
+            'model' => new Message(),
         ));
     }
 
-    /**
-     * Deletes a particular model.
-     * If deletion is successful, the browser will be redirected to the 'admin' page.
-     * @param integer $id the ID of the model to be deleted
-     */
-    public function actionDelete($id) {
-        if (Yii::app()->request->isPostRequest) {
-            // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
-
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-            if (!isset($_GET['ajax'])) {
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+    public function actionDelete() {
+        $request = Yii::app()->request;
+        $id = $request->getParam('id', null);
+        if (!empty($id)) {
+            if (!is_array($id)) {
+                $ids = array($id);
+            } else {
+                $ids = $id;
             }
-        } else {
-            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
         }
+
+        if (isset($ids)) {
+            $dbConnection = Yii::app()->getComponent('db');
+            $transaction = $dbConnection->beginTransaction();
+            try {
+                foreach ($ids as $messageId) {
+                    $message = Message::model()->findByPk($messageId);
+                    if ($message) {
+                        if ($message->id_user != Yii::app()->user->getId()) {
+                            throw new Exception('You do not have permissions to delete this message');
+                        }
+                    } else {
+                        throw new Exception('This message does not exist!');
+                    }
+                    $message->delete();
+                }                
+                $transaction->commit();
+                Yii::app()->user->setFlash('message', Yii::t('zii', 'The messages are deleted successfully.'));
+            } catch (Exception $e) {
+                $transaction->rollBack();
+            }
+        }
+        
+        $this->redirect(array('manage'));
     }
 
     public function actionManage() {
         $criteria = new CDbCriteria();
         $criteria->order = 'is_read ASC';
-        $criteria->addCondition(array('id_user' => Yii::app()->user->getId()));
+        $criteria->addCondition('id_user = ' . Yii::app()->user->getId());
 
-//        $count = Message::model()->count($criteria);
-//        $pages = new CPagination($count);
-//
-//        // results per page
-//        $pages->pageSize = Yii::app()->params['messagesPerPage'];
-//        $pages->applyLimit($criteria);
-//        $messages = Message::model()->findAll($criteria);
-                
-//        $this->render('manage', array('messages' => $messages));
-        $dataProvider = new CActiveDataProvider("Message", array('criteria' => $criteria));
-        $viewer = Account::model()->findByPk(Yii::app()->user->getId());
-        $this->render('manage', array(
-            'dataProvider' => $dataProvider,
-            'viewer' => $viewer
-        ));
+        $count = Message::model()->count($criteria);
+        $pages = new CPagination($count);
+
+        // results per page
+        $pages->pageSize = Yii::app()->params['messagesPerPage'];        
+        $pages->applyLimit($criteria);
+        $messages = Message::model()->findAll($criteria);
+
+        $this->render('manage', array('messages' => $messages, 'pages' => $pages));
     }
+
     /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer the ID of the model to be loaded
      */
     public function loadModel($id) {
-        $model = Account::model()->findByPk($id);
+        $model = Message::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
     }
+
 }

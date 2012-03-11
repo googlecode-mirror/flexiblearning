@@ -12,11 +12,9 @@ $form = $this->beginWidget('CActiveForm', array(
             <div class="block-area">
             <?php 
                 echo Yii::t('zii', 'Role : ');
-                $roles = Yii::app()->authManager->getRoles($model->getPrimaryKey());
-                $keys = array_keys($roles);
                 
                 if (Yii::app()->user->checkAccess('adminUser') && Yii::app()->user->getId() != $model->getPrimaryKey()) {
-                    echo CHtml::dropDownList('role', $keys[0], Yii::app()->params['roles']);
+                    echo CHtml::dropDownList('role', $model->role, Yii::app()->params['roles']);
                     echo '&nbsp;';
                     echo CHtml::submitButton(Yii::t('zii', 'Update Role'), 
                             array('name' => 'updateRole', 'value' => 'Update'));

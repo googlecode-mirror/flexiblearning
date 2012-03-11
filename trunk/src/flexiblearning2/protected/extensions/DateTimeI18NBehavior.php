@@ -16,7 +16,7 @@ class DateTimeI18NBehavior extends CActiveRecordBehavior {
     public $dateOutcomeFormat = 'yyyy-MM-dd';
     public $dateTimeOutcomeFormat = 'yyyy-MM-dd H:i:s';
     public $dateDBFormat = 'Y-m-d';
-    public $dateTimeDBFormat = 'Y-m-d';
+    public $dateTimeDBFormat = 'Y-m-d H:i:s';
 
     public function beforeSave($event) {
 
@@ -31,12 +31,13 @@ class DateTimeI18NBehavior extends CActiveRecordBehavior {
             }
 
             if (($column->dbType == 'date')) {
-                $temp = $event->sender->$columnName = date($this->dateDBFormat, CDateTimeParser::parse($event->sender->$columnName, Yii::app()->params['dateFormat']));
+                $event->sender->$columnName = 
+                    date($this->dateDBFormat, 
+                    CDateTimeParser::parse($event->sender->$columnName, $this->dateIncomeFormat));
             } else {
-                $event->sender->$columnName = date($this->dateTimeDBFormat, CDateTimeParser::parse($event->sender->$columnName, strtr(Yii::app()->locale->dateTimeFormat, array(
-                                    "{0}" => Yii::app()->locale->timeFormat,
-                                    "{1}" => Yii::app()->locale->dateFormat
-                                ))));
+                $event->sender->$columnName = 
+                    date($this->dateTimeDBFormat, 
+                    CDateTimeParser::parse($event->sender->$columnName, $this->dateTimeIncomeFormat));
             }
         }
 
@@ -54,9 +55,15 @@ class DateTimeI18NBehavior extends CActiveRecordBehavior {
             }
 
             if ($column->dbType == 'date') {
-                $event->sender->$columnName = Yii::app()->dateFormatter->format($this->dateIncomeFormat, CDateTimeParser::parse($event->sender->$columnName, $this->dateOutcomeFormat));
+                $event->sender->$columnName = Yii::app()->dateFormatter->format(
+                    $this->dateIncomeFormat, 
+                    CDateTimeParser::parse($event->sender->$columnName, $this->dateOutcomeFormat)
+                );
             } else {
-                $event->sender->$columnName = Yii::app()->dateFormatter->format($this->dateTimeIncomeFormat, CDateTimeParser::parse($event->sender->$columnName, $this->dateTimeOutcomeFormat));
+                $event->sender->$columnName = Yii::app()->dateFormatter->format(
+                    $this->dateTimeIncomeFormat, 
+                    CDateTimeParser::parse($event->sender->$columnName, $this->dateTimeOutcomeFormat)
+                );
             }
         }
         return true;
