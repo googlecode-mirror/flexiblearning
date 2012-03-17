@@ -8,18 +8,15 @@ $this->menu = array(
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Manage Documents')?></h1>
+<h1><?php echo Yii::t('zii', 'Manage Documents') ?></h1>
 
 <?php
-
- 
-    $data = Lesson::model()->findAll();
+$data = Lesson::model()->findAll();
 
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'document-grid',
-	'dataProvider' => $model->search(),
+    'dataProvider' => $model->search(),
     'filter' => $model,
-    
     'columns' => array(
         array(
             'header' => 'No',
@@ -37,11 +34,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'header' => 'Lesson',
             'value' => '$data->lesson->title_vi',
             'filter' => CHtml::listData($data, 'id', 'title_vi'),
-        ),
-        array(
-            'name' => 'flag_approve',
-            'filter' => array('0' => 'No', '1' => 'Yes'),
-            'value' => '($data->flag_approve)?"Yes":"No"',
         ),
         array(
             'class' => 'CButtonColumn',

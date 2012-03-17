@@ -32,7 +32,13 @@ $this->breadcrumbs = array(
             <p class="center">
                 <?php $this->renderPartial('/_video_player', array('file' => $model->path))?>
             </p>
-
+            
+            <?php if (!$model->is_active) : ?>
+                <div class="errorMessage block-area">
+                    <?php echo Yii::t('zii', 'This video is not active')?>
+                </div>
+            <?php endif; ?>
+            
             <?php $this->renderPartial('/_lesson_detail', array('model' => $lesson));?>
         </td>
 

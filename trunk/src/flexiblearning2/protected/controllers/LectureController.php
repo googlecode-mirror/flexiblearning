@@ -35,7 +35,7 @@ class LectureController extends Controller {
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
                 'actions' => array('admin', 'delete'),
-                'roles' => array('admin'),
+                'roles' => array('admin', 'teacher'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -49,6 +49,14 @@ class LectureController extends Controller {
      */
     public function actionView($id) {
         $this->layout = 'site';
+        $lecture = $this->loadModel($id);
+
+        if ($lecture->is_active == 0) {
+            if($lecture->owner_by != Yii::app()->user->getId() && 
+                !Yii::app()->user->checkAccess('adminLecture')) {
+                throw new CHttpException(403,Yii::t('yii','You are not authorized to perform this action.'));
+            }
+        }
         $this->render('view', array(
             'model' => $this->loadModel($id),
         ));
@@ -63,12 +71,31 @@ class LectureController extends Controller {
 
         if (isset($_POST['Lecture'])) {
             $model->attributes = $_POST['Lecture'];
-            $model->owner_by = Yii::app()->user->getId();
+            if (empty($model->owner_by)) {
+                $model->owner_by = Yii::app()->user->getId();
+            }
 
             if ($model->save()) {
+                if (!Yii::app()->user->checkAccess('adminLecture')) {
+                    $model->is_active = 0;
+                    $adminUserIds = Yii::app()->db->createCommand()->select('userid')->from('authassignment')
+                                    ->where('itemname=:itemname', array(':itemname' => 'admin'))->queryColumn();
+                    foreach ($adminUserIds as $id) {
+                        $message = new Message();
+                        $message->id_from = Yii::app()->user->getId();
+                        $message->id_user = $id;
+                        $message->subject = 'A new lecture is created';
+                        $message->message = "User " .
+                                CHtml::link($this->viewer->username, $this->createUrl('account/view', array('id' => $this->viewer->getPrimaryKey()))) .
+                                " have just created the lecture " .
+                                CHtml::link($model->title, $this->createUrl('lecture/view', array('id' => $model->getPrimaryKey())));
+                        $message->save();
+                    }
+                }
+
                 $this->redirect(array('view', 'id' => $model->id));
             }
-                
+
 //            $model->fileIntro = $file = CUploadedFile::getInstance($model, 'fileIntro');
 //            if ($model->validate(array('fileIntro'))) {
 //                if ($file) {
@@ -97,30 +124,17 @@ class LectureController extends Controller {
 //                }
 //            }
         }
+
         $params = $this->getActionParams();
+
         if ($params && array_key_exists('idCategory', $params)) {
             $model->id_category = (int) $params['idCategory'];
         }
 
         if (Yii::app()->user->checkAccess('adminLecture')) {
             $model->is_active = 1;
-        } else {
-            $user = User::model()->findByPk(Yii::app()->user->getId());
-            $model->is_active = 0;
-            $adminUserIds = Yii::app()->db->createCommand()->select('userid')->from('authassignment')
-                ->where('itemname=:itemname', array(':itemname' => 'admin'))->queryAll();
-            foreach($adminUserIds as $id) {
-                $message = new Message();
-                $message->id_from = Yii::app()->user->getId();
-                $message->id_user = $id;
-                $message->message = "User " . 
-                    CHtml::link($user->username, $this->createUrl('account/view', array('id' => $user->getPrimaryKey()))) .   
-                    " have just created the lecture " .
-                    CHtml::link($lecture->title, $this->createUrl('lecture/view', array('id' => $lecture->getPrimaryKey())));
-                $message->save();
-            }
         }
-        
+
         $this->render('create', array(
             'model' => $model,
         ));
@@ -215,14 +229,15 @@ class LectureController extends Controller {
         Yii::import("ext.EAjaxUpload.qqFileUploader");
 
         $folder = Yii::app()->params['lectureVideoIntro'] . '/'; // folder for uploaded files
-        
+
         $uploader = new qqFileUploader(Yii::app()->params['arrayVideoExtensions'], Yii::app()->params['videoMaxSize']);
         $result = $uploader->handleUpload($folder);
 
         $fileSize = filesize($folder . $result['filename']); //GETTING FILE SIZE
-        $fileName = $result['file'] = $folder . $result['filename']; 
+        $fileName = $result['file'] = $folder . $result['filename'];
 
         $result = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
         echo $result; // it's array
     }
+
 }

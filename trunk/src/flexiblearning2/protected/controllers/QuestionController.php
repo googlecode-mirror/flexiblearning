@@ -2,6 +2,24 @@
 
 class QuestionController extends Controller {
 
+    public function filters() {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+        );
+    }
+
+    public function accessRules() {
+        return array(
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions' => array('answer'),
+                'users' => array('@')
+            ),
+            array('deny', // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
+    
     public function actionAnswer() {
         $answer = new Answer();
         if (isset($_POST['Answer'])) {
@@ -10,7 +28,7 @@ class QuestionController extends Controller {
             if ($answer->save()) {
                 $question = $answer->question;
                 $lesson = $question->lesson;
-                
+
                 $criteria = new CDbCriteria();
                 $criteria->addCondition(array('id_lesson' => $lesson->getPrimaryKey()));
                 $criteria->order = 'id DESC';
@@ -19,10 +37,10 @@ class QuestionController extends Controller {
                 $questionPages = new CPagination($count);
 
                 // results per page
-                $questionPages->pageSize= Yii::app()->params['nQuestionsInLessonPage'];
+                $questionPages->pageSize = Yii::app()->params['nQuestionsInLessonPage'];
                 $questionPages->applyLimit($criteria);
                 $questions = Question::model()->findAll($criteria);
-                
+
                 $this->renderPartial('/_questions_answers', array(
                     'lesson' => $lesson,
                     'questions' => $questions,
@@ -31,7 +49,7 @@ class QuestionController extends Controller {
             } else {
                 echo '-1';
             }
-        }        
+        }
     }
 
     // Uncomment the following methods and override them if needed

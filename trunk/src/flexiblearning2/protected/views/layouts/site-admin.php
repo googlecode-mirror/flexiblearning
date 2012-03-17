@@ -87,18 +87,23 @@
                 
                 <div id="menu">
                     <?php
-                        $menuItems = array(
-                            array('label' => Yii::t('zii', 'Home'), 'url' => array('/site/admin')),
-                            array('label' => Yii::t('zii', 'Language'), 'url' => array('/language/admin')),
-                            array('label' => Yii::t('zii', 'Category'), 'url' => array('/category/admin')),
-                            array('label' => Yii::t('zii', 'Lecture'), 'url' => array('/lecture/admin')),
-                            array('label' => Yii::t('zii', 'Lesson'), 'url' => array('/lesson/admin')),
-                            array('label' => Yii::t('zii', 'User'), 'url' => array('/account/admin')),
-                            array('label' => Yii::t('zii', 'Partner'), 'url' => array('/partner/admin')),
-                            array('label' => Yii::t('zii', 'Banner'), 'url' => array('/banner/admin')),
-                            array('label' => Yii::t('zii', 'Document'), 'url' => array('/document/admin')),
-                            array('label' => Yii::t('zii', 'Logout') . ' (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
-                        );
+                        $role = $this->viewer->role;
+                        $menuItems = array();
+                        $menuItems['0'] = array('label' => Yii::t('zii', 'Home'), 'url' => array('/site/admin'));
+                        if ($role == Account::$ROLE_ADMIN) {
+                            $menuItems['1'] = array('label' => Yii::t('zii', 'Language'), 'url' => array('/language/admin'));
+                            $menuItems['2'] = array('label' => Yii::t('zii', 'Category'), 'url' => array('/category/admin'));
+                        }
+                        $menuItems['3'] = array('label' => Yii::t('zii', 'Lecture'), 'url' => array('/lecture/admin'));
+                        $menuItems['4'] = array('label' => Yii::t('zii', 'Lesson'), 'url' => array('/lesson/admin'));
+                        if ($role == Account::$ROLE_ADMIN) {
+                            $menuItems['5'] = array('label' => Yii::t('zii', 'User'), 'url' => array('/account/admin'));
+                            $menuItems['6'] = array('label' => Yii::t('zii', 'Partner'), 'url' => array('/partner/admin'));
+                            $menuItems['7'] = array('label' => Yii::t('zii', 'Banner'), 'url' => array('/banner/admin'));
+                            $menuItems['8'] = array('label' => Yii::t('zii', 'Document'), 'url' => array('/document/admin'));
+                        }
+                        $menuItems['9'] = array('label' => Yii::t('zii', 'Logout') . ' (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest);
+                        
                         if ($this->activeMenuItemIndex != -1) {
                             $menuItems[$this->activeMenuItemIndex]['active'] = true;
                         }
@@ -146,12 +151,20 @@
 
                 <div id="wrap-menu-bottom" >
                     <div id="bottom">&nbsp;&nbsp;
-                        <a href="PrivacyPolicy.html">Privacy Policy</a> &nbsp;&nbsp;
-                        <a href="<?php echo $this->createUrl('/site/contact')?>"><?php echo Yii::t('zii', 'Contact');?></a>  &nbsp;&nbsp;
-                        <a href="<?php echo $this->createUrl('/site/page/view/about')?>"><?php echo Yii::t('zii', 'About');?></a>		
+                        <a href="<?php echo $this->createUrl('site/page/view/privacy')?>">
+                            <?php echo Yii::t('zii', 'Privacy Policy')?>
+                        </a>
+                        &nbsp;&nbsp;
+                        <a href="<?php echo $this->createUrl('site/contact') ?>">
+                            <?php echo Yii::t('zii', 'Contact'); ?>
+                        </a>
+                        &nbsp;&nbsp;
+                        <a href="<?php echo $this->createUrl('site/page/view/about') ?>">
+                            <?php echo Yii::t('zii', 'About'); ?>
+                        </a>
                     </div>
                     <div id="bottom-l">
-                        <span style="color:#666666">Flow us</span> &nbsp; 
+                        <span style="color:#666666"><?php echo Yii::t('zii', 'Follow us') ?></span> &nbsp; 
                         <a href="#">
                             <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/icon-facebook.jpg" width="65" height="23" border="0"  />
                         </a> 
@@ -164,8 +177,7 @@
 
                 <div>
                     <div id="bottom-l2">
-                        &nbsp;&nbsp; Copy right 2011 by Flexilearning. All rights reserved
-                    	<?php echo Yii::app()->language;?>
+                        &copy; <?php echo Yii::t('zii', 'Copyright 2011 by Flexilearning. All rights reserved.') ?>
                     </div>
                     <div id="bottom-r">Language  
                         <a href="<?php echo $this->createUrl('')?>">

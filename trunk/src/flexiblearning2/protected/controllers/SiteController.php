@@ -159,7 +159,7 @@ class SiteController extends Controller {
             $authMgr->createOperation('createLesson', 'Create lessons');
             $authMgr->createOperation('createLecture', 'Create lectures');
 
-            $bizRule = 'return Yii::app()->user->id==$params["lesson"]->createdBy;';
+            $bizRule = 'return Yii::app()->user->id==$params["lesson"]->owner_by;';
             $authMgr->createOperation('adminOwnLesson', "Manager the own users' lessons");
 
             $bizRule = 'return Yii::app()->user->id==$params["lecture"]->owner_by;';
@@ -196,13 +196,7 @@ class SiteController extends Controller {
     }
 
     public function actionSwitchLanguage($code) {
-        $lang = Language::model()->findByAttributes(array('code' => $code));
-        if ($lang) {
-            Yii::app()->setLanguage($code);
-            $this->redirect($this->createUrl(
-                            'site/index', array('idLanguage' => $lang->getPrimaryKey())
-                    ));
-        }
+        Yii::app()->setLanguage($code);
     }
 
     /**

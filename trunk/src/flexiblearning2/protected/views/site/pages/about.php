@@ -1,3 +1,9 @@
+<?php
+$this->pageTitle = Yii::app()->name . ' - About us';
+$this->breadcrumbs = array(
+    Yii::t('zii', 'About us'),
+);
+?>
 <div id="slide">
     <a href="#" class="show"><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/gioithieu-slice1.jpg" width="930" height="196" alt="slide1" /></a>
     <a href="#" ><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/gioithieu-slice2.jpg" width="930" height="196"  alt="slide2"/></a>

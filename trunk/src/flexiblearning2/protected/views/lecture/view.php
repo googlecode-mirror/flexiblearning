@@ -32,39 +32,76 @@ $this->breadcrumbs = array(
             <p class="center">
                 <?php $this->renderPartial('/_video_player', array('file' => $model->path_video_intro))?>
             </p>
-            <div class="block-area">
-                <?php echo $model->content?>
+            <?php if ($model->is_active == 0) : ?>
+                <div class="block-area errorMessage">
+                    <?php echo Yii::t('zii', 'This lecture is not active')?>
+                </div>
+            <?php endif;?>
+            
+            <div class="top">
+                <div id="box-tab">
+                    <ul id="tab" class="tab">
+                        <li class="active">
+                            <a href="#description">
+                                <?php echo Yii::t('zii', 'Description') ?>
+                            </a>
+                        </li>
+                        <li> <a href="#thongbao"><?php echo Yii::t('zii', 'Annoucements') ?></a></li>                        
+                    </ul>
+                </div><!--end-box-tap-->
+
+                <div id="box-tab-content"> 
+                    <div id="description" class="inner">            
+                        <?php echo $model->content?>
+                    </div>
+
+                    <div id="thongbao" class="inner">
+                        Thông báo
+                    </div>
+                </div><!--end-box-tab-content-->
+
+                <div class="tab-bottom"></div>
             </div>
+
             <div class="block-area">
                 <h2><?php echo Yii::t('zii', 'Lessons')?></h2>
                 <?php $lessons = $model->lessons?>
                 <?php if (count($lessons) > 0) : ?>
                     <?php foreach($lessons as $lesson) : ?>
-                        <div class="lesson">
-                            <div>
-                                <img class="lesson-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lesson->thumb; ?>" 
-                                 style="width:<?php echo Yii::app()->params['widthThumbnailLesson']?>; height:<?php echo Yii::app()->params['heightThumbnailLesson']?>" />
-                                <div class="sticker">
-                                    <div class="price">
-                                        <?php
-                                            if ($lesson->price == 0) {
-                                                echo Yii::t('zii', 'Free');
-                                            } else {
-                                                echo $lesson->price . ' ' . Yii::app()->params['moneyUnit'];
-                                            }
-                                        ?>
+                        <?php if (Yii::app()->user->checkAccess('adminLesson') 
+                                || Yii::app()->user->checkAccess('adminOwnLesson', array('lesson' => $lesson))) : ?>
+                            <div class="lesson">
+                                <div>
+                                    <img class="lesson-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lesson->thumb; ?>" 
+                                     style="width:<?php echo Yii::app()->params['widthThumbnailLesson']?>; height:<?php echo Yii::app()->params['heightThumbnailLesson']?>" />
+                                    <div class="sticker">
+                                        <div class="price">
+                                            <?php
+                                                if ($lesson->price == 0) {
+                                                    echo Yii::t('zii', 'Free');
+                                                } else {
+                                                    echo $lesson->price . ' ' . Yii::app()->params['moneyUnit'];
+                                                }
+                                            ?>
+                                        </div>
                                     </div>
                                 </div>
+                                <div>
+                                    <a href="<?php echo $lesson->href?>" class="title">
+                                        <?php echo $lesson->title?>
+                                    </a>
+                                    <br />
+                                    <a href="<?php echo $lesson->ownerBy->href?>" class="teacher">
+                                        <?php echo $lesson->ownerBy->fullname?>
+                                    </a>
+                                    <?php if (!$lesson->is_active) : ?>
+                                        <div class="errorMessage">
+                                            <?php echo Yii::t('zii', 'Not active')?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-                            <div>
-                                <a href="<?php echo $lesson->href?>" class="title">
-                                    <?php echo $lesson->title?>
-                                </a>
-                                <br />
-                                <?php echo Yii::t('zii', 'Teacher') ?> : 
-                                <a href="<?php echo $lesson->createdBy->href?>"><?php echo $lesson->createdBy->fullname?></a>
-                            </div>
-                        </div>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 <?php else : ?>
                     <?php echo Yii::t('zii', 'There is no lesson in this lecture !')?>

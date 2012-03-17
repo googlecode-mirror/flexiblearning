@@ -122,26 +122,41 @@ class Lecture extends Base {
      * Retrieves a list of models based on the current search/filter conditions.
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
-    public function search($idLanguage = null) {
-        // Warning: Please modify the following code to remove attributes that
-        // should not be searched.
-
+    public function search($criteria = array()) {
+        if (!empty($criteria) && is_array($criteria)) {
+            if (array_key_exists('idLanguage', $criteria)) {
+                $idLanguage = $criteria['idLanguage'];
+            }
+            if (array_key_exists('ownerBy', $criteria)) {
+                $ownerBy = $criteria['ownerBy'];
+            }
+        }
+        
         $criteria = new CDbCriteria;
         $is_active = $this->is_active;
-        if ($idLanguage) {
+        if (isset($idLanguage)) {
             $criteria->join = 'JOIN category ON category.id = id_category';
             $criteria->condition = 'category.id_language = ' . $idLanguage;
         }
+        if (isset($ownerBy)) {
+            $criteria->compare('owner_by', $ownerBy);
+        }
+        
         $criteria->compare('id_category', $this->id_category);
         $criteria->compare('title_vi', $this->title_vi, true);
         $criteria->compare('title_en', $this->title_en, true);
         $criteria->compare('title_ko', $this->title_ko, true);
         $criteria->compare('t.is_active', $this->is_active);
-        $criteria->compare('owner_by', $this->owner_by);
 
         return new CActiveDataProvider($this, array(
-                    'criteria' => $criteria,
-                ));
+            'criteria' => $criteria,
+            'sort'=>array(
+                'defaultOrder'=>'t.id DESC',
+            ),
+            'pagination' => array(
+                'pageSize' => Yii::app()->params['nLecturePerPage'],
+            ),
+        ));
     }
 
     public function getHref() {
@@ -165,4 +180,10 @@ class Lecture extends Base {
         }
     }
 
+    public function getVideoThumbnail() {
+        if (empty ($this->video_path_thumbnail)) {
+            return Yii::app()->params['defaultLectureThumbnail'];
+        }
+        return $this->video_path_thumbnail;
+    }
 }

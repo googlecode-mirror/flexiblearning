@@ -1,11 +1,6 @@
 <?php
 
 class LessonController extends Controller {
-
-    /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
     public $layout = '//layouts/site-column2';
 
     /**
@@ -13,7 +8,7 @@ class LessonController extends Controller {
      */
     public function filters() {
         return array(
-            'accessControl', // perform access control for CRUD operations
+            'accessControl', 
         );
     }
 
@@ -24,26 +19,25 @@ class LessonController extends Controller {
      */
     public function accessRules() {
         return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
-                'users' => array('*'),
-            ),
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+            array('allow', 
                 'actions' => array('create', 'update'),
                 'roles' => array('admin', 'teacher'),
             ),
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
+            array('allow', 
                 'actions' => array('admin', 'delete'),
-                'roles' => array('admin'),
+                'roles' => array('admin', 'teacher'),             
             ),
             array('allow',
                 'actions' => array('deleteAnswer', 'deleteQuestion'),
                 'roles' => array('admin', 'teacher'),
             ),
             array('allow',
-                'actions' => array('postQuestion'),
-                'users' => array('@'),
-            )
+                'actions' => array('postQuestion', 'view'),
+                'roles' => array('admin', 'teacher', 'student'),
+            ),
+            array('deny', // deny all users
+                'users' => array('*'),
+            ),
         );
     }
 
@@ -53,7 +47,14 @@ class LessonController extends Controller {
      */
     public function actionView($id) {
         $lesson = $this->loadModel($id);
-                
+        
+        if ($lesson->is_active == 0) {
+            if($lesson->owner_by != Yii::app()->user->getId() && 
+                !Yii::app()->user->checkAccess('adminLesson')) {
+                throw new CHttpException(403,Yii::t('yii','You are not authorized to perform this action.'));
+            }
+        }
+        
         $criteria = new CDbCriteria();
         $criteria->addCondition(array('id_lesson' => $lesson->getPrimaryKey()));
                 
@@ -87,6 +88,9 @@ class LessonController extends Controller {
 
         if (isset($_POST['Lesson'])) {
             $model->attributes = $_POST['Lesson'];
+            if (empty($model->owner_by)) {
+                $model->owner_by = Yii::app()->user->getId();
+            }
             $model->fileThumbnail = $file = CUploadedFile::getInstance($model, 'fileThumbnail');
 
             if ($model->validate(array('file'))) {
@@ -94,15 +98,35 @@ class LessonController extends Controller {
                 if ($fileName) {
                     $model->thumbnail = $fileName;
                 }
+                
                 if ($model->save()) {
+                    if (!Yii::app()->user->checkAccess('adminLesson')) {
+                        $model->is_active = 0;
+                        $adminUserIds = Yii::app()->db->createCommand()->select('userid')->from('authassignment')
+                                        ->where('itemname=:itemname', array(':itemname' => 'admin'))->queryColumn();
+                        foreach ($adminUserIds as $id) {
+                            $message = new Message();
+                            $message->id_from = Yii::app()->user->getId();
+                            $message->id_user = $id;
+                            $message->subject = 'A new lesson is created';
+                            $message->message = "User " .
+                                    CHtml::link($this->viewer->username, $this->createUrl('account/view', array('id' => $this->viewer->getPrimaryKey()))) .
+                                    " have just created the lesson " .
+                                    CHtml::link($model->title, $this->createUrl('lesson/view', array('id' => $model->getPrimaryKey())));
+                            $message->save();
+                        }
+                    }
+                    
                     $this->redirect(array('view', 'id' => $model->getPrimaryKey()));
                 }
             }
         }
-        $model->is_active = 1;
         $params = $this->getActionParams();
         if ($params && array_key_exists('idLecture', $params)) {
             $model->id_lecture = (int)$params['idLecture'];
+        }
+        if (Yii::app()->user->checkAccess('adminLesson')) {
+            $model->is_active = 1;
         }
         $this->render('create', array('model' => $model));
     }
@@ -166,8 +190,9 @@ class LessonController extends Controller {
         $this->layout = 'site-admin';
         $model = new Lesson('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Lesson']))
+        if (isset($_GET['Lesson'])) {
             $model->attributes = $_GET['Lesson'];
+        }
 
         $this->render('admin', array(
             'model' => $model,

@@ -1,8 +1,9 @@
 <?php
-class DocumentController extends Controller{
-	public $layout = '//layouts/site-admin';
- 	public $activeMenuItemIndex = 8;
-    
+
+class DocumentController extends Controller {
+    public $layout = '//layouts/site-admin';
+    public $activeMenuItemIndex = 8;
+
     /**
      * @return array action filters
      */
@@ -11,7 +12,8 @@ class DocumentController extends Controller{
             'accessControl', // perform access control for CRUD operations
         );
     }
-  public function accessRules() {
+
+    public function accessRules() {
         return array(
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions' => array('create', 'update', 'admin', 'delete'),
@@ -28,21 +30,41 @@ class DocumentController extends Controller{
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Document;
+        Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl . '/stylesheet/form.css');
+        
+        $model = new Document();
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
+        if (isset($_GET['id_lesson'])) {
+            $model->id_lesson = (int)$_GET['id_lesson'];
+        }
+        $this->layout = false;
         if (isset($_POST['Document'])) {
             $model->attributes = $_POST['Document'];
-            if ($model->save()) {
-                $this->redirect(array('admin'));
+            $model->file = $file = CUploadedFile::getInstance($model, 'file');
+            if ($model->validate()) {                
+                $fileName = $this->getAndSaveUploadedFile($model);
+                if ($fileName) {
+                    $model->document_path = $fileName;
+                }
+                if ($model->save()) {
+                    Yii::app()->clientScript->registerScript('', 'parent.location.reload()');
+//                    $this->redirect($model->lesson->getHref('tailieu-tab'));
+//                    $result = array(
+//                        'result' => 1,
+//                        'document_path' => $model->document_path,
+//                        'subject' => $model->subject
+//                    );
+//                    echo CJSON::encode($result);
+                } /* else {
+                    $result = array(
+                        'result' => 0,
+                        'errors' => $model->getErrors()
+                    );
+                    echo CJSON::encode($result);
+                }*/
             }
         }
-
-        $this->render('create', array(
-            'model' => $model,
-        ));
+        echo $this->render('create', array('model' => $model), true);
     }
 
     /**
@@ -73,14 +95,22 @@ class DocumentController extends Controller{
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id) {
+    public function actionDelete() {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
-
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-            if (!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+            $id = (int)$_POST['id'];
+            if ($id) {
+                $model = $this->loadModel($id);
+                $model->delete();
+                // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+                if (isset($_GET['format']) && $_GET['format'] == 'json') {
+                    $data = array('result' => 1, 'message' => Yii::t('zii', 'The document is deleted successfully'));
+                    echo CJSON::encode($data);
+                    return;
+                } elseif (!isset($_GET['ajax'])) {
+                    $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                } 
+            }            
         }
         else
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
@@ -122,15 +152,17 @@ class DocumentController extends Controller{
         return $model;
     }
 
-    /**
-     * Performs the AJAX validation.
-     * @param CModel the model to be validated
-     */
-    protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'language-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
+    private function getAndSaveUploadedFile($model) {
+        $file = $model->file;
+        $fileName = null;
+        if ($file) {
+            $fileName = Yii::app()->params['documentResource'] . '/' . $file->getName();
+            if (file_exists($fileName)) {
+                $fileName = Yii::app()->params['documentResource'] . '/' . time() . '_' . $file->getName();
+            }
+            $file->saveAs($fileName, true);
         }
+        return $fileName;
     }
 }
 

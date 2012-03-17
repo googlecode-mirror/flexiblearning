@@ -12,15 +12,7 @@ $form = $this->beginWidget('CActiveForm', array(
             <div class="block-area">
             <?php 
                 echo Yii::t('zii', 'Role : ');
-                
-                if (Yii::app()->user->checkAccess('adminUser') && Yii::app()->user->getId() != $model->getPrimaryKey()) {
-                    echo CHtml::dropDownList('role', $model->role, Yii::app()->params['roles']);
-                    echo '&nbsp;';
-                    echo CHtml::submitButton(Yii::t('zii', 'Update Role'), 
-                            array('name' => 'updateRole', 'value' => 'Update'));
-                } else {
-                    echo Yii::app()->params['roles'][$keys[0]];
-                }
+                echo Yii::t('zii', $model->role);
             ?>
             </div>
             <img src="<?php echo Yii::app()->request->baseUrl . '/' . $model->getAvatarPath()?>" width="250" height="250" class="bor" />								

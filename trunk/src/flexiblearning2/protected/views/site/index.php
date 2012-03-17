@@ -18,7 +18,7 @@
                         
                 <td>
                     <div class="lecture">
-                        <img class="lecture-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lecture->path_video_thumbnail; ?>" 
+                        <img class="lecture-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lecture->videoThumbnail; ?>" 
                              style='max-width:<?php echo Yii::app()->params['widthThumbnailLesson']?>; max-height:<?php echo Yii::app()->params['heightThumbnailLesson']?>' />
                         <br />
                         <a href="<?php echo $lecture->href?>"><?php echo $lecture->title?></a><br />
