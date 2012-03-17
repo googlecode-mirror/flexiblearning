@@ -24,43 +24,58 @@ $this->menu = array(
     $idLanguage = Yii::app()->request->getQuery('language_id');
     
 ?>
-<?php
-if ($idLanguage) {
-    $data = Category::model()->findAllByAttributes(array('id_language' => $idLanguage));
-} else {
-    $data = Category::model()->findAll();
-}
+<div class="block-area">
+    <?php
+    if ($idLanguage) {
+        $data = Category::model()->findAllByAttributes(array('id_language' => $idLanguage));
+    } else {
+        $data = Category::model()->findAll();
+    }
 
-$this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'lecture-grid',
-    'dataProvider' => $model->search($idLanguage),
-    'filter' => $model,
-    'columns' => array(
-        array(
-            'header' => 'No',
-            'value' => '$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize + $row+1',
-            'htmlOptions' => array('class' => 'number-column')
+    if (Yii::app()->user->checkAccess('adminLecture')) {
+        $provider = $model->search(array('idLanguage' => $idLanguage));
+    } else {
+        $provider = $model->search(array('idLanguage' => $idLanguage, 'ownerBy' => Yii::app()->user->getId()));
+    }
+
+    $this->widget('zii.widgets.grid.CGridView', array(
+        'id' => 'lecture-grid',
+        'dataProvider' => $provider,
+        'filter' => $model,
+        'columns' => array(
+            array(
+                'header' => 'No',
+                'value' => '$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize + $row+1',
+                'htmlOptions' => array('class' => 'number-column')
+            ),
+            'title_en',
+            'title_vi',
+            'title_ko',
+            array(
+                'name' => 'id_category',
+                'header' => 'Category',
+                'value' => '$data->category->name',
+                'filter' => CHtml::listData($data, 'id', 'name'),
+            ),
+            array(
+                'name' => 'is_active',
+                'filter' => array('0' => 'No', '1' => 'Yes'),
+                'value' => '($data->is_active)?"Yes":"No"',
+            ),
+            array(
+                'name' => 'owner_by',
+                'header' => Yii::t('zii', 'Owner by'),
+                'value' => '$data->ownerBy->username',
+                'filter' => false
+            ),
+            array(
+                'class' => 'CButtonColumn',
+            ),
         ),
-        'title_en',
-        'title_vi',
-        'title_ko',
-        array(
-            'name' => 'id_category',
-            'header' => 'Category',
-            'value' => '$data->category->name',
-            'filter' => CHtml::listData($data, 'id', 'name'),
-        ),
-        array(
-            'name' => 'is_active',
-            'filter' => array('0' => 'No', '1' => 'Yes'),
-            'value' => '($data->is_active)?"Yes":"No"',
-        ),
-        array(
-            'class' => 'CButtonColumn',
-        ),
-    ),
-));
-?>
+    ));
+    ?>
+</div>
+
 <script language="javascript" type="text/javascript">
     $('#language_id').change(function() {
         window.location.href = $(this).val();

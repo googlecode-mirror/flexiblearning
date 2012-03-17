@@ -38,8 +38,7 @@ $this->breadcrumbs = array(
                 <td>
                     <div class="lesson">
                         <div>
-                        
-                            <img class="lesson-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lecture->path_video_thumbnail; ?>" 
+                            <img class="lesson-thumbnail" src="<?php echo Yii::app()->request->baseUrl . '/' . $lecture->videoThumbnail; ?>" 
                              style="max-width:<?php echo Yii::app()->params['widthThumbnailLesson']?>; max-height:<?php echo Yii::app()->params['heightThumbnailLesson']?>" />
                         </div>
 <!--                        <div class="sticker">

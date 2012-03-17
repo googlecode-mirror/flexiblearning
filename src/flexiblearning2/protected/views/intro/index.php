@@ -6,7 +6,6 @@
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/stylesheet/imageflow.packed.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/stylesheet/intro.css" media="screen" />
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/imageflow.packed.js"></script>
-        <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
     <body>
         <div id="logo">
             <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/logo.png" />

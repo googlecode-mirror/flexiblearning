@@ -11,7 +11,7 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => Yii::t('zii', 'Manage Lesson'), 'url' => array('admin')),
+    array('label' => Yii::t('zii', 'Manage Lessons'), 'url' => array('admin')),
 );
 ?>
 

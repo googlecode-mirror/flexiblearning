@@ -32,13 +32,20 @@ class Controller extends CController {
         Yii::$classMap = array_merge(Yii::$classMap, array(
             'CaptchaExtendedAction' => Yii::getPathOfAlias('ext.captchaExtended') . DIRECTORY_SEPARATOR . 'CaptchaExtendedAction.php',
             'CaptchaExtendedValidator' => Yii::getPathOfAlias('ext.captchaExtended') . DIRECTORY_SEPARATOR . 'CaptchaExtendedValidator.php'
-                ));
-        $this->unreadReceivedMessagesCount = Yii::app()->db->createCommand()->select('count(*)')
-            ->from('message')->where(array('and', 'id_user = :id', 'is_read = 0'), array('id' => Yii::app()->user->getId()))->queryScalar();
+        ));
         
+        $this->unreadReceivedMessagesCount = Yii::app()->db->createCommand()->select('count(*)')
+            ->from('message')->where(array('and', 'id_user = :id', 'is_read = 0'), array('id' => Yii::app()->user->getId()))
+            ->queryScalar();
+
         $this->viewer = null;
         if (!Yii::app()->user->getIsGuest()) {
             $this->viewer = Account::model()->findByPk(Yii::app()->user->getId());
+        }
+        
+        $params = $this->getActionParams();
+        if (!empty($params) && array_key_exists('code', $params) && $params['code']) {
+            Yii::app()->setLanguage($params['code']);
         }
     }
 }

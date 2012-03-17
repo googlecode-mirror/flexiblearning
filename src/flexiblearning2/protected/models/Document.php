@@ -8,14 +8,12 @@
  * @property string $subject_vi
  * @property string $subject_en
  * @property string $subject_ko
- * @property string $filename
  * @property string $description_vi
  * @property string $description_en
  * @property string $description_ko
  * @property string $document_path
- * @property integer $flag_del
- * @property integer $flag_approve
  * @property integer $id_lesson
+ * @property integer $is_active
  * @property integer $created_by
  * @property string $created_date
  * @property integer $updated_by
@@ -24,8 +22,8 @@
  * The followings are the available model relations:
  * @property Lesson $idLesson
  */
-class Document extends CActiveRecord {
-
+class Document extends Base {
+    public $file;
     /**
      * Returns the static model of the specified AR class.
      * @return Document the static model class
@@ -45,16 +43,24 @@ class Document extends CActiveRecord {
      * @return array validation rules for model attributes.
      */
     public function rules() {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
         return array(
-            array('id, subject_vi, subject_en, subject_ko, filename, document_path, id_lesson, created_by, created_date, updated_by, updated_date', 'required'),
-            array('id, flag_del, flag_approve, id_lesson, created_by, updated_by', 'numerical', 'integerOnly' => true),
-            array('subject_vi, subject_en, subject_ko, filename, document_path', 'length', 'max' => 256),
-            array('description_vi, description_en, description_ko', 'safe'),
+             array('file', 'file', 'allowEmpty' => false,
+                'types' => Yii::app()->params['documentExtensions'],
+                'maxSize' => Yii::app()->params['documentMaxSize'],
+                'on' => 'insert',                 
+            ),
+            array('file', 'file', 'allowEmpty' => true,
+                'types' => Yii::app()->params['documentExtensions'],
+                'maxSize' => Yii::app()->params['documentMaxSize'],
+                'on' => 'update'
+            ),
+            array('subject_en, id_lesson, is_active', 'required'),
+            array('created_by, updated_by', 'numerical', 'integerOnly' => true),
+            array('subject_vi, subject_en, subject_ko, document_path', 'length', 'max' => 256),
+            array('subject_vi, subject_en, description_vi, description_en, description_ko', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, subject_vi, subject_en, subject_ko, filename, description_vi, description_en, description_ko, document_path, flag_del, flag_approve, id_lesson, created_by, created_date, updated_by, updated_date', 'safe', 'on' => 'search'),
+            array('subject_vi, subject_en, subject_ko, id_lesson, created_by, created_date, updated_by, updated_date', 'safe', 'on' => 'search'),
         );
     }
 
@@ -78,13 +84,11 @@ class Document extends CActiveRecord {
             'subject_vi' => Yii::t('zii', 'Subject Vi'),
             'subject_en' => Yii::t('zii', 'Subject En'),
             'subject_ko' => Yii::t('zii', 'Subject Ko'),
-            'filename' => Yii::t('zii', 'Filename'),
             'description_vi' => Yii::t('zii', 'Description Vi'),
             'description_en' => Yii::t('zii', 'Description En'),
             'description_ko' => Yii::t('zii', 'Description Ko'),
             'document_path' => Yii::t('zii', 'Document Path'),
-            'flag_del' => Yii::t('zii', 'Flag Del'),
-            'flag_approve' => Yii::t('zii', 'Approve'),
+            'is_active' => Yii::t('zii', 'Active'),
             'id_lesson' => Yii::t('zii', 'Lesson'),
         );
     }
@@ -99,25 +103,16 @@ class Document extends CActiveRecord {
 
         $criteria = new CDbCriteria;
 
-        $criteria->compare('id', $this->id);
-        $criteria->compare('subject_vi', $this->subject_vi, true);
-        $criteria->compare('subject_en', $this->subject_en, true);
-        $criteria->compare('subject_ko', $this->subject_ko, true);
-        $criteria->compare('filename', $this->filename, true);
-        $criteria->compare('description_vi', $this->description_vi, true);
-        $criteria->compare('description_en', $this->description_en, true);
         $criteria->compare('description_ko', $this->description_ko, true);
-        $criteria->compare('document_path', $this->document_path, true);
-        $criteria->compare('flag_del', $this->flag_del);
-        $criteria->compare('flag_approve', $this->flag_approve);
-        $criteria->compare('id_lesson', $this->id_lesson);
-        $criteria->compare('created_by', $this->created_by);
-        $criteria->compare('created_date', $this->created_date, true);
-        $criteria->compare('updated_by', $this->updated_by);
-        $criteria->compare('updated_date', $this->updated_date, true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
+                    'sort' => array(
+                        'defaultOrder' => 'id DESC',
+                    ),
+                    'pagination' => array(
+                        'pageSize' => Yii::app()->params['nDocumentPerPage'],
+                    ),
                 ));
     }
 

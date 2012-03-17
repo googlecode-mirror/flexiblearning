@@ -24,8 +24,9 @@
  * @property Account[] $accounts
  */
 class Lesson extends Base {
+
     public $fileThumbnail;
-    
+
     public function init() {
         $this->onAfterSave = array($this, "activeLesson");
     }
@@ -34,14 +35,22 @@ class Lesson extends Base {
         $lesson = $event->sender;
         if ($lesson->is_active) {
             if (!Yii::app()->user->checkAccess('adminLesson')) {
-                foreach($lesson->videos as $video) {
-                    $video->is_active = 1;
-                    $video->save();
+                foreach ($lesson->videos as $video) {
+                    if (!$video->is_active) {
+                        $video->is_active = 1;
+                        $video->save();
+                    }
                 }
-            }
+                foreach ($lesson->documents as $document) {
+                    if (!$document->is_active) {
+                        $document->is_active = 1;
+                        $document->save();
+                    }
+                }
+            }            
         }
     }
-    
+
     /**
      * Returns the static model of the specified AR class.
      * @return Lesson the static model class
@@ -64,7 +73,7 @@ class Lesson extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('fileThumbnail', 'file', 'allowEmpty' => true, 
+            array('fileThumbnail', 'file', 'allowEmpty' => true,
                 'types' => Yii::app()->params['imageExtionsions'],
                 'maxSize' => Yii::app()->params['imageMaxSize']),
             array('price, id_lecture, title_en', 'required'),
@@ -72,10 +81,10 @@ class Lesson extends Base {
             array('title_vi, title_en, title_ko', 'length', 'max' => 50),
             array('price', 'length', 'max' => 10),
             array('is_active', 'default', 'value' => 1),
-            array('description_vi, description_en, description_ko, fileThumbnail, is_active, approved', 'safe'),
+            array('description_vi, description_en, description_ko, fileThumbnail, is_active, owner_by', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('title_vi, title_en, title_ko, price, is_active, approved, id_lecture', 'safe', 'on' => 'search'),
+            array('title_vi, title_en, title_ko, price', 'safe', 'on' => 'search'),
         );
     }
 
@@ -83,15 +92,13 @@ class Lesson extends Base {
      * @return array relational rules.
      */
     public function relations() {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
         return array(
             'videos' => array(self::HAS_MANY, 'Video', 'id_lesson'),
+            'documents' => array(self::HAS_MANY, 'Document', 'id_lesson'),
             'questions' => array(self::HAS_MANY, 'Question', 'id_lesson'),
-//            'accounts' => array(self::MANY_MANY, 'Account', 'lesson_account(id_lesson, id_account)'),
+            'accounts' => array(self::MANY_MANY, 'Account', 'lesson_account(id_lesson, id_account)'),
             'lecture' => array(self::BELONGS_TO, 'Lecture', 'id_lecture'),
-            'createdBy' => array(self::BELONGS_TO, 'Account', 'created_by'),
-            'updatedBy' => array(self::BELONGS_TO, 'Account', 'updated_by'),
+            'ownerBy' => array(self::BELONGS_TO, 'Account', 'owner_by'),
         );
     }
 
@@ -121,19 +128,16 @@ class Lesson extends Base {
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
     public function search($idCategory = null, $idLanguage = null) {
-        // Warning: Please modify the following code to remove attributes that
-        // should not be searched.
-
         $criteria = new CDbCriteria;
-        
+
         if ($idCategory) {
             $criteria->join = 'JOIN lecture ON lecture.id = id_lecture';
             $criteria->condition = 'lecture.id_category = ' . $idCategory;
         } else {
             if ($idLanguage) {
-                $criteria->join = 'JOIN lecture ON lecture.id = id_lecture ' . 
-                    'JOIN category ON category.id = lecture.id_category';
-                $criteria->condition = 'category.id_language = ' . $idLanguage;                
+                $criteria->join = 'JOIN lecture ON lecture.id = id_lecture ' .
+                        'JOIN category ON category.id = lecture.id_category';
+                $criteria->condition = 'category.id_language = ' . $idLanguage;
             } else {
                 $criteria->compare('t.id_lecture', $this->id_lecture);
             }
@@ -144,18 +148,28 @@ class Lesson extends Base {
         $criteria->compare('title_ko', $this->title_ko, true);
         $criteria->compare('price', $this->price, true);
         $criteria->compare('t.is_active', $this->is_active);
-        $criteria->compare('approved', $this->approved);
-        
+
         return new CActiveDataProvider($this, array(
-                    'criteria' => $criteria,
-                ));
+            'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'id DESC',
+            ),
+            'pagination' => array(
+                'pageSize' => Yii::app()->params['nLessonPerPage'],
+            ),
+        ));
     }
 
-    public function getHref() {
-        return Yii::app()->createUrl('lesson/view', array(
-                    'id' => $this->getPrimaryKey(),
-                    'title' => $this->title,
-                ));
+    public function getHref($id = null) {
+        $url = Yii::app()->createUrl('lesson/view', array(
+            'id' => $this->getPrimaryKey(),
+            'title' => $this->title,
+        ));
+        if (!empty($id)) {
+            $url .= '#' . $id;
+        }
+        
+        return $url;
     }
 
     public function getThumb() {
@@ -170,25 +184,26 @@ class Lesson extends Base {
         if ($this->lecture) {
             return $this->lecture->id_category;
         }
-        return null;    
+        return null;
     }
-    
+
     public function getId_language() {
         if ($this->lecture) {
             return $this->lecture->category->id_language;
         }
         return null;
     }
-    
+
     protected function afterDelete() {
         parent::afterDelete();
         if ($this->thumbnail && file_exists($this->thumbnail)) {
             unlink($this->thumbnail);
         }
     }
-    
+
     public function isBoughtBuy($accountId) {
         $model = AccountLesson::model()->findByAttributes(array('id_account' => $accountId, 'id_lesson' => $this->getPrimaryKey()));
         return $model != true;
-    }  
+    }
+
 }

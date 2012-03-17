@@ -15,39 +15,37 @@
 
     <?php echo $form->errorSummary($model); ?>
 
-    <?php if (Yii::app()->user->checkAccess('adminLecture')) : ?>
-        <div class="row">
-            <?php echo CHtml::label('Language', ''); ?>
-            <?php
-                echo $form->dropDownList(
-                    $model, 
-                    'id_language', 
-                    CHtml::listData(Language::model()->findAll(), 'id', 'name'),
-                    array(
-                        'ajax' => array(
-                            'type' => 'POST',
-                            'url' => $this->createUrl('category/listByLanguage'),
-                            'update' => '#Lecture_id_category'
-                        )
+    <div class="row">
+        <?php echo CHtml::label('Language', ''); ?>
+        <?php
+            echo $form->dropDownList(
+                $model, 
+                'id_language', 
+                CHtml::listData(Language::model()->findAll(), 'id', 'name'),
+                array(
+                    'ajax' => array(
+                        'type' => 'POST',
+                        'url' => $this->createUrl('category/listByLanguage'),
+                        'update' => '#Lecture_id_category'
                     )
-                ); 
+                )
+            ); 
+        ?>
+    </div>
+    <div class="row">
+        <?php echo $form->labelEx($model, 'id_category'); ?>
+        <div>
+            <?php 
+                if ($model->id_language) {
+                    echo $form->dropDownList($model, 'id_category', 
+                        CHtml::listData(Category::model()->findAll("id_language = {$model->id_language}"), 'id', 'name')); 
+                } else {
+                    echo $form->dropDownList($model, 'id_category', CHtml::listData(Category::model()->findAll(), 'id', 'name')); 
+                }
             ?>
+            <?php echo $form->error($model, 'id_category'); ?>
         </div>
-        <div class="row">
-            <?php echo $form->labelEx($model, 'id_category'); ?>
-            <div>
-                <?php 
-                    if ($model->id_language) {
-                        echo $form->dropDownList($model, 'id_category', 
-                            CHtml::listData(Category::model()->findAll("id_language = {$model->id_language}"), 'id', 'name')); 
-                    } else {
-                        echo $form->dropDownList($model, 'id_category', CHtml::listData(Category::model()->findAll(), 'id', 'name')); 
-                    }
-                ?>
-                <?php echo $form->error($model, 'id_category'); ?>
-            </div>
-        </div>            
-    <?php endif; ?>
+    </div>            
 
     <div class="row">
         <?php echo $form->labelEx($model,'title_en'); ?>
@@ -163,6 +161,16 @@
             </div>
         </div>
     <?php endif;?>
+    
+    <?php if (Yii::app()->user->checkAccess('adminLecture')) : ?>
+        <div class="row">
+            <?php echo $form->labelEx($model,'owner_by'); ?>
+            <div>
+                <?php echo $form->dropDownList($model, 'owner_by', CHtml::listData(Account::model()->findAllTeachers(), 'id', 'username')); ?>
+                <?php echo $form->error($model,'owner_by'); ?>
+            </div>
+        </div>
+    <?php endif; ?>
 
     <div class="row buttons">
          <?php echo CHtml::submitButton($model->isNewRecord ? 

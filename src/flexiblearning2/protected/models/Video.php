@@ -12,8 +12,6 @@
  * @property integer $id_lesson
  * @property integer $num_view
  * @property integer $ranking
- * @property integer $flag_approve
- * @property integer $flag_del
  * @property integer $created_by
  * @property string $created_date
  * @property integer $updated_by
@@ -26,8 +24,9 @@
  * @property Videoranking[] $videorankings
  */
 class Video extends Base {
+
     public $file;
-    
+
     /**
      * Returns the static model of the specified AR class.
      * @return Video the static model class
@@ -50,23 +49,23 @@ class Video extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('file', 'file', 'allowEmpty' => false, 
+            array('file', 'file', 'allowEmpty' => false,
                 'types' => Yii::app()->params['videoExtensions'],
                 'maxSize' => Yii::app()->params['videoMaxSize'],
                 'on' => 'create'
             ),
-            array('file', 'file', 'allowEmpty' => true, 
+            array('file', 'file', 'allowEmpty' => true,
                 'types' => Yii::app()->params['videoExtensions'],
                 'maxSize' => Yii::app()->params['videoMaxSize'],
                 'on' => 'update'
             ),
             array('name, id_lesson, path, path_video_thumbnail', 'required'),
-            array('id_lesson, num_view, ranking, flag_approve, is_active', 'numerical', 'integerOnly' => true),
+            array('id_lesson, num_view, ranking, is_active', 'numerical', 'integerOnly' => true),
             array('name', 'length', 'max' => 50),
             array('description_vi, description_en, description_ko', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('name, id_lesson, num_view, ranking, flag_approve, is_active', 'safe', 'on' => 'search'),
+            array('name, id_lesson, num_view, ranking, is_active', 'safe', 'on' => 'search'),
         );
     }
 
@@ -98,7 +97,6 @@ class Video extends Base {
             'id_lesson' => Yii::t('zii', 'Lesson'),
             'num_view' => Yii::t('zii', 'Num View'),
             'ranking' => Yii::t('zii', 'Ranking'),
-            'flag_approve' => Yii::t('zii', 'Approved'),
             'is_active' => Yii::t('zii', 'Active'),
             'file' => Yii::t('zii', 'Video file'),
         );
@@ -118,8 +116,6 @@ class Video extends Base {
         $criteria->compare('id_lesson', $this->id_lesson);
         $criteria->compare('num_view', $this->num_view);
         $criteria->compare('ranking', $this->ranking);
-        $criteria->compare('flag_approve', $this->flag_approve);
-        $criteria->compare('flag_del', $this->flag_del);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -128,11 +124,11 @@ class Video extends Base {
 
     public function getHref() {
         return Yii::app()->createUrl('video/view', array(
-            'id'=>$this->getPrimaryKey(),
-            'name'=>$this->name,
-        ));
+                    'id' => $this->getPrimaryKey(),
+                    'name' => $this->name,
+                ));
     }
-    
+
     protected function afterDelete() {
         parent::afterDelete();
         if (file_exists($this->path)) {
@@ -142,4 +138,5 @@ class Video extends Base {
             unlink($this->path_video_thumbnail);
         }
     }
+
 }

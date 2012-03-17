@@ -1,71 +1,37 @@
 <?php
-$this->breadcrumbs=array(
+$this->breadcrumbs = array(
     Yii::t('zii', 'Manage videos') => array('video/admin'),
 );
 
 $this->menu = array(
-    array('label' => Yii::t('zii', 'List Video'), 'url' => array('index')),
     array('label' => Yii::t('zii', 'Create Video'), 'url' => array('create')),
 );
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('video-grid', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
 ?>
 
-<h1><?php echo Yii::t('zii', 'Manage Videos')?></h1>
+<h1><?php echo Yii::t('zii', 'Manage Videos') ?></h1>
 
-<p>
-    You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-    or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
-<div class="search-form" style="display:none">
-    <?php
-    $this->renderPartial('_search', array(
-        'model' => $model,
-    ));
-    ?>
-</div><!-- search-form -->
-
+<div class="block-area">
 <?php
-$this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'video-grid',
-    'dataProvider' => $model->search(),
-    'filter' => $model,
-    'columns' => array(
-        'id',
-        'name',
-        'description',
-        'numView',
-        'ranking',
-        'numRanking',
-        /*
-          'price',
-          'idLesson',
-          'state',
-          'ownerBy',
-          'approved',
-          'videoPath',
-          'thumbnailPath',
-          'createdDate',
-          'createdBy',
-          'updatedDate',
-          'updatedBy',
-         */
-        array(
-            'class' => 'CButtonColumn',
+    $this->widget('zii.widgets.grid.CGridView', array(
+        'id' => 'video-grid',
+        'dataProvider' => $model->search(),
+        'filter' => $model,
+        'columns' => array(
+            'id',
+            'name',
+            'description',
+            'numView',
+            'ranking',
+            'numRanking',
+            array(
+                'name' => 'is_active',
+                'filter' => array('0' => 'No', '1' => 'Yes'),
+                'value' => '($data->is_active)?"Yes":"No"',
+            ),
+            array(
+                'class' => 'CButtonColumn',
+            ),
         ),
-    ),
-));
+    ));
 ?>
+</div>

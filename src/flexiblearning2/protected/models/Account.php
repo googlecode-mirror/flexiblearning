@@ -185,4 +185,12 @@ class Account extends Base {
         }
         return self::$ROLE_USER;
     }
+    
+    public function findAllTeachers() {
+        $teacherIds = Yii::app()->db->createCommand()->select('userid')
+            ->from('authassignment')->where(array("or", "itemname = 'teacher'", "itemname = 'admin'"))
+            ->queryColumn();
+        
+        return Account::model()->findAllByPk($teacherIds);
+    }
 }

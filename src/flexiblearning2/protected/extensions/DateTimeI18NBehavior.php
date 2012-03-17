@@ -12,7 +12,7 @@
 class DateTimeI18NBehavior extends CActiveRecordBehavior {
 
     public $dateIncomeFormat = 'dd/MM/yyyy';
-    public $dateTimeIncomeFormat = 'dd/MM/yyyy H:i:s';
+    public $dateTimeIncomeFormat = 'dd/MM/yyyy HH:mm:ss';
     public $dateOutcomeFormat = 'yyyy-MM-dd';
     public $dateTimeOutcomeFormat = 'yyyy-MM-dd H:i:s';
     public $dateDBFormat = 'Y-m-d';
@@ -33,7 +33,7 @@ class DateTimeI18NBehavior extends CActiveRecordBehavior {
             if (($column->dbType == 'date')) {
                 $event->sender->$columnName = 
                     date($this->dateDBFormat, 
-                    CDateTimeParser::parse($event->sender->$columnName, $this->dateIncomeFormat));
+                    CDateTimeParser::parse($event->sender->$columnName, $this->dateTimeIncomeFormat));
             } else {
                 $event->sender->$columnName = 
                     date($this->dateTimeDBFormat, 

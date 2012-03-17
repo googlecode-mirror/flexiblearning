@@ -1,7 +1,7 @@
 <?php
 $this->pageTitle = Yii::app()->name . ' - Contact Us';
 $this->breadcrumbs = array(
-    'Contact us',
+    Yii::t('zii', 'Contact us'),
 );
 ?>
 

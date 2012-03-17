@@ -2,12 +2,6 @@
 
 class VideoController extends Controller {
     /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
-//	public $layout='//layouts/column2';
-
-    /**
      * @return array action filters
      */
     public function filters() {
@@ -48,6 +42,13 @@ class VideoController extends Controller {
     public function actionView($id) {
         $video = $this->loadModel($id);
         $lesson = $video->lesson;
+        
+        if ($lesson->is_active == 0) {
+            if($lesson->owner_by != Yii::app()->user->getId() && 
+                !Yii::app()->user->checkAccess('adminLesson')) {
+                throw new CHttpException(403,Yii::t('yii','You are not authorized to perform this action.'));
+            }
+        }
 
         $criteria = new CDbCriteria();
         $criteria->addCondition(array('id_lesson' => $lesson->getPrimaryKey()));
@@ -84,10 +85,33 @@ class VideoController extends Controller {
         $arrayModels = array();
         if (isset($_POST['Video'])) {
             $model->attributes = $_POST['Video'];
+            
+            $lesson = Lesson::model()->findByPk($idLesson);
+            if (Yii::app()->user->checkAccess('adminOwnLesson', array('lesson' => $lesson))) {
+                $model->is_active = $lesson->is_active;
+            }
+            
             $model->id_lesson = $idLesson;
             $model->path_video_thumbnail = Yii::app()->params['defaultLessonThumbnail'];
             
             if ($model->save()) {
+                if (!Yii::app()->user->checkAccess('adminLesson')) {
+                    $model->is_active = 0;
+                    $adminUserIds = Yii::app()->db->createCommand()->select('userid')->from('authassignment')
+                                    ->where('itemname=:itemname', array(':itemname' => 'admin'))->queryColumn();
+                    foreach ($adminUserIds as $id) {
+                        $message = new Message();
+                        $message->id_from = Yii::app()->user->getId();
+                        $message->id_user = $id;
+                        $message->subject = 'A new video is created';
+                        $message->message = "User " .
+                                CHtml::link($this->viewer->username, $this->viewer->href) .
+                                " have just created the lesson " .
+                                CHtml::link($model->name, $model->href);
+                        $message->save();
+                    }
+                }
+                
                 $this->redirect(array('view', 'id' => $model->id));
             }
 //            $model->file = $file = CUploadedFile::getInstance($model, 'file');
@@ -118,7 +142,10 @@ class VideoController extends Controller {
 //                }
 //            }
         }
-        $model->is_active = 1;
+        if (Yii::app()->user->checkAccess('adminVideo')) {
+            $model->is_active = 1;
+        } 
+        
         $this->render('create', array('model' => $model));
     }
 

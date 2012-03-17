@@ -1,5 +1,5 @@
 <?php
-    $account = $lesson->createdBy;
+    $account = $lesson->ownerBy;
 ?>
 <?php if ($account->skype) : ?>
     <div class="skype">

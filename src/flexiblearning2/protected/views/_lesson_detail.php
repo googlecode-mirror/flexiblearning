@@ -36,35 +36,16 @@
     </div><!--end-box-tap-->
 
     <div id="box-tab-content"> 
-        <div id="description" class="inner">
-            <h3>&nbsp;</h3>
+        <div id="description" class="inner">            
             <?php echo $model->description ?>
         </div>
+        
         <div id="thongbao" class="inner">
-            Ngày 13/11/2011<br /><br />
-            <p id="title-text">Thông Báo</p>
-            <p>V/v gặp nhau giao lưu các học viên khóa TT						</p>
-            <p>&nbsp;</p>
-            <p>Các bạn thân mến!					  
-                Facebook hiện là mạng xã hội hàng đầu trên thế giới cũng như tại Việt Nam với số lượng người dùng rất lớn và khả năng tương tác cao. Để theo kịp xu hướng chung cũng như thể theo nguyện vọng của số đông người dùng, Ban quản trị Baamboo Tra từ đã quyết định chọn Facebook làm kênh thông tin liên lạc và kết nối cộng đồng thông qua việc cho ra đời BBTT Facebook Fan page.						  </p>
-            <p>&nbsp;</p>
-            <p>Thân ái,</p>
-            <p> Ban Quản Trị.						  </p>
-            <p>&nbsp;</p>
-            <p><strong>Các thông báo khác :</strong></p>
-            <p><a href="#">Thông báo thay đổi quy định học tập (08/08/2011)</a> </p>
-            <p><a href="#">Thông báo thay đổi lịch học lớp 06EN02 (08/08/2011)</a> </p>
-            <p><a href="#">Chương trình học bổng từ Đại học Australia (08/08/2011)</a> </p>
+            <?php $this->renderPartial('/_annoucement', array('lesson' => $model)); ?>
         </div>
 
-        <div id="tailieu" class="inner">
-            <p>&nbsp;</p>
-            <p><a href="#">Học tiếng Anh online.pdf</a></p>
-            <p><a href="#">1200 từ vựng cần nhất.pdf</a></p>
-            <p><a href="#">Luyện phát âm.pdf</a></p>
-            <p><a href="#">Nghe nói tiếng Anh.pdf</a></p>
-            <p><a href="#">Giáo trình TOEIC.pdf</a></p>
-
+        <div id="tailieu" class="inner">            
+            <?php $this->renderPartial('/_document', array('lesson' => $model)); ?>
         </div>
 
     </div><!--end-box-tab-content-->
@@ -76,30 +57,40 @@
     <h2><?php echo Yii::t('zii', 'Videos') ?></h2>
     <div class="block-area">
         <?php foreach ($model->videos as $video) : ?>
-            <div class="video">
-                <div>
-                    <img src="<?php echo Yii::app()->request->baseUrl . '/' . $video->path_video_thumbnail ?>" 
-                         class="bor" max-width="<?php echo Yii::app()->params['widthThumbnailVideo']?>" 
-                         max-height="<?php echo Yii::app()->params['heightThumbnailVideo']?>" />
+            <?php if($video->is_active 
+                || (!$video->is_active && Yii::app()->user->checkAccess('adminVideo') || 
+                Yii::app()->user->checkAccess('adminOwnLesson', array('lesson' => $model)))):?>
+                <div class="video">
+                    <div>
+                        <img src="<?php echo Yii::app()->request->baseUrl . '/' . $video->path_video_thumbnail ?>" 
+                             class="bor" max-width="<?php echo Yii::app()->params['widthThumbnailVideo']?>" 
+                             max-height="<?php echo Yii::app()->params['heightThumbnailVideo']?>" />
+                    </div>
+                    <div class="title-area">
+                        <a class="title" href="<?php echo $video->getHref() ?>">
+                            <?php echo $video->name ?>
+                        </a>
+                        <?php if (Yii::app()->user->checkAccess('adminOwnLesson', array('lesson' => $model)) 
+                            || Yii::app()->user->checkAccess('adminLesson')) : ?>
+                            <div>
+                                <a href="<?php echo $this->createUrl('video/delete', array('id' => $video->getPrimaryKey()))?>" class="delete-link icon-control-link">
+                                    <?php echo Yii::t('zii', 'Delete')?>
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (!$video->is_active) : ?>
+                            <div class="errorMessage">
+                                <?php echo Yii::t('zii', 'Not Active')?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
-                <div class="title-area">
-                    <a class="title" href="<?php echo $video->getHref() ?>">
-                        <?php echo $video->name ?>
-                    </a>
-                    <?php if (Yii::app()->user->checkAccess('adminOwnLesson', array('lesson' => $model)) 
-                        || Yii::app()->user->checkAccess('adminLesson')) : ?>
-                        <div>
-                            <a href="<?php echo $this->createUrl('video/delete', array('id' => $video->getPrimaryKey()))?>" class="delete-link icon-control-link">
-                                <?php echo Yii::t('zii', 'Delete')?>
-                            </a>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
+          <?php endif; ?>
         <?php endforeach; ?>
     </div>
     
-    <?php if (Yii::app()->user->getId() == $model->createdBy->getPrimaryKey()) : ?>
+    <?php if (Yii::app()->user->checkAccess('adminVideo') 
+            || Yii::app()->user->checkAccess('adminOwnLesson', array('lesson' => $model))) : ?>
         <div class="block-area">
             <?php
                 echo CHtml::link(Yii::t('zii', 'Create videos'), 

@@ -15,8 +15,9 @@ class Base extends CActiveRecord {
     //put your code here
     protected function beforeValidate() {
         if ($this->hasAttribute('created_date')) {
-            $this->updated_date = Yii::app()->user->getId();
-            $this->updated_date = Yii::app()->dateFormatter->format('dd/MM/yyyy H:i:s', date('Y-m-d H:i:s'));
+            $this->updated_by = Yii::app()->user->getId();
+            $this->updated_date = Yii::app()->dateFormatter->format('dd/MM/yyyy HH:mm:ss', date('Y-m-d H:i:s'));
+            $updated_date = Yii::app()->dateFormatter->format('dd/MM/yyyy HH:mm:ss', date('Y-m-d H:i:s'));
             if ($this->getIsNewRecord()) {
                 $this->created_date = $this->updated_date;
                 $this->created_by = $this->updated_by;
@@ -25,12 +26,13 @@ class Base extends CActiveRecord {
 
         return parent::beforeValidate();
     }
+
     public function behaviors() {
-        return 
-            array(
-                'datetimeI18NBehavior' => array('class' => 'application.extensions.DateTimeI18NBehavior'),
-                'CAdvancedArBehavior' => array('class' => 'application.extensions.CAdvancedArBehavior')
-            ); 
+        return
+                array(
+                    'datetimeI18NBehavior' => array('class' => 'application.extensions.DateTimeI18NBehavior'),
+                    'CAdvancedArBehavior' => array('class' => 'application.extensions.CAdvancedArBehavior')
+        );
     }
 
     public function __get($name) {
@@ -52,7 +54,7 @@ class Base extends CActiveRecord {
     public function deleteByPk($pk, $condition='', $params=array()) {
         foreach ($this->relations() as $key => $relation) {
             if ($relation[0] == self::HAS_MANY) {
-                $className = $relation[1];                
+                $className = $relation[1];
                 $classObj = new $className;
                 foreach ($classObj->model()->relations() as $keyRelation => $otherRelation) {
                     if ($otherRelation[1] == get_class($this)) {

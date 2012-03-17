@@ -1,12 +1,10 @@
 <?php
 $this->breadcrumbs=array(
-    Yii::t('zii', 'Admin lesson') => array('lesson/admin'),
+    Yii::t('zii', 'Manage lessons') => array('lesson/admin'),
 );
-
 ?>
 
 <h1><?php echo Yii::t('zii', 'Manage Lessons')?></h1>
-
 <br />
 <div class="form-element">
     <?php echo CHtml::label(Yii::t('zii', 'Language'), ''); ?>
@@ -26,7 +24,6 @@ $this->breadcrumbs=array(
         echo CHtml::dropDownList('language_id', $url, $arrDataLanguages);
     ?>
 </div>
-
 <br />
 <div class="form-element">
     <?php echo CHtml::label(Yii::t('zii', 'Category'), ''); ?>
@@ -90,6 +87,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'name' => 'is_active',
             'filter' => array('0' => 'No', '1' => 'Yes'),
             'value' => '($data->is_active)?"Yes":"No"',
+        ),
+        array(
+            'name' => 'owner_by',
+            'header' => Yii::t('zii', 'Owner by'),
+            'value' => '$data->ownerBy->username',
+            'filter' => false
         ),
         array(
             'class' => 'CButtonColumn',

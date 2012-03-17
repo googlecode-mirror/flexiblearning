@@ -175,6 +175,16 @@
         </div>
     <?php endif; ?>
     
+    <?php if (Yii::app()->user->checkAccess('adminLecture')) : ?>
+        <div class="row">
+            <?php echo $form->labelEx($model,'owner_by'); ?>
+            <div>
+                <?php echo $form->dropDownList($model, 'owner_by', CHtml::listData(Account::model()->findAllTeachers(), 'id', 'username')); ?>
+                <?php echo $form->error($model,'owner_by'); ?>
+            </div>
+        </div>
+    <?php endif; ?>
+    
     <div class="row buttons">
         <label>&nbsp;</label>
         <div>

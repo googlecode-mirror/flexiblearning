@@ -29,10 +29,10 @@
     -webkit-border-radius:5px 5px 0 0;}
 
 .inner { 
-    float: left; 
+/*    float: left; */
     clear: both;
     padding-left:10px; 
-    padding-right:10px; 
+    padding-right:10px;
     text-align:justify}
 .tab-bottom{
     width:628px; height:10px;border:1px solid #ccc;
