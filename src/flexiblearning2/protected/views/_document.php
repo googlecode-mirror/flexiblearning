@@ -29,7 +29,7 @@
             <div class="block-area">
                 <?php echo CHtml::link('Create new attachment', "",  // the link for open the dialog
                     array(
-                        'style'=>'cursor: pointer; text-decoration: underline;',
+                        'style'=>'cursor: pointer;',
                         'onclick'=>"{jQuery('#dlgDocument').dialog('open');}"));
                 ?>
             </div>
@@ -70,9 +70,5 @@
                     }
                 }, 'json');
         }
-    }
-    
-    function viewDescription() {
-        
-    }
+    }    
 </script>

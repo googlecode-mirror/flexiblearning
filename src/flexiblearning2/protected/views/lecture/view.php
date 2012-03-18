@@ -38,7 +38,7 @@ $this->breadcrumbs = array(
                 </div>
             <?php endif;?>
             
-            <div class="top">
+            <div class="top center">
                 <div id="box-tab" class="inline-block">
                     <ul id="tab" class="tab">
                         <li class="active">
@@ -50,13 +50,13 @@ $this->breadcrumbs = array(
                     </ul>
                 </div><!--end-box-tap-->
 
-                <div id="box-tab-content" class="inline-block"> 
-                    <div id="description" class="inner">            
+                <div id="box-tab-content" class="inline-block">                     
+                    <div id="description" class="inner">             
                         <?php echo $model->content?>
                     </div>
 
                     <div id="thongbao" class="inner">
-                        Thông báo
+                        <?php $this->renderPartial('/_notification', array('model' => $model)); ?>
                     </div>
                 </div><!--end-box-tab-content-->
 
@@ -119,3 +119,7 @@ $this->breadcrumbs = array(
         </td>
     </tr>
 </table>
+
+<?php
+    Yii::app()->clientScript->registerScript('', "jQuery('#tab').tabify()");
+?>

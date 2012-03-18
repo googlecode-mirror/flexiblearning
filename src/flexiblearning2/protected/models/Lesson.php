@@ -47,7 +47,7 @@ class Lesson extends Base {
                         $document->save();
                     }
                 }
-            }            
+            }
         }
     }
 
@@ -99,6 +99,7 @@ class Lesson extends Base {
             'accounts' => array(self::MANY_MANY, 'Account', 'lesson_account(id_lesson, id_account)'),
             'lecture' => array(self::BELONGS_TO, 'Lecture', 'id_lecture'),
             'ownerBy' => array(self::BELONGS_TO, 'Account', 'owner_by'),
+            'notifications' => array(self::HAS_MANY, 'Notification', 'id_lesson')
         );
     }
 
@@ -150,25 +151,25 @@ class Lesson extends Base {
         $criteria->compare('t.is_active', $this->is_active);
 
         return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
-            'sort' => array(
-                'defaultOrder' => 'id DESC',
-            ),
-            'pagination' => array(
-                'pageSize' => Yii::app()->params['nLessonPerPage'],
-            ),
-        ));
+                    'criteria' => $criteria,
+                    'sort' => array(
+                        'defaultOrder' => 'id DESC',
+                    ),
+                    'pagination' => array(
+                        'pageSize' => Yii::app()->params['nLessonPerPage'],
+                    ),
+                ));
     }
 
     public function getHref($id = null) {
         $url = Yii::app()->createUrl('lesson/view', array(
             'id' => $this->getPrimaryKey(),
             'title' => $this->title,
-        ));
+                ));
         if (!empty($id)) {
             $url .= '#' . $id;
         }
-        
+
         return $url;
     }
 

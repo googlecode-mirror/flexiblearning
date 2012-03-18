@@ -41,7 +41,7 @@
         </div>
         
         <div id="thongbao" class="inner">
-            <?php $this->renderPartial('/_annoucement', array('lesson' => $model)); ?>
+            <?php $this->renderPartial('/_notification', array('model' => $model)); ?>
         </div>
 
         <div id="tailieu" class="inner">            

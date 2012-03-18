@@ -48,20 +48,7 @@ class DocumentController extends Controller {
                 }
                 if ($model->save()) {
                     Yii::app()->clientScript->registerScript('', 'parent.location.reload()');
-//                    $this->redirect($model->lesson->getHref('tailieu-tab'));
-//                    $result = array(
-//                        'result' => 1,
-//                        'document_path' => $model->document_path,
-//                        'subject' => $model->subject
-//                    );
-//                    echo CJSON::encode($result);
-                } /* else {
-                    $result = array(
-                        'result' => 0,
-                        'errors' => $model->getErrors()
-                    );
-                    echo CJSON::encode($result);
-                }*/
+                }
             }
         }
         echo $this->render('create', array('model' => $model), true);
