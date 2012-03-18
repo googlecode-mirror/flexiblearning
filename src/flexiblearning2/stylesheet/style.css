@@ -232,6 +232,11 @@ a:hover{
 }
 .top{
     padding-top:10px;
+    text-align: center;
+}
+
+.top > div.inline-block {
+    display: inline-block;
 }
 
 .colo{
@@ -384,7 +389,7 @@ a:hover{
     width:630px; height:38px;
 }
 #box-tab-content{
-    width:630; 
+    width:629px; 
     height:300px; 
     border:1px solid #ccc; 
     border-top:none; 
@@ -608,6 +613,11 @@ ul.operations li {
     margin-top:10px;
     margin-bottom: 5px;
     clear:both;
+    display: block;
+}
+
+.top > .block-area {
+    display: block;    
 }
 
 .breadcrumbs {
