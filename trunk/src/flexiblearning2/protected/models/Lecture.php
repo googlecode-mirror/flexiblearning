@@ -97,6 +97,7 @@ class Lecture extends Base {
             'lessons' => array(self::HAS_MANY, 'Lesson', 'id_lecture'),
             'category' => array(self::BELONGS_TO, 'Category', 'id_category'),
             'ownerBy' => array(self::BELONGS_TO, 'Account', 'owner_by'),
+            'notifications' => array(self::HAS_MANY, 'NotificationLecture', 'id_lecture')
         );
     }
 
