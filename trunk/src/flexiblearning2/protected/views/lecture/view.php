@@ -39,7 +39,7 @@ $this->breadcrumbs = array(
             <?php endif;?>
             
             <div class="top">
-                <div id="box-tab">
+                <div id="box-tab" class="inline-block">
                     <ul id="tab" class="tab">
                         <li class="active">
                             <a href="#description">
@@ -50,7 +50,7 @@ $this->breadcrumbs = array(
                     </ul>
                 </div><!--end-box-tap-->
 
-                <div id="box-tab-content"> 
+                <div id="box-tab-content" class="inline-block"> 
                     <div id="description" class="inner">            
                         <?php echo $model->content?>
                     </div>
@@ -60,7 +60,7 @@ $this->breadcrumbs = array(
                     </div>
                 </div><!--end-box-tab-content-->
 
-                <div class="tab-bottom"></div>
+                <div class="tab-bottom inline-block"></div>
             </div>
 
             <div class="block-area">
