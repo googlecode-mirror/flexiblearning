@@ -64,7 +64,7 @@ class Nationality extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => Yii::t('zii', 'Name'),
+            'name' => Yii::t('flexiblearn', 'Name'),
         );
     }
 

@@ -76,10 +76,10 @@ class Banner extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'banner_link' => Yii::t('zii', 'Banner Link'),
-            'id_partner' => Yii::t('zii', 'Partner'),
+            'banner_link' => Yii::t('flexiblearn', 'Banner Link'),
+            'id_partner' => Yii::t('flexiblearn', 'Partner'),
             'ad_path' => 'Ad Path',
-            'is_active' => Yii::t('zii', 'Active'),
+            'is_active' => Yii::t('flexiblearn', 'Active'),
         );
     }
 

@@ -63,9 +63,9 @@ class Answer extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'id_question' => Yii::t('zii', 'Question'),
-            'id_account' => Yii::t('zii', 'Account'),
-            'content' => Yii::t('zii', 'Content'),
+            'id_question' => Yii::t('flexiblearn', 'Question'),
+            'id_account' => Yii::t('flexiblearn', 'Account'),
+            'content' => Yii::t('flexiblearn', 'Content'),
         );
     }
 

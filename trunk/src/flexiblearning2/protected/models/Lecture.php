@@ -107,15 +107,15 @@ class Lecture extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'id_category' => Yii::t('zii', 'Category'),
-            'title_vi' => Yii::t('zii', 'Title Vi'),
-            'title_en' => Yii::t('zii', 'Title En'),
-            'title_ko' => Yii::t('zii', 'Title Ko'),
-            'content_vi' => Yii::t('zii', 'Content Vi'),
-            'content_en' => Yii::t('zii', 'Content En'),
-            'content_ko' => Yii::t('zii', 'Content Ko'),
-            'path_video_intro' => Yii::t('zii', 'Video Intro'),
-            'is_active' => Yii::t('zii', 'Active'),
+            'id_category' => Yii::t('flexiblearn', 'Category'),
+            'title_vi' => Yii::t('flexiblearn', 'Title Vi'),
+            'title_en' => Yii::t('flexiblearn', 'Title En'),
+            'title_ko' => Yii::t('flexiblearn', 'Title Ko'),
+            'content_vi' => Yii::t('flexiblearn', 'Content Vi'),
+            'content_en' => Yii::t('flexiblearn', 'Content En'),
+            'content_ko' => Yii::t('flexiblearn', 'Content Ko'),
+            'path_video_intro' => Yii::t('flexiblearn', 'Video Intro'),
+            'is_active' => Yii::t('flexiblearn', 'Active'),
         );
     }
 

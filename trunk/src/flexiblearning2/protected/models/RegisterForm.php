@@ -47,16 +47,16 @@ class RegisterForm extends CFormModel {
      */
     public function attributeLabels() {
         return array(            
-            'fullname' => Yii::t('zii', 'Fullname'),
-            'dateOfBirth' => Yii::t('zii', 'Date Of Birth'),
-            'address' => Yii::t('zii', 'Address'),
-            'id_nationality' => Yii::t('zii', 'Nationality'),
-            'tel' => Yii::t('zii', 'Tel'),
-            'email' => Yii::t('zii', 'Email'),
-            'username' => Yii::t('zii', 'Username'),
-            'password' => Yii::t('zii', 'Password'),
-            'favorite' => Yii::t('zii', 'Favorite'),
-            'id_profession' => Yii::t('zii', 'Profession'),
+            'fullname' => Yii::t('flexiblearn', 'Fullname'),
+            'dateOfBirth' => Yii::t('flexiblearn', 'Date Of Birth'),
+            'address' => Yii::t('flexiblearn', 'Address'),
+            'id_nationality' => Yii::t('flexiblearn', 'Nationality'),
+            'tel' => Yii::t('flexiblearn', 'Tel'),
+            'email' => Yii::t('flexiblearn', 'Email'),
+            'username' => Yii::t('flexiblearn', 'Username'),
+            'password' => Yii::t('flexiblearn', 'Password'),
+            'favorite' => Yii::t('flexiblearn', 'Favorite'),
+            'id_profession' => Yii::t('flexiblearn', 'Profession'),
         );
     }
     

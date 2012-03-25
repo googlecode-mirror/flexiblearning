@@ -81,15 +81,15 @@ class Document extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'subject_vi' => Yii::t('zii', 'Subject Vi'),
-            'subject_en' => Yii::t('zii', 'Subject En'),
-            'subject_ko' => Yii::t('zii', 'Subject Ko'),
-            'description_vi' => Yii::t('zii', 'Description Vi'),
-            'description_en' => Yii::t('zii', 'Description En'),
-            'description_ko' => Yii::t('zii', 'Description Ko'),
-            'document_path' => Yii::t('zii', 'Document Path'),
-            'is_active' => Yii::t('zii', 'Active'),
-            'id_lesson' => Yii::t('zii', 'Lesson'),
+            'subject_vi' => Yii::t('flexiblearn', 'Subject Vi'),
+            'subject_en' => Yii::t('flexiblearn', 'Subject En'),
+            'subject_ko' => Yii::t('flexiblearn', 'Subject Ko'),
+            'description_vi' => Yii::t('flexiblearn', 'Description Vi'),
+            'description_en' => Yii::t('flexiblearn', 'Description En'),
+            'description_ko' => Yii::t('flexiblearn', 'Description Ko'),
+            'document_path' => Yii::t('flexiblearn', 'Document Path'),
+            'is_active' => Yii::t('flexiblearn', 'Active'),
+            'id_lesson' => Yii::t('flexiblearn', 'Lesson'),
         );
     }
 

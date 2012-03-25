@@ -38,12 +38,12 @@ class ContactForm extends CFormModel {
      */
     public function attributeLabels() {
         return array(
-            'verifyCode' => Yii::t('zii', 'Verification Code'),
-            'gender' => Yii::t('zii', 'Gender'),
-            'name' => Yii::t('zii', 'Name'),
-            'email' => Yii::t('zii', 'Email'),
-            'phone' => Yii::t('zii', 'Phone'),
-            'body' => Yii::t('zii', 'Message'),
+            'verifyCode' => Yii::t('flexiblearn', 'Verification Code'),
+            'gender' => Yii::t('flexiblearn', 'Gender'),
+            'name' => Yii::t('flexiblearn', 'Name'),
+            'email' => Yii::t('flexiblearn', 'Email'),
+            'phone' => Yii::t('flexiblearn', 'Phone'),
+            'body' => Yii::t('flexiblearn', 'Message'),
         );
     }
 

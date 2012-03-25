@@ -66,10 +66,10 @@ class Question extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'id_lesson' => Yii::t('zii', 'Lesson'),
-            'id_account' => Yii::t('zii', 'Account'),
-            'content' => Yii::t('zii', 'Content'),
-            'username' => Yii::t('zii', 'Username'),
+            'id_lesson' => Yii::t('flexiblearn', 'Lesson'),
+            'id_account' => Yii::t('flexiblearn', 'Account'),
+            'content' => Yii::t('flexiblearn', 'Content'),
+            'username' => Yii::t('flexiblearn', 'Username'),
         );
     }
 

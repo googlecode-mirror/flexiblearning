@@ -141,7 +141,25 @@ return array(
     'The email is sent. Thank you for contacting us. We will respond to you as soon as possible.' => 'The email is sent. Thank you for contacting us. We will respond to you as soon as possible.',
     'Update Lecture' => 'Update Lecture',
     'English' => 'English',
-    'French' => 'French',
-    'korean' => 'Korean'
+    'Vietnamese' => 'Vietnamese',
+    'korean' => 'Korean',
+    'Content' => 'Content',
+    'Active' => 'Active',
+    'Banner Link' => 'Banner Link',
+    'Partner' => 'Partner',
+    'Verification Code' => 'Verification Code',
+    'Gender' => 'Gender',
+    'Phone' => 'Phone',
+    'Image' => 'Image',
+    'Title' => 'Title',
+    'Price' => 'Price',
+    'Approve' => 'Approve',
+    'Remember me next time' => 'Remember me next time',
+    '(No Subject)' => '(No Subject)',
+    'Logo Path' => 'Logo Path',
+    'Contact Link' => 'Contact Link',
+    'State' => 'State',
+    'Ranking' => 'Ranking',
+    'Video file' => 'Video file'
 );
 ?>
