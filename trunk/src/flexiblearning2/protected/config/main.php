@@ -75,7 +75,7 @@ return array(
         ),
         'ELangHandler' => array(
             'class' => 'application.extensions.langhandler.ELangHandler',
-            'languages' => array('en', 'ko', 'fr'),
+            'languages' => array('en', 'ko', 'vi'),
         ),
         'mail' => array(
             'class' => 'application.extensions.yii-mail.YiiMail',
@@ -109,6 +109,7 @@ return array(
         'lessonThumbnails' => 'resources/lessons',
         'entryThumbnails' => 'resources/entries',
         'documentResource' => 'resources/documents',
+        'avatarResource' => 'resources/avatars',
         'video' => 'resources/videos',
         'partner' => 'resources/partners',
         'banner' => 'resources/banners',
@@ -154,6 +155,7 @@ return array(
         'nLecturePerPage' => 20,
         'nLessonPerPage' => 20,
         'nDocumentPerPage' => 20,
+        'nEntryPerPage' => 30,
         'documentExtensions' => 'xls, xlsx, doc, docx, ppt, pptx, pdf, txt, html, htm, xhtml',
         'documentMaxSize' => 10 * (1024 * 1024), // 10 MB
         // contact information
@@ -161,5 +163,6 @@ return array(
         'contactSubject' => 'There is a contact on your site',
         'passwordLength' => 6,
         'adminName' => 'Flexiblearning Admin',
+        'entryTeaserLength' => 100,
     ),
 );

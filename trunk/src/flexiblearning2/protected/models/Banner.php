@@ -42,7 +42,7 @@ class Banner extends Base {
             array('fileAd', 'file', 'allowEmpty' => false,
                 'types' => Yii::app()->params['imageExtionsions'],
                 'maxSize' => Yii::app()->params['imageMaxSize'],
-                'on' => 'create'
+                'on' => 'insert'
             ),
             array('fileAd', 'file', 'allowEmpty' => true,
                 'types' => Yii::app()->params['imageExtionsions'],
@@ -50,12 +50,12 @@ class Banner extends Base {
                 'on' => 'update'
             ),
             array('banner_link', 'url'),
-            array('banner_link, id_partner, ad_path', 'required'),
+            array('banner_link, id_partner', 'required'),
             array('id_partner, is_active', 'numerical', 'integerOnly' => true),
             array('banner_link, ad_path', 'length', 'max' => 256),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id_partner, is_active', 'safe', 'on' => 'search'),
+            array('banner_link, id_partner, is_active', 'safe', 'on' => 'search'),
         );
     }
 
@@ -93,6 +93,7 @@ class Banner extends Base {
 
         $criteria = new CDbCriteria;
 
+        $criteria->compare('banner_link', '%' . $this->banner_link . '%', true, 'AND', false);
         $criteria->compare('id_partner', $this->id_partner);
         $criteria->compare('is_active', $this->is_active);
 

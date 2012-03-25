@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Partners') => array('admin'),
-    Yii::t('zii', 'Create'),
+    Yii::t('flexiblearn', 'Partners') => array('admin'),
+    Yii::t('flexiblearn', 'Create'),
 );
 
 $this->menu = array(
@@ -9,6 +9,6 @@ $this->menu = array(
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Create Partner') ?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Create Partner') ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model' => $model)); ?>

@@ -1,16 +1,16 @@
 <?php
 $this->breadcrumbs = array(
     $model->ownerBy->username => $model->ownerBy->href,
-    Yii::t('zii', 'Blogs') => $model->ownerBy->href . '#blog-tab',
-    Yii::t('zii', 'Manage'),
+    Yii::t('flexiblearn', 'Blogs') => $model->ownerBy->href . '#blog-tab',
+    Yii::t('flexiblearn', 'Manage'),
 );
 
 $this->menu = array(
-    array('label' => Yii::t('zii', 'Create Entry'), 'url' => array('create')),
+    array('label' => Yii::t('flexiblearn', 'Create Entry'), 'url' => array('create')),
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Manage Entries') ?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Manage Entries') ?></h1>
 
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(

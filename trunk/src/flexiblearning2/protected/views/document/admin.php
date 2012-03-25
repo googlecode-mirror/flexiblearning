@@ -1,14 +1,14 @@
 <?php
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Documents') => array('admin'),
+    Yii::t('flexiblearn', 'Documents') => array('admin'),
 );
 
 $this->menu = array(
-    array('label' => Yii::t('zii', 'Create Document'), 'url' => array('create')),
+    array('label' => Yii::t('flexiblearn', 'Create Document'), 'url' => array('create')),
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Manage Documents') ?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Manage Documents') ?></h1>
 
 <?php
 $data = Lesson::model()->findAll();

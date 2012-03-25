@@ -1,11 +1,11 @@
 <?php
 $this->breadcrumbs = array(
     $this->viewer->username => $this->viewer->href,
-    Yii::t('zii', 'Messages'),
+    Yii::t('flexiblearn', 'Messages'),
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Messages') ?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Messages') ?></h1>
 
 <div class="block-area">
     <table class="table-message">
@@ -20,7 +20,7 @@ $this->breadcrumbs = array(
         <tr>
             <td colspan="4">
                 <form action="<?php echo $this->createUrl('message/create')?>" class="block-area">
-                    <input type="submit" name="" value="<?php echo Yii::t('zii', 'New Message')?>" class="bt" />
+                    <input type="submit" name="" value="<?php echo Yii::t('flexiblearn', 'New Message')?>" class="bt" />
                 </form>
             </td>
         </tr>
@@ -29,9 +29,9 @@ $this->breadcrumbs = array(
             <td width="70" align="center" style=" height:30px">
                 <input type="checkbox" name="checkbox" value="checkbox" id="checkbox-select-all"/>
             </td>
-            <td width="100"><?php echo Yii::t('zii', 'From')?></td>
-            <td width="500"><?php echo Yii::t('zii', 'Subject')?></td>
-            <td width="100"><?php echo Yii::t('zii', 'Created Date')?></td>
+            <td width="100"><?php echo Yii::t('flexiblearn', 'From')?></td>
+            <td width="500"><?php echo Yii::t('flexiblearn', 'Subject')?></td>
+            <td width="100"><?php echo Yii::t('flexiblearn', 'Created Date')?></td>
             <td></td>
         </tr>
 
@@ -66,14 +66,14 @@ $this->breadcrumbs = array(
                         </td>
                         <td align="center">
                             <a href="<?php echo $this->createUrl('message/delete', array('id' => $message->getPrimaryKey()))?>">
-                                <?php echo Yii::t('zii', 'Delete')?>
+                                <?php echo Yii::t('flexiblearn', 'Delete')?>
                             </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
                 <tr>
                     <td colspan="2" class="pad-top-bot">
-                        <input type="submit" name="delete" value="<?php echo Yii::t('zii', 'Delete')?>"  class="bt-no-img" />
+                        <input type="submit" name="delete" value="<?php echo Yii::t('flexiblearn', 'Delete')?>"  class="bt-no-img" />
                     </td>
                     <td colspan="2"></td>
                 </tr>

@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
     $model->ownerBy->username => $model->ownerBy->href,
-    Yii::t('zii', 'Blogs') => $model->ownerBy->href .  '#blog-tab',
-    Yii::t('zii', 'Create'),
+    Yii::t('flexiblearn', 'Blogs') => $model->ownerBy->href .  '#blog-tab',
+    Yii::t('flexiblearn', 'Create'),
 );
 
 $this->menu=array(
-	array('label' => Yii::t('zii', 'Manage Entries'), 'url'=>array('manage')),
+	array('label' => Yii::t('flexiblearn', 'Manage Entries'), 'url'=>array('manage')),
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Create Entry')?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Create Entry')?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

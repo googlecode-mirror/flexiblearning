@@ -44,7 +44,7 @@ class VideoController extends Controller {
         $lesson = $video->lesson;
         
         if ($lesson->is_active == 0) {
-            if($lesson->owner_by != Yii::app()->user->getId() && 
+            if( !Yii::app()->user->checkAccess('adminOwnLesson', array('lesson' => $lesson))&& 
                 !Yii::app()->user->checkAccess('adminLesson')) {
                 throw new CHttpException(403,Yii::t('yii','You are not authorized to perform this action.'));
             }

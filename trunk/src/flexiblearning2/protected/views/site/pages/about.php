@@ -1,7 +1,7 @@
 <?php
-$this->pageTitle = Yii::app()->name . ' - About us';
+$this->pageTitle = Yii::app()->name . ' - About Us';
 $this->breadcrumbs = array(
-    Yii::t('zii', 'About us'),
+    Yii::t('flexiblearn', 'About Us'),
 );
 ?>
 <div id="slide">

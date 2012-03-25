@@ -18,7 +18,7 @@
     ?>
 
     <div class="row">
-        <?php echo CHtml::label(Yii::t('zii', 'Language'), ''); ?>
+        <?php echo CHtml::label(Yii::t('flexiblearn', 'Language'), ''); ?>
         <?php
             echo $form->dropDownList(
                 $model, 
@@ -190,7 +190,7 @@
         <div>
             <?php 
                 echo CHtml::submitButton(
-                    isset($model->id) ? Yii::t('zii', 'Save') : Yii::t('zii', 'Create'), 
+                    isset($model->id) ? Yii::t('flexiblearn', 'Save') : Yii::t('flexiblearn', 'Create'), 
                     array('class' => 'bt')); 
             ?>
         </div>

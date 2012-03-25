@@ -45,7 +45,7 @@
     <div class="row buttons">
         <label>&nbsp;</label>
         <div>
-            <?php echo CHtml::submitButton(Yii::t('zii', 'Send'), array('class' => 'bt')); ?>
+            <?php echo CHtml::submitButton(Yii::t('flexiblearn', 'Send'), array('class' => 'bt')); ?>
         </div>
     </div>
 <?php $this->endWidget(); ?>

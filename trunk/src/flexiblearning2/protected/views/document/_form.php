@@ -10,8 +10,8 @@
 ?>
 
     <p class="note">
-        <?php echo Yii::t('zii', 'Fields with')?>        
-        <span class="required">*</span> <?php echo Yii::t('zii', 'are required')?>.
+        <?php echo Yii::t('flexiblearn', 'Fields with')?>        
+        <span class="required">*</span> <?php echo Yii::t('flexiblearn', 'are required')?>.
     </p>    
 
     <?php echo $form->errorSummary($model); ?>

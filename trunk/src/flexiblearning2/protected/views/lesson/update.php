@@ -4,19 +4,19 @@ $category = $lecture->category;
 $language = $category->language;
 
 $this->breadcrumbs=array(
-    Yii::t('zii', $language->name) => $language->href,
+    Yii::t('flexiblearn', $language->name) => $language->href,
     $category->name => $category->href,
-    Yii::t('zii', 'Lecture : ') . $lecture->title => $lecture->href,
+    Yii::t('flexiblearn', 'Lecture : ') . $lecture->title => $lecture->href,
     $model->title => $model->href,
-    Yii::t('zii', 'Update lesson'),
+    Yii::t('flexiblearn', 'Update Lesson'),
 );
 
 $this->menu = array(
-    array('label' => Yii::t('zii', 'View Lesson'), 'url' => array('view', 'id' => $model->id)),
-    array('label' => Yii::t('zii', 'Manage Lesson'), 'url' => array('admin')),
+    array('label' => Yii::t('flexiblearn', 'View Lesson'), 'url' => array('view', 'id' => $model->id)),
+    array('label' => Yii::t('flexiblearn', 'Manage Lesson'), 'url' => array('admin')),
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Update Lesson')?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Update Lesson')?></h1>
 
 <?php echo $this->renderPartial('_form', array('model' => $model)); ?>

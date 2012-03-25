@@ -91,7 +91,7 @@ class DocumentController extends Controller {
                 $model->delete();
                 // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
                 if (isset($_GET['format']) && $_GET['format'] == 'json') {
-                    $data = array('result' => 1, 'message' => Yii::t('zii', 'The document is deleted successfully'));
+                    $data = array('result' => 1, 'message' => Yii::t('flexiblearn', 'The document is deleted successfully'));
                     echo CJSON::encode($data);
                     return;
                 } elseif (!isset($_GET['ajax'])) {

@@ -6,11 +6,11 @@ $category = $lecture->category;
 $language = $category->language;
 
 $this->breadcrumbs = array(
-    Yii::t('zii', $language->name) => $language->href,
+    Yii::t('flexiblearn', $language->name) => $language->href,
     $category->name => $category->href,
-    Yii::t('zii', 'Lecture : ') . $lecture->title => $lecture->href,
-    Yii::t('zii', 'Lesson : ') . $lesson->title => $lesson->href,
-    Yii::t('zii', 'Video : ') . $model->name,
+    Yii::t('flexiblearn', 'Lecture : ') . $lecture->title => $lecture->href,
+    Yii::t('flexiblearn', 'Lesson : ') . $lesson->title => $lesson->href,
+    Yii::t('flexiblearn', 'Video : ') . $model->name,
 );
 ?>
 
@@ -24,7 +24,7 @@ $this->breadcrumbs = array(
                 <?php if (Yii::app()->user->checkAccess('adminOwnLesson') || Yii::app()->user->checkAccess('adminLesson')) : ?>
                     <a class="edit-link icon-control-link" 
                        href="<?php echo $this->createUrl('video/update', array('id' => $model->getPrimaryKey())) ?>">
-                           <?php echo Yii::t('zii', 'Update video') ?>
+                           <?php echo Yii::t('flexiblearn', 'Update video') ?>
                     </a>
                 <?php endif; ?>
             </div>
@@ -35,7 +35,7 @@ $this->breadcrumbs = array(
             
             <?php if (!$model->is_active) : ?>
                 <div class="errorMessage block-area">
-                    <?php echo Yii::t('zii', 'This video is not active')?>
+                    <?php echo Yii::t('flexiblearn', 'This video is not active')?>
                 </div>
             <?php endif; ?>
             

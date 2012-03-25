@@ -6,9 +6,9 @@
 )); ?>
 
     <p class="note">
-        <?php echo Yii::t('zii', 'Fields with')?>
+        <?php echo Yii::t('flexiblearn', 'Fields with')?>
         &nbsp;
-        <span class="required">*</span> <?php echo Yii::t('zii', 'are required')?>.
+        <span class="required">*</span> <?php echo Yii::t('flexiblearn', 'are required')?>.
     </p>
 
     <?php echo $form->errorSummary($model); ?>
@@ -110,7 +110,7 @@
         <label>&nbsp;</label>
         <div>
             <?php echo CHtml::submitButton($model->isNewRecord ? 
-                    Yii::t('zii', 'Create') : Yii::t('zii', 'Save'), array('class' => 'bt')); ?>
+                    Yii::t('flexiblearn', 'Create') : Yii::t('flexiblearn', 'Save'), array('class' => 'bt')); ?>
         </div>
     </div>
 

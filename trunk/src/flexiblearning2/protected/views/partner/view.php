@@ -1,18 +1,18 @@
 <?php
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Partners') => array('admin'),
+    Yii::t('flexiblearn', 'Partners') => array('admin'),
     $model->name,
 );
 
 $this->menu = array(
-    array('label' => Yii::t('zii', 'Create Partner'), 'url' => array('create')),
-    array('label' => Yii::t('zii', 'Update Partner'), 'url' => array('update', 'id' => $model->id)),
-    array('label' => Yii::t('zii', 'Delete Partner'), 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this item?')),
-    array('label' => Yii::t('zii', 'Manage Partner'), 'url' => array('admin')),
+    array('label' => Yii::t('flexiblearn', 'Create Partner'), 'url' => array('create')),
+    array('label' => Yii::t('flexiblearn', 'Update Partner'), 'url' => array('update', 'id' => $model->id)),
+    array('label' => Yii::t('flexiblearn', 'Delete Partner'), 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this item?')),
+    array('label' => Yii::t('flexiblearn', 'Manage Partner'), 'url' => array('admin')),
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'View Partner')?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'View Partner')?></h1>
 
 <div class="block-area">
     <?php
@@ -24,12 +24,12 @@ $this->menu = array(
                 'email',
                 'tel',
                 array (
-                    'label' => Yii::t('zii', 'Logo'),
+                    'label' => Yii::t('flexiblearn', 'Logo'),
                     'type' => 'image',
                     'value' => Yii::app()->request->baseUrl . '/' . $model->logo_path
                 ),
                 array (
-                    'label' => Yii::t('zii', 'Link'),
+                    'label' => Yii::t('flexiblearn', 'Link'),
                     'type'=>'raw',
                     'value'=>CHtml::link($model->contact_link,$model->contact_link),
                 )

@@ -939,3 +939,7 @@ tr.message-unread {
 #thongbao {
     height: 100%;
 }
+
+td.cell-avatar {
+    vertical-align: top;
+}

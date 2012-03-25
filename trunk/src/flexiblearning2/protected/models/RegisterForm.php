@@ -38,6 +38,7 @@ class RegisterForm extends CFormModel {
             array('dateOfBirth', 'date', 'format'=>Yii::app()->params['dateFormat']),
             array('password_repeat', 'safe'),
             array('verifiedCode', 'captcha', 'allowEmpty' => !CCaptcha::checkRequirements()),
+            array('username', 'match', 'pattern' => '/^[a-z0-9\d_]{3,20}$/i'),
         );
     }
     
@@ -57,6 +58,12 @@ class RegisterForm extends CFormModel {
             'favorite' => Yii::t('zii', 'Favorite'),
             'id_profession' => Yii::t('zii', 'Profession'),
         );
+    }
+    
+    protected function afterValidate(){
+        parent::afterValidate();
+        $this->password = '';
+        $this->password_repeat = '';
     }
 }
 

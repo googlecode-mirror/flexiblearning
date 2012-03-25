@@ -37,8 +37,8 @@ $form = $this->beginWidget('CActiveForm', array(
                     </td>
                 </tr>
                 <tr>
-                    <td><strong><?php echo Yii::t('zii', 'Personal Information')?></strong></td>
-                    <td><strong><?php echo Yii::t('zii', 'Account Information')?></strong> </td>
+                    <td><strong><?php echo Yii::t('flexiblearn', 'Personal Information')?></strong></td>
+                    <td><strong><?php echo Yii::t('flexiblearn', 'Account Information')?></strong> </td>
                 </tr>
                 <tr>
                     <td>

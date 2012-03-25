@@ -43,8 +43,8 @@ class MessageController extends Controller {
      */
     public function actionView($id) {
         $model = $this->loadModel($id);
-        if ($model->id_user != Yii::app()->user->getId()) {
-            echo Yii::t('zii', 'The message you required is not existed !');
+        if (!Yii::app()->user->getId() == $model->id_from && !Yii::app()->user->getId() == $model->id_user) {        
+            throw new CHttpException(403,Yii::t('yii','You are not authorized to perform this action.'));
         } else {
             $model->is_read = 1;
             $model->save();
@@ -77,7 +77,7 @@ class MessageController extends Controller {
                     $model->save();
                 }
             }
-            Yii::app()->user->setFlash('message', Yii::t('zii', 'Your message is sent successfully !!!'));
+            Yii::app()->user->setFlash('message', Yii::t('flexiblearn', 'Your message is sent successfully !!!'));
             $this->redirect(array('manage'));
         }
 
@@ -116,7 +116,7 @@ class MessageController extends Controller {
                     $message->delete();
                 }                
                 $transaction->commit();
-                Yii::app()->user->setFlash('message', Yii::t('zii', 'The messages are deleted successfully.'));
+                Yii::app()->user->setFlash('message', Yii::t('flexiblearn', 'The messages are deleted successfully.'));
             } catch (Exception $e) {
                 $transaction->rollBack();
             }

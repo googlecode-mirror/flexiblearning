@@ -1,7 +1,7 @@
 <?php
 $this->pageTitle = Yii::app()->name . ' - Contact Us';
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Contact us'),
+    Yii::t('flexiblearn', 'Contact Us'),
 );
 ?>
 
@@ -65,8 +65,8 @@ $form = $this->beginWidget('CActiveForm', array(
                             <?php
                             $selected = 'Male';
                             $gender = array(
-                                array('id' => 1, 'name' => Yii::t('zii', 'Male')),
-                                array('id' => 2, 'name' => Yii::t('zii', 'Female'))
+                                array('id' => 1, 'name' => Yii::t('flexiblearn', 'Male')),
+                                array('id' => 2, 'name' => Yii::t('flexiblearn', 'Female'))
                             );
                             $list = CHtml::listData($gender, 'id', 'name');
                             echo CHtml::activeDropDownList($model, 'gender', $list);
@@ -121,7 +121,7 @@ $form = $this->beginWidget('CActiveForm', array(
                     </tr>
                     <tr>
                         <td>
-                            <?php echo CHtml::submitButton(Yii::t('zii', 'SEND'), array('class' => 'bt-no-img')); ?>
+                            <?php echo CHtml::submitButton(Yii::t('flexiblearn', 'SEND'), array('class' => 'bt-no-img')); ?>
                         </td>
                         <td>&nbsp;</td>
                     </tr>

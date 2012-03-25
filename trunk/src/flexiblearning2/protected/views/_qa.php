@@ -12,10 +12,10 @@
 <div class="top" style="width:281px;">
     <ul id="tab2" class="tab2">
         <li class="active">
-            <a href="#hoidap"><?php echo Yii::t('zii', 'QA') ?></a>
+            <a href="#hoidap"><?php echo Yii::t('flexiblearn', 'QA') ?></a>
         </li>
         <li> 
-            <a href="#cuatoi"><?php echo Yii::t('zii', 'My Questions') ?></a>
+            <a href="#cuatoi"><?php echo Yii::t('flexiblearn', 'My Questions') ?></a>
         </li>
     </ul>
     <div id="tab2-box">
@@ -37,7 +37,7 @@
                             ));
                         ?>                
                         <div class="btn-area block">
-                            <?php echo CHtml::submitButton(Yii::t('zii', 'Post question'), array('class' => 'bt-cauhoi')); ?>
+                            <?php echo CHtml::submitButton(Yii::t('flexiblearn', 'Post Question'), array('class' => 'bt-cauhoi')); ?>
                         </div>
                     <?php $this->endWidget(); ?>
                 <?php endif; ?>

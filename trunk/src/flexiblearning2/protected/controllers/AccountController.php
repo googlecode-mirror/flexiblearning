@@ -94,8 +94,8 @@ class AccountController extends Controller {
             if ($role == 'admin' || $role == 'teacher') {
                 $criteria = new CDbCriteria();
                 $criteria->order = 'created_date DESC';
-                $criteria->addCondition(array('owner_by' => $model->getPrimaryKey()));
-
+                $criteria->condition = 'owner_by = :owner_by';
+                $criteria->params = array(':owner_by' => $model->getPrimaryKey());
                 $count = Entry::model()->count($criteria);
                 $pages = new CPagination($count);
 
@@ -103,20 +103,32 @@ class AccountController extends Controller {
                 $pages->pageSize = Yii::app()->params['entriesPerPage'];
                 $pages->applyLimit($criteria);
                 $entries = Entry::model()->findAll($criteria);
-
-                $this->render('view_teacher', array(
+                
+                $dataRender = array(
                     'model' => $model,
                     'entries' => $entries,
                     'pages' => $pages,
-                ));
+                );
+                if ($this->getRoute() == 'account/update') {
+                    $dataRender['mode'] = 'edit';
+                }                
+                $this->render('view_teacher', $dataRender);
             } elseif ($role == 'student') {
-                $this->render('view_student', array(
-                    'model' => $model,
-                ));
+                $dataRender = array(
+                    'model' => $model,                    
+                );
+                if ($this->getRoute() == 'account/update') {
+                    $dataRender['mode'] = 'edit';
+                }
+                $this->render('view_student', $dataRender);
             } else {
-                $this->render('view_user', array(
-                    'model' => $model,
-                ));
+                $dataRender = array(
+                    'model' => $model,                    
+                );
+                if ($this->getRoute() == 'account/update') {
+                    $dataRender['mode'] = 'edit';
+                }
+                $this->render('view_user', $dataRender);
             }
         }
     }
@@ -151,11 +163,18 @@ class AccountController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-        if (isset($_POST['Account'])) {
-            $model->attributes = $_POST['Account'];
-            if ($model->save()) {
-                Yii::app()->user->setFlash('message', Yii::t('zii', 'User information is updated successfully'));
-                $this->redirect(array('view', 'id' => $model->id));
+        if (isset($_POST['Account']) && !isset($_POST['updateRole'])) {
+            $model->attributes = $_POST['Account']; 
+            if ($model->validate()) {
+                $fileName = $this->getAndSaveUploadedFile($model);
+                if ($fileName) {
+                    @unlink($model->avatar);
+                    $model->avatar = $fileName;
+                }
+                if ($model->save(false)) {
+                    Yii::app()->user->setFlash('message', Yii::t('flexiblearn', 'User information is updated successfully'));
+                    $this->redirect(array('view', 'id' => $model->id));
+                }
             }
         } else {
             if (isset($_POST['updateRole']) &&  $_POST['updateRole'] == 'Update') {
@@ -171,7 +190,7 @@ class AccountController extends Controller {
                         if ($newRole != 'user') {
                             $authMgr->assign($newRole, $id);
                         }
-                        Yii::app()->user->setFlash('message', Yii::t('zii', 'User\'s role has been updated successfully'));
+                        Yii::app()->user->setFlash('message', Yii::t('flexiblearn', 'User\'s role has been updated successfully'));
                         $this->redirect(array('view', 'id' => $model->id));
                     }
                 }
@@ -235,7 +254,8 @@ class AccountController extends Controller {
                 $account->attributes = $_POST['RegisterForm'];
 
                 if ($account->save()) {
-                    Yii::app()->user->setFlash('register', 'Thank you for your registration. Please log in to the system with the new one account.');
+                    Yii::app()->user->setFlash('register', 
+                        Yii::t('flexiblearn', 'Thank you for your registration. Please log in to the system with the new one account.'));
                     $this->refresh();
                 }
                 $arrModels['account'] = $account;
@@ -258,7 +278,7 @@ class AccountController extends Controller {
             if ($lesson && $account) {
                 if ($lesson->price > $account->asset) {
                     $result['status'] = 0;
-                    $result['reason'] = Yii::t('zii', 'You do not have enough money to buy this lesson. Please add some money to it !');
+                    $result['reason'] = Yii::t('flexiblearn', 'You do not have enough money to buy this lesson. Please add some money to it !');
                 } else {
                     $account->asset = $account->asset - $lesson->price;
                     $idBoughtLessons = array();
@@ -294,8 +314,22 @@ class AccountController extends Controller {
      */
     public function loadModel($id) {
         $model = Account::model()->findByPk($id);
-        if ($model === null)
+        if ($model === null) {
             throw new CHttpException(404, 'The requested page does not exist.');
+        }
         return $model;
+    }
+    
+    private function getAndSaveUploadedFile($model) {
+        $file = CUploadedFile::getInstance($model, 'fileAvatar');
+        $fileName = null;
+        if ($file) {
+            $fileName = Yii::app()->params['avatarResource'] . '/' . $file->getName();
+            if (file_exists($fileName)) {
+                $fileName = Yii::app()->params['avatarResource'] . '/' . time() . '_' . $file->getName();
+            }
+            $file->saveAs($fileName, true);
+        }
+        return $fileName;
     }
 }

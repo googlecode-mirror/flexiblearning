@@ -4,7 +4,7 @@
             <a href="<?php echo Yii::app()->request->baseUrl . '/' . $document->document_path?>"><?php echo $document->subject?></a>
             <?php 
                 echo CHtml::link(
-                    Yii::t('zii', '(View description)'), 
+                    Yii::t('flexiblearn', '(View description)'), 
                     '', 
                     array('onclick' => "jQuery('#document-description-{$document->getPrimaryKey()}').toggle()"));
             ?>
@@ -12,7 +12,7 @@
                 || Yii::app()->user->checkAccess('adminOwnLesson', array('lesson' => $lesson))) : ?>                
                 <?php 
                     echo CHtml::link(
-                            Yii::t('zii', '(Delete)'), 
+                            Yii::t('flexiblearn', '(Delete)'), 
                             '', 
                             array('onclick' => "deleteDocument({$document->getPrimaryKey()}, this)"))
                 ?>
@@ -37,7 +37,7 @@
             $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
                 'id' => 'dlgDocument',
                 'options' => array(
-                    'title' => Yii::t('zii', 'Create new attachment'),
+                    'title' => Yii::t('flexiblearn', 'Create new attachment'),
                     'autoOpen' => false,
                     'modal' => true,         
                     'width' => 410,
@@ -57,7 +57,7 @@
 
 <script language="javascript" type="text/javascript">
     function deleteDocument(documentId, element) {
-        if(confirm('<?php echo Yii::t('zii', 'Are you sure you want to delete this document ?')?>')) {
+        if(confirm('<?php echo Yii::t('flexiblearn', 'Are you sure you want to delete this document ?')?>')) {
             jQuery.post(
                 '<?php echo $this->createUrl('document/delete', array('format' => 'json'))?>', 
                 {id:documentId}, 

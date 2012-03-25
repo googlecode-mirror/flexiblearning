@@ -2,7 +2,7 @@
 $language = $model->language;
 
 $this->breadcrumbs = array(
-    Yii::t('zii', $language->name) => $language->href,
+    Yii::t('flexiblearn', $language->name) => $language->href,
     $model->name,
 );
 ?>
@@ -18,7 +18,7 @@ $this->breadcrumbs = array(
                 <?php 
                 if (Yii::app()->user->checkAccess('adminCategory')) {
                     echo CHtml::link(
-                            Yii::t('zii', 'Update category'), 
+                            Yii::t('flexiblearn', 'Update category'), 
                             $this->createUrl('category/update', array('id' => $model->getPrimaryKey())), 
                             array('class' => 'edit-link icon-control-link'));
                 } 
@@ -45,7 +45,7 @@ $this->breadcrumbs = array(
                             <div class="price">
                                 <?php
 //                                    if ($lesson->price == 0) {
-//                                        echo Yii::t('zii', 'Free');
+//                                        echo Yii::t('flexiblearn', 'Free');
 //                                    } else {
 //                                        echo $lesson->price . ' ' . Yii::app()->params['moneyUnit'];
 //                                    }
@@ -54,7 +54,7 @@ $this->breadcrumbs = array(
                         </div>-->
                         <a href="<?php echo $lecture->getHref()?>"><?php echo $lecture->title?></a>
                         <br />
-                        <?php echo Yii::t('zii', 'Teacher') ?> : 
+                        <?php echo Yii::t('flexiblearn', 'Teacher') ?> : 
                         <span id="colo">
                             <a href="<?php echo $lecture->ownerBy->href ?>"><?php echo $lecture->ownerBy->fullname?></a>
                         </span> 	  

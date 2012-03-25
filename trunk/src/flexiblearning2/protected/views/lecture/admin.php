@@ -1,7 +1,7 @@
 <?php
 
 $this->breadcrumbs=array(
-    Yii::t('zii', 'Manage lectures') => array('lecture/admin'),
+    Yii::t('flexiblearn', 'Manage lectures') => array('lecture/admin'),
 );
 
 $this->menu = array(
@@ -9,9 +9,9 @@ $this->menu = array(
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Managage Lectures')?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Manage lectures')?></h1>
 <br />
-<?php echo CHtml::label('Language', ''); ?>
+<?php echo CHtml::label(Yii::t('flexiblearn', 'Language'), ''); ?>
 &nbsp;
 <?php
     $arrData = array($this->createUrl('lecture/admin') => '');
@@ -64,7 +64,7 @@ $this->menu = array(
             ),
             array(
                 'name' => 'owner_by',
-                'header' => Yii::t('zii', 'Owner by'),
+                'header' => Yii::t('flexiblearn', 'Owner by'),
                 'value' => '$data->ownerBy->username',
                 'filter' => false
             ),

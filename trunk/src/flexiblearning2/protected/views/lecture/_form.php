@@ -123,7 +123,7 @@
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($model,'fileIntro'); ?>
+        <?php echo $form->labelEx($model,'path_video_intro'); ?>
         <div>
             <?php 
 //                echo CHtml::activeFileField($model, 'fileIntro')
@@ -174,7 +174,7 @@
 
     <div class="row buttons">
          <?php echo CHtml::submitButton($model->isNewRecord ? 
-             Yii::t('zii', 'Create') : Yii::t('zii', 'Saves'), 
+             Yii::t('flexiblearn', 'Create') : Yii::t('flexiblearn', 'Save'), 
              array('class' => 'bt')); ?>    
     </div>
 

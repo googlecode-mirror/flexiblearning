@@ -25,17 +25,17 @@
                                 $this->widget('zii.widgets.CMenu', array(
                                     'items' => array(
                                         array(
-                                            'label' => Yii::t('zii', 'Home'), 
+                                            'label' => Yii::t('flexiblearn', 'Home'), 
                                             'url' => array('/site/index'),
                                             'itemOptions' => array('class' => 'home-link top-navigation-link')
                                         ),
                                         array(
-                                            'label' => Yii::t('zii', 'About'), 
+                                            'label' => Yii::t('flexiblearn', 'About'), 
                                             'url' => array('/site/page', 'view' => 'about'),
                                             'itemOptions' => array('class' => 'about-link top-navigation-link')
                                         ),
                                         array(
-                                            'label' => Yii::t('zii', 'Contact'), 
+                                            'label' => Yii::t('flexiblearn', 'Contact'), 
                                             'url' => array('/site/contact'),
                                             'itemOptions' => array('class' => 'contact-link top-navigation-link'),
                                         ),
@@ -51,34 +51,34 @@
                         <?php if (Yii::app()->user->isGuest) : ?>
                             <div id="login">
                                 <div class="link">
-                                    <a href="<?php echo $this->createUrl('account/register') ?>"><?php echo Yii::t('zii', 'Register');?></a>
+                                    <a href="<?php echo $this->createUrl('account/register') ?>"><?php echo Yii::t('flexiblearn', 'Register');?></a>
                                 </div>
                                 <div class="link"> 
-                                    <a href="<?php echo $this->createUrl('site/login') ?>"><?php echo Yii::t('zii', 'Login');?></a>
+                                    <a href="<?php echo $this->createUrl('site/login') ?>"><?php echo Yii::t('flexiblearn', 'Login');?></a>
                                 </div>
                             </div>
                         <?php else : ?>
                             <div id="logout">
                                 <div class="hi-username">    
-                                    <?php echo Yii::t('zii', 'Hi');?>&nbsp;
+                                    <?php echo Yii::t('flexiblearn', 'Hi');?>&nbsp;
                                     <?php echo CHtml::link(Yii::app()->user->name, $this->createUrl('account/view', array('id' => Yii::app()->user->getId())))?>
                                     <?php if (isset($this->unreadReceivedMessagesCount)) : ?>
                                         <span id="message">
                                             <a href="<?php echo $this->createUrl('message/manage')?>">
                                                 <?php 
-                                                    echo Yii::t('zii', '({n} message)|({n} messages)', $this->unreadReceivedMessagesCount)
+                                                    echo Yii::t('flexiblearn', '({n} message)|({n} messages)', $this->unreadReceivedMessagesCount)
                                                 ?>
                                             </a>
                                         </span>
                                     <?php endif; ?>
                                 </div>
                                 <span class="link"> 
-                                    <a href="<?php echo $this->createUrl('site/logout') ?>"><?php echo Yii::t('zii', 'Logout');?></a>
+                                    <a href="<?php echo $this->createUrl('site/logout') ?>"><?php echo Yii::t('flexiblearn', 'Logout');?></a>
                                 </span>
                             </div>
                         <?php endif; ?>
                         
-                        <div id="search"> <?php echo Yii::t('zii', 'Search');?>|
+                        <div id="search"> <?php echo Yii::t('flexiblearn', 'Search');?>|
                             <input name="" type="text" style="border: none; width:170px;"  />
                             <input name="" type="button" value="" class="bt-search"  />
                         </div>
@@ -89,20 +89,21 @@
                     <?php
                         $role = $this->viewer->role;
                         $menuItems = array();
-                        $menuItems['0'] = array('label' => Yii::t('zii', 'Home'), 'url' => array('/site/admin'));
+                        $menuItems['0'] = array('label' => Yii::t('flexiblearn', 'Home'), 'url' => array('/site/admin'));
                         if ($role == Account::$ROLE_ADMIN) {
-                            $menuItems['1'] = array('label' => Yii::t('zii', 'Language'), 'url' => array('/language/admin'));
-                            $menuItems['2'] = array('label' => Yii::t('zii', 'Category'), 'url' => array('/category/admin'));
+                            $menuItems['1'] = array('label' => Yii::t('flexiblearn', 'Language'), 'url' => array('/language/admin'));
+                            $menuItems['2'] = array('label' => Yii::t('flexiblearn', 'Category'), 'url' => array('/category/admin'));
                         }
-                        $menuItems['3'] = array('label' => Yii::t('zii', 'Lecture'), 'url' => array('/lecture/admin'));
-                        $menuItems['4'] = array('label' => Yii::t('zii', 'Lesson'), 'url' => array('/lesson/admin'));
+                        $menuItems['3'] = array('label' => Yii::t('flexiblearn', 'Lecture'), 'url' => array('/lecture/admin'));
+                        $menuItems['4'] = array('label' => Yii::t('flexiblearn', 'Lesson'), 'url' => array('/lesson/admin'));
                         if ($role == Account::$ROLE_ADMIN) {
-                            $menuItems['5'] = array('label' => Yii::t('zii', 'User'), 'url' => array('/account/admin'));
-                            $menuItems['6'] = array('label' => Yii::t('zii', 'Partner'), 'url' => array('/partner/admin'));
-                            $menuItems['7'] = array('label' => Yii::t('zii', 'Banner'), 'url' => array('/banner/admin'));
-                            $menuItems['8'] = array('label' => Yii::t('zii', 'Document'), 'url' => array('/document/admin'));
+                            $menuItems['5'] = array('label' => Yii::t('flexiblearn', 'User'), 'url' => array('/account/admin'));
+                            $menuItems['6'] = array('label' => Yii::t('flexiblearn', 'Partner'), 'url' => array('/partner/admin'));
+                            $menuItems['7'] = array('label' => Yii::t('flexiblearn', 'Banner'), 'url' => array('/banner/admin'));
+                            $menuItems['8'] = array('label' => Yii::t('flexiblearn', 'Document'), 'url' => array('/document/admin'));
+                            $menuItems['9'] = array('label' => Yii::t('flexiblearn', 'Entry'), 'url' => array('/entry/admin'));
                         }
-                        $menuItems['9'] = array('label' => Yii::t('zii', 'Logout') . ' (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest);
+                        $menuItems['10'] = array('label' => Yii::t('flexiblearn', 'Logout') . ' (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest);
                         
                         if ($this->activeMenuItemIndex != -1) {
                             $menuItems[$this->activeMenuItemIndex]['active'] = true;
@@ -152,19 +153,19 @@
                 <div id="wrap-menu-bottom" >
                     <div id="bottom">&nbsp;&nbsp;
                         <a href="<?php echo $this->createUrl('site/page/view/privacy')?>">
-                            <?php echo Yii::t('zii', 'Privacy Policy')?>
+                            <?php echo Yii::t('flexiblearn', 'Privacy Policy')?>
                         </a>
                         &nbsp;&nbsp;
                         <a href="<?php echo $this->createUrl('site/contact') ?>">
-                            <?php echo Yii::t('zii', 'Contact'); ?>
+                            <?php echo Yii::t('flexiblearn', 'Contact'); ?>
                         </a>
                         &nbsp;&nbsp;
                         <a href="<?php echo $this->createUrl('site/page/view/about') ?>">
-                            <?php echo Yii::t('zii', 'About'); ?>
+                            <?php echo Yii::t('flexiblearn', 'About'); ?>
                         </a>
                     </div>
                     <div id="bottom-l">
-                        <span style="color:#666666"><?php echo Yii::t('zii', 'Follow us') ?></span> &nbsp; 
+                        <span style="color:#666666"><?php echo Yii::t('flexiblearn', 'Follow us') ?></span> &nbsp; 
                         <a href="#">
                             <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/icon-facebook.jpg" width="65" height="23" border="0"  />
                         </a> 
@@ -177,7 +178,7 @@
 
                 <div>
                     <div id="bottom-l2">
-                        &copy; <?php echo Yii::t('zii', 'Copyright 2011 by Flexilearning. All rights reserved.') ?>
+                        &copy; <?php echo Yii::t('flexiblearn', 'Copyright 2011 by Flexilearning. All rights reserved.') ?>
                     </div>
                     <div id="bottom-r">Language  
                         <a href="<?php echo $this->createUrl('')?>">

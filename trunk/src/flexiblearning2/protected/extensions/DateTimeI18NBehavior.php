@@ -22,7 +22,7 @@ class DateTimeI18NBehavior extends CActiveRecordBehavior {
 
         //search for date/datetime columns. Convert it to pure PHP date format
         foreach ($event->sender->tableSchema->columns as $columnName => $column) {
-            if (($column->dbType != 'date') and ($column->dbType != 'datetime'))
+            if (($column->dbType != 'date') && ($column->dbType != 'datetime'))
                 continue;
 
             if (!strlen($event->sender->$columnName)) {
@@ -33,8 +33,8 @@ class DateTimeI18NBehavior extends CActiveRecordBehavior {
             if (($column->dbType == 'date')) {
                 $event->sender->$columnName = 
                     date($this->dateDBFormat, 
-                    CDateTimeParser::parse($event->sender->$columnName, $this->dateTimeIncomeFormat));
-            } else {
+                    CDateTimeParser::parse($event->sender->$columnName, $this->dateIncomeFormat));                
+            } else {                
                 $event->sender->$columnName = 
                     date($this->dateTimeDBFormat, 
                     CDateTimeParser::parse($event->sender->$columnName, $this->dateTimeIncomeFormat));

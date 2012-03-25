@@ -52,7 +52,7 @@ class Video extends Base {
             array('file', 'file', 'allowEmpty' => false,
                 'types' => Yii::app()->params['videoExtensions'],
                 'maxSize' => Yii::app()->params['videoMaxSize'],
-                'on' => 'create'
+                'on' => 'insert'
             ),
             array('file', 'file', 'allowEmpty' => true,
                 'types' => Yii::app()->params['videoExtensions'],

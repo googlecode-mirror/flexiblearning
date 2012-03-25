@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Partners') => array('index'),
+    Yii::t('flexiblearn', 'Partners') => array('index'),
 );
 
 $this->menu = array(
-    array('label' => Yii::t('zii', 'Create Partner'), 'url' => array('create')),
+    array('label' => Yii::t('flexiblearn', 'Create Partner'), 'url' => array('create')),
 );
 
 ?>
 
-<h1><?php echo Yii::t('zii', 'Manage Partners')?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Manage Partners')?></h1>
 
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
@@ -18,24 +18,30 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'filter' => $model,
     'columns' => array(
         'name',
-        'address',
+        array(
+            'name' => 'address',
+            'filter' => false
+        ),
         'email',
-        'tel',
+        array(
+            'name' => 'tel',
+            'filter' => false
+        ),
         array(
             'class'=>'EImageColumn',
             'name' => 'logo_path',
             'htmlOptions' => array(
                 'style' => 'width: 150px;',                
             ),
-            'alt' => Yii::t('zii', 'No logo')
+            'alt' => Yii::t('flexiblearn', 'No logo')
         ),
         array(
-            'header' => Yii::t('zii', 'Link'),
+            'header' => Yii::t('flexiblearn', 'Link'),
             'type' => 'raw',
             'value' => 'CHtml::link("$data->contact_link",$data->contact_link)'
         ),
         array(
-            'class' => 'CButtonColumn',
+            'class' => 'CButtonColumn',            
         ),
     ),
 ));
