@@ -23,7 +23,7 @@
         <?php if (Yii::app()->user->checkAccess('adminLecture') ||
                 Yii::app()->user->checkAccess('adminOwnLecture', array('lecture' => $model))) : ?>
             <?php
-                echo CHtml::link(Yii::t('zii', 'Create new notification'), '', array('onclick' => "{jQuery('#dlgNotification').dialog('open');}"));
+                echo CHtml::link(Yii::t('flexiblearn', 'Create new notification'), '', array('onclick' => "{jQuery('#dlgNotification').dialog('open');}"));
                 $url = $this->createUrl('notificationLecture/create', array('id_lecture' => $model->getPrimaryKey()));
             ?>
         <?php endif; ?>
@@ -31,7 +31,7 @@
         <?php if (Yii::app()->user->checkAccess('adminLesson') ||
                 Yii::app()->user->checkAccess('adminOwnLesson', array('lesson' => $model))) : ?>
             <?php
-                echo CHtml::link(Yii::t('zii', 'Create new notification'), '', array('onclick' => "{jQuery('#dlgNotification').dialog('open');}"));
+                echo CHtml::link(Yii::t('flexiblearn', 'Create new notification'), '', array('onclick' => "{jQuery('#dlgNotification').dialog('open');}"));
                 $url = $this->createUrl('notification/create', array('id_lesson' => $model->getPrimaryKey()));
             ?>      
         <?php endif; ?>
@@ -43,7 +43,7 @@
 $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
     'id' => 'dlgNotification',
     'options' => array(
-        'title' => Yii::t('zii', 'Create notification'),
+        'title' => Yii::t('flexiblearn', 'Create notification'),
         'autoOpen' => false,
         'modal' => true,
         'width' => 510,

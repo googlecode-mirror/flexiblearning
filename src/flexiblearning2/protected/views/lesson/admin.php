@@ -1,13 +1,13 @@
 <?php
 $this->breadcrumbs=array(
-    Yii::t('zii', 'Manage lessons') => array('lesson/admin'),
+    Yii::t('flexiblearn', 'Manage lessons') => array('lesson/admin'),
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Manage Lessons')?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Manage lessons')?></h1>
 <br />
 <div class="form-element">
-    <?php echo CHtml::label(Yii::t('zii', 'Language'), ''); ?>
+    <?php echo CHtml::label(Yii::t('flexiblearn', 'Language'), ''); ?>
     <?php
         $arrDataLanguages = array($this->createUrl('lesson/admin') => '');
         $languages = Language::model()->findAll();
@@ -26,7 +26,7 @@ $this->breadcrumbs=array(
 </div>
 <br />
 <div class="form-element">
-    <?php echo CHtml::label(Yii::t('zii', 'Category'), ''); ?>
+    <?php echo CHtml::label(Yii::t('flexiblearn', 'Category'), ''); ?>
     <?php
         if ($idLanguage) {
             $arrDataCategories = array($this->createUrl('lesson/admin', array('language_id' => $idLanguage)) => '');
@@ -90,7 +90,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'name' => 'owner_by',
-            'header' => Yii::t('zii', 'Owner by'),
+            'header' => Yii::t('flexiblearn', 'Owner by'),
             'value' => '$data->ownerBy->username',
             'filter' => false
         ),

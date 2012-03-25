@@ -63,7 +63,7 @@ class BannerController extends Controller {
             
             $model->fileAd = $file = CUploadedFile::getInstance($model, 'fileAd');
             
-            if ($model->validate(array('fileAd'))) {
+            if ($model->validate()) {
                 if ($file) {
                     $fileName = $this->getAndSaveUploadedFile($model);
                     $model->ad_path = $fileName;

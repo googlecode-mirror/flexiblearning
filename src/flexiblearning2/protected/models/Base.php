@@ -70,7 +70,4 @@ class Base extends CActiveRecord {
         }
         return parent::deleteByPk($pk, $condition, $params);
     }
-
 }
-
-?>

@@ -22,7 +22,7 @@
                              style='max-width:<?php echo Yii::app()->params['widthThumbnailLesson']?>; max-height:<?php echo Yii::app()->params['heightThumbnailLesson']?>' />
                         <br />
                         <a href="<?php echo $lecture->href?>"><?php echo $lecture->title?></a><br />
-                        <?php echo Yii::t('zii', 'Teacher : ')?>
+                        <?php echo Yii::t('flexiblearn', 'Teacher : ')?>
                             <span id="colo">
                                 <a href="<?php echo $lecture->ownerBy->href?>"><?php echo $lecture->ownerBy->fullname?></a>
                             </span> 	  
@@ -38,7 +38,7 @@
                     <td colspan="<?php echo Yii::app()->params['numberOfVideoPerRowOnIndex']?>">
                         <div class="block-area">
                             <?php
-                                echo CHtml::link(Yii::t('zii', 'Create lectures'), $this->createUrl('lecture/create', 
+                                echo CHtml::link(Yii::t('flexiblearn', 'Create lectures'), $this->createUrl('lecture/create', 
                                         array('idCategory' => $category->getPrimaryKey())),
                                         array('class' => 'bt link-btn'));
                             ?>

@@ -93,9 +93,7 @@ class Partner extends Base {
         $criteria = new CDbCriteria;
 
         $criteria->compare('name', $this->name, true);
-        $criteria->compare('address', $this->address, true);
         $criteria->compare('email', $this->email, true);
-        $criteria->compare('tel', $this->tel, true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,

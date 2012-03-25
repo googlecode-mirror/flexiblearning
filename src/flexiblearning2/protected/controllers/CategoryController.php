@@ -1,11 +1,6 @@
 <?php
 
 class CategoryController extends Controller {
-
-    /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
     public $layout = '//layouts/site-column2';
 
     /**
@@ -42,11 +37,6 @@ class CategoryController extends Controller {
         );
     }
 
-    public function init() {
-        parent::init();
-        $this->activeMenuItemIndex = 2;
-    }
-
     /**
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
@@ -81,9 +71,6 @@ class CategoryController extends Controller {
     public function actionCreate() {
         $model = new Category;
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
         if (isset($_POST['Category'])) {
             $model->attributes = $_POST['Category'];
             if ($model->save()) {
@@ -104,13 +91,11 @@ class CategoryController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
         if (isset($_POST['Category'])) {
             $model->attributes = $_POST['Category'];
-            if ($model->save())
+            if ($model->save()) {
                 $this->redirect(array('view', 'id' => $model->id));
+            }
         }
 
         $this->render('update', array(
@@ -125,17 +110,15 @@ class CategoryController extends Controller {
      */
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
-            // we only allow deletion via POST request
             $model = $this->loadModel($id);
-//            if (count($model->lessons == 0)) {
             $model->delete();
-//            }
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
         }
-        else
+        else {
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+        }
     }
 
     /**
@@ -165,17 +148,6 @@ class CategoryController extends Controller {
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
-    }
-
-    /**
-     * Performs the AJAX validation.
-     * @param CModel the model to be validated
-     */
-    protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'category-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
     }
 
     public function actionListByLanguage() {

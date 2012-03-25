@@ -2,11 +2,11 @@
     <table>
         <?php foreach ($questions as $question) : ?>
             <tr>
-                <td class="question"><?php echo Yii::t('zii', 'Q') ?></td>
+                <td class="question"><?php echo Yii::t('flexiblearn', 'Q') ?></td>
                 <td style="width:100%">
                     <?php echo $question->content ?>
                     <br />
-                    <?php echo Yii::t('zii', 'By') ?>
+                    <?php echo Yii::t('flexiblearn', 'By') ?>
                     <span class="colo">
                         <a href="<?php echo $this->createUrl('account/view', array('id' => $question->id_account)) ?>">
                             <?php echo $question->username ?>
@@ -16,7 +16,7 @@
                         <div class="link-answer">
                             <a class="post-my-answer" id="link-answer-question-<?php echo $question->getPrimaryKey()?>" 
                                 href="javascript:void(0)" onclick="showAnswerFrame(this)">
-                                <?php echo Yii::t('zii', 'Post my answer') ?>
+                                <?php echo Yii::t('flexiblearn', 'Post My Answer') ?>
                             </a>
                             &nbsp;
                             <?php if ($question->id_account == Yii::app()->user->getId() && count($question->answers) == 0 || 
@@ -25,7 +25,7 @@
                                 <a id="link-delete-question-<?php echo $question->getPrimaryKey()?>" 
                                    href="javascript:void(0)" 
                                    onclick="deleteQuestion('<?php echo $question->getPrimaryKey()?>', this)">
-                                    <?php echo Yii::t('zii', 'Delete this question') ?>
+                                    <?php echo Yii::t('flexiblearn', 'Delete This Question') ?>
                                 </a>
                             <?php endif; ?>
                         </div>
@@ -35,18 +35,18 @@
                         <input type="hidden" name="Answer[id_question]" value="<?php echo $question->getPrimaryKey() ?>" />
                         <textarea name="Answer[content]" class="qa_answer"></textarea>
                         <div class="btn-area">
-                            <input type="submit" value="<?php echo Yii::t('zii', 'Post') ?>" class="btn" />
+                            <input type="submit" value="<?php echo Yii::t('flexiblearn', 'Post') ?>" class="btn" />
                         </div>
                     </form>
                 </td>
             </tr>
             <?php foreach ($question->answers as $answer) : ?>
                 <tr>
-                    <td class="answer"><?php echo Yii::t('zii', 'A') ?></td>
+                    <td class="answer"><?php echo Yii::t('flexiblearn', 'A') ?></td>
                     <td>
                         <?php echo $answer->content ?>
                         <br />
-                        <?php echo Yii::t('zii', 'By') ?>
+                        <?php echo Yii::t('flexiblearn', 'By') ?>
                         <span class="colo">
                             <a href="<?php echo $this->createUrl('account/view', array('id' => $answer->id_account)) ?>">
                                 <?php echo $answer->account->username ?>
@@ -56,7 +56,7 @@
                                     Yii::app()->user->checkAccess('adminLesson') || Yii::app()->user->checkAccess('adminOwnLesson', array('lesson' => $answer->question->lesson))) : ?>
                                     <a id="link-delete-answer-<?php echo $answer->getPrimaryKey()?>" 
                                        href="javascript:void(0)" onclick="deleteAnswer('<?php echo $answer->getPrimaryKey()?>', this)">
-                                        <?php echo Yii::t('zii', 'Delete this answer') ?>
+                                        <?php echo Yii::t('flexiblearn', 'Delete This Answer') ?>
                                     </a>
                                 <?php endif; ?>
                             <?php endif; ?>

@@ -1,14 +1,14 @@
 <?php
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Admin Categories') => array('category/admin'),
+    Yii::t('flexiblearn', 'Admin Categories') => array('category/admin'),
 );
 
 $this->menu = array(
-    array('label' => Yii::t('zii', 'Create Category'), 'url' => array('create')),
+    array('label' => Yii::t('flexiblearn', 'Create Category'), 'url' => array('create')),
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Manage Categories') ?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Manage Categories') ?></h1>
 
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(

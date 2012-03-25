@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Question') => array('/question'),
-    Yii::t('zii', 'Answer'),
+    Yii::t('flexiblearn', 'Question') => array('/question'),
+    Yii::t('flexiblearn', 'Answer'),
 );
 ?>
 <h1><?php echo $this->id . '/' . $this->action->id; ?></h1>

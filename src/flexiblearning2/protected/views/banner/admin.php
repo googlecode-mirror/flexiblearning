@@ -1,14 +1,14 @@
 <?php
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Banners') => array('admin'),
+    Yii::t('flexiblearn', 'Banners') => array('admin'),
 );
 
 $this->menu = array(
-    array('label' => Yii::t('zii', 'Create Banner'), 'url' => array('create')),
+    array('label' => Yii::t('flexiblearn', 'Create Banner'), 'url' => array('create')),
 );
 ?>
 
-<h1>Manage Banners</h1>
+<h1><?php echo Yii::t('flexiblearn', 'Manage Banners')?></h1>
 
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
@@ -16,7 +16,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(
-        'banner_link',
+        array(            
+            'type' => 'raw',
+            'value' => 'CHtml::link("$data->banner_link",$data->banner_link)',
+            'name' => 'banner_link',
+        ),        
         array(
             'name' => 'id_partner',
             'header' => 'Partner',
@@ -37,6 +41,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'class' => 'CButtonColumn',
+            'template' => '{delete}{update}',
         ),
     ),
 ));

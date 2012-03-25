@@ -1,7 +1,7 @@
 <?php
-$this->pageTitle = Yii::app()->name . ' - Privacy Policy';
+$this->pageTitle = Yii::app()->name . ' - ' . Yii::t('flexiblearn', 'Privacy Policy');
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Privacy Policy'),
+    Yii::t('flexiblearn', 'Privacy Policy'),
 );
 ?>
 

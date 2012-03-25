@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Banners') => array('manage'),
+    Yii::t('flexiblearn', 'Banners') => array('manage'),
     $model->banner_link,
 );
 
 $this->menu = array(
-    array('label' => Yii::t('zii', 'Create Banner'), 'url' => array('create')),
-    array('label' => Yii::t('zii', 'Manage Banner'), 'url' => array('admin')),
+    array('label' => Yii::t('flexiblearn', 'Create Banner'), 'url' => array('create')),
+    array('label' => Yii::t('flexiblearn', 'Manage Banner'), 'url' => array('admin')),
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Update Banner')?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Update Banner')?></h1>
 
 <?php echo $this->renderPartial('_form', array('model' => $model)); ?>

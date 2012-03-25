@@ -96,8 +96,14 @@ class Entry extends Base {
         $criteria->order = 'created_date desc';
 
         return new CActiveDataProvider($this, array(
-                    'criteria' => $criteria,
-                ));
+            'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'id DESC',
+            ),
+            'pagination' => array(
+                'pageSize' => Yii::app()->params['nEntryPerPage'],
+            ),
+        ));
     }
 
     public function getThumbnailPath() {
@@ -113,6 +119,11 @@ class Entry extends Base {
                     'id' => $this->getPrimaryKey(),
                     'title' => $this->title,
                 ));
+    }
+
+    public function getTeaser() {
+        $helper = new CString();
+        return $helper->truncate(strip_tags($this->content), Yii::app()->params['entryTeaserLength']);
     }
 
     protected function afterDelete() {

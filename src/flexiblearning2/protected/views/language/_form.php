@@ -44,7 +44,7 @@
     <div class="row buttons">
         <label>&nbsp;</label>
         <div>
-            <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'bt')); ?>
+            <?php echo CHtml::submitButton(Yii::t('flexiblearn', $model->isNewRecord ? 'Create' : 'Save'), array('class' => 'bt')); ?>
         </div>
     </div>
 <?php $this->endWidget(); ?>

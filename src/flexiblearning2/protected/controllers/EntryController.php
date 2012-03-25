@@ -51,7 +51,7 @@ class EntryController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Entry;
+        $model = new Entry();
         $model->owner_by = Yii::app()->user->getId();
 
         // Uncomment the following line if AJAX validation is needed
@@ -83,22 +83,24 @@ class EntryController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        if (Yii::app()->user->checkAccess('adminEntry') || 
+                Yii::app()->user->checkAccess('adminOwnEntry', array('entry' => $model))) {
+            if (isset($_POST['Entry'])) {
+                $model->attributes = $_POST['Entry'];
+                if ($model->validate()) {
+                    $fileName = $this->getAndSaveUploadedFile($model);
+                    if ($fileName) {
+                        unlink($model->imagepath);
+                        $model->imagepath = $fileName;
+                    }
+                    if ($model->save(false)) {
+                        $this->redirect(array('view', 'id' => $model->id));
+                    }
+                }
 
-        if (isset($_POST['Entry'])) {
-            $model->attributes = $_POST['Entry'];
-            if ($model->validate()) {
-                $fileName = $this->getAndSaveUploadedFile($model);
-                if ($fileName) {
-                    unlink($model->imagepath);
-                    $model->imagepath = $fileName;
-                }
-                if ($model->save(false)) {
-                    $this->redirect(array('view', 'id' => $model->id));
-                }
             }
-           
+        } else {
+            throw new CHttpException(403,Yii::t('yii','You are not authorized to perform this action.'));
         }
 
         $this->render('update', array(
@@ -115,16 +117,21 @@ class EntryController extends Controller {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
             $model = $this->loadModel($id);
-//            if (count($model->lessons == 0)) {
+            
+            if (Yii::app()->user->checkAccess('adminEntry') 
+                || Yii::app()->user->checkAccess('adminOwnEntry', array('entry' => $model))) {
                 $model->delete();
-//            }
+            } else {
+                throw new CHttpException(403,Yii::t('yii','You are not authorized to perform this action.'));
+            }
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-            if (!isset($_GET['ajax']))
+            if (!isset($_GET['ajax'])) {
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-        }
-        else
+            }
+        } else {
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+        }
     }
 
     /**
@@ -132,13 +139,9 @@ class EntryController extends Controller {
      */
     public function actionAdmin() {
         $this->layout = 'site-admin';
-        $this->activeMenuItemIndex = 2;
+        $this->activeMenuItemIndex = 9;
         
-        $model = new Category('search');
-        $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Category']))
-            $model->attributes = $_GET['Category'];
-
+        $model = new Entry();
         $this->render('admin', array(
             'model' => $model,
         ));
@@ -159,13 +162,6 @@ class EntryController extends Controller {
         $this->render('manage', array(
             'model' => $model,
         ));
-        
-//        $this->render('manage', array(
-//            'models' => Entry::model()->findAllByAttributes(
-//                array('owner_by' => Yii::app()->user->getId()),
-//                array('order' => 'created_date')
-//            )
-//        ));
     }
 
     /**
@@ -178,22 +174,6 @@ class EntryController extends Controller {
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
-    }
-
-    /**
-     * Performs the AJAX validation.
-     * @param CModel the model to be validated
-     */
-    protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'category-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
-    }
-    
-    public function init() {
-        parent::init();
-        $this->activeMenuItemIndex = 2;
     }
     
     private function getAndSaveUploadedFile($model) {

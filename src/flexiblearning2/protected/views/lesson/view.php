@@ -6,10 +6,10 @@ $category = $lecture->category;
 $language = $category->language;
 
 $this->breadcrumbs = array(
-    Yii::t('zii', $language->name) => $language->href,
+    Yii::t('flexiblearn', $language->name) => $language->href,
     $category->name => $category->href,
-    Yii::t('zii', 'Lecture : ') . $lecture->title => $lecture->href,
-    Yii::t('zii', 'Lesson : ') . $model->title,
+    Yii::t('flexiblearn', 'Lecture : ') . $lecture->title => $lecture->href,
+    Yii::t('flexiblearn', 'Lesson : ') . $model->title,
 );
 ?>
 

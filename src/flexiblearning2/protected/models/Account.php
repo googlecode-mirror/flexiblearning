@@ -44,6 +44,7 @@ class Account extends Base {
     public static $ROLE_STUDENT = 'student';
     
     public $password_repeat;
+    public $fileAvatar;
 
     /**
      * Returns the static model of the specified AR class.
@@ -67,16 +68,22 @@ class Account extends Base {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
+            array('fileAvatar', 'file', 'allowEmpty' => true,
+                'types' => Yii::app()->params['imageExtionsions'],
+                'maxSize' => Yii::app()->params['imageMaxSize']
+            ),
             array('fullname, dateOfBirth, address, id_nationality, email, username, password, id_profession', 'required'),
             array('id_nationality, id_profession', 'numerical', 'integerOnly' => true),
             array('fullname, address, tel, password, avatar', 'length', 'max' => 256),
             array('email, username', 'length', 'max' => 128),
             array('email, username', 'unique'),
             array('dateOfBirth', 'date', 'format' => Yii::app()->params['dateFormat']),
+            array('username', 'match', 'pattern' => '/^[a-z0-9\d_]{3,20}$/i'),
+            array('favorite, enabledFullName, enabledDateOfBirth, enabledAddress, enabledNationality, enabledTel, enabledEmail, enabledProfession, enabledFavorite', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
 
-            array('id, fullname, dateOfBirth, address, id_nationality, tel, email, username, password, id_profession, avatar, enabledFullName, enabledDateOfBirth, enabledAddress, enabledNationality, enabledTel, enabledEmail, enabledProfession, enabledFavorite', 'safe', 'on' => 'search'),
+            array('fullname, dateOfBirth, address, id_nationality, tel, email, username, password, id_profession, avatar, favorite', 'safe', 'on' => 'search'),
         );
     }
 
@@ -103,7 +110,7 @@ class Account extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'fullname' => Yii::t('zii', 'Fullname'),
+            'fullname' => Yii::t('zii', 'Full Name'),
             'dateOfBirth' => Yii::t('zii', 'Date Of Birth'),
             'address' => Yii::t('zii', 'Address'),
             'id_nationality' => Yii::t('zii', 'Nationality'),
@@ -115,6 +122,15 @@ class Account extends Base {
             'avatar' => Yii::t('zii', 'Avatar'),
             'last_login' => Yii::t('zii', 'Last Login Date'),
             'ipAddress' => Yii::t('zii', 'Ip Address'),
+            'favorite' => Yii::t('zii', 'Favorite'),
+            'enabledFullName' => Yii::t('zii', 'Enable Full Name'),
+            'enabledDateOfBirth' => Yii::t('zii', 'Enable Date Of Birth'),
+            'enabledAddress' => Yii::t('zii', 'Enable Address'),
+            'enabledNationality' => Yii::t('zii', 'Enable Nationality'),
+            'enabledTel' => Yii::t('zii', 'Enable Telephone'),
+            'enabledEmail' => Yii::t('zii', 'Enable Email'),
+            'enabledProfession' => Yii::t('zii', 'Enable Profession'),
+            'enabledFavorite' => Yii::t('zii', 'Enable Favorite')
         );
     }
 
@@ -188,7 +204,7 @@ class Account extends Base {
     
     public function findAllTeachers() {
         $teacherIds = Yii::app()->db->createCommand()->select('userid')
-            ->from('authassignment')->where(array("or", "itemname = 'teacher'", "itemname = 'admin'"))
+            ->from('AuthAssignment')->where(array("or", "itemname = 'teacher'", "itemname = 'admin'"))
             ->queryColumn();
         
         return Account::model()->findAllByPk($teacherIds);

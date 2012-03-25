@@ -154,6 +154,7 @@ class SiteController extends Controller {
             $authMgr->createOperation('adminCategory', 'Manage categories');
             $authMgr->createOperation('adminLecture', 'Manage lectures');
             $authMgr->createOperation('adminVideo', 'Manage videos');
+            $authMgr->createOperation('adminEntry', 'Manage entries');
 
             $authMgr->createOperation('createVideo', 'Create videos');
             $authMgr->createOperation('createLesson', 'Create lessons');
@@ -164,6 +165,9 @@ class SiteController extends Controller {
 
             $bizRule = 'return Yii::app()->user->id==$params["lecture"]->owner_by;';
             $authMgr->createOperation('adminOwnLecture', "Manager the own users' lectures");
+            
+            $bizRule = 'return Yii::app()->user->id==$params["entry"]->owner_by;';
+            $authMgr->createOperation('adminOwnEntry', "Manager the own users' entries");
 
             $roleGuest = $authMgr->createRole('guest');
             $roleAuthenticated = $authMgr->createRole('authenticate');
@@ -173,6 +177,7 @@ class SiteController extends Controller {
 
             $roleTeacher->addChild('adminOwnLesson');
             $roleTeacher->addChild('adminOwnLecture');
+            $roleTeacher->addChild('adminOwnEntry');
             $roleTeacher->addChild('createLesson');
             $roleTeacher->addChild('createLecture');
             $roleTeacher->addChild('createVideo');
@@ -184,6 +189,7 @@ class SiteController extends Controller {
             $roleAdmin->addChild('adminCategory');
             $roleAdmin->addChild('adminLecture');
             $roleAdmin->addChild('adminVideo');
+            $roleAdmin->addChild('adminEntry');
 
             $authMgr->assign('admin', 1);
             $authMgr->assign('teacher', 2);
@@ -218,7 +224,7 @@ class SiteController extends Controller {
                 $message->view = 'contact';
                 $message->setBody(array('model' => $model), 'text/html');
                 $numsent = Yii::app()->mail->send($message);
-                $confirm = Yii::t('zii', "Emails sent. Thank you for contacting us. We will respond to you as soon as possible.");
+                $confirm = Yii::t('flexiblearn', "The email is sent. Thank you for contacting us. We will respond to you as soon as possible.");
                 Yii::app()->user->setFlash('contact', $confirm);
                 $this->refresh();
             }

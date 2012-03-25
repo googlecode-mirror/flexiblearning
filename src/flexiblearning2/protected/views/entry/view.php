@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs = array(
     $model->ownerBy->username => $model->ownerBy->href,
-    Yii::t('zii', 'Blogs') => $model->ownerBy->href . '#blog-tab',
+    Yii::t('flexiblearn', 'Blogs') => $model->ownerBy->href . '#blog-tab',
     CHtml::encode($model->title),
 );
 ?>
@@ -15,9 +15,10 @@ $this->breadcrumbs = array(
                 </div>
                 <div class="right">
                     <?php
-                    if ($model->owner_by == Yii::app()->user->getId()) {
+                    if (Yii::app()->user->checkAccess('adminEntry') 
+                        || Yii::app()->user->checkAccess('adminOwnEntry', array('entry' => $model))) {
                         echo CHtml::link(
-                                Yii::t('zii', 'Update Entry'), $this->createUrl('entry/update', array('id' => $model->getPrimaryKey())), array('class' => 'edit-link icon-control-link'));
+                                Yii::t('flexiblearn', 'Update Entry'), $this->createUrl('entry/update', array('id' => $model->getPrimaryKey())), array('class' => 'edit-link icon-control-link'));
                     }
                     ?>
                 </div>

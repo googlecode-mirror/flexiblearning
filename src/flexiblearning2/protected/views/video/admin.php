@@ -1,14 +1,14 @@
 <?php
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Manage videos') => array('video/admin'),
+    Yii::t('flexiblearn', 'Manage Videos') => array('video/admin'),
 );
 
 $this->menu = array(
-    array('label' => Yii::t('zii', 'Create Video'), 'url' => array('create')),
+    array('label' => Yii::t('flexiblearn', 'Create Video'), 'url' => array('create')),
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Manage Videos') ?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Manage Videos') ?></h1>
 
 <div class="block-area">
 <?php

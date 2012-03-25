@@ -4,7 +4,7 @@
         <div id="sidebar">
             <?php
             $this->beginWidget('zii.widgets.CPortlet', array(
-                'title' => Yii::t('zii', 'Operations'),
+                'title' => Yii::t('flexiblearn', 'Operations'),
             ));
             $this->widget('zii.widgets.CMenu', array(
                 'items' => $this->menu,

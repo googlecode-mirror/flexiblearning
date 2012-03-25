@@ -1,14 +1,14 @@
 <?php
     $this->breadcrumbs = array(
-        Yii::t('zii', 'Languages') => array('admin'),
+        Yii::t('flexiblearn', 'Languages') => array('admin'),
     );
 
     $this->menu = array(
-        array('label' => Yii::t('zii', 'Create Language'), 'url' => array('create')),
+        array('label' => Yii::t('flexiblearn', 'Create Language'), 'url' => array('create')),
     );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Manage Languages')?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Manage Languages')?></h1>
 
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(

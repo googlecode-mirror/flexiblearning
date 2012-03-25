@@ -4,18 +4,18 @@ $category = $lecture->category;
 $language = $category->language;
 
 $this->breadcrumbs = array(
-    Yii::t('zii', $language->name) => $language->href,
+    Yii::t('flexiblearn', $language->name) => $language->href,
     $category->name => $category->getHref(),
-    Yii::t('zii', 'Lecture : ') . $lecture->title => $lecture->getHref(),
-    Yii::t('zii', 'Create lesson'),
+    Yii::t('flexiblearn', 'Lecture : ') . $lecture->title => $lecture->getHref(),
+    Yii::t('flexiblearn', 'Create lesson'),
 );
 
 $this->menu = array(
-    array('label' => Yii::t('zii', 'Manage Lessons'), 'url' => array('admin')),
+    array('label' => Yii::t('flexiblearn', 'Manage Lessons'), 'url' => array('admin')),
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Create Lesson') ?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Create Lesson') ?></h1>
 
 <?php
 $arrayModels = array('model' => $model);

@@ -1,11 +1,11 @@
 <?php
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Accounts') => array('index'),
-    Yii::t('zii', 'Manage'),
+    Yii::t('flexiblearn', 'Accounts') => array('index'),
+    Yii::t('flexiblearn', 'Manage'),
 );
 ?>
 
-<h1><?php echo Yii::t('zii', 'Manage Accounts')?></h1>
+<h1><?php echo Yii::t('flexiblearn', 'Manage Accounts')?></h1>
 
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
@@ -40,7 +40,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '($data->profession)?$data->profession->name:""'
         ),
         array(
-            'header' => Yii::t('zii', 'Role'), 
+            'header' => Yii::t('flexiblearn', 'Role'), 
             'value' => 'Yii::t("zii", $data->role)'
         ),
         array(

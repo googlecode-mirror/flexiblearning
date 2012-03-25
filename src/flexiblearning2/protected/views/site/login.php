@@ -1,6 +1,6 @@
 <?php
     $this->breadcrumbs = array(
-        Yii::t('zii', 'Login') => $this->createUrl('site/login'),
+        Yii::t('flexiblearn', 'Login') => $this->createUrl('site/login'),
     );
 ?>
 <div class="form">
@@ -50,7 +50,7 @@
                                     <td>&nbsp;</td>
                                     <td>
                                         <?php
-                                            echo CHtml::link(Yii::t('zii', 'Forget the password'), 
+                                            echo CHtml::link(Yii::t('flexiblearn', 'Forget the password'), 
                                                     array('site/forget'));
                                         ?>                                          
                                     </td>                                        
@@ -77,7 +77,7 @@
                             Quản lý hộp thư khác <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/iconew.gif" width="48" height="24" /><br /><br />
                             Nhận thư từ các địa chỉ khác như Gmail, Yahoo mail,... 
                             <form action="<?php echo $this->createUrl('account/register')?>">    
-                                <input type="submit" class="bt" name="" value="<?php echo Yii::t('zii', 'Register')?>" class="bt" />
+                                <input type="submit" class="bt" name="" value="<?php echo Yii::t('flexiblearn', 'Register')?>" class="bt" />
                             </form>
 
                         </td>

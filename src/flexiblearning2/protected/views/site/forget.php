@@ -1,7 +1,7 @@
 <?php
-$this->pageTitle = Yii::app()->name . ' - ' . Yii::t('zii', 'Forgot the password');
+$this->pageTitle = Yii::app()->name . ' - ' . Yii::t('flexiblearn', 'Forget the password');
 $this->breadcrumbs = array(
-    Yii::t('zii', 'Forgot the password'),
+    Yii::t('flexiblearn', 'Forget the password'),
 );
 ?>
 <div class="form">
@@ -17,7 +17,7 @@ $this->breadcrumbs = array(
     <table width="940" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td class="top" id="caption" colspan="2">
-                <span id="title-text"><?php echo Yii::t('zii', 'Forget password')?></span>
+                <span id="title-text"><?php echo Yii::t('flexiblearn', 'Forget password')?></span>
             </td>
         </tr>    
         <tr>
@@ -75,9 +75,9 @@ $this->breadcrumbs = array(
                                 <tr>
                                     <td>&nbsp;</td>
                                     <td>
-                                        <?php echo CHtml::submitButton(Yii::t('zii', 'Ok'), array('class' => 'bt')); ?> &nbsp;
+                                        <?php echo CHtml::submitButton(Yii::t('flexiblearn', 'Ok'), array('class' => 'bt')); ?> &nbsp;
                                         <span style="color: #0066ff">
-                                            <?php echo CHtml::link(Yii::t('zii', 'Cancel'), array('site/index'));?>    
+                                            <?php echo CHtml::link(Yii::t('flexiblearn', 'Cancel'), array('site/index'));?>    
                                         </span>
                                     </td>
                                 </tr>

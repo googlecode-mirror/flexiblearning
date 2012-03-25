@@ -3,9 +3,9 @@ $category = $model->category;
 $language = $category->language;
 
 $this->breadcrumbs = array(
-    Yii::t('zii', $language->name) => $language->href,
+    Yii::t('flexiblearn', $language->name) => $language->href,
     $category->name => $category->href,
-    Yii::t('zii', 'Lecture : ') . $model->title,
+    Yii::t('flexiblearn', 'Lecture : ') . $model->title,
 );
 ?>
 
@@ -20,7 +20,7 @@ $this->breadcrumbs = array(
                     <?php 
                         if (Yii::app()->user->checkAccess('adminLecture') || Yii::app()->user->checkAccess('adminOwnLecture')) {
                             echo CHtml::link(
-                                    Yii::t('zii', 'Update Lecture'), 
+                                    Yii::t('flexiblearn', 'Update Lecture'), 
                                     $this->createUrl('lecture/update', array('id' => $model->getPrimaryKey())),
                                     array('class' => 'edit-link icon-control-link'));
                         } 
@@ -34,7 +34,7 @@ $this->breadcrumbs = array(
             </p>
             <?php if ($model->is_active == 0) : ?>
                 <div class="block-area errorMessage">
-                    <?php echo Yii::t('zii', 'This lecture is not active')?>
+                    <?php echo Yii::t('flexiblearn', 'This lecture is not active')?>
                 </div>
             <?php endif;?>
             
@@ -43,10 +43,10 @@ $this->breadcrumbs = array(
                     <ul id="tab" class="tab">
                         <li class="active">
                             <a href="#description">
-                                <?php echo Yii::t('zii', 'Description') ?>
+                                <?php echo Yii::t('flexiblearn', 'Description') ?>
                             </a>
                         </li>
-                        <li> <a href="#thongbao"><?php echo Yii::t('zii', 'Annoucements') ?></a></li>                        
+                        <li> <a href="#thongbao"><?php echo Yii::t('flexiblearn', 'Annoucements') ?></a></li>                        
                     </ul>
                 </div><!--end-box-tap-->
 
@@ -64,7 +64,7 @@ $this->breadcrumbs = array(
             </div>
 
             <div class="block-area">
-                <h2><?php echo Yii::t('zii', 'Lessons')?></h2>
+                <h2><?php echo Yii::t('flexiblearn', 'Lessons')?></h2>
                 <?php $lessons = $model->lessons?>
                 <?php if (count($lessons) > 0) : ?>
                     <?php foreach($lessons as $lesson) : ?>
@@ -78,7 +78,7 @@ $this->breadcrumbs = array(
                                         <div class="price">
                                             <?php
                                                 if ($lesson->price == 0) {
-                                                    echo Yii::t('zii', 'Free');
+                                                    echo Yii::t('flexiblearn', 'Free');
                                                 } else {
                                                     echo $lesson->price . ' ' . Yii::app()->params['moneyUnit'];
                                                 }
@@ -96,7 +96,7 @@ $this->breadcrumbs = array(
                                     </a>
                                     <?php if (!$lesson->is_active) : ?>
                                         <div class="errorMessage">
-                                            <?php echo Yii::t('zii', 'Not active')?>
+                                            <?php echo Yii::t('flexiblearn', 'Not active')?>
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -104,12 +104,12 @@ $this->breadcrumbs = array(
                         <?php endif; ?>
                     <?php endforeach; ?>
                 <?php else : ?>
-                    <?php echo Yii::t('zii', 'There is no lesson in this lecture !')?>
+                    <?php echo Yii::t('flexiblearn', 'There is no lesson in this lecture !')?>
                 <?php endif; ?>
                 <?php if(Yii::app()->user->checkAccess('createLecture')) : ?>
                     <div class="block-area">
                         <?php 
-                            echo CHtml::link(Yii::t('zii', 'Create lessons'), $this->createUrl('lesson/create', 
+                            echo CHtml::link(Yii::t('flexiblearn', 'Create lessons'), $this->createUrl('lesson/create', 
                                 array('idLecture' => $model->getPrimaryKey())),
                                 array('class' => 'bt link-btn'));
                         ?>

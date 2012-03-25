@@ -69,7 +69,7 @@
         </div>
 
         <div class="row buttons">
-            <?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('zii', 'Create') : Yii::t('zii', 'Save')); ?>
+            <?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('flexiblearn', 'Create') : Yii::t('flexiblearn', 'Save')); ?>
         </div>
     <?php $this->endWidget(); ?>
 </div><!-- form -->

@@ -1,11 +1,6 @@
 <?php
 
 class LectureController extends Controller {
-
-    /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
     public $layout = '//layouts/site-admin';
     public $activeMenuItemIndex = 3;
 
@@ -52,7 +47,7 @@ class LectureController extends Controller {
         $lecture = $this->loadModel($id);
 
         if ($lecture->is_active == 0) {
-            if($lecture->owner_by != Yii::app()->user->getId() && 
+            if(!Yii::app()->user->checkAccess('adminOwnLecture', array('lecture' => $lecture)) &&
                 !Yii::app()->user->checkAccess('adminLecture')) {
                 throw new CHttpException(403,Yii::t('yii','You are not authorized to perform this action.'));
             }
@@ -148,14 +143,16 @@ class LectureController extends Controller {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if (isset($_POST['Lecture'])) {
-            $model->attributes = $_POST['Lecture'];
-            if ($model->save()) {
-                $this->redirect(array('view', 'id' => $model->id));
+        if (Yii::app()->user->checkAccess('adminLecture') || 
+            Yii::app()->user->checkAccess('adminOwnLecture', array('lecture' => $models))) {
+            if (isset($_POST['Lecture'])) {
+                $model->attributes = $_POST['Lecture'];
+                if ($model->save()) {
+                    $this->redirect(array('view', 'id' => $model->id));
+                }
             }
+        } else {
+            throw new CHttpException(403,Yii::t('yii','You are not authorized to perform this action.'));
         }
 
         $this->render('update', array(
@@ -170,15 +167,21 @@ class LectureController extends Controller {
      */
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
-            // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
+            $lecture = $this->loadModel($id);
+            if (Yii::app()->user->checkAccess('adminLecture') ||
+                Yii::app()->user->checkAccess('adminOwnLecture', array('lecture' => $lecture))) {
+                    $lecture->delete();
+            } else {
+                throw new CHttpException(403,Yii::t('yii','You are not authorized to perform this action.'));
 
+            }
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
         }
-        else
+        else {
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+        }
     }
 
     /**
@@ -203,8 +206,9 @@ class LectureController extends Controller {
      */
     public function loadModel($id) {
         $model = Lecture::model()->findByPk($id);
-        if ($model === null)
+        if ($model === null) {
             throw new CHttpException(404, 'The requested page does not exist.');
+        }
         return $model;
     }
 
