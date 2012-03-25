@@ -74,10 +74,10 @@ class Entry extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'title' => Yii::t('zii', 'Title'),
-            'content' => Yii::t('zii', 'Content'),
-            'full' => Yii::t('zii', 'Owner By'),
-            'fileThumbnail' => Yii::t('zii', 'Image'),
+            'title' => Yii::t('flexiblearn', 'Title'),
+            'content' => Yii::t('flexiblearn', 'Content'),
+            'full' => Yii::t('flexiblearn', 'Owner By'),
+            'fileThumbnail' => Yii::t('flexiblearn', 'Image'),
         );
     }
 

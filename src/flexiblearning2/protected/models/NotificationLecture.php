@@ -68,17 +68,17 @@ class NotificationLecture extends Base {
     /*public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'title_vi' => Yii::t('zii', 'Title Vi'),
-            'title_en' => Yii::t('zii', 'Title En'),
-            'title_ko' => Yii::t('zii', 'Title Ko'),
-            'content_vi' => Yii::t('zii', 'Content Vi'),
-            'content_en' => Yii::t('zii', 'Content En'),
-            'content_ko' => Yii::t('zii', 'Content Ko'),
-            'id_lecture' => Yii::t('zii', 'Lecture'),
-            'created_by' => Yii::t('zii', 'Created By'),
-            'created_date' => Yii::t('zii', 'Created Date'),
-            'updated_by' => Yii::t('zii', 'Updated By'),
-            'updated_date' => Yii::t('zii', 'Updated Date'),
+            'title_vi' => Yii::t('flexiblearn', 'Title Vi'),
+            'title_en' => Yii::t('flexiblearn', 'Title En'),
+            'title_ko' => Yii::t('flexiblearn', 'Title Ko'),
+            'content_vi' => Yii::t('flexiblearn', 'Content Vi'),
+            'content_en' => Yii::t('flexiblearn', 'Content En'),
+            'content_ko' => Yii::t('flexiblearn', 'Content Ko'),
+            'id_lecture' => Yii::t('flexiblearn', 'Lecture'),
+            'created_by' => Yii::t('flexiblearn', 'Created By'),
+            'created_date' => Yii::t('flexiblearn', 'Created Date'),
+            'updated_by' => Yii::t('flexiblearn', 'Updated By'),
+            'updated_date' => Yii::t('flexiblearn', 'Updated Date'),
         );
     }*/
 

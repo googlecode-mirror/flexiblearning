@@ -65,8 +65,8 @@ class Profession extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => Yii::t('zii', 'Name'),
-            'state' => Yii::t('zii', 'State'),
+            'name' => Yii::t('flexiblearn', 'Name'),
+            'state' => Yii::t('flexiblearn', 'State'),
         );
     }
 

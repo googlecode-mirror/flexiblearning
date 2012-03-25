@@ -109,18 +109,18 @@ class Lesson extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'title_vi' => Yii::t('zii', 'Title Vi'),
-            'title_en' => Yii::t('zii', 'Title En'),
-            'title_ko' => Yii::t('zii', 'Title Ko'),
-            'description_vi' => Yii::t('zii', 'Description Vi'),
-            'description_en' => Yii::t('zii', 'Description En'),
-            'description_ko' => Yii::t('zii', 'Description Ko'),
-            'price' => Yii::t('zii', 'Price'),
-            'approve' => Yii::t('zii', 'Approve'),
-            'id_category' => Yii::t('zii', 'Category'),
-            'id_lecture' => Yii::t('zii', 'Lecture'),
-            'fileThumbnail' => Yii::t('zii', 'Thumbnail'),
-            'is_active' => Yii::t('zii', 'Active')
+            'title_vi' => Yii::t('flexiblearn', 'Title Vi'),
+            'title_en' => Yii::t('flexiblearn', 'Title En'),
+            'title_ko' => Yii::t('flexiblearn', 'Title Ko'),
+            'description_vi' => Yii::t('flexiblearn', 'Description Vi'),
+            'description_en' => Yii::t('flexiblearn', 'Description En'),
+            'description_ko' => Yii::t('flexiblearn', 'Description Ko'),
+            'price' => Yii::t('flexiblearn', 'Price'),
+            'approve' => Yii::t('flexiblearn', 'Approve'),
+            'id_category' => Yii::t('flexiblearn', 'Category'),
+            'id_lecture' => Yii::t('flexiblearn', 'Lecture'),
+            'fileThumbnail' => Yii::t('flexiblearn', 'Thumbnail'),
+            'is_active' => Yii::t('flexiblearn', 'Active')
         );
     }
 

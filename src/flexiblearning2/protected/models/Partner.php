@@ -74,12 +74,12 @@ class Partner extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => Yii::t('zii', 'Name'),
-            'address' => Yii::t('zii', 'Address'),
-            'email' => Yii::t('zii', 'Email'),
-            'tel' => Yii::t('zii', 'Tel'),
-            'logo_path' => Yii::t('zii', 'Logo Path'),
-            'contact_link' => Yii::t('zii', 'Contact Link'),
+            'name' => Yii::t('flexiblearn', 'Name'),
+            'address' => Yii::t('flexiblearn', 'Address'),
+            'email' => Yii::t('flexiblearn', 'Email'),
+            'tel' => Yii::t('flexiblearn', 'Tel'),
+            'logo_path' => Yii::t('flexiblearn', 'Logo Path'),
+            'contact_link' => Yii::t('flexiblearn', 'Contact Link'),
         );
     }
 

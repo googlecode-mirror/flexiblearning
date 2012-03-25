@@ -75,14 +75,14 @@ class Category extends Base {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name_vi' => Yii::t('zii', 'Name Vi'),
-            'name_en' => Yii::t('zii', 'Name En'),
-            'name_ko' => Yii::t('zii', 'Name Ko'),
-            'description_vi' => Yii::t('zii', 'Description Vi'),
-            'description_en' => Yii::t('zii', 'Description En'),
-            'description_ko' => Yii::t('zii', 'Description Ko'),
-            'id_language' => Yii::t('zii', 'Language'),
-            'is_active' => Yii::t('zii', 'Active'),
+            'name_vi' => Yii::t('flexiblearn', 'Name Vi'),
+            'name_en' => Yii::t('flexiblearn', 'Name En'),
+            'name_ko' => Yii::t('flexiblearn', 'Name Ko'),
+            'description_vi' => Yii::t('flexiblearn', 'Description Vi'),
+            'description_en' => Yii::t('flexiblearn', 'Description En'),
+            'description_ko' => Yii::t('flexiblearn', 'Description Ko'),
+            'id_language' => Yii::t('flexiblearn', 'Language'),
+            'is_active' => Yii::t('flexiblearn', 'Active'),
         );
     }
 

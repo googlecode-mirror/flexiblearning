@@ -32,9 +32,9 @@ class ForgetForm extends CFormModel {
      */
     public function attributeLabels() {
         return array(
-            'verifiedCode' => Yii::t('zii', 'Verification Code'),
-            'name' => Yii::t('zii', 'Username'),
-            'email' => Yii::t('zii', 'Email'),
+            'verifiedCode' => Yii::t('flexiblearn', 'Verification Code'),
+            'name' => Yii::t('flexiblearn', 'Username'),
+            'email' => Yii::t('flexiblearn', 'Email'),
         );
     }
 

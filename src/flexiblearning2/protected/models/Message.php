@@ -71,7 +71,7 @@ class Message extends Base {
     public function getDisplaySubject() {
         $subject = $this->subject;
         if (empty($subject)) {
-            $subject = Yii::t('zii', '(No Subject)');
+            $subject = Yii::t('flexiblearn', '(No Subject)');
         }
         return $subject;
     }

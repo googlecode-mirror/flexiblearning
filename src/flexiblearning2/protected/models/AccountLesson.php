@@ -62,8 +62,8 @@ class AccountLesson extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'id_account' => Yii::t('zii', 'Account'),
-            'id_lecture' => Yii::t('zii', 'Lecture'),
+            'id_account' => Yii::t('flexiblearn', 'Account'),
+            'id_lecture' => Yii::t('flexiblearn', 'Lecture'),
         );
     }
 
